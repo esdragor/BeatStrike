@@ -6,6 +6,16 @@ using Debug = UnityEngine.Debug;
 
 namespace Utilities
 {
+    public static class Enums
+    {
+        
+    }
+
+    public static class Delegates
+    {
+        
+    }
+    
     public static class Logs
     {
         public enum LogColor
@@ -103,8 +113,7 @@ namespace Utilities
 
         public static void SetScale(this Transform t, float globalScale)
         {
-            Vector3 scale = t.localScale;
-            scale = new Vector3(globalScale, globalScale, globalScale);
+            var scale = new Vector3(globalScale, globalScale, globalScale);
             t.localScale = scale;
         }
 
