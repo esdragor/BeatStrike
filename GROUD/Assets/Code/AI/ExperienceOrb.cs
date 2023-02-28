@@ -6,6 +6,7 @@ namespace Code.AI
     {
         public float speed = 3f;
         public Pattern orbPattern;
+        public Vector3 specialSpawnPosition;
 
         private void Awake()
         {

@@ -5,6 +5,10 @@ using Utilities;
 
 public class RunnerManager : MonoBehaviour
 {
+    public Vector3 wayOnePosition;
+    public Vector3 wayTwoPosition;
+    public Vector3 wayThreePosition;
+    
     public Transform[] spawnPoints;
     public GameObject objectPrefab;
     
@@ -13,8 +17,20 @@ public class RunnerManager : MonoBehaviour
     
     public Pattern[] patterns;
 
+    private void Awake()
+    {
+        PatternManager.OnPatternEnd += OnPatternEnd;
+    }
+
+    private void OnPatternEnd()
+    {
+        Debug.Log("Own Experience !");
+    }
+
     private void Update()
     {
+        if(GameManager.instance.isBossStarted) return;
+        
         if (timer >= spawnFrequency)
         {
             SpawnObjectInRow();
@@ -22,7 +38,7 @@ public class RunnerManager : MonoBehaviour
         }
         else
         {
-            if(!PatternManager.Instance.isTimelineActive) timer += Time.deltaTime;
+            timer += Time.deltaTime;
         }
     }
 
@@ -35,7 +51,27 @@ public class RunnerManager : MonoBehaviour
         newObject.transform.position += Vector3.up;
         
         ExperienceOrb objectOrb = newObject.GetComponent<ExperienceOrb>();
-        objectOrb.orbPattern = patterns[Helpers.GetRandomRange(0, patterns.Length - 1)];
+        Pattern selectedPattern = patterns[Helpers.GetRandomRange(0, patterns.Length - 1)];
+        objectOrb.orbPattern = selectedPattern;
+
+        for (int i = 0; i < selectedPattern.interactions.Count; i++)
+        {
+            switch (selectedWay)
+            {
+                case 0:
+                    selectedPattern.interactions[i].spawnPosition = wayOnePosition + new Vector3(0, Helpers.GetRandomRange(-500, 500),0);
+                    break;
+                
+                case 1 :
+                    selectedPattern.interactions[i].spawnPosition = wayTwoPosition + new Vector3(0, Helpers.GetRandomRange(-500, 500),0);
+                    break;
+                
+                case 3:
+                    selectedPattern.interactions[i].spawnPosition = wayThreePosition + new Vector3(0, Helpers.GetRandomRange(-500, 500),0);
+                    break;
+            }
+        }
+        
     }
     
 }

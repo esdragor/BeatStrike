@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class TapInteraction : InteractionComponent
@@ -18,7 +19,11 @@ public class TapInteraction : InteractionComponent
         objectPosition.localScale = new Vector3(scale, scale, scale);
         objectPosition.anchoredPosition = startPosition;
     }
-    
+
+    private void Update()
+    {
+    }
+
     private void OnSimpleTouch(Vector2 pos)
     {
         if (bulleTr.position.x - tolerance - bulleTr.rect.width < pos.x &&

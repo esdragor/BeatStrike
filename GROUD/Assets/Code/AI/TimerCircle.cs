@@ -30,6 +30,7 @@ public class TimerCircle : MonoBehaviour
         StartCoroutine(DecreaseCircle());
     }
     
+
     IEnumerator DecreaseCircle()
     {
         time -= Time.deltaTime * rate * maxSizeCircle;

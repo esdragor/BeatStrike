@@ -2,6 +2,7 @@ using UnityEngine;
 
 public abstract class InteractionComponent : MonoBehaviour
 {
+    public GameObject target;
     public InteractionKey data;
     public float tolerance = 20f;
     public float speed = 0.1f;

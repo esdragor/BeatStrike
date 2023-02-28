@@ -23,17 +23,11 @@ public class PatternManager : MonoBehaviour
     [Expandable] public Pattern testPattern;
 
     private float timer;
-    private bool isTimelineActive;
+    public bool isTimelineActive;
 
     private void Awake()
     {
         Instance = this;
-    }
-
-    private void Start()
-    {
-        if (testPattern)
-            StartPattern(testPattern);
     }
 
     public void StartPattern(Pattern p)
@@ -50,14 +44,7 @@ public class PatternManager : MonoBehaviour
 
     private void InitializeQueue(List<InteractionKey> interactionKeys)
     {
-        if (timelineRunnerKeys != null)
-        {
-            timelineRunnerKeys.Clear();
-        }
-        else
-        {
-            timelineRunnerKeys = new Queue<InteractionKey>();
-        }
+        timelineRunnerKeys = new Queue<InteractionKey>();
 
         interactionKeys = interactionKeys.OrderBy(it => it.timeCode).ToList();
 
@@ -77,7 +64,6 @@ public class PatternManager : MonoBehaviour
     private void TimelineEventListener()
     {
         timer += Time.deltaTime;
-
 
         if (Math.Abs(timelineRunnerKeys.Peek().timeCode - timer) < 0.1f)
         {
