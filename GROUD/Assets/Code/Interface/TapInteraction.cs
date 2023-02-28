@@ -26,11 +26,6 @@ public class TapInteraction : InteractionComponent
 
     private void OnSimpleTouch(Vector2 pos)
     {
-        tolerance = 100;
-        bool a1 = bulleTr.position.x - tolerance - bulleTr.localScale.x * bulleTr.rect.width < pos.x;
-        bool a2 = bulleTr.position.x + tolerance + bulleTr.localScale.x * bulleTr.rect.width > pos.x;
-        bool a3 = bulleTr.position.y - tolerance - bulleTr.localScale.y * bulleTr.rect.height < pos.y;
-        bool a4 = bulleTr.position.y + tolerance + bulleTr.localScale.y * bulleTr.rect.height > pos.y;
         if (bulleTr.position.x - tolerance - bulleTr.localScale.x  * bulleTr.rect.width < pos.x &&
             bulleTr.position.x + tolerance + bulleTr.localScale.x * bulleTr.rect.width > pos.x &&
             bulleTr.position.y - tolerance - bulleTr.localScale.y * bulleTr.rect.height < pos.y &&
