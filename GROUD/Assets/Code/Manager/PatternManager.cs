@@ -16,6 +16,7 @@ public enum SwipeDirection
 public class PatternManager : MonoBehaviour
 {
     public static PatternManager Instance;
+    public bool isTimelineActive;
     public static event Action OnPatternEnd;
     public InteractionKey currentInteraction;
     private Queue<InteractionKey> timelineRunnerKeys;
@@ -23,7 +24,6 @@ public class PatternManager : MonoBehaviour
     [Expandable] public Pattern testPattern;
 
     private float timer;
-    private bool isTimelineActive;
 
     private void Awake()
     {
