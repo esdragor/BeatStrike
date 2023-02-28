@@ -2123,7 +2123,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed334b1890d02ce41bb1052e3304a9dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  testDataKey: {fileID: 11400000, guid: e8219686db8f04946b3dbc78bf731b2f, type: 2}
+  currentInteraction: {fileID: 0}
+  interactionKeys:
+  - {fileID: 11400000, guid: c4ae670f999d871479e3c0362c488127, type: 2}
+  - {fileID: 11400000, guid: 00ca86525fd76a34798e93a7fc6e925d, type: 2}
+  - {fileID: 11400000, guid: e8219686db8f04946b3dbc78bf731b2f, type: 2}
+  - {fileID: 11400000, guid: 6f3a8f936ccf20648a96d9fe68ed6931, type: 2}
+  timer: 0
 --- !u!114 &958934232
 MonoBehaviour:
   m_ObjectHideFlags: 0

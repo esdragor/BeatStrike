@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Utilities;
 
@@ -12,17 +15,45 @@ public enum SwipeDirection
 public class PatternManager : MonoBehaviour
 {
     public static PatternManager Instance;
-
-    public InteractionKey testDataKey;
+    public InteractionKey currentInteraction;
+    public Queue<InteractionKey> timelineRunnerKeys;
+    public List<InteractionKey> interactionKeys;
+    public float timer;
     
     private void Awake()
     {
         Instance = this;
+
+        timelineRunnerKeys = new Queue<InteractionKey>();
     }
 
     private void Start()
     {
-        DrawInteractionOnScreen(testDataKey);
+        interactionKeys = interactionKeys.OrderBy(it => it.timeCode).ToList();
+        
+        for (int i = 0; i < interactionKeys.Count; i++)
+        {
+            timelineRunnerKeys.Enqueue(interactionKeys[i]);
+        }
+        
+        Logs.Log("First of Queue", timelineRunnerKeys.Peek().name, LogType.Log, Logs.LogColor.Green);
+    }
+
+    private void Update()
+    {
+        timer += Time.deltaTime;
+        
+        TimelineEventListener();
+    }
+
+    private void TimelineEventListener()
+    {
+        if(timelineRunnerKeys.Count <= 0) return;
+
+        if (Math.Abs(timelineRunnerKeys.Peek().timeCode - timer) < 0.1f)
+        {
+            DrawInteractionOnScreen(timelineRunnerKeys.Dequeue());
+        }
     }
 
     public void DrawInteractionOnScreen(InteractionKey dataKey)
@@ -50,5 +81,9 @@ public class PatternManager : MonoBehaviour
         }
 
         if (interactionComponent != null) interactionComponent.StartInteraction();
+    }
+
+    void Debug()
+    {
     }
 }
