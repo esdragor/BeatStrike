@@ -1,9 +1,11 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PatternPoolManager : MonoBehaviour
 {
     public static PatternPoolManager Instance;
+    public static event Action OnPatternEnd;
     public List<GameObject> ActiveCircles = new ();
     [HideInInspector] public float CircleWidth = 50f;
 
@@ -33,6 +35,10 @@ public class PatternPoolManager : MonoBehaviour
         circle.SetActive(false);
         
         ActiveCircles.Remove(circle);
+        if (ActiveCircles.Count == 0)
+        {
+            OnPatternEnd?.Invoke();
+        }
         circle.transform.parent = transform;
         circlePool.Add(circle);
     }
