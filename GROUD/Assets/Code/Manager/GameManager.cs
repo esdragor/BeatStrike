@@ -22,10 +22,10 @@ public class GameManager : MonoBehaviour
         onUpdated?.Invoke();
         timer += Time.deltaTime;
 
-        if (timer > timeToBoss && !isBossStarted && !PatternManager.Instance.isTimelineActive)
-        {
-            StartBoss();
-        }
+        // if (timer > timeToBoss && !isBossStarted && !PatternManager.Instance.isTimelineActive)
+        // {
+        //     StartBoss();
+        // }
     }
 
     void StartBoss()

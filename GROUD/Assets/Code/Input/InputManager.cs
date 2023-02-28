@@ -61,26 +61,26 @@ public class InputManager : MonoBehaviour
 
     private void StartTouchP(InputAction.CallbackContext ctx)
     {
-        if (OnStartEvent != null) OnStartEvent(
+        OnStartEvent(
             /*ScreenToWorld(Camera.main, MyInputManager.Touch.PrimaryPosition.ReadValue<Vector2>())*/MyInputManager.Touch.PrimaryPosition.ReadValue<Vector2>(), 
             (float)ctx.startTime);
     }
     
     private void EndTouchP(InputAction.CallbackContext ctx)
     {
-        if (OnEndEvent != null) OnEndEvent(
+        OnEndEvent(
             /*ScreenToWorld(Camera.main, MyInputManager.Touch.PrimaryPosition.ReadValue<Vector2>())*/MyInputManager.Touch.PrimaryPosition.ReadValue<Vector2>(), 
             (float)ctx.startTime);
     }
 
     private void SwipeEnd(Vector2 pos, float time)
     {
-        if (Vector3.Distance(StartPosSwipe, pos) >= minDist/* && (time - StartTimerSwipe) > MinTimeTouch*/)
-        {
-            Vector2 dir2 = (pos - StartPosSwipe).normalized;
-            SwipeDirection(dir2);
-        }
-        else
+        // if (Vector3.Distance(StartPosSwipe, pos) >= minDist/* && (time - StartTimerSwipe) > MinTimeTouch*/)
+        // {
+        //     Vector2 dir2 = (pos - StartPosSwipe).normalized;
+        //     SwipeDirection(dir2);
+        // }
+        // else
         {
             SimpleTouch(pos);
         }
