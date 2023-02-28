@@ -26,10 +26,10 @@ public class TapInteraction : InteractionComponent
 
     private void OnSimpleTouch(Vector2 pos)
     {
-        if (bulleTr.position.x - tolerance - bulleTr.rect.width < pos.x &&
-            bulleTr.position.x + tolerance + bulleTr.rect.width > pos.x &&
-            bulleTr.position.y - tolerance - bulleTr.rect.width < pos.y &&
-            bulleTr.position.y + tolerance + bulleTr.rect.width > pos.y)
+        if (bulleTr.position.x - tolerance - bulleTr.localScale.x < pos.x &&
+            bulleTr.position.x + tolerance + bulleTr.localScale.x > pos.x &&
+            bulleTr.position.y - tolerance - bulleTr.localScale.y < pos.y &&
+            bulleTr.position.y + tolerance + bulleTr.localScale.y > pos.y)
         {
             PatternPoolManager.Instance.AddCircleToPool(gameObject);
             Debug.Log("TOUCH !");
