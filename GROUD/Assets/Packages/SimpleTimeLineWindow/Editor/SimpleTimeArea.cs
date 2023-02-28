@@ -95,7 +95,7 @@ namespace DMTimeArea
         // Time Area settings
         //
         // Frame rate
-        public float _frameRate = 30f;
+        public float _frameRate = 60f;
         // Frame Snap
         public bool _frameSnap = true;
         // Time ruler format

@@ -240,8 +240,12 @@ public class CapacityToolEditor : SimpleTimeArea
    protected virtual void DrawLeftContent()
    {
       GUILayout.BeginArea(rectLeft);
-      GUILayout.Label("Draw your left content");
+      GUILayout.BeginHorizontal();
       
+      GUILayout.Label("Pattern Keys");
+      GUILayout.Button("Add");
+      
+      GUILayout.EndHorizontal();
       GUILayout.EndArea();
    }
    
