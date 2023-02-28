@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -16,13 +15,15 @@ public class PatternPoolManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+        InitCirclePool();
     }
     
-    void Start()
+    void InitCirclePool()
     {
         for (int i = 0; i < maxPoolSize; i++)
         {
             circlePool.Add(Instantiate(circlePrefab, transform));
+            circlePool[i].SetActive(false);
         }
         CircleWidth = circlePrefab.transform.GetChild(0).GetComponent<RectTransform>().rect.width;
     }
@@ -30,6 +31,7 @@ public class PatternPoolManager : MonoBehaviour
     public void AddCircleToPool(GameObject circle)
     {
         circle.SetActive(false);
+        
         ActiveCircles.Remove(circle);
         circle.transform.parent = transform;
         circlePool.Add(circle);

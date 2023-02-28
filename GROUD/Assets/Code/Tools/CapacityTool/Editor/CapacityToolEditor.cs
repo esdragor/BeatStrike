@@ -8,8 +8,8 @@ using Object = UnityEngine.Object;
 
 public class CapacityToolEditor : SimpleTimeArea
 {
-   private Capacity currentCapacity;
-   private PatternKey selectedPatternKey;
+   private Pattern currentPattern;
+   private InteractionKey selectedInteractionKey;
    private string directoryPath = $"Assets/Packages/SimpleTimeLineWindow/EditorResources/StopIcon.png";
 
    #region VISUAL
@@ -173,15 +173,15 @@ public class CapacityToolEditor : SimpleTimeArea
    
    void SaveCapacity()
    {
-      directoryPath = $"Assets/Scriptable/Capacities/{currentCapacity.capacityName}.asset";
-      AssetDatabase.CreateAsset(currentCapacity, directoryPath);
+      directoryPath = $"Assets/Scriptable/Capacities/{currentPattern.capacityName}.asset";
+      AssetDatabase.CreateAsset(currentPattern, directoryPath);
       SetCapacityInDirectoryDropdown();
    }
 
    void LoadCapacity(string path)
    {
       directoryPath = $"Assets/Scriptable/Capacities/{path}.asset";
-      currentCapacity = (Capacity) EditorGUIUtility.Load(directoryPath);
+      currentPattern = (Pattern) EditorGUIUtility.Load(directoryPath);
    }
    
    #region TIMELINE DRAW

@@ -8,28 +8,37 @@ public class TimerCircle : MonoBehaviour
 {
     public byte type; // 0 = Red, 1 = green, 2 = blue
     
-    [SerializeField] private RectTransform Circle;
-    [SerializeField] private Image Bulle;
+    [SerializeField] public RectTransform circle;
+    [SerializeField] private Image bulle;
     
     private float time = 0f;
     private float rate;
     private float maxSizeCircle = 3f;
     private RectTransform rtBulle = null; 
-    private PatternComponent patternComponent;
-
-    private void Start()
+    private InteractionComponent interactionComponent;
+    
+    public void InitCircle()
     {
-        patternComponent = GetComponent<PatternComponent>();
-    }
+        if (!rtBulle) rtBulle = bulle.GetComponent<RectTransform>();
+        
+        interactionComponent = GetComponent<InteractionComponent>();
 
+        time = maxSizeCircle;
+        rate = interactionComponent.speed;
+        type = (byte)UnityEngine.Random.Range(0, 3);
+        bulle.color = (type == 0) ? Color.red : (type == 1) ? Color.green : Color.blue;
+        StartCoroutine(DecreaseCircle());
+    }
+    
     IEnumerator DecreaseCircle()
     {
         time -= Time.deltaTime * rate * maxSizeCircle;
-        if (!rtBulle)
-            rtBulle = Bulle.GetComponent<RectTransform>();
-        Circle.localScale = new Vector3(rtBulle.localScale.x +time, rtBulle.localScale.y + time, 0f);
+
+        circle.localScale = new Vector3(rtBulle.localScale.x + time, rtBulle.localScale.y + time, 0f);
+        
         yield return new WaitForEndOfFrame();
-        if (time > 0f)
+        
+        if (circle.localScale.x > 0)
         {
             StartCoroutine(DecreaseCircle());
         }
@@ -45,22 +54,14 @@ public class TimerCircle : MonoBehaviour
         time = -1f;
         PatternPoolManager.Instance.AddCircleToPool(gameObject);
         float succes = Mathf.Clamp(
-            100 - (Circle.GetComponent<RectTransform>().localScale.x - 1) * 100 / (maxSizeCircle - 1), 
+            100 - (circle.GetComponent<RectTransform>().localScale.x - 1) * 100 / (maxSizeCircle - 1), 
             1f, 99.99f);
     }
     
     public void ResizeBulle(float size)
     {
-        Bulle.rectTransform.localScale = new Vector2(size, size);
+        bulle.rectTransform.localScale = new Vector2(size, size);
     }
-    
-    void OnEnable()
-    {
-        time = maxSizeCircle;
-        rate = patternComponent.speed;
-        type = (byte) UnityEngine.Random.Range(0, 3);
-        Bulle.color = (type == 0) ? Color.red : (type == 1) ? Color.green : Color.blue;
-        StartCoroutine(DecreaseCircle());
-    }
-    
+
+   
 }

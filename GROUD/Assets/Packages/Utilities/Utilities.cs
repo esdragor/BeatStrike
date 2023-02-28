@@ -8,7 +8,7 @@ namespace Utilities
 {
     public static class Enums
     {
-        public enum PatternType
+        public enum InteractionType
         {
             Tap,
             Hold,
