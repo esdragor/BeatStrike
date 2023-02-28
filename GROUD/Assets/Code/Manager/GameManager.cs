@@ -1,18 +1,21 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Utilities;
 
 public class GameManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public static GameManager instance;
+    public static Delegates.OnUpdated onUpdated;
+
+    private void Awake()
     {
-        
+        instance = this;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        onUpdated?.Invoke();
     }
 }

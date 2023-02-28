@@ -1,26 +1,40 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using NaughtyAttributes;
 using UnityEngine;
 
+[CreateAssetMenu(order = 0, menuName = "Pattern/Create Pattern", fileName = "new Pattern")]
 public class Pattern : ScriptableObject
 {
     public string capacityName;
     public string description;
     public int rarityRank;
-    public List<InteractionKey> interractions;
+    [Expandable] public List<InteractionKey> interactions = new List<InteractionKey>();
+
+    private void OnValidate()
+    {
+        ReorderList();
+    }
+
+    [Button("Reorder List")]
+    public void ReorderList()
+    {
+        interactions = interactions.OrderBy(it => it.timeCode).ToList();
+    }
 
     public void AddPatternKey(InteractionKey pc)
     {
-        interractions.Add(pc);
+        interactions.Add(pc);
     }
 
     public void RemovePatternKey(InteractionKey pc)
     {
-        interractions.Remove(pc);
+        interactions.Remove(pc);
     }
     
     void ReorderPatternsList()
     {
-        interractions.OrderBy(patternKey => patternKey.timeCode);
+        interactions.OrderBy(patternKey => patternKey.timeCode);
     }
 }

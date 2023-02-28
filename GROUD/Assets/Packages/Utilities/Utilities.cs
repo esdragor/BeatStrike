@@ -19,7 +19,7 @@ namespace Utilities
 
     public static class Delegates
     {
-        
+        public delegate void OnUpdated();
     }
     
     public static class Logs
