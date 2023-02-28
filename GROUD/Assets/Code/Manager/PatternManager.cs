@@ -43,12 +43,9 @@ public class PatternManager : MonoBehaviour
             InitializeQueue(p.interactions);
             timer = 0;
             GameManager.onUpdated += TimelineEventListener;
+            isTimelineActive = true;
         }
-        else
-        {
-            Logs.Log("Pattern Manager", "Timeline is already active, you can't load a pattern", LogType.Error,
-                Logs.LogColor.Red, Logs.LogColor.None);
-        }
+
     }
 
     private void InitializeQueue(List<InteractionKey> interactionKeys)
@@ -81,7 +78,6 @@ public class PatternManager : MonoBehaviour
     {
         timer += Time.deltaTime;
 
-        if (timelineRunnerKeys.Count <= 0) return;
 
         if (Math.Abs(timelineRunnerKeys.Peek().timeCode - timer) < 0.1f)
         {
@@ -92,6 +88,7 @@ public class PatternManager : MonoBehaviour
         {
             GameManager.onUpdated -= TimelineEventListener;
            PatternPoolManager.OnPatternEnd += EndOfPattern;
+           isTimelineActive = false;
         }
     }
 

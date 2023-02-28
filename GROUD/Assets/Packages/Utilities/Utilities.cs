@@ -3,6 +3,7 @@ using System.Diagnostics;
 using Unity.Services.RemoteConfig;
 using UnityEngine;
 using Debug = UnityEngine.Debug;
+using Random = UnityEngine.Random;
 
 namespace Utilities
 {
@@ -217,6 +218,11 @@ namespace Utilities
         return i % count == 0;
     }
 
+    public static int GetRandomRange(int a, int b)
+    {
+        return Random.Range(a, b);
+    }
+    
     #endregion
     }
 
