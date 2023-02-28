@@ -8,7 +8,13 @@ namespace Utilities
 {
     public static class Enums
     {
-        
+        public enum PatternType
+        {
+            Tap,
+            Hold,
+            Slide,
+            Spam
+        }
     }
 
     public static class Delegates
