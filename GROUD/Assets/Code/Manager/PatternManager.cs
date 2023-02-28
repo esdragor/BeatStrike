@@ -22,16 +22,11 @@ public class PatternManager : MonoBehaviour
     [Expandable] public Pattern testPattern;
     
     private float timer;
-    private bool isTimelineActive;
+    public bool isTimelineActive;
     
     private void Awake()
     {
         Instance = this;
-    }
-
-    private void Start()
-    {
-        StartPattern(testPattern);
     }
 
     public void StartPattern(Pattern p)
@@ -41,6 +36,7 @@ public class PatternManager : MonoBehaviour
             InitializeQueue(p.interactions);
             timer = 0;
             GameManager.onUpdated += TimelineEventListener;
+            isTimelineActive = true;
         }
         else
         {
@@ -81,6 +77,7 @@ public class PatternManager : MonoBehaviour
         if (timelineRunnerKeys.Count <= 0)
         {
             GameManager.onUpdated -= TimelineEventListener;
+            isTimelineActive = false;
         }
 
     }
