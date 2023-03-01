@@ -515,9 +515,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a11671a284c00084dbd9168d67418f55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wayOnePosition: {x: -300, y: 0, z: 0}
-  wayTwoPosition: {x: 0, y: 0, z: 0}
-  wayThreePosition: {x: 300, y: 0, z: 0}
   spawnPoints:
   - {fileID: 717157592}
   - {fileID: 208202219}
@@ -2556,6 +2553,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timer: 0
   timeToBoss: 20
+  isBossStarted: 0
   BossFightManager: {fileID: 352831612}
 --- !u!114 &958934231
 MonoBehaviour:
@@ -2570,8 +2568,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentInteraction: {fileID: 0}
-  testPattern: {fileID: 11400000, guid: bbd92fa5ad0b74d43b28783f62d9771f, type: 2}
   isTimelineActive: 0
+  testPattern: {fileID: 11400000, guid: bbd92fa5ad0b74d43b28783f62d9771f, type: 2}
 --- !u!114 &958934232
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2600,8 +2598,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ActiveCircles: []
-  CircleWidth: 50
-  circlePrefab: {fileID: 5645990949255734654, guid: 5fa4106a341a91e4da51a981f1818b3a,
+  circlePrefab: {fileID: 3615221734236934782, guid: eca9474de71659d4b92bff4db4690524,
     type: 3}
   maxPoolSize: 10
 --- !u!1 &961090987

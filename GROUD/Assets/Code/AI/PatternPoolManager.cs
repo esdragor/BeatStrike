@@ -7,8 +7,6 @@ public class PatternPoolManager : MonoBehaviour
     public static PatternPoolManager Instance;
     public static event Action OnPatternEnd;
     public List<GameObject> ActiveCircles = new ();
-    [HideInInspector] public float CircleWidth = 50f;
-
     [SerializeField] private GameObject circlePrefab;
     [SerializeField] private int maxPoolSize = 10;
     
@@ -27,7 +25,6 @@ public class PatternPoolManager : MonoBehaviour
             circlePool.Add(Instantiate(circlePrefab, transform));
             circlePool[i].SetActive(false);
         }
-        CircleWidth = circlePrefab.transform.GetChild(0).GetComponent<RectTransform>().rect.width;
     }
 
     public void AddCircleToPool(GameObject circle)

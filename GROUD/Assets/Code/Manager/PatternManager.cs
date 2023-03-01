@@ -19,19 +19,23 @@ public class PatternManager : MonoBehaviour
     public static event Action OnPatternEnd;
     public InteractionKey currentInteraction;
     private Queue<InteractionKey> timelineRunnerKeys;
+    public bool isTimelineActive;
 
     [Expandable] public Pattern testPattern;
 
     private float timer;
-    public bool isTimelineActive;
+    private GameObject caster;
+    private Vector3 target;
 
     private void Awake()
     {
         Instance = this;
     }
 
-    public void StartPattern(Pattern p)
+    public void StartPattern(Pattern p, GameObject obj, Vector3 _target)
     {
+        caster = obj;
+        target = _target;
         if (!isTimelineActive)
         {
             InitializeQueue(p.interactions);
@@ -86,21 +90,23 @@ public class PatternManager : MonoBehaviour
         switch (dataKey.interactionType)
         {
             case Enums.InteractionType.Tap:
-                interactionObj = PatternPoolManager.Instance.GetCircleFromPool();
+                interactionObj = caster.transform.GetChild(0).gameObject;
                 interactionComponent = interactionObj.GetComponent<InteractionComponent>();
                 TapInteraction tapIn = (TapInteraction)interactionComponent;
+                interactionComponent.speed = caster.transform.position.z;
                 tapIn.SetData(dataKey);
                 break;
-
+        
             case Enums.InteractionType.Hold:
                 break;
-
+        
             case Enums.InteractionType.Slide:
                 break;
-
+        
             case Enums.InteractionType.Spam:
                 break;
         }
+
 
         if (interactionComponent != null) interactionComponent.StartInteraction();
     }

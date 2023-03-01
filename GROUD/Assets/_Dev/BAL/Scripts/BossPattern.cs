@@ -13,7 +13,7 @@ public class BossPattern : MonoBehaviour
     
     public void LaunchPattern(int index)
     {
-        PatternManager.Instance.StartPattern(Patterns[index]);
+        PatternManager.Instance.StartPattern(Patterns[index], null, Vector3.zero);
         PatternManager.OnPatternEnd += OnPatternEnd;
         InputManager.OnFailedTouchInteraction += OnFailedTouchInteraction;
         success = true;

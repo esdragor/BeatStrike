@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
 using Utilities;
 
@@ -14,7 +15,7 @@ public class PlayerPattern : MonoBehaviour
     {
         InputManager.OnFailedTouchInteraction += OnFailedTouchInteraction;
         success = true;
-        PatternManager.Instance.StartPattern(currentPattern);
+        PatternManager.Instance.StartPattern(currentPattern, null, Vector3.zero);
         PatternManager.OnPatternEnd += OnPatternEnd;
     }
 

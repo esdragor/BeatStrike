@@ -5,10 +5,6 @@ using Utilities;
 
 public class RunnerManager : MonoBehaviour
 {
-    public Vector3 wayOnePosition;
-    public Vector3 wayTwoPosition;
-    public Vector3 wayThreePosition;
-    
     public Transform[] spawnPoints;
     public GameObject objectPrefab;
     
@@ -47,31 +43,16 @@ public class RunnerManager : MonoBehaviour
         if(spawnPoints.Length == 0) return;
         
         int selectedWay = Helpers.GetRandomRange(0, spawnPoints.Length - 1);
-        GameObject newObject = Instantiate(objectPrefab, spawnPoints[selectedWay].position, Quaternion.identity);
-        newObject.transform.position += Vector3.up;
+        GameObject newObject = PatternPoolManager.Instance.GetCircleFromPool();
+        Vector3 spawnPosition = spawnPoints[selectedWay].position;
+        newObject.transform.position = new Vector3(spawnPosition.x, 1, spawnPosition.z);
         
         ExperienceOrb objectOrb = newObject.GetComponent<ExperienceOrb>();
+        Vector3 target = newObject.transform.position;
+        target.z = 0;
+        objectOrb.specialTargetPosition = target;
         Pattern selectedPattern = patterns[Helpers.GetRandomRange(0, patterns.Length - 1)];
         objectOrb.orbPattern = selectedPattern;
-
-        for (int i = 0; i < selectedPattern.interactions.Count; i++)
-        {
-            switch (selectedWay)
-            {
-                case 0:
-                    selectedPattern.interactions[i].spawnPosition = wayOnePosition + new Vector3(0, Helpers.GetRandomRange(-500, 500),0);
-                    break;
-                
-                case 1 :
-                    selectedPattern.interactions[i].spawnPosition = wayTwoPosition + new Vector3(0, Helpers.GetRandomRange(-500, 500),0);
-                    break;
-                
-                case 3:
-                    selectedPattern.interactions[i].spawnPosition = wayThreePosition + new Vector3(0, Helpers.GetRandomRange(-500, 500),0);
-                    break;
-            }
-        }
-        
     }
     
 }

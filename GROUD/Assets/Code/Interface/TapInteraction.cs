@@ -16,7 +16,7 @@ public class TapInteraction : InteractionComponent
     private void Start()
     {
         bulleTr = timerCircle.circle;
-        objectPosition.localScale = new Vector3(scale, scale, scale);
+        //objectPosition.localScale = new Vector3(scale, scale, scale);
         objectPosition.anchoredPosition = startPosition;
     }
 
@@ -26,12 +26,15 @@ public class TapInteraction : InteractionComponent
 
     private void OnSimpleTouch(Vector2 pos)
     {
-        if (bulleTr.position.x - tolerance - bulleTr.localScale.x  * bulleTr.rect.width < pos.x &&
-            bulleTr.position.x + tolerance + bulleTr.localScale.x * bulleTr.rect.width > pos.x &&
-            bulleTr.position.y - tolerance - bulleTr.localScale.y * bulleTr.rect.height < pos.y &&
-            bulleTr.position.y + tolerance + bulleTr.localScale.y * bulleTr.rect.height > pos.y)
+        Camera cam = Camera.main;
+        Vector3 newPos = cam.ScreenToWorldPoint(pos);
+        
+        if (bulleTr.position.x - tolerance - bulleTr.localScale.x  * bulleTr.rect.width < newPos.x &&
+            bulleTr.position.x + tolerance + bulleTr.localScale.x * bulleTr.rect.width > newPos.x &&
+            bulleTr.position.y - tolerance - bulleTr.localScale.z * bulleTr.rect.height < newPos.z &&
+            bulleTr.position.y + tolerance + bulleTr.localScale.z * bulleTr.rect.height > newPos.z)
         {
-            PatternPoolManager.Instance.AddCircleToPool(gameObject);
+            PatternPoolManager.Instance.AddCircleToPool(gameObject.transform.parent.gameObject);
             Debug.Log("TOUCH !");
         }
     }

@@ -7,6 +7,7 @@ namespace Code.AI
         public float speed = 3f;
         public Pattern orbPattern;
         public Vector3 specialSpawnPosition;
+        public Vector3 specialTargetPosition;
 
         private void Awake()
         {
@@ -20,7 +21,7 @@ namespace Code.AI
 
         public void OnReachedPatternPoint()
         {
-            PatternManager.Instance.StartPattern(orbPattern);
+            PatternManager.Instance.StartPattern(orbPattern, gameObject, specialTargetPosition);
         }
 
         public void OnReachedPlayers()

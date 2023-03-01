@@ -23,8 +23,11 @@ public class TimerCircle : MonoBehaviour
         
         interactionComponent = GetComponent<InteractionComponent>();
 
-        time = maxSizeCircle;
-        rate = interactionComponent.speed;
+        time = 0;
+        circle.localScale = new Vector3(maxSizeCircle, maxSizeCircle, 0f);
+        rate =  1 + (interactionComponent.speed - maxSizeCircle) / 10f;
+        //rate = 15f;
+        Debug.Log(rate);
         type = (byte)UnityEngine.Random.Range(0, 3);
         bulle.color = (type == 0) ? Color.red : (type == 1) ? Color.green : Color.blue;
         StartCoroutine(DecreaseCircle());
@@ -33,10 +36,9 @@ public class TimerCircle : MonoBehaviour
 
     IEnumerator DecreaseCircle()
     {
-        time -= Time.deltaTime * rate * maxSizeCircle;
+        time = Time.deltaTime / rate;
 
-        circle.localScale = new Vector3(rtBulle.localScale.x + time, rtBulle.localScale.y + time, 0f);
-        
+        circle.localScale = new Vector3(circle.localScale.x - time, circle.localScale.y - time, 0f);
         yield return new WaitForEndOfFrame();
         
         if (circle.localScale.x > 0)
@@ -45,7 +47,7 @@ public class TimerCircle : MonoBehaviour
         }
         else
         {
-            PatternPoolManager.Instance.AddCircleToPool(gameObject);
+            PatternPoolManager.Instance.AddCircleToPool(gameObject.transform.parent.gameObject);
             InputManager.OnFailedTouchInteraction?.Invoke();
         }
     }
@@ -53,7 +55,7 @@ public class TimerCircle : MonoBehaviour
     public void TouchCircle()
     {
         time = -1f;
-        PatternPoolManager.Instance.AddCircleToPool(gameObject);
+        PatternPoolManager.Instance.AddCircleToPool(gameObject.transform.parent.gameObject);
         float succes = Mathf.Clamp(
             100 - (circle.GetComponent<RectTransform>().localScale.x - 1) * 100 / (maxSizeCircle - 1), 
             1f, 99.99f);

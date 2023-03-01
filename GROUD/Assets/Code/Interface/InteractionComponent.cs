@@ -20,7 +20,7 @@ public abstract class InteractionComponent : MonoBehaviour
     public virtual void InitializeData()
     {
         tolerance = data.tolerance;
-        speed = data.drawSpeed;
+        //speed = data.drawSpeed;
         startPosition = data.spawnPosition;
         scale = data.scale;
     }
