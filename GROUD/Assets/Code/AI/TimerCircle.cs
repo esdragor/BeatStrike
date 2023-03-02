@@ -8,8 +8,8 @@ public class TimerCircle : MonoBehaviour
 {
     public byte type; // 0 = Red, 1 = green, 2 = blue
     
-    [SerializeField] public RectTransform circle;
-    [SerializeField] private Image bulle;
+    public RectTransform circle;
+    public Image bulle;
     
     private float time = 0f;
     private float rate;
@@ -26,8 +26,6 @@ public class TimerCircle : MonoBehaviour
         time = 0;
         circle.localScale = new Vector3(maxSizeCircle, maxSizeCircle, 0f);
         rate =  1 + (interactionComponent.speed - maxSizeCircle) / 10f;
-        //rate = 15f;
-        Debug.Log(rate);
         type = (byte)UnityEngine.Random.Range(0, 3);
         bulle.color = (type == 0) ? Color.red : (type == 1) ? Color.green : Color.blue;
         StartCoroutine(DecreaseCircle());
@@ -52,11 +50,11 @@ public class TimerCircle : MonoBehaviour
         }
     }
     
-    public void TouchCircle()
+    public float TouchCircle()
     {
         time = -1f;
         PatternPoolManager.Instance.AddCircleToPool(gameObject.transform.parent.gameObject);
-        float succes = Mathf.Clamp(
+        return Mathf.Clamp(
             100 - (circle.GetComponent<RectTransform>().localScale.x - 1) * 100 / (maxSizeCircle - 1), 
             1f, 99.99f);
     }

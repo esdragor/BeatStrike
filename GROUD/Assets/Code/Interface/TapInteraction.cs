@@ -4,49 +4,46 @@ using UnityEngine;
 public class TapInteraction : InteractionComponent
 {
     public RectTransform objectPosition;
-    private RectTransform bulleTr;
+    private Transform bulleTr;
     private TimerCircle timerCircle;
-    
-    private void OnEnable()
-    {
-        timerCircle = GetComponent<TimerCircle>();
-        InputManager.OnSimpleTouch += OnSimpleTouch;
-    }
-    
+    private Camera cam;
+
     private void Start()
     {
-        bulleTr = timerCircle.circle;
-        //objectPosition.localScale = new Vector3(scale, scale, scale);
         objectPosition.anchoredPosition = startPosition;
-    }
-
-    private void Update()
-    {
+        cam = Camera.main;
+        
     }
 
     private void OnSimpleTouch(Vector2 pos)
     {
-        Camera cam = Camera.main;
-        Vector3 newPos = cam.ScreenToWorldPoint(pos);
+        Vector3 newPos2 = cam.WorldToScreenPoint(bulleTr.position);
+        float newTolerance = tolerance  + GameManager.instance.DistanceBetweenPoints;
         
-        if (bulleTr.position.x - tolerance - bulleTr.localScale.x  * bulleTr.rect.width < newPos.x &&
-            bulleTr.position.x + tolerance + bulleTr.localScale.x * bulleTr.rect.width > newPos.x &&
-            bulleTr.position.y - tolerance - bulleTr.localScale.z * bulleTr.rect.height < newPos.z &&
-            bulleTr.position.y + tolerance + bulleTr.localScale.z * bulleTr.rect.height > newPos.z)
+        if (newPos2.x - newTolerance  < pos.x &&
+            newPos2.x + newTolerance  > pos.x &&
+            newPos2.y - newTolerance  < pos.y &&
+            newPos2.y + newTolerance  > pos.y)
         {
-            PatternPoolManager.Instance.AddCircleToPool(gameObject.transform.parent.gameObject);
-            Debug.Log("TOUCH !");
+            GameManager.instance.AddSuccessTouch(timerCircle.TouchCircle());
         }
     }
 
     public override void OnInputSuccess()
     {
-        
     }
 
     public override void StartInteraction()
     {
         timerCircle.InitCircle();
+    }
+
+    public override void ActivateInteraction()
+    {
+        timerCircle = GetComponent<TimerCircle>();
+        InputManager.OnSimpleTouch += OnSimpleTouch;
+        bulleTr = timerCircle.transform.parent;
+        objectPosition.anchoredPosition = startPosition;
     }
 
     private void OnDisable()

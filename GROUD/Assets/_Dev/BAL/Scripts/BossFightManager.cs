@@ -6,62 +6,55 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+[Serializable]
+public struct PlayerData
+{
+    public int life;
+    public int damage;
+}
+
 public class BossFightManager : MonoBehaviour
 {
     public static BossFightManager Instance;
-    public GameObject PanelInteractions;
     [HideInInspector] public bool isBossTurn = false;
 
+    [SerializeField] private PlayerData playerData = new () {life = 3, damage = 30};
     [SerializeField] private BossPattern bossPattern;
-    [SerializeField] private PlayerPattern[] Players;
     [SerializeField] private Button[] capacityButtons;
     [SerializeField] private Slider BossLifeBar;
     [SerializeField] private Slider BossLifeBarSmooth;
     [SerializeField] private TMP_Text LifeText;
 
     private byte TurnOrderIndex = 0;
-    private int life = 3;
 
     private void Awake()
     {
         Instance = this;
     }
 
-    private void UseCapacity(int index)
+    private void UseCapacity()
     {
-        if (!(TurnOrderIndex == index && !isBossTurn)) return;
-        PanelInteractions.SetActive(true);
-        NextTurn();
-
-
-        Players[index].LaunchPattern();
-    }
-
-    private void NextTurn()
-    {
-        Players[TurnOrderIndex].GetComponent<Image>().color = Color.white;
-        TurnOrderIndex++;
-        isBossTurn = true;
-        if (TurnOrderIndex >= Players.Length)
-            TurnOrderIndex = 0;
+        Debug.Log("Use Capacity");
     }
 
     public void FailedToMiss()
     {
-        life--;
-        LifeText.text = $"Life Remaining : {life}";
+        playerData.life--;
+        LifeText.text = $"Life Remaining : {playerData.life}";
+        StartCoroutine(DelayBeforeNextTurn());
     }
 
-    public void EndBossTurn()
+    public void BossTakeDamage()
     {
-        Players[TurnOrderIndex].GetComponent<Image>().color = Color.green;
-        isBossTurn = false;
-        PanelInteractions.SetActive(false);
-    }
-
-    public void BossTakeDamage(float damage)
-    {
-        bossPattern.CurrentHealth -= damage;
+        float totalDamage = 0f;
+        List<float> allSuccessTouch = GameManager.instance.GetAllSuccessTouch();
+        foreach (var success in allSuccessTouch)
+        {
+            totalDamage += playerData.damage * (success < 70 ? 1f :
+                (success < 90) ? 1.5f :
+               2f);
+        }
+        bossPattern.CurrentHealth -= totalDamage;
         BossLifeBarSmooth.DOValue(bossPattern.CurrentHealth / bossPattern.MaxHealth, 0.75f).Play();
 
         if (bossPattern.CurrentHealth < 0f)
@@ -69,27 +62,28 @@ public class BossFightManager : MonoBehaviour
         BossLifeBar.value = bossPattern.CurrentHealth / bossPattern.MaxHealth;
         if (bossPattern.CurrentHealth <= 0f)
         {
-            Destroy(gameObject);
+            GameManager.instance.bossObj.SetActive(false);
+            gameObject.SetActive(false);
         }
+        StartCoroutine(DelayBeforeNextTurn());
+    }
 
-        bossPattern.LaunchPattern(TurnOrderIndex);
+IEnumerator DelayBeforeNextTurn()
+    {
+        yield return new WaitForSeconds(1f);
+        bossPattern.LaunchPattern();
     }
 
     private void OnEnable()
     {
         capacityButtons[0].onClick.RemoveAllListeners();
-        capacityButtons[1].onClick.RemoveAllListeners();
-        capacityButtons[2].onClick.RemoveAllListeners();
 
-        capacityButtons[0].onClick.AddListener(() => { UseCapacity(0); });
-        capacityButtons[1].onClick.AddListener(() => { UseCapacity(1); });
-        capacityButtons[2].onClick.AddListener(() => { UseCapacity(2); });
+        capacityButtons[0].onClick.AddListener(UseCapacity);
 
-        PanelInteractions.SetActive(false);
         BossLifeBar.value = 1f;
         BossLifeBarSmooth.value = 1f;
         TurnOrderIndex = 0;
-        life = 3;
-        Players[TurnOrderIndex].GetComponent<Image>().color = Color.green;
+        GameManager.instance.RemoveAllSuccessTouch();
+        StartCoroutine(DelayBeforeNextTurn());
     }
 }

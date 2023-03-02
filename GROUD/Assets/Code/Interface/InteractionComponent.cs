@@ -26,4 +26,6 @@ public abstract class InteractionComponent : MonoBehaviour
     }
 
     public abstract void StartInteraction();
+    
+    public abstract void ActivateInteraction();
 }

@@ -57,10 +57,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12f03150145a409c99abcf1acc0c879b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
-  orbPattern: {fileID: 0}
-  specialSpawnPosition: {x: 0, y: 0, z: 0}
-  specialTargetPosition: {x: 0, y: 0, z: 0}
+  speed: 6
+  dataKey: {fileID: 0}
 --- !u!23 &3615221734236934781
 MeshRenderer:
   m_ObjectHideFlags: 0

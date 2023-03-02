@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Code.AI;
 using NaughtyAttributes;
+using Unity.VisualScripting;
 using UnityEngine;
 using Utilities;
 
@@ -21,29 +23,22 @@ public class PatternManager : MonoBehaviour
     private Queue<InteractionKey> timelineRunnerKeys;
     public bool isTimelineActive;
 
-    [Expandable] public Pattern testPattern;
-
     private float timer;
     private GameObject caster;
-    private Vector3 target;
+
 
     private void Awake()
     {
         Instance = this;
     }
 
-    public void StartPattern(Pattern p, GameObject obj, Vector3 _target)
+    public void StartPattern(Pattern p)
     {
-        caster = obj;
-        target = _target;
-        if (!isTimelineActive)
-        {
-            InitializeQueue(p.interactions);
-            timer = 0;
-            GameManager.onUpdated += TimelineEventListener;
-            isTimelineActive = true;
-        }
-
+        if (isTimelineActive) return;
+        InitializeQueue(p.interactions);
+        timer = 0;
+        GameManager.onUpdated += TimelineEventListener;
+        isTimelineActive = true;
     }
 
     private void InitializeQueue(List<InteractionKey> interactionKeys)
@@ -52,9 +47,9 @@ public class PatternManager : MonoBehaviour
 
         interactionKeys = interactionKeys.OrderBy(it => it.timeCode).ToList();
 
-        for (int i = 0; i < interactionKeys.Count; i++)
+        foreach (var t in interactionKeys)
         {
-            timelineRunnerKeys.Enqueue(interactionKeys[i]);
+            timelineRunnerKeys.Enqueue(t);
         }
     }
     
@@ -74,40 +69,25 @@ public class PatternManager : MonoBehaviour
             DrawInteractionOnScreen(timelineRunnerKeys.Dequeue());
         }
 
-        if (timelineRunnerKeys.Count <= 0)
-        {
-            GameManager.onUpdated -= TimelineEventListener;
-           PatternPoolManager.OnPatternEnd += EndOfPattern;
-           isTimelineActive = false;
-        }
+        if (timelineRunnerKeys.Count > 0) return;
+        GameManager.onUpdated -= TimelineEventListener;
+        PatternPoolManager.OnPatternEnd += EndOfPattern;
+        Debug.Log("Pattern Ended");
+        isTimelineActive = false;
     }
 
     public void DrawInteractionOnScreen(InteractionKey dataKey)
     {
         GameObject interactionObj = null;
         InteractionComponent interactionComponent = null;
-
-        switch (dataKey.interactionType)
-        {
-            case Enums.InteractionType.Tap:
-                interactionObj = caster.transform.GetChild(0).gameObject;
-                interactionComponent = interactionObj.GetComponent<InteractionComponent>();
-                TapInteraction tapIn = (TapInteraction)interactionComponent;
-                interactionComponent.speed = caster.transform.position.z;
-                tapIn.SetData(dataKey);
-                break;
         
-            case Enums.InteractionType.Hold:
-                break;
+        caster = PatternPoolManager.Instance.GetCircleFromPool();
         
-            case Enums.InteractionType.Slide:
-                break;
         
-            case Enums.InteractionType.Spam:
-                break;
-        }
-
-
-        if (interactionComponent != null) interactionComponent.StartInteraction();
+        int selectedWay = Helpers.GetRandomRange(0, GameManager.instance.spawnPoints.Length);
+        Vector3 spawnPosition = GameManager.instance.spawnPoints[selectedWay].position;
+        caster.transform.position = new Vector3(spawnPosition.x, 1, spawnPosition.z);
+        
+        caster.GetComponent<ExperienceOrb>().dataKey = dataKey;
     }
 }

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class BossPattern : MonoBehaviour
 {
@@ -11,9 +12,9 @@ public class BossPattern : MonoBehaviour
     
     public bool success;
     
-    public void LaunchPattern(int index)
+    public void LaunchPattern()
     {
-        PatternManager.Instance.StartPattern(Patterns[index], null, Vector3.zero);
+        PatternManager.Instance.StartPattern(Patterns[Random.Range(0, Patterns.Length)]);
         PatternManager.OnPatternEnd += OnPatternEnd;
         InputManager.OnFailedTouchInteraction += OnFailedTouchInteraction;
         success = true;
@@ -28,11 +29,14 @@ public class BossPattern : MonoBehaviour
 
     private void OnPatternEnd()
     {
-        if (!success)
-            BossFightManager.Instance.FailedToMiss();
-        BossFightManager.Instance.EndBossTurn();
         InputManager.OnFailedTouchInteraction -= OnFailedTouchInteraction;
         PatternManager.OnPatternEnd -= OnPatternEnd;
+        if (!success)
+            BossFightManager.Instance.FailedToMiss();
+        else
+        {
+            BossFightManager.Instance.BossTakeDamage();
+        }
     }
 
     private void OnEnable()
