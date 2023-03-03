@@ -6,6 +6,8 @@ using Utilities;
 public class RunnerManager : MonoBehaviour
 {
     public Pattern[] patterns;
+    
+    private int currentPatternIndex = 0;
 
     private void Awake()
     {
@@ -14,11 +16,15 @@ public class RunnerManager : MonoBehaviour
 
     public void Begin()
     {
-        PatternManager.Instance.StartPattern(patterns[0]);
+        PatternManager.Instance.StartPattern(patterns[currentPatternIndex]);
     }
 
     private void OnPatternEnd()
     {
-       GameManager.instance.StartBoss();
+        currentPatternIndex++;
+        if (currentPatternIndex < patterns.Length)
+            Begin();
+        else
+            GameManager.instance.StartBoss();
     }
 }

@@ -10,9 +10,7 @@ public class TapInteraction : InteractionComponent
 
     private void Start()
     {
-        //objectPosition.anchoredPosition = startPosition;
         cam = Camera.main;
-        
     }
 
     private void OnSimpleTouch(Vector2 pos)
@@ -25,8 +23,8 @@ public class TapInteraction : InteractionComponent
             newPos2.y - newTolerance  < pos.y &&
             newPos2.y + newTolerance  > pos.y)
         {
+            timerCircle.StopCurrentCoroutine();
             GameManager.instance.AddSuccessTouch(timerCircle.TouchCircle());
-            timerCircle.enabled = false;
         }
     }
 
@@ -45,7 +43,6 @@ public class TapInteraction : InteractionComponent
         timerCircle = GetComponent<TimerCircle>();
         InputManager.OnSimpleTouch += OnSimpleTouch;
         bulleTr = timerCircle.transform.parent;
-        //objectPosition.anchoredPosition = startPosition;
     }
 
     private void OnDisable()

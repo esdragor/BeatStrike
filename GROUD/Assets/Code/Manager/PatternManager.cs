@@ -88,5 +88,6 @@ public class PatternManager : MonoBehaviour
         caster.transform.position = new Vector3(spawnPosition.x, 1, spawnPosition.z);
         
         caster.GetComponent<ExperienceOrb>().dataKey = dataKey;
+        caster.transform.GetChild(0).GetComponent<TimerCircle>().ResetValues();
     }
 }

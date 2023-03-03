@@ -64,6 +64,7 @@ public class BossFightManager : MonoBehaviour
         {
             GameManager.instance.bossObj.SetActive(false);
             gameObject.SetActive(false);
+            return;
         }
         StartCoroutine(DelayBeforeNextTurn());
     }
