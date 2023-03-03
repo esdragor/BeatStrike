@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
 
     public BossFightManager BossFightManager;
 
-    [SerializeField] private float speedArrived = 5f;
+    [SerializeField] private float speedBossArrived = 5f;
 
 
     private bool BossArrive = false;
@@ -45,12 +45,11 @@ public class GameManager : MonoBehaviour
 
     private void BossArriving()
     {
-        bossObj.transform.position -= Vector3.forward * Time.deltaTime * speedArrived;
+        bossObj.transform.position -= Vector3.forward * Time.deltaTime * speedBossArrived;
         if (bossObj.transform.position.z <= 30f)
         {
             onUpdated -= BossArriving;
             BossFightManager.gameObject.SetActive(true);
-
         }
     }
 

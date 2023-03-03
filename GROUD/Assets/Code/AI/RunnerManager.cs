@@ -12,7 +12,7 @@ public class RunnerManager : MonoBehaviour
         PatternManager.OnPatternEnd += OnPatternEnd;
     }
 
-    private void Start()
+    public void Begin()
     {
         PatternManager.Instance.StartPattern(patterns[0]);
     }

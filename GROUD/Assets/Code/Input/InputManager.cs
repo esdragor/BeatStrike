@@ -25,7 +25,8 @@ public class InputManager : MonoBehaviour
     public static event Action<Vector2, SwipeDirection> OnSwipeDown;
     public static event Action<Vector2, SwipeDirection> OnSwipeLeft;
     public static event Action<Vector2, SwipeDirection> OnSwipeRight;
-    public static Action OnFailedTouchInteraction;
+    
+    public static event Action OnFailedTouchInteraction;
     public static event Action<Vector2> OnSimpleTouch;
 
     public static Vector3 ScreenToWorld(Camera cam, Vector3 pos)
@@ -115,5 +116,10 @@ public class InputManager : MonoBehaviour
     {
         StartPosSwipe = pos;
         StartTimerSwipe = time;
+    }
+
+    public static void FailedInteraction()
+    {
+        OnFailedTouchInteraction?.Invoke();
     }
 }

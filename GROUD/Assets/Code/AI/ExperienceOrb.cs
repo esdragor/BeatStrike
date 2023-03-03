@@ -28,8 +28,7 @@ namespace Code.AI
                     GameObject interactionObj = transform.GetChild(0).gameObject;
                     interactionComponent = interactionObj.GetComponent<InteractionComponent>();
                     TapInteraction tapIn = (TapInteraction)interactionComponent;
-                    float speed = transform.GetComponent<ExperienceOrb>().speed;
-                    interactionComponent.speed = transform.position.z / (speed * 0.75f);
+                    interactionComponent.speed = speed / transform.position.z;
                     interactionComponent.ActivateInteraction();
                     tapIn.SetData(dataKey);
                     break;
@@ -51,7 +50,7 @@ namespace Code.AI
         public void OnReachedPlayers()
         {
             PatternPoolManager.Instance.AddCircleToPool(gameObject);
-            InputManager.OnFailedTouchInteraction?.Invoke();
+            InputManager.FailedInteraction();
         }
     }
 }

@@ -16,7 +16,17 @@ public class TimerCircle : MonoBehaviour
     private float maxSizeCircle = 3f;
     private RectTransform rtBulle = null; 
     private InteractionComponent interactionComponent;
-    
+
+    private void Start()
+    {
+        this.enabled = false;
+    }
+
+    private void OnEnable()
+    {
+        circle.localScale = Vector3.zero;
+    }
+
     public void InitCircle()
     {
         if (!rtBulle) rtBulle = bulle.GetComponent<RectTransform>();
@@ -25,16 +35,17 @@ public class TimerCircle : MonoBehaviour
 
         time = 0;
         circle.localScale = new Vector3(maxSizeCircle, maxSizeCircle, 0f);
-        rate =  1 + (interactionComponent.speed - maxSizeCircle) / 10f;
-        type = (byte)UnityEngine.Random.Range(0, 3);
-        bulle.color = (type == 0) ? Color.red : (type == 1) ? Color.green : Color.blue;
+        //rate =  1 + (interactionComponent.speed - maxSizeCircle) / 10f;
+        rate =  interactionComponent.speed * maxSizeCircle;
+        // type = (byte)UnityEngine.Random.Range(0, 3);
+        // bulle.color = (type == 0) ? Color.red : (type == 1) ? Color.green : Color.blue;
         StartCoroutine(DecreaseCircle());
     }
     
 
     IEnumerator DecreaseCircle()
     {
-        time = Time.deltaTime / rate;
+        time = Time.deltaTime * rate;
 
         circle.localScale = new Vector3(circle.localScale.x - time, circle.localScale.y - time, 0f);
         yield return new WaitForEndOfFrame();
@@ -46,13 +57,13 @@ public class TimerCircle : MonoBehaviour
         else
         {
             PatternPoolManager.Instance.AddCircleToPool(gameObject.transform.parent.gameObject);
-            InputManager.OnFailedTouchInteraction?.Invoke();
+            InputManager.FailedInteraction();
         }
     }
     
     public float TouchCircle()
     {
-        time = -1f;
+        time = 0f;
         PatternPoolManager.Instance.AddCircleToPool(gameObject.transform.parent.gameObject);
         return Mathf.Clamp(
             100 - (circle.GetComponent<RectTransform>().localScale.x - 1) * 100 / (maxSizeCircle - 1), 

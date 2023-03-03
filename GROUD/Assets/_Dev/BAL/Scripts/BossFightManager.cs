@@ -70,6 +70,7 @@ public class BossFightManager : MonoBehaviour
 
 IEnumerator DelayBeforeNextTurn()
     {
+        GameManager.instance.RemoveAllSuccessTouch();
         yield return new WaitForSeconds(1f);
         bossPattern.LaunchPattern();
     }
@@ -83,7 +84,6 @@ IEnumerator DelayBeforeNextTurn()
         BossLifeBar.value = 1f;
         BossLifeBarSmooth.value = 1f;
         TurnOrderIndex = 0;
-        GameManager.instance.RemoveAllSuccessTouch();
         StartCoroutine(DelayBeforeNextTurn());
     }
 }

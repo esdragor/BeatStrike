@@ -72,7 +72,6 @@ public class PatternManager : MonoBehaviour
         if (timelineRunnerKeys.Count > 0) return;
         GameManager.onUpdated -= TimelineEventListener;
         PatternPoolManager.OnPatternEnd += EndOfPattern;
-        Debug.Log("Pattern Ended");
         isTimelineActive = false;
     }
 
