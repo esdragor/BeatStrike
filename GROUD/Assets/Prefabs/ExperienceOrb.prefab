@@ -57,7 +57,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12f03150145a409c99abcf1acc0c879b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 7
+  speed: 8
   dataKey: {fileID: 0}
 --- !u!23 &3615221734236934781
 MeshRenderer:
@@ -197,6 +197,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1718788604950489414, guid: 5fa4106a341a91e4da51a981f1818b3a,
+        type: 3}
+      propertyPath: m_Maskable
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2264660320905912354, guid: 5fa4106a341a91e4da51a981f1818b3a,
         type: 3}
       propertyPath: m_SizeDelta.x
@@ -220,6 +225,11 @@ PrefabInstance:
     - target: {fileID: 3335182596505506557, guid: 5fa4106a341a91e4da51a981f1818b3a,
         type: 3}
       propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3335182596505506557, guid: 5fa4106a341a91e4da51a981f1818b3a,
+        type: 3}
+      propertyPath: m_Maskable
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4985277037948234506, guid: 5fa4106a341a91e4da51a981f1818b3a,

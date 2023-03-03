@@ -262,6 +262,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   patterns:
+  - {fileID: 11400000, guid: a142962c56426044690db3ac154c47f6, type: 2}
   - {fileID: 11400000, guid: 5140e4d3458dff54ca877a58178f2a8d, type: 2}
 --- !u!1 &173781497
 GameObject:
@@ -688,6 +689,11 @@ PrefabInstance:
       propertyPath: Players.Array.data[10]
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 7689418257610119836, guid: d8db909759010ad42a6a59787c0a582f,
+        type: 3}
+      propertyPath: MaxHealth
+      value: 1000
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d8db909759010ad42a6a59787c0a582f, type: 3}
 --- !u!224 &352831611 stripped
@@ -1113,7 +1119,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 621732800}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -2.291975}
+  m_LocalPosition: {x: 0, y: 0, z: -1.52}
   m_LocalScale: {x: 1, y: 1, z: 4.0424776}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1306,7 +1312,7 @@ MonoBehaviour:
   isBossStarted: 0
   bossObj: {fileID: 695735359}
   BossFightManager: {fileID: 352831612}
-  speedArrived: 12
+  speedBossArrived: 12
 --- !u!114 &958934231
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1335,7 +1341,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minDist: 0.1
   MinTimeTouch: 0.05
-  tolerance: 0.8
+  tolerance: 20
 --- !u!114 &958934233
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1545,8 +1551,8 @@ Camera:
   m_GameObject: {fileID: 1818850975}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0.14150941, g: 0.14150941, b: 0.14150941, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
