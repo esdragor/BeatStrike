@@ -5,6 +5,7 @@ using Utilities;
 public class InteractionKey : KeyClass
 {
     public float scale;
+    public string timeCode;
     public float tolerance;
     public float drawSpeed;
     public Vector3 spawnPosition;
