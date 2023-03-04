@@ -385,15 +385,16 @@ namespace DMTimeArea
             // Draw Current Running Time Cursor and red guide line
             //
             GUILayout.BeginArea(_rectTimeAreaTotal, string.Empty/*, EditorStyles.toolbarButton*/);
+            
             Color cl01 = GUI.color;
             GUI.color = Color.red;
             float timeToPos = TimeToPixel(this.RunningTime);
-            GUI.DrawTexture(new Rect(-ARROW_WIDTH + timeToPos - _rectTimeAreaRuler.x, 2, ARROW_WIDTH * 2f, ARROW_WIDTH * 2f * 1.82f), ResManager.TimeHeadTexture);
+           // GUI.DrawTexture(new Rect(-ARROW_WIDTH + timeToPos - _rectTimeAreaRuler.x, 2, ARROW_WIDTH * 2f, ARROW_WIDTH * 2f * 1.82f), ResManager.TimeHeadTexture);
             GUI.color = cl01;
             Rect lineRect = new Rect(timeToPos - _rectTimeAreaRuler.x, TIMELINETIMELABEL_HEIGHT, 1, _rectTimeAreaContent.height + 6);
-            EditorGUI.DrawRect(lineRect, Color.red);
+           // EditorGUI.DrawRect(lineRect, Color.red);
             GUILayout.EndArea();
-
+            
             //
             // Draw Cut off Cursor and blue guide line
             //
