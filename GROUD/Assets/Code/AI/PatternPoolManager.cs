@@ -17,6 +17,11 @@ public class PatternPoolManager : MonoBehaviour
         Instance = this;
         InitCirclePool();
     }
+
+    public void InvokePatternEnd()
+    {
+        OnPatternEnd?.Invoke();
+    }
     
     void InitCirclePool()
     {
@@ -32,10 +37,6 @@ public class PatternPoolManager : MonoBehaviour
         circle.SetActive(false);
         
         ActiveCircles.Remove(circle);
-        if (ActiveCircles.Count == 0)
-        {
-            OnPatternEnd?.Invoke();
-        }
         circle.transform.parent = transform;
         circlePool.Add(circle);
     }

@@ -200,8 +200,8 @@ public class CapacityToolEditor : SimpleTimeArea
       
       currentPattern.patternName = EditorGUILayout.TextField("Pattern Name", currentPattern.patternName);
       currentPattern.targetLevel = EditorGUILayout.Popup("Target Level", currentPattern.targetLevel, levelOptions); 
-      currentPattern.difficultyIndex = EditorGUILayout.Popup("Difficulty", currentPattern.difficultyIndex, difficultyOptions); 
-
+      currentPattern.difficultyIndex = EditorGUILayout.Popup("Difficulty", currentPattern.difficultyIndex, difficultyOptions);
+      currentPattern.maxTime = EditorGUILayout.FloatField("Max Time", (float) currentPattern.maxTime);
       GUILayout.BeginHorizontal();
       GUILayout.FlexibleSpace();
       
@@ -300,6 +300,7 @@ public class CapacityToolEditor : SimpleTimeArea
       InitTimeArea(false, false, true, true);
       DrawTimeAreaBackGround();
       DrawSplitAreaContent();
+      DrawEndVerticalLine();
       DrawKeysOnTimeline();
       OnTimeRulerCursorAndCutOffCursorInput();
       DrawTimeRulerArea();
@@ -414,9 +415,9 @@ public class CapacityToolEditor : SimpleTimeArea
       EditorGUI.DrawRect(contentSeparator, Color.grey);
       EditorGUI.DrawRect(botContent, new Color(0,0,0,0));
    }
-   
-   
-   
+
+
+   private bool dragKey;
    private void DrawKeysOnTimeline()
    {
       if(currentPattern == null || currentPattern.interactions == null || currentPattern.interactions.Count <= 0) return;
@@ -426,8 +427,8 @@ public class CapacityToolEditor : SimpleTimeArea
          InteractionKey iKey = currentPattern.interactions[i];
          double timeToPos = TimeToPixel(iKey.time);
          float positionY = iKey.row == 1 ? botContent.y + (botContent.height * 0.5f) : topContent.y + (topContent.height * 0.5f);
-         Rect interactionIconRect = new Rect((float)timeToPos - 13f, positionY - 15f, 30, 30);
-         Rect verticalLine = new Rect((float)timeToPos,  rectContent.y, interfaceData.lineThickness, rectContent.height);
+         Rect interactionIconRect = new Rect((float)timeToPos - (interfaceData.interactionIconWidth * 0.5f), positionY - 15f, interfaceData.interactionIconWidth, interfaceData.interactionIconHeight);
+         Rect verticalLine = new Rect((float)timeToPos - (interfaceData.lineThickness * 0.5f),  rectContent.y, interfaceData.lineThickness, rectContent.height);
          Texture interactionTexture = null;
          Color lineColor = Color.black;
          
@@ -447,6 +448,16 @@ public class CapacityToolEditor : SimpleTimeArea
          EditorGUI.DrawRect(verticalLine, lineColor);
          GUI.DrawTexture(interactionIconRect, interactionTexture);
 
+         if (dragKey)
+         {
+            selectedInteractionKey.time = GetSnappedTimeAtMousePosition(eventListener.mousePosition);
+         }
+
+         if (eventListener.type == EventType.MouseUp)
+         {
+            dragKey = false;
+         }
+         
          if (interactionIconRect.Contains(eventListener.mousePosition))
          {
             switch (eventListener.type)
@@ -454,16 +465,46 @@ public class CapacityToolEditor : SimpleTimeArea
                case EventType.MouseDown:
                   if(eventListener.button == 0) SelectKeyOnTimeline(iKey);
                   break;
-
+               
                case EventType.MouseDrag:
-                  iKey.time = GetSnappedTimeAtMousePosition(eventListener.mousePosition);
+                  if(!dragVerticalLine) dragKey = true;
                   break;
             }
          }
       }
-
-     
    }
+
+   private bool dragVerticalLine;
+   void DrawEndVerticalLine()
+   {
+      float timeToPos = TimeToPixel(currentPattern.maxTime);
+      Rect endHandler = new Rect(timeToPos - (interfaceData.interactHandlerWidth * 0.5f), rectTimeRuler.y, interfaceData.interactHandlerWidth,interfaceData.interactionHandlerHeight);
+      Rect endLine = new Rect(timeToPos - (interfaceData.endLineThickness * 0.5f), rectTimeRuler.y, interfaceData.endLineThickness, rectContent.height + rectTimeRuler.height);
+      
+      EditorGUI.DrawRect(endLine, interfaceData.endLine);
+      GUI.DrawTexture(endHandler, interfaceData.endHandlerTexture);
+
+      if (dragVerticalLine)
+      {
+         currentPattern.maxTime = GetSnappedTimeAtMousePosition(eventListener.mousePosition);
+      }
+
+      if (eventListener.type == EventType.MouseUp)
+      {
+         dragVerticalLine = false;
+      }
+      
+      if (endHandler.Contains(eventListener.mousePosition))
+      {
+         switch (eventListener.type)
+         {
+            case EventType.MouseDown:
+               if(!dragKey) dragVerticalLine = true;
+               break;
+         }
+      }
+   }
+   
    protected override void DrawVerticalTickLine()
    {
       Color preColor = Handles.color;

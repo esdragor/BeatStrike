@@ -19,6 +19,8 @@ public class PatternToolsInterfaceData : ScriptableObject
 
     [Header("Key")] 
     public float lineThickness;
+    public float interactionIconWidth = 30f;
+    public float interactionIconHeight = 30f;
     public Texture tapTexture;
     public Color tapLine;
     public Texture slideTexture;
@@ -29,5 +31,10 @@ public class PatternToolsInterfaceData : ScriptableObject
     public float buttonIconWidth;
     public Texture saveTexture;
     public Texture deleteTexture;
+    public float interactHandlerWidth;
+    public float interactionHandlerHeight;
+    public Texture endHandlerTexture;
+    public float endLineThickness = 2f;
+    public Color endLine;
 
 }

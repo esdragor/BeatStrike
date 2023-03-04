@@ -19,11 +19,12 @@ public class PatternManager : MonoBehaviour
 {
     public static PatternManager Instance;
     public static event Action OnPatternEnd;
+    public Pattern currentPattern;
     public InteractionKey currentInteraction;
     private Queue<InteractionKey> timelineRunnerKeys;
     public bool isTimelineActive;
 
-    private float timer;
+    public float timer;
     private GameObject caster;
 
 
@@ -36,6 +37,7 @@ public class PatternManager : MonoBehaviour
     {
         if (isTimelineActive) return;
         InitializeQueue(p.interactions);
+        currentPattern = p;
         timer = 0;
         GameManager.onUpdated += TimelineEventListener;
         isTimelineActive = true;
@@ -55,6 +57,7 @@ public class PatternManager : MonoBehaviour
     
     private void EndOfPattern()
     {
+        Debug.Log("End of pattern");
         OnPatternEnd?.Invoke();
         PatternPoolManager.OnPatternEnd -= EndOfPattern;
         isTimelineActive = false;
@@ -64,15 +67,22 @@ public class PatternManager : MonoBehaviour
     {
         timer += Time.deltaTime;
 
-        if (Math.Abs(timelineRunnerKeys.Peek().time - timer) < 0.1f)
+        if (timelineRunnerKeys.Count > 0)
         {
-            DrawInteractionOnScreen(timelineRunnerKeys.Dequeue());
+            if (Math.Abs(timelineRunnerKeys.Peek().time - timer) < 0.1f)
+            {
+                DrawInteractionOnScreen(timelineRunnerKeys.Dequeue());
+            }
         }
-
-        if (timelineRunnerKeys.Count > 0) return;
-        GameManager.onUpdated -= TimelineEventListener;
-        PatternPoolManager.OnPatternEnd += EndOfPattern;
-        isTimelineActive = false;
+        
+        if (timer > currentPattern.maxTime)
+        {
+            PatternPoolManager.OnPatternEnd += EndOfPattern;
+            PatternPoolManager.Instance.InvokePatternEnd();
+            isTimelineActive = false;
+            GameManager.onUpdated -= TimelineEventListener;
+        }
+        
     }
 
     public void DrawInteractionOnScreen(InteractionKey dataKey)
