@@ -86,7 +86,7 @@ namespace DMTimeArea
         {
             get
             {
-                float width = base.position.width - sequencerHeaderWidth;
+                float width = this.position.width - sequencerHeaderWidth;
                 return new Rect(_rectTimeAreaContent.x, _rectTimeAreaContent.y, Mathf.Max(width, kTimeAreaMinWidth), _rectTimeAreaContent.height);
             }
         }

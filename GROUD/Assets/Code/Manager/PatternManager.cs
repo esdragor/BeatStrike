@@ -64,7 +64,7 @@ public class PatternManager : MonoBehaviour
     {
         timer += Time.deltaTime;
 
-        if (Math.Abs(timelineRunnerKeys.Peek().timeCode - timer) < 0.1f)
+        if (Math.Abs(timelineRunnerKeys.Peek().time - timer) < 0.1f)
         {
             DrawInteractionOnScreen(timelineRunnerKeys.Dequeue());
         }

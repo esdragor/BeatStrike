@@ -6,9 +6,7 @@ using UnityEngine;
 [CreateAssetMenu(order = 0, menuName = "Pattern/Create Pattern", fileName = "new Pattern")]
 public class Pattern : ScriptableObject
 {
-    public string capacityName;
-    public string description;
-    public int rarityRank;
+    public string patternName;
     [Expandable] public List<InteractionKey> interactions = new List<InteractionKey>();
 
     private void OnValidate()
