@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class KeyClass : ScriptableObject
+public class KeyClass
 {
-    public float timeCode;
+    public double time;
 }

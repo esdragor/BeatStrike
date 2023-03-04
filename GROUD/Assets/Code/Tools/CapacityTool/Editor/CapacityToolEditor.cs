@@ -4,16 +4,34 @@ using System.Linq;
 using DMTimeArea;
 using UnityEditor;
 using UnityEngine;
+using Utilities;
 using Object = UnityEngine.Object;
 
 public class CapacityToolEditor : SimpleTimeArea
 {
-   private Pattern currentPattern;
-   private InteractionKey selectedInteractionKey;
-   private string directoryPath = $"Assets/Packages/SimpleTimeLineWindow/EditorResources/StopIcon.png";
-
-   #region VISUAL
+   private Event eventListener;
+   public Pattern currentPattern;
+   public string[] levelOptions = new[] {"Level 1", "Level 2", "Level 3"};
+   public string[] difficultyOptions = new[] {"1", "2", "3"};
    
+   private InteractionKey selectedInteractionKey;
+
+   private int selectedPatternInDirectory = 0;
+   private string[] patternsInDirectory;
+   
+   private string directoryPath;
+
+   private PatternToolsInterfaceData interfaceData;
+   
+
+   #region Assets
+   
+   public Texture _tapIcon;
+
+   #endregion
+   
+   #region Areas
+
    private Rect rectTotalArea;
    private Rect rectContent;
    private Rect rectTimeRuler;
@@ -22,8 +40,19 @@ public class CapacityToolEditor : SimpleTimeArea
    private Rect rectLeft;
    private Rect rectLeftTopToolBar;
    
+   private Rect botContent;
+   private Rect topContent;
+   private Rect contentSeparator;
+
+   private Rect previewRect;
+   private Rect patternDropdownRect => interfaceData.patternDropdownRect;
+   private Rect selectedInteractionRect => interfaceData.selectedInteractionRect;
+   private Rect patternDataRect => interfaceData.patternDataRect;
+   private Rect interactionListRect => interfaceData.interactionListRect;
+
    #endregion
-   #region PARAMETERS
+   
+   #region Timeline Parameters
 
    private float lastUpdateTime;
 
@@ -33,7 +62,7 @@ public class CapacityToolEditor : SimpleTimeArea
    private static double cutOffTime = 15.0f;
    protected override double CutOffTime { get => cutOffTime; set => cutOffTime = value; }
 
-   private float LEFTWIDTH = 250f;
+   private float LEFTWIDTH => interfaceData.leftWidth;
 
    private bool IsPlaying { get; set; }
 
@@ -49,30 +78,49 @@ public class CapacityToolEditor : SimpleTimeArea
 
    protected override float sequencerHeaderWidth => LEFTWIDTH;
 
-   protected override int toolbarHeight { get; } = 300;
+   protected override int toolbarHeight { get; } = 530;
    
 
    #endregion
-   #region INITIALISATION
+   
+   #region Initialization
 
    [MenuItem("Tools/Capacity Tool Editor")]
    public static void InitWindow()
    {
       var window = GetWindow<CapacityToolEditor>(false, "Capacity Tool Editor");
-      window.minSize = new Vector2(400f, 200f);
+      window.minSize = new Vector2(1170f, 760f);
+      window.maxSize = new Vector2(1170f, 760f);
       window.Show();
    }
 
    private void OnEnable()
    {
+      Unintialize();
       EditorApplication.update = (EditorApplication.CallbackFunction)System.Delegate.Combine(EditorApplication.update, new EditorApplication.CallbackFunction(OnEditorUpdate));
       lastUpdateTime = (float)EditorApplication.timeSinceStartup;
    }
 
+   void Unintialize()
+   {
+      currentPattern = null;
+      selectedPatternInDirectory = 0;
+      _serializedObject = new SerializedObject(this);
+      selectedInteractionKey = null;
+   }
+   
    private void OnDisable()
    {
+      SavePattern();
+      Unintialize();
       EditorApplication.update = (EditorApplication.CallbackFunction)System.Delegate.Remove(EditorApplication.update, new EditorApplication.CallbackFunction(OnEditorUpdate));
    }
+   
+   private void OnDestroy()
+   {
+      SavePattern();
+   }
+   
 
    private void OnEditorUpdate()
    {
@@ -91,104 +139,151 @@ public class CapacityToolEditor : SimpleTimeArea
    }
 
    #endregion
-
-   public string capacityName;
-   public string capacityDescription;
-   public int capacityRarityRank;
-
+   
    private void OnGUI()
    {
-      Event current = Event.current;
-
-      GUILayout.Label("Capacity Tool Editor", EditorStyles.boldLabel);
-      
-      if (rectContent.Contains(current.mousePosition) && current.type == EventType.ContextClick)
-      {
-         GenericMenu menu = new GenericMenu();
- 
-         menu.AddDisabledItem(new GUIContent("Timeline Actions List"));
-         menu.AddItem(new GUIContent("Add a pattern key."), false, YourCallback);
-         menu.ShowAsContext();
- 
-         current.Use();
-      }
-      
- 
-      void YourCallback()
-      {
-         Debug.Log("Hi there");
-      }
-      //Draw the top toolbar with selection capacity dropdown
-
-      //Draw the capacity data area
-      
-      Rect capacityDataArea = new Rect(10, 20, (position.width / 3) - 10, position.height - rectTotalArea.height - 40);
-      EditorGUI.DrawRect(capacityDataArea, Color.yellow);
-      GUILayout.BeginArea(capacityDataArea, "Capacity Data");
-      GUILayout.Space(20);
-      capacityName = EditorGUILayout.TextField("Name", capacityName);
-      capacityDescription = EditorGUILayout.TextField("Description", capacityDescription);
-      capacityRarityRank = EditorGUILayout.IntField("Rarity Rank", capacityRarityRank); 
-      GUILayout.EndArea();
-      
-      //Draw the capacity pattern list area
-      Rect capacityPatternListArea = new Rect(5 + capacityDataArea.width + capacityDataArea.x, 20, (position.width / 3) - 10, position.height - rectTotalArea.height - 40);
-      EditorGUI.DrawRect(capacityPatternListArea, Color.green);
-      GUILayout.BeginArea(capacityPatternListArea, "Pattern List in Capacity");
-      GUILayout.EndArea();
-      
-      //Draw the capacity selected pattern area
-      Rect selectPatternDataArea = new Rect(5 + capacityPatternListArea.width + capacityPatternListArea.x, 20, (position.width / 3) - 10, position.height - rectTotalArea.height - 40);
-      EditorGUI.DrawRect(selectPatternDataArea, Color.cyan);
-      GUILayout.BeginArea(selectPatternDataArea, "Selected Pattern Data");
-      GUILayout.EndArea();
-      
+      SetPatternsInDropDown();
+      LoadAssets(); 
+      EditorEventListener();
+      DrawPreviewArea();
+      DrawPatternListDropdown();
+      DrawSelectedInteractionArea(); 
+      DrawPatternDataArea(); 
+      DrawInteractionListArea(); 
       DrawTimeline();
    }
    
-   public static void DrawDropdown(Rect position, GUIContent label)
-   {
-      if (!EditorGUI.DropdownButton(position, label, FocusType.Passive))
-      {
-         return;
-      }
- 
-      void handleItemClicked(object parameter)
-      {
-         Debug.Log(parameter);
-      }
- 
-      GenericMenu menu = new GenericMenu();
-      menu.AddItem(new GUIContent("Item 1"), false, handleItemClicked, "Item 1");
-      menu.AddItem(new GUIContent("Item 2"), false, handleItemClicked, "Item 2");
-      menu.AddItem(new GUIContent("Item 3"), false, handleItemClicked, "Item 3");
-      menu.DropDown(position);
-   }
 
-   void SetCapacityInDirectoryDropdown()
+   #region Editor Drawing
+
+   void DrawPreviewArea()
    {
-      directoryPath = $"Assets/Scriptable/Capacities";
-      List<Object> objectsInDirectory = AssetDatabase.LoadAllAssetsAtPath(directoryPath).ToList();
+      previewRect = interfaceData.previewRect;
+      EditorGUI.DrawRect(previewRect, interfaceData.previewBackgroundColor);
+      GUILayout.BeginArea(previewRect);
+      GUILayout.Label("Work in progress");
+      GUILayout.EndArea();
    }
    
-   void SaveCapacity()
+   void DrawPatternListDropdown()
    {
-      directoryPath = $"Assets/Scriptable/Capacities/{currentPattern.capacityName}.asset";
-      AssetDatabase.CreateAsset(currentPattern, directoryPath);
-      SetCapacityInDirectoryDropdown();
+      EditorGUI.DrawRect(patternDropdownRect, interfaceData.patternDropdownBackgroundColor);
+      GUILayout.BeginArea(patternDropdownRect);
+      selectedPatternInDirectory = EditorGUILayout.Popup("Select a pattern...", selectedPatternInDirectory, patternsInDirectory);
+
+      if (selectedPatternInDirectory != 0)
+      {
+         LoadPattern(patternsInDirectory[selectedPatternInDirectory]);
+      }
+      else
+      {
+         currentPattern = null;
+      }
+
+      if (GUILayout.Button("Create New..."))
+      {
+         CreatePattern();
+      }
+      
+      GUILayout.EndArea();
    }
 
-   void LoadCapacity(string path)
+   private SerializedObject _serializedObject;
+   
+   void DrawPatternDataArea()
    {
-      directoryPath = $"Assets/Scriptable/Capacities/{path}.asset";
-      currentPattern = (Pattern) EditorGUIUtility.Load(directoryPath);
+      EditorGUI.DrawRect(patternDataRect, interfaceData.patternDataBackgroundColor); //Draw background
+      
+      if(currentPattern == null) return;
+      GUILayout.BeginArea(patternDataRect);
+      GUILayout.Space(20);
+      
+      currentPattern.patternName = EditorGUILayout.TextField("Pattern Name", currentPattern.patternName);
+      currentPattern.targetLevel = EditorGUILayout.Popup("Target Level", currentPattern.targetLevel, levelOptions); 
+      currentPattern.difficultyIndex = EditorGUILayout.Popup("Difficulty", currentPattern.difficultyIndex, difficultyOptions); 
+
+      GUILayout.BeginHorizontal();
+      GUILayout.FlexibleSpace();
+      
+      if (GUILayout.Button(interfaceData.saveTexture, GUILayout.Width(interfaceData.buttonIconWidth), GUILayout.Height(interfaceData.buttonIconHeight)))
+      {
+         SavePattern();
+      }
+      
+      if (GUILayout.Button(interfaceData.deleteTexture, GUILayout.Width(interfaceData.buttonIconWidth), GUILayout.Height(interfaceData.buttonIconHeight)))
+      {
+         DeletePattern();
+      }
+
+      GUILayout.EndHorizontal();
+      GUILayout.EndArea();
+
+   }
+
+   void DrawInteractionListArea()
+   {
+      EditorGUI.DrawRect(interactionListRect, interfaceData.interactionListBackgroundDropdown);
+      
+      GUILayout.BeginArea(interactionListRect);
+      GUILayout.Space(20);
+
+      GUILayout.BeginHorizontal();
+      
+      if (GUILayout.Button("Add Tap On Top Timeline"))
+      {
+         AddKeyOnTimeline(0, 0, Enums.InteractionType.Tap);
+      }
+      if (GUILayout.Button("Add Tap On Bot Timeline"))
+      {
+         AddKeyOnTimeline(1, 0, Enums.InteractionType.Tap);
+      }
+      
+      GUILayout.EndHorizontal();
+      
+      GUILayout.BeginHorizontal();
+      
+      if (GUILayout.Button("Add Slide On Top Timeline"))
+      {
+         AddKeyOnTimeline(0, 0, Enums.InteractionType.Slide);
+      }
+      if (GUILayout.Button("Add Slide On Bot Timeline"))
+      {
+         AddKeyOnTimeline(1, 0, Enums.InteractionType.Slide);
+      }
+      
+      GUILayout.EndHorizontal();
+
+      GUILayout.EndArea();
+   }
+
+
+
+   void DrawSelectedInteractionArea()
+   {
+      EditorGUI.DrawRect(selectedInteractionRect, interfaceData.selectedInteractionBackgroundColor);
+      GUILayout.BeginArea(selectedInteractionRect);
+      
+      DrawSelectedKeyData();
+      
+      GUILayout.EndArea();
+
    }
    
-   #region TIMELINE DRAW
+   private void DrawSelectedKeyData()
+   {
+      GUILayout.Space(20f);
+      if (selectedInteractionKey != null)
+      {
+         selectedInteractionKey.timeCode = TimeAsString(selectedInteractionKey.time);
+         EditorGUILayout.LabelField($"Time Code : {selectedInteractionKey.timeCode}");
+         selectedInteractionKey.time = EditorGUILayout.Slider((float)selectedInteractionKey.time, 0f, 10f);
+         selectedInteractionKey.interactionType = (Enums.InteractionType) EditorGUILayout.EnumPopup("Type", selectedInteractionKey.interactionType);
+      }
+   }
 
    private void DrawTimeline()
    {
-      Rect rectMainBodyArea = new Rect(0, position.height - toolbarHeight, position.width, position.height - (position.height - toolbarHeight));
+      Rect rectMainBodyArea = new Rect(0, toolbarHeight, base.position.width, this.position.height - toolbarHeight);
       rectTopBar = new Rect(0, 0, this.position.width, toolbarHeight);
       rectLeft = new Rect(rectMainBodyArea.x, rectMainBodyArea.y + timeRulerHeight, LEFTWIDTH, rectMainBodyArea.height);
       rectLeftTopToolBar = new Rect(rectMainBodyArea.x, rectMainBodyArea.y, LEFTWIDTH, timeRulerHeight);
@@ -199,18 +294,171 @@ public class CapacityToolEditor : SimpleTimeArea
 
       InitTimeArea(false, false, true, true);
       DrawTimeAreaBackGround();
+      DrawSplitAreaContent();
+      DrawKeysOnTimeline();
       OnTimeRulerCursorAndCutOffCursorInput();
       DrawTimeRulerArea();
-      DrawTopToolBar();
       DrawLeftContent();
       DrawLeftTopToolBar();
-
-      GUILayout.BeginArea(rectContent);
-      //Draw each patterns in capacity in the right column and row
+   }
+   
+   #endregion
+   
+   #region Editor Utilities
+   void LoadAssets()
+   {
+      interfaceData =
+         (EditorGUIUtility.Load("Assets/Code/Tools/CapacityTool/EditorResources/PatternInterfaceData.asset") as PatternToolsInterfaceData);
+      _tapIcon = (EditorGUIUtility.Load("Assets/Code/Tools/CapacityTool/EditorResources/tapimage.png") as Texture);
+   }
+   void EditorEventListener()
+   {
+      eventListener = Event.current;
       
-      GUILayout.EndArea();
+      if (botContent.Contains(eventListener.mousePosition) && eventListener.type == EventType.ContextClick)
+      {
+         Vector2 mousePositionWhenClick = eventListener.mousePosition;
+         GenericMenu menu = new GenericMenu();
+      
+         menu.AddDisabledItem(new GUIContent("Timeline Actions List")); 
+         menu.AddItem(new GUIContent("Add a tap."), false, MenuAddKeyOnTimeline(1, (float)GetSnappedTimeAtMousePosition(mousePositionWhenClick), Enums.InteractionType.Tap));
+         menu.AddItem(new GUIContent("Add a slide."), false, MenuAddKeyOnTimeline(1, (float)GetSnappedTimeAtMousePosition(mousePositionWhenClick), Enums.InteractionType.Slide));
+         menu.ShowAsContext();
+      
+         eventListener.Use();
+      }
+
+      if (topContent.Contains(eventListener.mousePosition) && eventListener.type == EventType.ContextClick)
+      {
+         Vector2 mousePositionWhenClick = eventListener.mousePosition;
+         GenericMenu menu = new GenericMenu();
+      
+         menu.AddDisabledItem(new GUIContent("Timeline Actions List")); 
+         menu.AddItem(new GUIContent("Add a tap."), false, MenuAddKeyOnTimeline(0, (float)GetSnappedTimeAtMousePosition(mousePositionWhenClick), Enums.InteractionType.Tap));
+         menu.AddItem(new GUIContent("Add a slide."), false, MenuAddKeyOnTimeline(0, (float)GetSnappedTimeAtMousePosition(mousePositionWhenClick), Enums.InteractionType.Slide));
+         menu.ShowAsContext();
+      
+         eventListener.Use();
+      }
    }
 
+   #endregion
+
+   #region Directory Utilities
+
+   void SetPatternsInDropDown()
+   {
+      directoryPath = $"Scriptable/Pattern/";
+      Pattern[] patterns = Resources.LoadAll<Pattern>(directoryPath);
+      patternsInDirectory = new string[patterns.Length + 1];
+      patternsInDirectory[0] = "Select a pattern here...";
+      for (int i = 1; i < patterns.Length + 1; i++)
+      {
+         patternsInDirectory[i] = patterns[i - 1].patternName;
+      }
+   }
+
+   void CreatePattern()
+   {
+      currentPattern = ScriptableObject.CreateInstance<Pattern>();
+      currentPattern.patternName = "New Pattern";
+      directoryPath = $"Assets/Resources/Scriptable/Pattern/{currentPattern.patternName}.asset";
+      AssetDatabase.CreateAsset(currentPattern, directoryPath);
+   }
+   
+   void SavePattern()
+   {
+      if(currentPattern == null) return;
+      
+      AssetDatabase.RenameAsset($"Assets/Resources/Scriptable/Pattern/{currentPattern.name}.asset",
+         currentPattern.patternName);
+      currentPattern.patternName = currentPattern.name;
+      
+      EditorUtility.SetDirty(currentPattern);
+      AssetDatabase.SaveAssets();
+      AssetDatabase.Refresh();
+   }
+
+   void LoadPattern(string patternName)
+   {
+      if (currentPattern == null || currentPattern.patternName != patternName)
+      {
+         directoryPath = $"Assets/Resources/Scriptable/Pattern/{patternName}.asset";
+         currentPattern = (Pattern) EditorGUIUtility.Load(directoryPath);
+      }
+   }
+
+   void DeletePattern()
+   {
+      directoryPath = $"Assets/Resources/Scriptable/Pattern/{currentPattern.patternName}.asset";
+      AssetDatabase.DeleteAsset(directoryPath);
+
+   }
+
+   #endregion
+   
+   #region Timeline Drawing
+
+   private void DrawSplitAreaContent()
+   {
+      topContent = new Rect(rectContent.x, rectContent.y, rectContent.width, rectContent.height * 0.5f);
+      contentSeparator = new Rect(rectContent.x, rectContent.y + (rectContent.height * 0.5f) - 2f, rectContent.width, 2f);
+      botContent = new Rect(rectContent.x, rectContent.y + (rectContent.height * 0.5f), rectContent.width, rectContent.height * 0.5f);
+      
+      EditorGUI.DrawRect(topContent, new Color(0,0,0,0));
+      EditorGUI.DrawRect(contentSeparator, Color.grey);
+      EditorGUI.DrawRect(botContent, new Color(0,0,0,0));
+   }
+   
+   
+   
+   private void DrawKeysOnTimeline()
+   {
+      if(currentPattern == null || currentPattern.interactions == null || currentPattern.interactions.Count <= 0) return;
+
+      for (int i = 0; i < currentPattern.interactions.Count; i++)
+      {
+         InteractionKey iKey = currentPattern.interactions[i];
+         double timeToPos = TimeToPixel(iKey.time);
+         float positionY = iKey.row == 1 ? botContent.y + (botContent.height * 0.5f) : topContent.y + (topContent.height * 0.5f);
+         Rect interactionIconRect = new Rect((float)timeToPos - 13f, positionY - 15f, 30, 30);
+         Rect verticalLine = new Rect((float)timeToPos,  rectContent.y, interfaceData.lineThickness, rectContent.height);
+         Texture interactionTexture = null;
+         Color lineColor = Color.black;
+         
+         switch (iKey.interactionType)
+         {
+            case Enums.InteractionType.Tap:
+               interactionTexture = interfaceData.tapTexture;
+               lineColor = interfaceData.tapLine;
+               break;
+            
+            case Enums.InteractionType.Slide:
+               interactionTexture = interfaceData.slideTexture;
+               lineColor = interfaceData.slideLine;
+               break;
+         }
+         
+         EditorGUI.DrawRect(verticalLine, lineColor);
+         GUI.DrawTexture(interactionIconRect, interactionTexture);
+
+         if (interactionIconRect.Contains(eventListener.mousePosition))
+         {
+            switch (eventListener.type)
+            {
+               case EventType.MouseDown:
+                  if(eventListener.button == 0) SelectKeyOnTimeline(iKey);
+                  break;
+
+               case EventType.MouseDrag:
+                  iKey.time = GetSnappedTimeAtMousePosition(eventListener.mousePosition);
+                  break;
+            }
+         }
+      }
+
+     
+   }
    protected override void DrawVerticalTickLine()
    {
       Color preColor = Handles.color;
@@ -236,19 +484,13 @@ public class CapacityToolEditor : SimpleTimeArea
       }
       Handles.color = preColor;
    }
-   
    protected virtual void DrawLeftContent()
    {
       GUILayout.BeginArea(rectLeft);
       GUILayout.BeginHorizontal();
-      
-      GUILayout.Label("Pattern Keys");
-      GUILayout.Button("Add");
-      
       GUILayout.EndHorizontal();
       GUILayout.EndArea();
    }
-   
    protected virtual void DrawTopToolBar()
    {
       GUILayout.BeginArea(rectTopBar);
@@ -259,7 +501,6 @@ public class CapacityToolEditor : SimpleTimeArea
       }
       GUILayout.EndArea();
    }
-   
    private void DrawLeftTopToolBar()
    {
       GUILayout.BeginArea(rectLeftTopToolBar, string.Empty, EditorStyles.toolbarButton);
@@ -302,6 +543,30 @@ public class CapacityToolEditor : SimpleTimeArea
       GUILayout.EndHorizontal();
       GUILayout.EndArea();
    }
+
+   #endregion
+   
+   #region Timeline Options
+
+   private GenericMenu.MenuFunction MenuAddKeyOnTimeline(int rowToAdd, float timeCode, Enums.InteractionType interactionType)
+   {
+      return () => AddKeyOnTimeline(rowToAdd, timeCode, interactionType);
+   }
+
+   private void AddKeyOnTimeline(int rowToAdd, float timeCode, Enums.InteractionType interactionType)
+   {
+      currentPattern.interactions.Add(new InteractionKey(rowToAdd, timeCode,TimeAsString(timeCode, "F2"), interactionType));
+      SavePattern();
+   }
+   private void SelectKeyOnTimeline(InteractionKey iKey)
+   {
+      selectedInteractionKey = iKey;
+   }
+
+   public void UnselectKey()
+   {
+      selectedInteractionKey = null;
+   }
    
    private void PlayPreview()
    {
@@ -315,5 +580,14 @@ public class CapacityToolEditor : SimpleTimeArea
 
    #endregion
    
-   
+
+   public static class EditorList
+   {
+      public static void Show(SerializedProperty list)
+      {
+         EditorGUILayout.PropertyField(list);
+      }
+   }
 }
+
+
