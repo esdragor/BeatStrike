@@ -19,17 +19,19 @@ MonoBehaviour:
     y: 10.8
     width: 344.4
     height: 509.1
+  previewBackgroundColor: {r: 0.15686275, g: 0.15686275, b: 0.15686275, a: 0.2901961}
   patternDropdownRect:
     serializedVersion: 2
     x: 5.2
     y: 31
     width: 400
     height: 36.5
+  patternDropdownBackgroundColor: {r: 0.15686275, g: 0.15686275, b: 0.15686275, a: 0.2901961}
   timelineRectContent:
     serializedVersion: 2
     x: 0
-    y: 0
-    width: 1319.5
+    y: 649.32
+    width: 1243.47
     height: 216.2
   selectedInteractionRect:
     serializedVersion: 2
@@ -37,15 +39,29 @@ MonoBehaviour:
     y: 30.1
     width: 400
     height: 477.84
+  selectedInteractionBackgroundColor: {r: 0.15686275, g: 0.15686275, b: 0.15686275,
+    a: 0.2901961}
   patternDataRect:
     serializedVersion: 2
     x: 5.2
-    y: 240.56
+    y: 71.49
     width: 400
-    height: 92.7
+    height: 271.1
+  patternDataBackgroundColor: {r: 0.15686275, g: 0.15686275, b: 0.15686275, a: 0.2901961}
   interactionListRect:
     serializedVersion: 2
-    x: 5.2
+    x: 5.05
     y: 351.17
     width: 400
     height: 157.2
+  interactionListBackgroundDropdown: {r: 0.15686275, g: 0.15686275, b: 0.15686275,
+    a: 0.2901961}
+  lineThickness: 2
+  tapTexture: {fileID: 2800000, guid: 169aa1fc74bb3f34d9c9188597857462, type: 3}
+  tapLine: {r: 0.22694907, g: 0.37108627, b: 0.9433962, a: 0.5686275}
+  slideTexture: {fileID: 2800000, guid: ef5f37026ed593b4e92fc0e060718941, type: 3}
+  slideLine: {r: 0.7075472, g: 0.19691172, b: 0.22776043, a: 0.5686275}
+  buttonIconHeight: 32
+  buttonIconWidth: 32
+  saveTexture: {fileID: 2800000, guid: 390716086cc66ee40b85ead3dc96ced9, type: 3}
+  deleteTexture: {fileID: 2800000, guid: f46689ba51e592d47b3aa18f22882123, type: 3}

@@ -7,31 +7,15 @@ using UnityEngine;
 public class Pattern : ScriptableObject
 {
     public string patternName;
-    [Expandable] public List<InteractionKey> interactions = new List<InteractionKey>();
+    public int targetLevel;
+    public int difficultyIndex;
+    public List<InteractionKey> interactions;
 
-    private void OnValidate()
-    {
-        ReorderList();
-    }
-
+    
     [Button("Reorder List")]
     public void ReorderList()
     {
+        if(interactions == null) return;
         interactions = interactions.OrderBy(it => it.timeCode).ToList();
-    }
-
-    public void AddPatternKey(InteractionKey pc)
-    {
-        interactions.Add(pc);
-    }
-
-    public void RemovePatternKey(InteractionKey pc)
-    {
-        interactions.Remove(pc);
-    }
-    
-    void ReorderPatternsList()
-    {
-        interactions.OrderBy(patternKey => patternKey.timeCode);
     }
 }
