@@ -262,8 +262,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   patterns:
-  - {fileID: 11400000, guid: a142962c56426044690db3ac154c47f6, type: 2}
-  - {fileID: 11400000, guid: 5140e4d3458dff54ca877a58178f2a8d, type: 2}
+  - {fileID: 11400000, guid: bb6cf1c5f934f294dad0384c7b412bf7, type: 2}
 --- !u!1 &173781497
 GameObject:
   m_ObjectHideFlags: 0
@@ -694,6 +693,29 @@ PrefabInstance:
       propertyPath: MaxHealth
       value: 1000
       objectReference: {fileID: 0}
+    - target: {fileID: 7689418257610119836, guid: d8db909759010ad42a6a59787c0a582f,
+        type: 3}
+      propertyPath: Patterns.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7689418257610119836, guid: d8db909759010ad42a6a59787c0a582f,
+        type: 3}
+      propertyPath: Patterns.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: bb6cf1c5f934f294dad0384c7b412bf7,
+        type: 2}
+    - target: {fileID: 7689418257610119836, guid: d8db909759010ad42a6a59787c0a582f,
+        type: 3}
+      propertyPath: Patterns.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 79303eba416dc264ba7d27dadeb2365c,
+        type: 2}
+    - target: {fileID: 7689418257610119836, guid: d8db909759010ad42a6a59787c0a582f,
+        type: 3}
+      propertyPath: Patterns.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: b31cfed4fcc7b4e46bdd23c4ddbd6acf,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d8db909759010ad42a6a59787c0a582f, type: 3}
 --- !u!224 &352831611 stripped
@@ -1325,7 +1347,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed334b1890d02ce41bb1052e3304a9dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentInteraction: {fileID: 0}
+  currentInteraction:
+    time: 0
+    row: 0
+    scale: 0
+    timeCode: 
+    tolerance: 0
+    drawSpeed: 0
+    spawnPosition: {x: 0, y: 0, z: 0}
+    interactionType: 0
+    target: {fileID: 0}
   isTimelineActive: 0
 --- !u!114 &958934232
 MonoBehaviour:

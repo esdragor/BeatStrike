@@ -81,9 +81,9 @@ public class PatternManager : MonoBehaviour
         InteractionComponent interactionComponent = null;
         
         caster = PatternPoolManager.Instance.GetCircleFromPool();
-        
-        
-        int selectedWay = Helpers.GetRandomRange(0, GameManager.instance.spawnPoints.Length);
+
+
+        int selectedWay = dataKey.row;
         Vector3 spawnPosition = GameManager.instance.spawnPoints[selectedWay].position;
         caster.transform.position = new Vector3(spawnPosition.x, 1, spawnPosition.z);
         

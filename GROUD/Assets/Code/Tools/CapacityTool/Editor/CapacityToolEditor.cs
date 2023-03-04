@@ -278,6 +278,11 @@ public class CapacityToolEditor : SimpleTimeArea
          EditorGUILayout.LabelField($"Time Code : {selectedInteractionKey.timeCode}");
          selectedInteractionKey.time = EditorGUILayout.Slider((float)selectedInteractionKey.time, 0f, 10f);
          selectedInteractionKey.interactionType = (Enums.InteractionType) EditorGUILayout.EnumPopup("Type", selectedInteractionKey.interactionType);
+
+         if (GUILayout.Button("Delete Key"))
+         {
+            RemoveKeyOnTimeline();
+         }
       }
    }
 
@@ -558,6 +563,13 @@ public class CapacityToolEditor : SimpleTimeArea
       currentPattern.interactions.Add(new InteractionKey(rowToAdd, timeCode,TimeAsString(timeCode, "F2"), interactionType));
       SavePattern();
    }
+
+   private void RemoveKeyOnTimeline()
+   {
+      currentPattern.interactions.Remove(selectedInteractionKey);
+      selectedInteractionKey = null;
+   }
+   
    private void SelectKeyOnTimeline(InteractionKey iKey)
    {
       selectedInteractionKey = iKey;
