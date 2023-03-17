@@ -67,8 +67,16 @@ MonoBehaviour:
   buttonIconWidth: 32
   saveTexture: {fileID: 2800000, guid: 390716086cc66ee40b85ead3dc96ced9, type: 3}
   deleteTexture: {fileID: 2800000, guid: f46689ba51e592d47b3aa18f22882123, type: 3}
+  buttonConnectorHeight: 54
+  buttonConnectorWidth: 54
+  connectorTexture: {fileID: 2800000, guid: 0762d44446caec64b875549fbe5a1ade, type: 3}
   interactHandlerWidth: 10
   interactionHandlerHeight: 20
   endHandlerTexture: {fileID: 2800000, guid: 78babcc73883a9047898775fd1507339, type: 3}
   endLineThickness: 2
   endLine: {r: 0.745283, g: 0.2917853, b: 0.2917853, a: 1}
+  interactionOutputIconWidth: 32
+  interactionOutputIconHeight: 32
+  interactionOutputTexture: {fileID: 2800000, guid: d6ca98b9eac6dcc4f9b343622a5c87c8,
+    type: 3}
+  slideLineThickness: 7.59

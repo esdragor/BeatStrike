@@ -9,7 +9,7 @@ public class Pattern : ScriptableObject
     public string patternName;
     public int targetLevel;
     public int difficultyIndex;
-    public double maxTime = 10f;
+    public float maxTime = 10f;
     public List<InteractionKey> interactions;
 
     

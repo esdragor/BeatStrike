@@ -275,9 +275,50 @@ public class CapacityToolEditor : SimpleTimeArea
       if (selectedInteractionKey != null)
       {
          selectedInteractionKey.timeCode = TimeAsString(selectedInteractionKey.time);
-         EditorGUILayout.LabelField($"Time Code : {selectedInteractionKey.timeCode}");
-         selectedInteractionKey.time = EditorGUILayout.Slider((float)selectedInteractionKey.time, 0f, 10f);
+         EditorGUILayout.LabelField($"Input Time Code : {selectedInteractionKey.timeCode}");
+         selectedInteractionKey.time = EditorGUILayout.Slider(selectedInteractionKey.time, 0f, 10f);
          selectedInteractionKey.interactionType = (Enums.InteractionType) EditorGUILayout.EnumPopup("Type", selectedInteractionKey.interactionType);
+         
+         switch (selectedInteractionKey.interactionType)
+         {
+            case Enums.InteractionType.Tap:
+               
+               break;
+            
+            case Enums.InteractionType.Slide:
+               EditorGUILayout.LabelField($"Output Time Code : {TimeAsString(selectedInteractionKey.outputTime)}");
+               selectedInteractionKey.outputTime = EditorGUILayout.Slider(selectedInteractionKey.outputTime, 0.1f, currentPattern.maxTime - selectedInteractionKey.time);
+               
+               if (selectedInteractionKey.connectors.Count > 0)
+               {
+                  // TODO : Draw list of connectors
+               }
+               
+               GUILayout.Space(10f);
+               GUILayout.BeginHorizontal();
+               GUILayout.FlexibleSpace();
+               if (GUILayout.Button(interfaceData.connectorTexture, GUILayout.Width(interfaceData.buttonConnectorWidth), GUILayout.Height(interfaceData.buttonConnectorHeight)))
+               {
+                  int sRow;
+                  float sTime;
+                  if (selectedInteractionKey.connectors.Count != 0)
+                  {
+                     sRow = selectedInteractionKey.connectors[^1].row == 0 ? 1 : 0;
+                     sTime = selectedInteractionKey.outputTime - selectedInteractionKey.connectors[^1].time;
+                  }
+                  else
+                  {
+                     sRow = selectedInteractionKey.row == 0 ? 1 : 0;
+                     sTime = selectedInteractionKey.outputTime - selectedInteractionKey.time;
+                  }
+                 
+                  AddConnector(sRow, sTime);
+               }
+               GUILayout.EndHorizontal();
+               break;
+         }
+         
+         GUILayout.Space(20f);
 
          if (GUILayout.Button("Delete Key"))
          {
@@ -286,6 +327,11 @@ public class CapacityToolEditor : SimpleTimeArea
       }
    }
 
+   void AddConnector(int row, float time)
+   {
+      selectedInteractionKey.connectors.Add(new ConnectorKey(row, time));
+   }
+   
    private void DrawTimeline()
    {
       Rect rectMainBodyArea = new Rect(0, toolbarHeight, base.position.width, this.position.height - toolbarHeight);
@@ -418,21 +464,36 @@ public class CapacityToolEditor : SimpleTimeArea
 
 
    private bool dragKey;
+   private bool dragOutput;
+   private bool dragConnector;
    private void DrawKeysOnTimeline()
    {
       if(currentPattern == null || currentPattern.interactions == null || currentPattern.interactions.Count <= 0) return;
 
       for (int i = 0; i < currentPattern.interactions.Count; i++)
       {
-         InteractionKey iKey = currentPattern.interactions[i];
-         double timeToPos = TimeToPixel(iKey.time);
-         float positionY = iKey.row == 1 ? botContent.y + (botContent.height * 0.5f) : topContent.y + (topContent.height * 0.5f);
+         //Draw input
+
+         InteractionKey currentPatternInteraction = currentPattern.interactions[i];
+         double timeToPos = TimeToPixel(currentPatternInteraction.time);
+         float positionY = currentPatternInteraction.row == 1 ? botContent.y + (botContent.height * 0.5f) : topContent.y + (topContent.height * 0.5f);
          Rect interactionIconRect = new Rect((float)timeToPos - (interfaceData.interactionIconWidth * 0.5f), positionY - 15f, interfaceData.interactionIconWidth, interfaceData.interactionIconHeight);
          Rect verticalLine = new Rect((float)timeToPos - (interfaceData.lineThickness * 0.5f),  rectContent.y, interfaceData.lineThickness, rectContent.height);
+        
          Texture interactionTexture = null;
          Color lineColor = Color.black;
+
+         Rect outputIconPos = Rect.zero;
+         Rect connectionLine = Rect.zero;
+
+         switch (currentPatternInteraction.interactionType)
+         {
+            case Enums.InteractionType.Slide:
+               // TODO Draw Connectors
+               break;
+         }
          
-         switch (iKey.interactionType)
+         switch (currentPatternInteraction.interactionType)
          {
             case Enums.InteractionType.Tap:
                interactionTexture = interfaceData.tapTexture;
@@ -447,36 +508,80 @@ public class CapacityToolEditor : SimpleTimeArea
          
          EditorGUI.DrawRect(verticalLine, lineColor);
          GUI.DrawTexture(interactionIconRect, interactionTexture);
+         
+         if (currentPatternInteraction.interactionType == Enums.InteractionType.Slide)
+         {
+            double outputTimeToPos = TimeToPixel(currentPatternInteraction.outputTime);
+            outputIconPos = new Rect((float) outputTimeToPos - (interfaceData.interactionOutputIconWidth * 0.5f),
+               interactionIconRect.y, interfaceData.interactionOutputIconWidth,
+               interfaceData.interactionOutputIconHeight);
+            connectionLine = new Rect(interactionIconRect.x + (interfaceData.interactionIconWidth * 0.5f), positionY - (interfaceData.slideLineThickness * 0.5f), outputIconPos.x - interactionIconRect.x,interfaceData.slideLineThickness
+            );
+            
+            GUI.DrawTexture(outputIconPos, interfaceData.interactionOutputTexture);
+            EditorGUI.DrawRect(connectionLine, lineColor);
+         }
 
          if (dragKey)
          {
-            selectedInteractionKey.time = GetSnappedTimeAtMousePosition(eventListener.mousePosition);
+            selectedInteractionKey.time = (float) GetSnappedTimeAtMousePosition(eventListener.mousePosition);
          }
 
-         if (eventListener.type == EventType.MouseUp)
+         if (dragOutput)
          {
-            dragKey = false;
+            if ((float) GetSnappedTimeAtMousePosition(eventListener.mousePosition) > selectedInteractionKey.time + 0.1f)
+            {
+               selectedInteractionKey.outputTime = (float) GetSnappedTimeAtMousePosition(eventListener.mousePosition);
+            }
+         }
+
+         switch (eventListener.type)
+         {
+            case EventType.MouseDown:
+               if(eventListener.button == 0) SelectKeyOnTimeline(currentPatternInteraction);
+               break;
+               
+            case EventType.MouseDrag:
+               
+               if (interactionIconRect.Contains(eventListener.mousePosition))
+               {
+                  if(!dragVerticalLine && !dragConnector && !dragOutput) dragKey = true;
+               }
+
+               if (outputIconPos.Contains(eventListener.mousePosition))
+               {
+                  if (!dragVerticalLine && !dragKey && !dragConnector) dragOutput = true;
+               }
+               
+               break;
+            case EventType.MouseUp:
+               dragKey = false;
+               dragOutput = false;
+               dragConnector = false;
+               break;
          }
          
          if (interactionIconRect.Contains(eventListener.mousePosition))
          {
-            switch (eventListener.type)
-            {
-               case EventType.MouseDown:
-                  if(eventListener.button == 0) SelectKeyOnTimeline(iKey);
-                  break;
-               
-               case EventType.MouseDrag:
-                  if(!dragVerticalLine) dragKey = true;
-                  break;
-            }
+           
          }
       }
+   }
+
+   void DrawInputKey()
+   {
+      
+   }
+
+   void DrawOutputKey()
+   {
+      
    }
 
    private bool dragVerticalLine;
    void DrawEndVerticalLine()
    {
+      if(currentPattern == null) return;
       float timeToPos = TimeToPixel(currentPattern.maxTime);
       Rect endHandler = new Rect(timeToPos - (interfaceData.interactHandlerWidth * 0.5f), rectTimeRuler.y, interfaceData.interactHandlerWidth,interfaceData.interactionHandlerHeight);
       Rect endLine = new Rect(timeToPos - (interfaceData.endLineThickness * 0.5f), rectTimeRuler.y, interfaceData.endLineThickness, rectContent.height + rectTimeRuler.height);
@@ -486,7 +591,7 @@ public class CapacityToolEditor : SimpleTimeArea
 
       if (dragVerticalLine)
       {
-         currentPattern.maxTime = GetSnappedTimeAtMousePosition(eventListener.mousePosition);
+         currentPattern.maxTime = (float) GetSnappedTimeAtMousePosition(eventListener.mousePosition);
       }
 
       if (eventListener.type == EventType.MouseUp)
@@ -601,7 +706,17 @@ public class CapacityToolEditor : SimpleTimeArea
 
    private void AddKeyOnTimeline(int rowToAdd, float timeCode, Enums.InteractionType interactionType)
    {
-      currentPattern.interactions.Add(new InteractionKey(rowToAdd, timeCode,TimeAsString(timeCode, "F2"), interactionType));
+      switch (interactionType)
+      {
+         case Enums.InteractionType.Tap:
+            currentPattern.interactions.Add(new TapInteractionKey(rowToAdd, timeCode,TimeAsString(timeCode, "F2"), interactionType));
+            break;
+         
+         case Enums.InteractionType.Slide:
+            currentPattern.interactions.Add(new SlideInteractionKey(rowToAdd, timeCode,TimeAsString(timeCode, "F2"), interactionType));
+            break;
+      }
+      
       SavePattern();
    }
 
@@ -610,10 +725,12 @@ public class CapacityToolEditor : SimpleTimeArea
       currentPattern.interactions.Remove(selectedInteractionKey);
       selectedInteractionKey = null;
    }
-   
+
    private void SelectKeyOnTimeline(InteractionKey iKey)
    {
       selectedInteractionKey = iKey;
+      
+      if (selectedInteractionKey != null) Debug.Log(selectedInteractionKey.GetType());
    }
 
    public void UnselectKey()

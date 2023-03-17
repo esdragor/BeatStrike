@@ -26,15 +26,22 @@ public class PatternToolsInterfaceData : ScriptableObject
     public Texture slideTexture;
     public Color slideLine;
 
-    [Header("Others")] 
+    
+    [Header("Interaction")] 
     public float buttonIconHeight;
     public float buttonIconWidth;
     public Texture saveTexture;
     public Texture deleteTexture;
+    public float buttonConnectorHeight;
+    public float buttonConnectorWidth;
+    public Texture connectorTexture;
     public float interactHandlerWidth;
     public float interactionHandlerHeight;
     public Texture endHandlerTexture;
     public float endLineThickness = 2f;
     public Color endLine;
-
+    public float interactionOutputIconWidth;
+    public float interactionOutputIconHeight;
+    public Texture interactionOutputTexture;
+    public float slideLineThickness;
 }
