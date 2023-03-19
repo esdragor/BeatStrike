@@ -5,11 +5,11 @@ public class PlayerTriggerEvent : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        ExperienceOrb experienceOrb = other.GetComponent<ExperienceOrb>();
+        InteractionComponent it = other.GetComponent<InteractionComponent>();
 
-        if (experienceOrb)
+        if (it)
         {
-            experienceOrb.OnReachedPlayers();
+            it.HurtPlayer();
         }
     }
 }

@@ -17,7 +17,6 @@ namespace Code.AI
 
         private void Update()
         {
-            transform.position += transform.forward * speed * Time.deltaTime;
         }
 
         public void OnReachedPatternPoint()
@@ -29,7 +28,7 @@ namespace Code.AI
                     interactionComponent = interactionObj.GetComponent<InteractionComponent>();
                     TapInteraction tapIn = (TapInteraction)interactionComponent;
                     interactionComponent.speed = speed / transform.position.z;
-                    interactionComponent.ActivateInteraction();
+                 //   interactionComponent.ActivateInteraction();
                     tapIn.SetData(dataKey);
                     break;
         
@@ -44,13 +43,12 @@ namespace Code.AI
             }
 
 
-            if (interactionComponent != null) interactionComponent.StartInteraction();
+          //  if (interactionComponent != null) interactionComponent.StartInteraction();
         }
 
         public void OnReachedPlayers()
         {
             PatternPoolManager.Instance.AddCircleToPool(gameObject);
-            InputManager.FailedInteraction();
         }
     }
 }

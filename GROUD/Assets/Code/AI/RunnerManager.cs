@@ -21,10 +21,5 @@ public class RunnerManager : MonoBehaviour
 
     private void OnPatternEnd()
     {
-        currentPatternIndex++;
-        if (currentPatternIndex < patterns.Length)
-            Begin();
-        else
-            GameManager.instance.StartBoss();
     }
 }
