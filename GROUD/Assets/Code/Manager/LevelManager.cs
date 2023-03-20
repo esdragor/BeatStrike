@@ -8,8 +8,8 @@ public class LevelManager : MonoBehaviour
     public Transform leftSpawnPoint;
     public Transform rightSpawnPoint;
     
-    public InteractionDetector leftDetector;
-    public InteractionDetector rightDetector;
+    public InteractionDetectorManager leftDetector;
+    public InteractionDetectorManager rightDetector;
     
     public LevelData levelData;
     public int currentPatternIndex = 0;

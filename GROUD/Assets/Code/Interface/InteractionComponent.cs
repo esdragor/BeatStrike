@@ -9,6 +9,8 @@ public abstract class InteractionComponent : MonoBehaviour
     public float speed = 3f;
     public Vector3 startPosition;
     public float scale;
+
+    public InteractionSuccess successGroup;
     
     public void SetData(InteractionKey interactionKey)
     {
@@ -29,6 +31,27 @@ public abstract class InteractionComponent : MonoBehaviour
         scale = data.scale;
     }
 
+    private MeshRenderer renderer => GetComponent<MeshRenderer>();
+    public void SetSuccess(InteractionSuccess itSuccess)
+    {
+        successGroup = itSuccess;
+
+        switch (successGroup)
+        {
+            case InteractionSuccess.Ok:
+                renderer.material.color = Color.red;
+                break;
+            
+            case InteractionSuccess.Good:
+                renderer.material.color = Color.yellow;
+                break;
+            
+            case InteractionSuccess.Perfect:
+                renderer.material.color = Color.green;
+                break;
+        }
+    }
+
     public virtual void ValidateInteraction()
     {
         if (GameManager.instance.gameState.IsLevelExploration())
@@ -37,9 +60,11 @@ public abstract class InteractionComponent : MonoBehaviour
         }
         else
         {
-           BossManager.instance.AddDamageToPool(10f);
+           BossManager.instance.AddDamageToPool(PlayerManager.instance.currentStats.damage);
         }
 
+        PlayerManager.instance.OnInteractionSuccess(successGroup);
+        
         PatternPoolManager.Instance.AddCircleToPool(gameObject);
     }
 
