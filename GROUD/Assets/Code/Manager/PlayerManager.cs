@@ -69,7 +69,8 @@ public class PlayerManager : MonoBehaviour
                 {
                     isRunning = true;
                     animator.SetBool("IsRunning", true);
-                    runTime += currentStats.speed * 1;
+                    runTime = currentStats.speed * 1;
+                    LevelManager.instance.MoveWorld(runTime, currentStats.speed, animator);
                 }
                 else
                 {

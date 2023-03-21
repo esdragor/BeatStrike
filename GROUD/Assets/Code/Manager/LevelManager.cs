@@ -1,9 +1,12 @@
 ﻿using System;
+using DG.Tweening;
 using UnityEngine;
 
 public class LevelManager : MonoBehaviour
 {
     public static LevelManager instance;
+
+    public Transform levelObject;
 
     public Transform leftSpawnPoint;
     public Transform rightSpawnPoint;
@@ -18,6 +21,7 @@ public class LevelManager : MonoBehaviour
     private void Awake()
     {
         if (instance == null) instance = this;
+        MoveWorld(-30, 10, null);
     }
 
     public void StartLevel()
@@ -32,6 +36,11 @@ public class LevelManager : MonoBehaviour
         PatternManager.Instance.StartPattern(levelData.rounds[currentRoundIndex].patterns[currentPatternIndex]);
     }
 
+    public void MoveWorld(float distance, float duration, Animator playerAnimator)
+    {
+        levelObject.DOMoveZ(distance, duration).OnComplete( (() => playerAnimator.SetBool("isRunning", false)));
+    }
+    
     void CheckNextPattern()
     {
         currentPatternIndex++;
