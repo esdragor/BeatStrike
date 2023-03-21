@@ -1,26 +1,27 @@
 using System;
+using NaughtyAttributes;
 using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent(typeof(MeshFilter), typeof(MeshRenderer))]
 public class ProceduralMesh : MonoBehaviour
 {
-    public int numSegments = 32; // Number of segments in the mesh
-    public float depth = 1.0f; // Radius of the mesh
-    public MeshCollider collider; // Radius of the mesh
-    public MeshFilter filter; // Radius of the mesh
-    public Vector3 origin = Vector3.zero;
+    [SerializeField] private MeshCollider collider; // Radius of the mesh
+    [SerializeField] MeshFilter filter; // Radius of the mesh
+    [SerializeField, ReadOnly] private int numSegments = 10; // Number of segments in the mesh
+    [SerializeField, ReadOnly] private float depth = 1.0f; // Radius of the mesh
 
     private Mesh mesh;
     private Vector3[] vertices;
     private int[] triangles;
+    private Vector3 origin = Vector3.zero;
     private Vector2[] uvs;
 
     void Start()
     {
         mesh = new Mesh();
         GetComponent<MeshFilter>().mesh = mesh;
-
+        transform.rotation = Quaternion.Euler(-90f, -90f, -90f);
         CreateMesh();
     }
 
@@ -100,6 +101,6 @@ public class ProceduralMesh : MonoBehaviour
 
         filter.mesh = mesh;
         collider.sharedMesh = mesh;
-        SpinManager.instance.SetMesh(gameObject);
+        SpinManager.instance.SetMesh(gameObject, numSegments);
     }
 }

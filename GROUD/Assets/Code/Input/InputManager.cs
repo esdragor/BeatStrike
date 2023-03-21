@@ -27,6 +27,7 @@ public class InputManager : MonoBehaviour
 
     private void LookAtLeftDetector()
     {
+        if (!levelManager.leftDetector) return;
         Debug.Log("Ca check left");
         InteractionComponent it = new TapInteraction();
 
@@ -68,6 +69,7 @@ public class InputManager : MonoBehaviour
 
     private void LookAtRightDetector()
     {
+        if (!levelManager.rightDetector) return;
         Debug.Log("Ca check right");
         
         InteractionComponent it = new TapInteraction();
