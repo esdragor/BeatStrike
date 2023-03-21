@@ -28,7 +28,6 @@ namespace Code.AI
                     interactionComponent = interactionObj.GetComponent<InteractionComponent>();
                     TapInteraction tapIn = (TapInteraction)interactionComponent;
                     interactionComponent.speed = speed / transform.position.z;
-                 //   interactionComponent.ActivateInteraction();
                     tapIn.SetData(dataKey);
                     break;
         

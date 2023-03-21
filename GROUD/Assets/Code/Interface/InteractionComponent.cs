@@ -3,32 +3,24 @@ using UnityEngine;
 
 public abstract class InteractionComponent : MonoBehaviour
 {
-    public GameObject target;
     public InteractionKey data;
-    public float tolerance = 20f;
     public float speed = 3f;
-    public Vector3 startPosition;
-    public float scale;
 
     public InteractionSuccess successGroup;
-    
-    public void SetData(InteractionKey interactionKey)
+
+    private void Awake()
     {
-        data = interactionKey;
-        InitializeData();
+        SetColor();
     }
 
     private void Update()
     {
         transform.position += -transform.forward * speed * Time.deltaTime;
     }
-
-    public virtual void InitializeData()
+    
+    public void SetData(InteractionKey interactionKey)
     {
-        tolerance = data.tolerance;
-        //speed = data.drawSpeed;
-        startPosition = data.spawnPosition;
-        scale = data.scale;
+        data = interactionKey;
     }
 
     private MeshRenderer renderer => GetComponent<MeshRenderer>();
@@ -39,15 +31,26 @@ public abstract class InteractionComponent : MonoBehaviour
         switch (successGroup)
         {
             case InteractionSuccess.Ok:
-                renderer.material.color = Color.red;
                 break;
             
             case InteractionSuccess.Good:
-                renderer.material.color = Color.yellow;
                 break;
             
             case InteractionSuccess.Perfect:
-                renderer.material.color = Color.green;
+                break;
+        }
+    }
+
+    public void SetColor()
+    {
+        switch (data.interactionColor)
+        {
+            case InteractionKey.InteractionColor.Blue:
+                renderer.material.color = Color.blue;
+                break;
+            
+            case InteractionKey.InteractionColor.Red:
+                renderer.material.color = Color.red;
                 break;
         }
     }

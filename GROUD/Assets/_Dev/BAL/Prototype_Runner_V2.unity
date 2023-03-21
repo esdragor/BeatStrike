@@ -1397,6 +1397,7 @@ GameObject:
   - component: {fileID: 667808674}
   - component: {fileID: 667808673}
   - component: {fileID: 667808672}
+  - component: {fileID: 667808677}
   m_Layer: 5
   m_Name: InputManager
   m_TagString: Untagged
@@ -1502,6 +1503,23 @@ MonoBehaviour:
   levelManager: {fileID: 1510657330}
   leftListener: {fileID: 353900111}
   rightListener: {fileID: 1955798181}
+--- !u!114 &667808677
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 667808671}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37f422a526375ae42ac3c71c4eaf61ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firstIsRed: 0
+  btnLeft: {fileID: 353900112}
+  btnRight: {fileID: 1955798182}
+  nbSide: 10
+  obj: {fileID: 0}
 --- !u!1001 &695735358
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1623,7 +1641,6 @@ GameObject:
   m_Component:
   - component: {fileID: 958934229}
   - component: {fileID: 958934230}
-  - component: {fileID: 958934231}
   m_Layer: 0
   m_Name: Game Manager
   m_TagString: Untagged
@@ -1658,23 +1675,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1363b77879293114fb1165c017c6de41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &958934231
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 958934228}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37f422a526375ae42ac3c71c4eaf61ee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  firstIsRed: 0
-  btnLeft: {fileID: 353900112}
-  btnRight: {fileID: 1955798182}
-  nbSide: 10
-  obj: {fileID: 0}
 --- !u!1 &1161998237
 GameObject:
   m_ObjectHideFlags: 0
@@ -2032,8 +2032,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   leftSpawnPoint: {fileID: 717157592}
   rightSpawnPoint: {fileID: 208202219}
-  leftDetector: {fileID: 1460379139}
-  rightDetector: {fileID: 1187589462}
+  leftDetector: {fileID: 0}
+  rightDetector: {fileID: 0}
   levelData: {fileID: 11400000, guid: e012d31a0321dbe46b8f28ba49db8626, type: 2}
   currentPatternIndex: 0
   currentRoundIndex: 0
@@ -2126,10 +2126,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3e989f8e82875f40b3692bfafb30ec2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthPoint: 100
+  playerStats:
+    hp: 0
+    speed: 0
+    tolerance: 0
+    experienceFactor: 0
+    damage: 0
+  currentStats:
+    hp: 0
+    speed: 0
+    tolerance: 0
+    experienceFactor: 0
+    damage: 0
+  animator: {fileID: 0}
   playerLevelingData: {fileID: 11400000, guid: 87ad41a254b72ec4eb618441b4936c94, type: 2}
-  experience: 0
+  currentExperience: 0
   level: 0
+  runTime: 0
 --- !u!1 &1818850975
 GameObject:
   m_ObjectHideFlags: 0

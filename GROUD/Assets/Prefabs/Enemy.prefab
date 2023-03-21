@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3615221734236934768}
-  - component: {fileID: 3615221734236934771}
   - component: {fileID: 6358698757798930167}
+  - component: {fileID: 3615221734236934771}
   - component: {fileID: 3615221734236934781}
   - component: {fileID: 3615221734236934780}
   - component: {fileID: 3615221734236934783}
@@ -36,14 +36,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &3615221734236934771
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3615221734236934782}
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!114 &6358698757798930167
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -71,6 +63,15 @@ MonoBehaviour:
   speed: 6
   startPosition: {x: 0, y: 0, z: 0}
   scale: 0
+  successGroup: 0
+--- !u!33 &3615221734236934771
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3615221734236934782}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &3615221734236934781
 MeshRenderer:
   m_ObjectHideFlags: 0

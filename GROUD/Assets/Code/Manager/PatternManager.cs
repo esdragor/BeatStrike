@@ -36,11 +36,14 @@ public class PatternManager : MonoBehaviour
     public void StartPattern(Pattern p)
     {
         if (isTimelineActive) return;
-        Debug.Log("Pattern start");
+        
         InitializeQueue(p.interactions);
+        
         currentPattern = p;
         timer = 0;
+        
         GameManager.onUpdated += TimelineEventListener;
+        
         isTimelineActive = true;
     }
 
@@ -90,7 +93,7 @@ public class PatternManager : MonoBehaviour
         InteractionComponent interactionComponent = null;
         
         caster = PatternPoolManager.Instance.GetCircleFromPool();
-
+        
         Vector3 spawnPosition = Vector3.zero;
         
         switch (dataKey.row)
