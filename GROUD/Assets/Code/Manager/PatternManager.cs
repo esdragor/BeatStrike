@@ -18,7 +18,7 @@ public enum SwipeDirection
 public class PatternManager : MonoBehaviour
 {
     public static PatternManager Instance;
-    public static event Action OnPatternEnd;
+    public static Action OnPatternEnd;
     public Pattern currentPattern;
     public InteractionKey currentInteraction;
     private Queue<InteractionKey> timelineRunnerKeys;
@@ -36,10 +36,14 @@ public class PatternManager : MonoBehaviour
     public void StartPattern(Pattern p)
     {
         if (isTimelineActive) return;
+        
         InitializeQueue(p.interactions);
+        
         currentPattern = p;
         timer = 0;
+        
         GameManager.onUpdated += TimelineEventListener;
+        
         isTimelineActive = true;
     }
 
@@ -55,13 +59,6 @@ public class PatternManager : MonoBehaviour
         }
     }
     
-    private void EndOfPattern()
-    {
-        Debug.Log("End of pattern");
-        OnPatternEnd?.Invoke();
-        PatternPoolManager.OnPatternEnd -= EndOfPattern;
-        isTimelineActive = false;
-    }
 
     private void TimelineEventListener()
     {
@@ -77,12 +74,17 @@ public class PatternManager : MonoBehaviour
         
         if (timer > currentPattern.maxTime)
         {
-            PatternPoolManager.OnPatternEnd += EndOfPattern;
-            PatternPoolManager.Instance.InvokePatternEnd();
-            isTimelineActive = false;
-            GameManager.onUpdated -= TimelineEventListener;
+            ForceEnd();
         }
         
+    }
+
+
+    public void ForceEnd()
+    {
+        isTimelineActive = false;
+        OnPatternEnd?.Invoke();
+        GameManager.onUpdated -= TimelineEventListener;
     }
 
     public void DrawInteractionOnScreen(InteractionKey dataKey)
@@ -91,13 +93,20 @@ public class PatternManager : MonoBehaviour
         InteractionComponent interactionComponent = null;
         
         caster = PatternPoolManager.Instance.GetCircleFromPool();
-
-
-        int selectedWay = dataKey.row;
-        Vector3 spawnPosition = GameManager.instance.spawnPoints[selectedWay].position;
-        caster.transform.position = new Vector3(spawnPosition.x, 1, spawnPosition.z);
         
-        caster.GetComponent<ExperienceOrb>().dataKey = dataKey;
-        caster.transform.GetChild(0).GetComponent<TimerCircle>().ResetValues();
+        Vector3 spawnPosition = Vector3.zero;
+        
+        switch (dataKey.row)
+        {
+            case 0:
+                spawnPosition = LevelManager.instance.leftSpawnPoint.position;
+                break;
+            
+            case 1:
+                spawnPosition = LevelManager.instance.rightSpawnPoint.position;
+                break;
+        }
+        
+        caster.transform.position = new Vector3(spawnPosition.x, 1, spawnPosition.z);
     }
 }

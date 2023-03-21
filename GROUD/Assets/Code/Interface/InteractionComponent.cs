@@ -1,31 +1,80 @@
+using System;
 using UnityEngine;
 
 public abstract class InteractionComponent : MonoBehaviour
 {
-    public GameObject target;
     public InteractionKey data;
-    public float tolerance = 20f;
-    public float speed = 0.1f;
-    public Vector3 startPosition;
-    public float scale;
+    public float speed = 3f;
 
-    public abstract void OnInputSuccess();
+    public InteractionSuccess successGroup;
 
+    private void Awake()
+    {
+        SetColor();
+    }
+
+    private void Update()
+    {
+        transform.position += -transform.forward * speed * Time.deltaTime;
+    }
+    
     public void SetData(InteractionKey interactionKey)
     {
         data = interactionKey;
-        InitializeData();
-    }
-    
-    public virtual void InitializeData()
-    {
-        tolerance = data.tolerance;
-        //speed = data.drawSpeed;
-        startPosition = data.spawnPosition;
-        scale = data.scale;
     }
 
-    public abstract void StartInteraction();
-    
-    public abstract void ActivateInteraction();
+    private MeshRenderer renderer => GetComponent<MeshRenderer>();
+    public void SetSuccess(InteractionSuccess itSuccess)
+    {
+        successGroup = itSuccess;
+
+        switch (successGroup)
+        {
+            case InteractionSuccess.Ok:
+                break;
+            
+            case InteractionSuccess.Good:
+                break;
+            
+            case InteractionSuccess.Perfect:
+                break;
+        }
+    }
+
+    public void SetColor()
+    {
+        switch (data.interactionColor)
+        {
+            case InteractionKey.InteractionColor.Blue:
+                renderer.material.color = Color.blue;
+                break;
+            
+            case InteractionKey.InteractionColor.Red:
+                renderer.material.color = Color.red;
+                break;
+        }
+    }
+
+    public virtual void ValidateInteraction()
+    {
+        if (GameManager.instance.gameState.IsLevelExploration())
+        {
+            PlayerManager.instance.AddExperience(10f);
+        }
+        else
+        {
+           BossManager.instance.AddDamageToPool(PlayerManager.instance.currentStats.damage);
+        }
+
+        PlayerManager.instance.OnInteractionSuccess(successGroup);
+        
+        PatternPoolManager.Instance.AddCircleToPool(gameObject);
+    }
+
+    public virtual void HurtPlayer()
+    {
+        PlayerManager.instance.TakeDamage(10f);
+        
+        PatternPoolManager.Instance.AddCircleToPool(gameObject);
+    }
 }

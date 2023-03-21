@@ -62,7 +62,6 @@ public class TimerCircle : MonoBehaviour
         else
         {
             PatternPoolManager.Instance.AddCircleToPool(gameObject.transform.parent.gameObject);
-            InputManager.FailedInteraction();
         }
     }
 

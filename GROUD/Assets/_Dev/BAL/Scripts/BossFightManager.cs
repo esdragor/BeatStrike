@@ -44,7 +44,7 @@ public class BossFightManager : MonoBehaviour
         StartCoroutine(DelayBeforeNextTurn());
     }
 
-    public void BossTakeDamage()
+  /*  public void BossTakeDamage()
     {
         float totalDamage = 0f;
         List<float> allSuccessTouch = GameManager.instance.GetAllSuccessTouch();
@@ -68,10 +68,10 @@ public class BossFightManager : MonoBehaviour
         }
         StartCoroutine(DelayBeforeNextTurn());
     }
-
+*/
 IEnumerator DelayBeforeNextTurn()
     {
-        GameManager.instance.RemoveAllSuccessTouch();
+       // GameManager.instance.RemoveAllSuccessTouch();
         yield return new WaitForSeconds(1f);
         bossPattern.LaunchPattern();
     }

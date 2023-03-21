@@ -1,125 +1,116 @@
 using System;
 using UnityEngine;
-using UnityEngine.InputSystem;
+using Utilities;
 
-[DefaultExecutionOrder(-1)]
 public class InputManager : MonoBehaviour
 {
-    public static InputManager Instance;
-    private PlayerInputs MyInputManager;
+    public LevelManager levelManager;
     
-    public delegate void StartTouch(Vector2 pos, float time);
-    public event StartTouch OnStartEvent;
-    public delegate void EndTouch(Vector2 pos, float time);
-    public event EndTouch OnEndEvent;
-    
-    
-    [SerializeField] private float minDist = 0.1f;
-    [SerializeField] private float MinTimeTouch = 0.05f;
-    [SerializeField] private float tolerance = 0.8f;
+    public InputListener leftListener;
+    public InputListener rightListener;
 
-    private Vector2 StartPosSwipe = Vector2.zero;
-    private float StartTimerSwipe = 0f;
-    
-    public static event Action<Vector2, SwipeDirection> OnSwipeUp;
-    public static event Action<Vector2, SwipeDirection> OnSwipeDown;
-    public static event Action<Vector2, SwipeDirection> OnSwipeLeft;
-    public static event Action<Vector2, SwipeDirection> OnSwipeRight;
-    
-    public static event Action OnFailedTouchInteraction;
-    public static event Action<Vector2> OnSimpleTouch;
-
-    public static Vector3 ScreenToWorld(Camera cam, Vector3 pos)
-    {
-        pos.z = cam.nearClipPlane;
-        return cam.ScreenToWorldPoint(pos);
-    }
-    
     private void Awake()
     {
-        MyInputManager = new PlayerInputs();
-        Instance = this;
+        Enable();
     }
 
-    private void OnEnable()
-    {
-        MyInputManager.Enable();
-        OnStartEvent += SwipeStart;
-        OnEndEvent += SwipeEnd;
-    }
-    
     private void OnDisable()
     {
-        OnStartEvent -= SwipeStart;
-        OnEndEvent -= SwipeEnd;
+        Disable();
     }
 
-    private void Start()
+    void Enable()
     {
-        MyInputManager.Touch.PrimaryContact.started += ctx => StartTouchP(ctx);
-        MyInputManager.Touch.PrimaryContact.canceled += ctx => EndTouchP(ctx);
+        leftListener.onInputPressed += LookAtLeftDetector;
+        rightListener.onInputPressed += LookAtRightDetector;
     }
 
-    private void StartTouchP(InputAction.CallbackContext ctx)
+    private void LookAtLeftDetector()
     {
-        OnStartEvent(
-            /*ScreenToWorld(Camera.main, MyInputManager.Touch.PrimaryPosition.ReadValue<Vector2>())*/MyInputManager.Touch.PrimaryPosition.ReadValue<Vector2>(), 
-            (float)ctx.startTime);
-    }
-    
-    private void EndTouchP(InputAction.CallbackContext ctx)
-    {
-        OnEndEvent(
-            /*ScreenToWorld(Camera.main, MyInputManager.Touch.PrimaryPosition.ReadValue<Vector2>())*/MyInputManager.Touch.PrimaryPosition.ReadValue<Vector2>(), 
-            (float)ctx.startTime);
-    }
+        if(!levelManager.leftDetector) return;
+        
+        Debug.Log("Ca check left");
+        InteractionComponent it = new TapInteraction();
 
-    private void SwipeEnd(Vector2 pos, float time)
-    {
-        // if (Vector3.Distance(StartPosSwipe, pos) >= minDist/* && (time - StartTimerSwipe) > MinTimeTouch*/)
-        // {
-        //     Vector2 dir2 = (pos - StartPosSwipe).normalized;
-        //     SwipeDirection(dir2);
-        // }
-        // else
+        if (!levelManager.leftDetector.okDetector.IsInteractionEmpty())
         {
-            SimpleTouch(pos);
+            it = levelManager.leftDetector.okDetector.interactions[0];
+            levelManager.leftDetector.okDetector.interactions.Remove(it);
+        }
+        
+        if (!levelManager.leftDetector.goodDetector.IsInteractionEmpty())
+        {
+            it = levelManager.leftDetector.goodDetector.interactions[0];
+            levelManager.leftDetector.goodDetector.interactions.Remove(it);
+        }
+        
+        if (!levelManager.leftDetector.perfectDetector.IsInteractionEmpty())
+        { 
+            it = levelManager.leftDetector.perfectDetector.interactions[0];
+            levelManager.leftDetector.perfectDetector.interactions.Remove(it);
+        }
+        else
+        {
+            return;
+        }
+
+        
+        switch (it.data.interactionType)
+        {
+            case Enums.InteractionType.Tap:
+                it.ValidateInteraction();
+                break;
+            
+            case Enums.InteractionType.Slide:
+                Debug.Log("Slide logic doesn't exist already.");
+                break;
+        }
+        
+    }
+
+    private void LookAtRightDetector()
+    {
+        if(!levelManager.rightDetector) return;
+        Debug.Log("Ca check right");
+        
+        InteractionComponent it = new TapInteraction();
+
+        if (!levelManager.rightDetector.okDetector.IsInteractionEmpty())
+        {
+            it = levelManager.rightDetector.okDetector.interactions[0];
+            levelManager.rightDetector.okDetector.interactions.Remove(it);
+        }
+        
+        if (!levelManager.rightDetector.goodDetector.IsInteractionEmpty())
+        {
+            it = levelManager.rightDetector.goodDetector.interactions[0];
+            levelManager.rightDetector.goodDetector.interactions.Remove(it);
+        }
+        
+        if (!levelManager.rightDetector.perfectDetector.IsInteractionEmpty())
+        { 
+            it = levelManager.rightDetector.perfectDetector.interactions[0];
+            levelManager.rightDetector.perfectDetector.interactions.Remove(it);
+        }
+        else
+        {
+            return;
+        }
+        
+        switch (it.data.interactionType)
+        {
+            case Enums.InteractionType.Tap:
+                it.ValidateInteraction();
+                break;
+            
+            case Enums.InteractionType.Slide:
+                Debug.Log("Slide logic doesn't exist already.");
+                break;
         }
     }
 
-    private void SimpleTouch(Vector2 pos)
+    void Disable()
     {
-        OnSimpleTouch?.Invoke(pos);
-    }
-    
-    private void SwipeDirection(Vector2 direction)
-    {
-        if (Vector2.Dot(Vector2.up, direction) > tolerance)
-        {
-            OnSwipeUp?.Invoke(direction, global::SwipeDirection.Up);
-        }
-        else if (Vector2.Dot(Vector2.down, direction) > tolerance)
-        {
-            OnSwipeDown?.Invoke(direction, global::SwipeDirection.Down);
-        }
-        else if (Vector2.Dot(Vector2.left, direction) > tolerance)
-        {
-            OnSwipeLeft?.Invoke(direction, global::SwipeDirection.Left);
-        }
-        else if (Vector2.Dot(Vector2.right, direction) > tolerance)
-        {
-            OnSwipeRight?.Invoke(direction, global::SwipeDirection.Right);
-        }
-    }
-
-    private void SwipeStart(Vector2 pos, float time)
-    {
-        StartPosSwipe = pos;
-        StartTimerSwipe = time;
-    }
-
-    public static void FailedInteraction()
-    {
-        OnFailedTouchInteraction?.Invoke();
+        
     }
 }

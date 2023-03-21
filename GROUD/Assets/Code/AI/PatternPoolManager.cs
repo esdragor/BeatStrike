@@ -5,7 +5,6 @@ using UnityEngine;
 public class PatternPoolManager : MonoBehaviour
 {
     public static PatternPoolManager Instance;
-    public static event Action OnPatternEnd;
     public List<GameObject> ActiveCircles = new ();
     [SerializeField] private GameObject circlePrefab;
     [SerializeField] private int maxPoolSize = 10;
@@ -16,11 +15,6 @@ public class PatternPoolManager : MonoBehaviour
     {
         Instance = this;
         InitCirclePool();
-    }
-
-    public void InvokePatternEnd()
-    {
-        OnPatternEnd?.Invoke();
     }
     
     void InitCirclePool()

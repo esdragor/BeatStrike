@@ -16,7 +16,6 @@ public class BossPattern : MonoBehaviour
     {
         PatternManager.Instance.StartPattern(Patterns[Random.Range(0, Patterns.Length)]);
         PatternManager.OnPatternEnd += OnPatternEnd;
-        InputManager.OnFailedTouchInteraction += OnFailedTouchInteraction;
         success = true;
     }
 
@@ -29,13 +28,12 @@ public class BossPattern : MonoBehaviour
 
     private void OnPatternEnd()
     {
-        InputManager.OnFailedTouchInteraction -= OnFailedTouchInteraction;
         PatternManager.OnPatternEnd -= OnPatternEnd;
         if (!success)
             BossFightManager.Instance.FailedToMiss();
         else
         {
-            BossFightManager.Instance.BossTakeDamage();
+           // BossFightManager.Instance.BossTakeDamage();
         }
     }
 
