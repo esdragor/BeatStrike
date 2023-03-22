@@ -27,6 +27,7 @@ public class InputManager : MonoBehaviour
 
     private void LookAtLeftDetector()
     {
+        if (!levelManager.leftDetector) return;
         if(!levelManager.leftDetector) return;
         
         Debug.Log("Ca check left");
@@ -70,6 +71,7 @@ public class InputManager : MonoBehaviour
 
     private void LookAtRightDetector()
     {
+        if (!levelManager.rightDetector) return;
         if(!levelManager.rightDetector) return;
         Debug.Log("Ca check right");
         

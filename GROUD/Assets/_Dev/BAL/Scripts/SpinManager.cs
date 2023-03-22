@@ -6,68 +6,85 @@ using UnityEngine.UI;
 public class SpinManager : MonoBehaviour
 {
     public static SpinManager instance;
-    
-    [SerializeField] private bool firstIsRed;
+
     [SerializeField] private Button btnLeft;
     [SerializeField] private Button btnRight;
-    [SerializeField] private int nbSide = 10;
+    [SerializeField, ReadOnly] private int nbSide = 10;
+    [SerializeField] private float speed = 10;
+    [SerializeField] private Material mat;
     [SerializeField, ReadOnly] private GameObject obj;
     
-    public void CheckColor(bool isRed)
+
+    public string CheckColor(float index, bool colorRed)
     {
-        if (firstIsRed == isRed)
+        float offset = mat.mainTextureOffset.x + index;
+        if (offset % 0.25f < 0.1f && offset % 0.25f > 0 || offset % 0.25f > -0.1f && offset % 0.25f < 0)
         {
-            Debug.Log("Correct");
+            return "fail : border";
+        }
+        else if (((int)(offset / 0.5f)) % 2 == 0)
+        {
+            return (!colorRed) ? "good" : "fail";
         }
         else
         {
-            Debug.Log("Wrong");
+            return (colorRed) ? "good" : "fail";
         }
     }
 
     private void SwipeL()
     {
-        obj.transform.Rotate(0, 0.3f, 0);
-        firstIsRed = !firstIsRed;
+        mat.mainTextureOffset = new Vector2(mat.mainTextureOffset.x + Time.deltaTime * speed, 0);
+        // Debug.Log(CheckColor(- 0.25f) + " " +
+        //           CheckColor(0) + " " +
+        //           CheckColor(+ 0.25f) + " " +
+        //           CheckColor(+ 0.5f) + " " +
+        //           CheckColor(+ 0.75f) + " " +
+        //           CheckColor(+ 1f));
     }
-    
+
     private void SwipeR()
     {
-        obj.transform.Rotate(0, -0.3f, 0);
-        firstIsRed = !firstIsRed;
+        mat.mainTextureOffset = new Vector2(- Time.deltaTime * speed, 0);
+        // Debug.Log(CheckColor(- 0.25f) + " " +
+        //           CheckColor(0) + " " +
+        //           CheckColor(+ 0.25f) + " " +
+        //           CheckColor(+ 0.5f));
     }
-    
-    public void SetMesh(GameObject _obj)
+
+    public void SetMesh(GameObject _obj, int _nbSides)
     {
         obj = _obj;
+        nbSide = _nbSides;
+        mat.mainTextureOffset = new Vector2(0, 0);
     }
-    
-    private void test()
+
+    private void ClickLeft()
     {
         GameManager.onUpdated += SwipeL;
     }
-    
-    private void non()
+
+    private void ReleaseLeft()
     {
-        GameManager.onUpdated -= SwipeL; 
+        GameManager.onUpdated -= SwipeL;
     }
-    
-    private void test2()
+
+    private void ClickRight()
     {
         GameManager.onUpdated += SwipeR;
     }
-    
-    private void non2()
+
+    private void ReleaseRight()
     {
-        GameManager.onUpdated -= SwipeR; 
+        GameManager.onUpdated -= SwipeR;
     }
-    
+
     private void Start()
     {
-        btnLeft.GetComponent<InputListener>().onInputPressed += test;
-        btnLeft.GetComponent<InputListener>().onInputReleased += non;
-        btnRight.GetComponent<InputListener>().onInputPressed += test2;
-        btnRight.GetComponent<InputListener>().onInputReleased += non2;
+        btnLeft.GetComponent<InputListener>().onInputPressed += ClickLeft;
+        btnLeft.GetComponent<InputListener>().onInputReleased += ReleaseLeft;
+        btnRight.GetComponent<InputListener>().onInputPressed += ClickRight;
+        btnRight.GetComponent<InputListener>().onInputReleased += ReleaseRight;
     }
 
     private void Awake()
