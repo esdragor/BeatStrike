@@ -1,15 +1,17 @@
 ﻿using System;
+using DG.Tweening;
 using UnityEngine;
 
 public class LevelManager : MonoBehaviour
 {
     public static LevelManager instance;
 
+    public Transform levelObject;
+
     public Transform leftSpawnPoint;
     public Transform rightSpawnPoint;
     
-    public InteractionDetectorManager leftDetector;
-    public InteractionDetectorManager rightDetector;
+    public InteractionDetectorManager detector;
     
     public LevelData levelData;
     public int currentPatternIndex = 0;
@@ -32,6 +34,12 @@ public class LevelManager : MonoBehaviour
         PatternManager.Instance.StartPattern(levelData.rounds[currentRoundIndex].patterns[currentPatternIndex]);
     }
 
+    public void MoveWorld(float distance, float duration, Animator playerAnimator)
+    {
+        levelObject.DOKill();
+        levelObject.DOMoveZ(levelObject.transform.position.z - distance, duration).OnComplete( (() => playerAnimator.SetBool("IsRunning", false)));
+    }
+    
     void CheckNextPattern()
     {
         currentPatternIndex++;

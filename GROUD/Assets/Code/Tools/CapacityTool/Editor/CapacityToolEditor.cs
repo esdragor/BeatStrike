@@ -272,13 +272,15 @@ public class CapacityToolEditor : SimpleTimeArea
    private void DrawSelectedKeyData()
    {
       GUILayout.Space(20f);
+      
       if (selectedInteractionKey != null)
       {
          selectedInteractionKey.timeCode = TimeAsString(selectedInteractionKey.time);
          EditorGUILayout.LabelField($"Time Code : {selectedInteractionKey.timeCode}");
-         selectedInteractionKey.time = EditorGUILayout.Slider((float)selectedInteractionKey.time, 0f, 10f);
+         selectedInteractionKey.time = EditorGUILayout.Slider((float)selectedInteractionKey.time, 0f, (float)currentPattern.maxTime);
          selectedInteractionKey.interactionType = (Enums.InteractionType) EditorGUILayout.EnumPopup("Type", selectedInteractionKey.interactionType);
-
+         selectedInteractionKey.interactionColor = (InteractionKey.InteractionColor)EditorGUILayout.EnumPopup("Color", selectedInteractionKey.interactionColor);
+         
          if (GUILayout.Button("Delete Key"))
          {
             RemoveKeyOnTimeline();
@@ -345,6 +347,11 @@ public class CapacityToolEditor : SimpleTimeArea
          menu.ShowAsContext();
       
          eventListener.Use();
+      }
+
+      if (selectedInteractionKey != null && eventListener.type == EventType.KeyDown && eventListener.keyCode == KeyCode.Delete)
+      {
+         RemoveKeyOnTimeline();
       }
    }
 
@@ -435,7 +442,9 @@ public class CapacityToolEditor : SimpleTimeArea
          switch (iKey.interactionType)
          {
             case Enums.InteractionType.Tap:
-               interactionTexture = interfaceData.tapTexture;
+               interactionTexture = iKey.interactionColor == InteractionKey.InteractionColor.Blue
+                  ? interfaceData.blueTapTexture
+                  : interfaceData.redTapTexture;
                lineColor = interfaceData.tapLine;
                break;
             
@@ -477,6 +486,8 @@ public class CapacityToolEditor : SimpleTimeArea
    private bool dragVerticalLine;
    void DrawEndVerticalLine()
    {
+      if(currentPattern == null) return;
+      
       float timeToPos = TimeToPixel(currentPattern.maxTime);
       Rect endHandler = new Rect(timeToPos - (interfaceData.interactHandlerWidth * 0.5f), rectTimeRuler.y, interfaceData.interactHandlerWidth,interfaceData.interactionHandlerHeight);
       Rect endLine = new Rect(timeToPos - (interfaceData.endLineThickness * 0.5f), rectTimeRuler.y, interfaceData.endLineThickness, rectContent.height + rectTimeRuler.height);
