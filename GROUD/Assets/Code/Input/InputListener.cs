@@ -6,8 +6,9 @@ public class InputListener : MonoBehaviour,  IPointerDownHandler, IPointerUpHand
 {
     public bool isPressed;
     public float touchTime;
-    public Action onInputPressed;
+    public Action<InteractionKey.InteractionColor> onInputPressed;
     public Action onInputReleased;
+    public InteractionKey.InteractionColor listenerColor;
 
     public void OnPointerUp(PointerEventData eventData)
     {
@@ -24,7 +25,7 @@ public class InputListener : MonoBehaviour,  IPointerDownHandler, IPointerUpHand
         GameManager.onUpdated += TouchTimer;
         isPressed = true;
         
-        onInputPressed?.Invoke();
+        onInputPressed?.Invoke(listenerColor);
     }
 
     void InputReleased()

@@ -1,5 +1,6 @@
 
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [CreateAssetMenu(order = 0, menuName = "Pattern Interface Data",fileName = "PatternInterfaceData")]
 public class PatternToolsInterfaceData : ScriptableObject
@@ -21,7 +22,8 @@ public class PatternToolsInterfaceData : ScriptableObject
     public float lineThickness;
     public float interactionIconWidth = 30f;
     public float interactionIconHeight = 30f;
-    public Texture tapTexture;
+    public Texture blueTapTexture;
+    public Texture redTapTexture;
     public Color tapLine;
     public Texture slideTexture;
     public Color slideLine;

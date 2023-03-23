@@ -8,11 +8,6 @@ public abstract class InteractionComponent : MonoBehaviour
 
     public InteractionSuccess successGroup;
 
-    private void Awake()
-    {
-        SetColor();
-    }
-
     private void Update()
     {
         transform.position += -transform.forward * speed * Time.deltaTime;
@@ -21,24 +16,13 @@ public abstract class InteractionComponent : MonoBehaviour
     public void SetData(InteractionKey interactionKey)
     {
         data = interactionKey;
+        SetColor();
     }
 
     private MeshRenderer renderer => GetComponent<MeshRenderer>();
     public void SetSuccess(InteractionSuccess itSuccess)
     {
         successGroup = itSuccess;
-
-        switch (successGroup)
-        {
-            case InteractionSuccess.Ok:
-                break;
-            
-            case InteractionSuccess.Good:
-                break;
-            
-            case InteractionSuccess.Perfect:
-                break;
-        }
     }
 
     public void SetColor()

@@ -59,7 +59,7 @@ public class SpinManager : MonoBehaviour
         mat.mainTextureOffset = new Vector2(0, 0);
     }
 
-    private void ClickLeft()
+    private void ClickLeft(InteractionKey.InteractionColor color)
     {
         GameManager.onUpdated += SwipeL;
     }
@@ -69,7 +69,7 @@ public class SpinManager : MonoBehaviour
         GameManager.onUpdated -= SwipeL;
     }
 
-    private void ClickRight()
+    private void ClickRight(InteractionKey.InteractionColor color)
     {
         GameManager.onUpdated += SwipeR;
     }

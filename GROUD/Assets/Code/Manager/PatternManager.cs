@@ -89,10 +89,8 @@ public class PatternManager : MonoBehaviour
 
     public void DrawInteractionOnScreen(InteractionKey dataKey)
     {
-        GameObject interactionObj = null;
-        InteractionComponent interactionComponent = null;
-        
         caster = PatternPoolManager.Instance.GetCircleFromPool();
+        caster.GetComponent<InteractionComponent>().SetData(dataKey);
         
         Vector3 spawnPosition = Vector3.zero;
         

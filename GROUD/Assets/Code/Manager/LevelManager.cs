@@ -11,8 +11,7 @@ public class LevelManager : MonoBehaviour
     public Transform leftSpawnPoint;
     public Transform rightSpawnPoint;
     
-    public InteractionDetectorManager leftDetector;
-    public InteractionDetectorManager rightDetector;
+    public InteractionDetectorManager detector;
     
     public LevelData levelData;
     public int currentPatternIndex = 0;
@@ -21,7 +20,6 @@ public class LevelManager : MonoBehaviour
     private void Awake()
     {
         if (instance == null) instance = this;
-        MoveWorld(-30, 10, null);
     }
 
     public void StartLevel()
@@ -38,7 +36,8 @@ public class LevelManager : MonoBehaviour
 
     public void MoveWorld(float distance, float duration, Animator playerAnimator)
     {
-        levelObject.DOMoveZ(distance, duration).OnComplete( (() => playerAnimator.SetBool("isRunning", false)));
+        levelObject.DOKill();
+        levelObject.DOMoveZ(levelObject.transform.position.z - distance, duration).OnComplete( (() => playerAnimator.SetBool("IsRunning", false)));
     }
     
     void CheckNextPattern()

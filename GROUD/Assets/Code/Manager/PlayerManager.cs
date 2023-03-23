@@ -1,5 +1,8 @@
 using System;
+using DG.Tweening;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -14,29 +17,17 @@ public class PlayerManager : MonoBehaviour
 
     public float runTime;
     private bool isRunning;
+
+    [Header("DEBUG")] 
+    public Image healthFill;
+    public TMP_Text healthTxt;
+    
     private void Awake()
     {
         if (instance == null) instance = this;
         SetPlayer();
     }
-
-    private void Update()
-    {
-        if (isRunning)
-        {
-            if (runTime > 0)
-            {
-                runTime -= Time.deltaTime * currentStats.speed;
-            }
-            else
-            {
-                animator.SetBool("IsRunning", false);
-                isRunning = false;
-                runTime = 0;
-            }
-        }
-    }
-
+    
     public void SetPlayer()
     {
         currentStats = new PlayerStats(playerStats.hp, playerStats.speed, playerStats.experienceFactor, playerStats.damage);
@@ -65,12 +56,12 @@ public class PlayerManager : MonoBehaviour
         switch (interactionSuccess)
         {
             case InteractionSuccess.Ok:
+                UIManager.instance.announcer.Announce("Ok", Color.red);
+
                 if (GameManager.instance.gameState.IsLevelExploration())
                 {
-                    isRunning = true;
                     animator.SetBool("IsRunning", true);
-                    runTime = currentStats.speed * 1;
-                    LevelManager.instance.MoveWorld(runTime, currentStats.speed, animator);
+                    LevelManager.instance.MoveWorld(5, currentStats.speed, animator);
                 }
                 else
                 {
@@ -79,11 +70,14 @@ public class PlayerManager : MonoBehaviour
                 break;
             
             case InteractionSuccess.Good:
+                
+                UIManager.instance.announcer.Announce("Good", Color.blue);
+
                 if (GameManager.instance.gameState.IsLevelExploration())
                 {
-                    isRunning = true;
                     animator.SetBool("IsRunning", true);
-                    runTime += currentStats.speed * 2;
+                    LevelManager.instance.MoveWorld(10, currentStats.speed, animator);
+
                 }
                 else
                 {
@@ -92,11 +86,14 @@ public class PlayerManager : MonoBehaviour
                 break;
             
             case InteractionSuccess.Perfect:
+                
+                UIManager.instance.announcer.Announce("Perfect", Color.green);
+
                 if (GameManager.instance.gameState.IsLevelExploration())
                 {
                     isRunning = true;
                     animator.SetBool("IsRunning", true);
-                    runTime += currentStats.speed * 3;
+                    LevelManager.instance.MoveWorld(15, currentStats.speed, animator);
                 }
                 else
                 {
@@ -110,6 +107,9 @@ public class PlayerManager : MonoBehaviour
     {
         currentStats.hp -= amount;
 
+        healthFill.DOFillAmount(currentStats.hp /playerStats.hp , 1f).OnPlay(() => healthFill.rectTransform.DOShakePosition(1f, 3f));
+        healthTxt.text = $"{currentStats.hp}/{playerStats.hp}";
+        
         if (currentStats.hp  <= 0)
         {
             Debug.Log("Player is dead");
