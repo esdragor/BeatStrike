@@ -31,6 +31,8 @@ public class PlayerManager : MonoBehaviour
     public void SetPlayer()
     {
         currentStats = new PlayerStats(playerStats.hp, playerStats.speed, playerStats.experienceFactor, playerStats.damage);
+        
+        SetUIHealth();
     }
 
     public void AddExperience(float amount)
@@ -107,13 +109,18 @@ public class PlayerManager : MonoBehaviour
     {
         currentStats.hp -= amount;
 
-        healthFill.DOFillAmount(currentStats.hp /playerStats.hp , 1f).OnPlay(() => healthFill.rectTransform.DOShakePosition(1f, 3f));
-        healthTxt.text = $"{currentStats.hp}/{playerStats.hp}";
+        SetUIHealth();
         
         if (currentStats.hp  <= 0)
         {
             Debug.Log("Player is dead");
         }
+    }
+
+    void SetUIHealth()
+    {
+        healthFill.DOFillAmount(currentStats.hp /playerStats.hp , 1f).OnPlay(() => healthFill.rectTransform.DOShakePosition(1f, 3f));
+        healthTxt.text = $"{currentStats.hp}/{playerStats.hp}";
     }
 }
 
