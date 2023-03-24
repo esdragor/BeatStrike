@@ -18,7 +18,7 @@ public class SpinManager : MonoBehaviour
     private PlayerInputs inputs;
     private Vector2 startMousePos;
 
-    public string CheckColor(float index, bool color)
+    public string CheckColor(float index, int color)
     {
         float offset = mat.mainTextureOffset.x + index;
         if (offset % 0.25f < 0.1f && offset % 0.25f > 0 || offset % 0.25f > -0.1f && offset % 0.25f < 0)
