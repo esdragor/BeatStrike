@@ -18,6 +18,7 @@ public class LevelManager : MonoBehaviour
     public LevelData levelData;
     public int currentPatternIndex = 0;
     public int currentRoundIndex = 0;
+    public Transform[] spinPoints;
 
     private void Awake()
     {
