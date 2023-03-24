@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using DG.Tweening;
+﻿using NaughtyAttributes;
 using UnityEngine;
 
 public class LevelManager : MonoBehaviour
@@ -14,6 +15,12 @@ public class LevelManager : MonoBehaviour
     public Transform rightSpawnPoint;
     
     public InteractionDetector detector;
+    [Header("Spin")]
+    [ReadOnly] public int distance = 30;
+    public Transform[] spinPoints;
+    [Header("")]
+    public InteractionDetectorManager leftDetector;
+    public InteractionDetectorManager rightDetector;
     
     public LevelData levelData;
     public int currentPatternIndex = 0;
