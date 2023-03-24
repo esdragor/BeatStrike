@@ -38,19 +38,19 @@ public class SpinManager : MonoBehaviour
 
     private void SwipeL()
     {
-        mat.mainTextureOffset = new Vector2(mat.mainTextureOffset.x + Time.deltaTime * speed, 0.5f);
+        mat.mainTextureOffset = new Vector2(mat.mainTextureOffset.x + Time.deltaTime * speed, 0f);
     }
     
     private void SwipeR()
     {
-        mat.mainTextureOffset = new Vector2(mat.mainTextureOffset.x - Time.deltaTime * speed, 0.5f);
+        mat.mainTextureOffset = new Vector2(mat.mainTextureOffset.x - Time.deltaTime * speed, 0f);
     }
 
     public void SetMesh(GameObject _obj, int _nbSides)
     {
         obj = _obj;
         nbSide = _nbSides;
-        mat.mainTextureOffset = new Vector2(0, 0.5f);
+        mat.mainTextureOffset = new Vector2(0, 0);
     }
 
     private void UpdateWheel()
