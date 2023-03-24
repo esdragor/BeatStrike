@@ -16,6 +16,7 @@ public class ProceduralMesh : MonoBehaviour
     private int[] triangles;
     private Vector3 origin = Vector3.zero;
     private Vector2[] uvs;
+    //private Vector2 PrefabPosColor { };
 
     void Start()
     {
@@ -44,8 +45,8 @@ public class ProceduralMesh : MonoBehaviour
 
             float y = Math.Abs(z);
 
-            uvs[i * 2] = new Vector2(i, 1);
-            uvs[i * 2 + 1] = new Vector2(i, 1);
+            uvs[i * 2] = new Vector2(i % 3, 0.5f);
+            uvs[i * 2 + 1] = new Vector2(i % 3, 0.5f);
         }
 
         // uvs[vertices.Length - 1] = new Vector2(1, 1);

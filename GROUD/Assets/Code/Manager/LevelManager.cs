@@ -1,4 +1,4 @@
-﻿using System;
+﻿using NaughtyAttributes;
 using UnityEngine;
 
 public class LevelManager : MonoBehaviour
@@ -7,7 +7,10 @@ public class LevelManager : MonoBehaviour
 
     public Transform leftSpawnPoint;
     public Transform rightSpawnPoint;
-    
+    [Header("Spin")]
+    [ReadOnly] public int distance = 30;
+    public Transform[] spinPoints;
+    [Header("")]
     public InteractionDetectorManager leftDetector;
     public InteractionDetectorManager rightDetector;
     
