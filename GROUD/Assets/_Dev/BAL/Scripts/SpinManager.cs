@@ -1,7 +1,6 @@
 using System;
 using NaughtyAttributes;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class SpinManager : MonoBehaviour
@@ -14,88 +13,78 @@ public class SpinManager : MonoBehaviour
     [SerializeField] private float speed = 10;
     [SerializeField] private Material mat;
     [SerializeField, ReadOnly] private GameObject obj;
+    
 
-    private PlayerInputs inputs;
-    private Vector2 startMousePos;
-
-    public string CheckColor(float index, int color)
+    public string CheckColor(float index, bool colorRed)
     {
         float offset = mat.mainTextureOffset.x + index;
         if (offset % 0.25f < 0.1f && offset % 0.25f > 0 || offset % 0.25f > -0.1f && offset % 0.25f < 0)
         {
             return "fail : border";
         }
-        // else if (((int)(offset / 0.5f)) % 2 == 0)
-        // {
-        //     return (!color) ? "good" : "fail";
-        // }
-        // else
-        // {
-        //     return (color) ? "good" : "fail";
-        // }
-        return null;
+        else if (((int)(offset / 0.5f)) % 2 == 0)
+        {
+            return (!colorRed) ? "good" : "fail";
+        }
+        else
+        {
+            return (colorRed) ? "good" : "fail";
+        }
     }
 
     private void SwipeL()
     {
-        mat.mainTextureOffset = new Vector2(mat.mainTextureOffset.x + Time.deltaTime * speed, 0.5f);
+        mat.mainTextureOffset = new Vector2(mat.mainTextureOffset.x + Time.deltaTime * speed, 0);
+        // Debug.Log(CheckColor(- 0.25f) + " " +
+        //           CheckColor(0) + " " +
+        //           CheckColor(+ 0.25f) + " " +
+        //           CheckColor(+ 0.5f) + " " +
+        //           CheckColor(+ 0.75f) + " " +
+        //           CheckColor(+ 1f));
     }
-    
+
     private void SwipeR()
     {
-        mat.mainTextureOffset = new Vector2(mat.mainTextureOffset.x - Time.deltaTime * speed, 0.5f);
+        mat.mainTextureOffset = new Vector2(- Time.deltaTime * speed, 0);
+        // Debug.Log(CheckColor(- 0.25f) + " " +
+        //           CheckColor(0) + " " +
+        //           CheckColor(+ 0.25f) + " " +
+        //           CheckColor(+ 0.5f));
     }
 
     public void SetMesh(GameObject _obj, int _nbSides)
     {
         obj = _obj;
         nbSide = _nbSides;
-        mat.mainTextureOffset = new Vector2(0, 0.5f);
+        mat.mainTextureOffset = new Vector2(0, 0);
     }
 
-    private void UpdateWheel()
     private void ClickLeft(InteractionKey.InteractionColor color)
     {
-        Vector2 currentPos = Input.mousePosition;
-        //Vector2 currentPos = Input.GetTouch(0).position;
-        
-        if (Vector2.Distance(startMousePos, currentPos) > 5f)
-        {
-            Debug.Log("Distance : " + Vector2.Distance(startMousePos, currentPos));
-            if (startMousePos.x > currentPos.x)
-            {
-                SwipeL();
-            }
-            else
-            {
-                SwipeR();
-            }
-            
-            startMousePos = currentPos;
-        }
+        GameManager.onUpdated += SwipeL;
     }
 
-    private void Click(InputAction.CallbackContext ctx)
+    private void ReleaseLeft()
     {
-        startMousePos = Input.mousePosition;
-        //startMousePos = Input.GetTouch(0).position;
-        GameManager.onUpdated += UpdateWheel;
+        GameManager.onUpdated -= SwipeL;
     }
 
-    private void Release(InputAction.CallbackContext ctx)
     private void ClickRight(InteractionKey.InteractionColor color)
     {
-        startMousePos = Vector2.zero;
-        GameManager.onUpdated -= UpdateWheel;
+        GameManager.onUpdated += SwipeR;
+    }
+
+    private void ReleaseRight()
+    {
+        GameManager.onUpdated -= SwipeR;
     }
 
     private void Start()
     {
-        inputs ??= new PlayerInputs();
-        inputs.Enable();
-        
-        inputs.Touch.PrimaryContact.performed += Click;
-        inputs.Touch.PrimaryContact.canceled += Release;
+        btnLeft.GetComponent<InputListener>().onInputPressed += ClickLeft;
+        btnLeft.GetComponent<InputListener>().onInputReleased += ReleaseLeft;
+        btnRight.GetComponent<InputListener>().onInputPressed += ClickRight;
+        btnRight.GetComponent<InputListener>().onInputReleased += ReleaseRight;
     }
 
     private void Awake()

@@ -6,16 +6,10 @@ using Random = UnityEngine.Random;
 
 public class TESTCOLOR : MonoBehaviour
 {
-    public int color;
+    public bool isRed;
 
     private void OnEnable()
     {
-        color = Random.Range(0, 3);
-        GetComponent<Renderer>().material.color = color switch
-        {
-            0 => Color.red,
-            1 => Color.blue,
-            _ => Color.yellow
-        };
+        isRed = Random.Range(0, 2) == 0;
     }
 }

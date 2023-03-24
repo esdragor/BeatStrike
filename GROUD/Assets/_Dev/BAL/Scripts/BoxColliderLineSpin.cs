@@ -8,6 +8,6 @@ public class BoxColliderLineSpin : MonoBehaviour
     [SerializeField] private int index;
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(SpinManager.instance.CheckColor(-0.25f + index * 0.25f, other.GetComponent<TESTCOLOR>().color));
+        Debug.Log(SpinManager.instance.CheckColor(-0.25f + index * 0.25f, other.GetComponent<TESTCOLOR>().isRed));
     }
 }

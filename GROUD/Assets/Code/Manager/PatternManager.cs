@@ -94,46 +94,16 @@ public class PatternManager : MonoBehaviour
         
         Vector3 spawnPosition = Vector3.zero;
         
-        
-        int randomIndex = dataKey.row;
-        randomIndex = UnityEngine.Random.Range(0, 6);
-        switch (randomIndex)
+        switch (dataKey.row)
         {
-            // case 0:
-            //     spawnPosition = LevelManager.instance.leftSpawnPoint.position;
-            //     break;
-            //
-            // case 1:
-            //     spawnPosition = LevelManager.instance.rightSpawnPoint.position;
-            //     break;
-            
             case 0:
-                spawnPosition = LevelManager.instance.spinPoints[0].position;
+                spawnPosition = LevelManager.instance.leftSpawnPoint.position;
                 break;
             
             case 1:
-                spawnPosition = LevelManager.instance.spinPoints[1].position;
+                spawnPosition = LevelManager.instance.rightSpawnPoint.position;
                 break;
-            
-            case 2:
-                spawnPosition = LevelManager.instance.spinPoints[2].position;
-                break;
-            
-            case 3:
-                spawnPosition = LevelManager.instance.spinPoints[3].position;
-                break;
-            
-            case 4:
-                spawnPosition = LevelManager.instance.spinPoints[4].position;
-                break;
-            
-            case 5:
-                spawnPosition = LevelManager.instance.spinPoints[5].position;
-                break;
-            
         }
-        
-        spawnPosition.z = 30;
         
         caster.transform.position = new Vector3(spawnPosition.x, 1, spawnPosition.z);
     }
