@@ -16,6 +16,7 @@ public abstract class InteractionComponent : MonoBehaviour
     public void SetData(InteractionKey interactionKey)
     {
         data = interactionKey;
+        successGroup = InteractionSuccess.Perfect;
         SetColor();
     }
 
@@ -41,6 +42,7 @@ public abstract class InteractionComponent : MonoBehaviour
 
     public virtual void ValidateInteraction()
     {
+        
         if (GameManager.instance.gameState.IsLevelExploration())
         {
             PlayerManager.instance.AddExperience(10f);
@@ -49,7 +51,8 @@ public abstract class InteractionComponent : MonoBehaviour
         {
            BossManager.instance.AddDamageToPool(PlayerManager.instance.currentStats.damage);
         }
-
+        
+        Debug.Log(successGroup);
         PlayerManager.instance.OnInteractionSuccess(successGroup);
         
         PatternPoolManager.Instance.AddCircleToPool(gameObject);

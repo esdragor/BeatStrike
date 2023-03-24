@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using DG.Tweening;
 using UnityEngine;
 
@@ -7,11 +8,12 @@ public class LevelManager : MonoBehaviour
     public static LevelManager instance;
 
     public Transform levelObject;
-
+    public Vector3 levelOriginPosition;    
+    
     public Transform leftSpawnPoint;
     public Transform rightSpawnPoint;
     
-    public InteractionDetectorManager detector;
+    public InteractionDetector detector;
     
     public LevelData levelData;
     public int currentPatternIndex = 0;
@@ -20,6 +22,7 @@ public class LevelManager : MonoBehaviour
     private void Awake()
     {
         if (instance == null) instance = this;
+        levelOriginPosition = levelObject.transform.position;
     }
 
     public void StartLevel()
@@ -27,6 +30,20 @@ public class LevelManager : MonoBehaviour
         //UIManager.PlayStartLevelUI
         PatternManager.OnPatternEnd += CheckNextPattern;
         PlayPattern();
+    }
+
+    public void Restart()
+    {
+        levelObject.DOKill();
+        levelObject.position = levelOriginPosition;
+        PlayerManager.instance.SetPlayer();
+
+        currentPatternIndex = 0;
+        currentRoundIndex = 0;
+        
+        UIManager.instance.endLevel.DisablePanel();
+        
+        StartLevel();
     }
 
     public void PlayPattern()
@@ -46,12 +63,10 @@ public class LevelManager : MonoBehaviour
 
         if (currentPatternIndex >= levelData.rounds[currentRoundIndex].patterns.Length)
         {
-            Debug.Log("Liste finis pour les patterns");
             CheckNextRound();
         }
         else
         {
-            Debug.Log("Nouveau pattern qui se lance dans le round");
             PlayPattern();
         }
     }
@@ -63,26 +78,30 @@ public class LevelManager : MonoBehaviour
 
         if (currentRoundIndex >= levelData.rounds.Length)
         {
-            EndLevel();
+            StartCoroutine(WaitUntilInteractionAreEnded());
             return;
         }
         
         if (levelData.rounds[currentRoundIndex].IsBossRound())
         {
-            Debug.Log("Boss Round !");
             BossManager.instance.StartBossFight((BossLevelRound)levelData.rounds[currentRoundIndex]);
         }
         else
         {
-            Debug.Log("Exploration Round !");
             PlayPattern();
         }
+    }
+
+    IEnumerator WaitUntilInteractionAreEnded()
+    {
+        yield return new WaitUntil(() => PatternPoolManager.Instance.ActiveCircles.Count <= 0);
+        EndLevel();
+
     }
     
     void EndLevel()
     {
-        //UIManager.PlayEndLevelUI
-        Debug.Log("Level Ended");
+        UIManager.instance.endLevel.DrawPanel();
         PatternManager.OnPatternEnd -= CheckNextPattern;
     }
 }

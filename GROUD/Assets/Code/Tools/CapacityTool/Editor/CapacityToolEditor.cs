@@ -329,7 +329,7 @@ public class CapacityToolEditor : SimpleTimeArea
          GenericMenu menu = new GenericMenu();
       
          menu.AddDisabledItem(new GUIContent("Timeline Actions List")); 
-         menu.AddItem(new GUIContent("Add a tap."), false, MenuAddKeyOnTimeline(1, (float)GetSnappedTimeAtMousePosition(mousePositionWhenClick), Enums.InteractionType.Tap));
+         menu.AddItem(new GUIContent("Add a red tap."), false, MenuAddKeyOnTimeline(1, (float)GetSnappedTimeAtMousePosition(mousePositionWhenClick), Enums.InteractionType.Tap));
          menu.AddItem(new GUIContent("Add a slide."), false, MenuAddKeyOnTimeline(1, (float)GetSnappedTimeAtMousePosition(mousePositionWhenClick), Enums.InteractionType.Slide));
          menu.ShowAsContext();
       
@@ -342,7 +342,7 @@ public class CapacityToolEditor : SimpleTimeArea
          GenericMenu menu = new GenericMenu();
       
          menu.AddDisabledItem(new GUIContent("Timeline Actions List")); 
-         menu.AddItem(new GUIContent("Add a tap."), false, MenuAddKeyOnTimeline(0, (float)GetSnappedTimeAtMousePosition(mousePositionWhenClick), Enums.InteractionType.Tap));
+         menu.AddItem(new GUIContent("Add a blue tap."), false, MenuAddKeyOnTimeline(0, (float)GetSnappedTimeAtMousePosition(mousePositionWhenClick), Enums.InteractionType.Tap));
          menu.AddItem(new GUIContent("Add a slide."), false, MenuAddKeyOnTimeline(0, (float)GetSnappedTimeAtMousePosition(mousePositionWhenClick), Enums.InteractionType.Slide));
          menu.ShowAsContext();
       
