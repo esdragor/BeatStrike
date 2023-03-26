@@ -56,11 +56,10 @@ public class SpinManager : MonoBehaviour
     private void UpdateWheel()
     {
         Vector2 currentPos = Input.mousePosition;
-        //Vector2 currentPos = Input.GetTouch(0).position;
+        currentPos = Input.GetTouch(0).position;
         
         if (Vector2.Distance(startMousePos, currentPos) > 5f)
         {
-            Debug.Log("Distance : " + Vector2.Distance(startMousePos, currentPos));
             if (startMousePos.x > currentPos.x)
             {
                 SwipeL();
@@ -77,7 +76,7 @@ public class SpinManager : MonoBehaviour
     private void Click(InputAction.CallbackContext ctx)
     {
         startMousePos = Input.mousePosition;
-        //startMousePos = Input.GetTouch(0).position;
+        startMousePos = Input.GetTouch(0).position;
         GameManager.onUpdated += UpdateWheel;
     }
 
