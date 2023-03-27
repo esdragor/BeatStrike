@@ -18,12 +18,12 @@ public class SpinManager : MonoBehaviour
     private PlayerInputs inputs;
     private Vector2 startMousePos;
 
-    public string CheckColor(float index, int color)
+    public void CheckColor(float index, int color)
     {
         float offset = mat.mainTextureOffset.x + index;
         if (offset % 0.25f < 0.1f && offset % 0.25f > 0 || offset % 0.25f > -0.1f && offset % 0.25f < 0)
         {
-            return "fail : border";
+            //UIManager.instance.announcer.Announce("Fail", Color.white);
         }
         
         //UIManager.instance.announcer.Announce("Message", Color.white);
@@ -36,7 +36,6 @@ public class SpinManager : MonoBehaviour
         // {
         //     return (color) ? "good" : "fail";
         // }
-        return null;
     }
 
     private void SwipeL()
