@@ -25,6 +25,9 @@ public class SpinManager : MonoBehaviour
         {
             return "fail : border";
         }
+        
+        //UIManager.instance.announcer.Announce("Message", Color.white);
+
         // else if (((int)(offset / 0.5f)) % 2 == 0)
         // {
         //     return (!color) ? "good" : "fail";

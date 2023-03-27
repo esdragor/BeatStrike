@@ -1,4 +1,3 @@
-using Code.AI;
 using UnityEngine;
 
 public class PlayerTriggerEvent : MonoBehaviour
