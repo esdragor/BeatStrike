@@ -31,7 +31,7 @@ public class InteractionDetector : MonoBehaviour
         if (it != null) interactions.Remove(it);
         return it;
     }
-
+   
     private void SetInteractionGroup()
     {
         if(detectionZoneData.Length <= 0) return;
@@ -40,30 +40,21 @@ public class InteractionDetector : MonoBehaviour
         foreach (InteractionComponent it in interactions)
         {
             Vector3 topPoint = new Vector3(transform.position.x, transform.position.y, transform.position.z + transform.localScale.z * 0.5f);
-            float itDistanceToTop = Vector3.Distance(topPoint, it.transform.position);
-            Debug.Log(itDistanceToTop);
+            Vector3 posInside = topPoint - it.transform.position;
+
             float itOffset = 0;
 
             for (int i = 0; i < detectionZoneData.Length; i++)
             {
                 if (i > 0)
                 {
-                    itOffset += detectionZoneData[i - 1].detectionRange;
+                    itOffset += transform.localScale.z * detectionZoneData[i - 1].detectionRange;
                 }
 
-                if (i < detectionZoneData.Length)
+                if (Math.Abs(posInside.z - (detectionZoneData[i].detectionRange + itOffset) ) < tolerance && it.successGroup != detectionZoneData[i].success)
                 {
-                    if (itDistanceToTop > detectionZoneData[i].detectionRange + itOffset && itDistanceToTop < detectionZoneData[i+1].detectionRange + itOffset)
-                    {
-                        it.SetSuccess(detectionZoneData[i].success);
-                    }
-                }
-                else
-                {
-                    if (itDistanceToTop > detectionZoneData[i].detectionRange + itOffset)
-                    {
-                        it.SetSuccess(detectionZoneData[i].success);
-                    }
+                    Debug.Log($"Distance was {posInside.z} so it's {detectionZoneData[i].success}");
+                    it.SetSuccess(detectionZoneData[i].success);
                 }
             }
         }
@@ -72,22 +63,37 @@ public class InteractionDetector : MonoBehaviour
     private float offSet;
     private void OnDrawGizmosSelected()
     {
-        Gizmos.DrawSphere(new Vector3(transform.position.x, transform.position.y, transform.position.z + transform.localScale.z * 0.5f), 0.2f);
         offSet = 0;
+        
         for (int i = 0; i < detectionZoneData.Length; i++)
         {
             Vector3 topPoint = new Vector3(transform.position.x, transform.position.y, transform.position.z + transform.localScale.z * 0.5f);
-            Vector3 zoneCenter = new Vector3(topPoint.x, topPoint.y + 0.2f * 0.5f, topPoint.z - detectionZoneData[i].detectionRange * 0.5f);
+            Vector3 zoneCenter = new Vector3(topPoint.x, topPoint.y + 0.2f * 0.5f, topPoint.z - (transform.localScale.z * detectionZoneData[i].detectionRange) * 0.5f);
             
             if (i > 0)
             {
-                offSet -= detectionZoneData[i - 1].detectionRange;
-                zoneCenter += new Vector3(0, 0,offSet );
+                offSet -= transform.localScale.z * detectionZoneData[i - 1].detectionRange;
+                zoneCenter += new Vector3(0, 0,offSet);
             }
             
             Gizmos.color = detectionZoneData[i].gizmoColor;
-            Gizmos.DrawCube(zoneCenter, new Vector3(transform.localScale.x, transform.localScale.y + 0.2f, detectionZoneData[i].detectionRange));
-        }     
+            Gizmos.DrawCube(zoneCenter, new Vector3(transform.localScale.x, transform.localScale.y + 0.2f, transform.localScale.z * detectionZoneData[i].detectionRange));
+        }
+    }
+
+    private void OnValidate()
+    {
+        float percentage = 0;
+        
+        for (int i = 0; i < detectionZoneData.Length; i++)
+        {
+            percentage += detectionZoneData[i].detectionRange;
+        }
+
+        if (percentage > 1)
+        {
+            Debug.LogError($"InteractionDetector : Percentage combinaison is over 100%. Please Check Interaction Detector in {gameObject.name}");
+        }
     }
 
     private void OnTriggerEnter(Collider other)

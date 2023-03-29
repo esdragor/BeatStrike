@@ -2472,6 +2472,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3739047474730391434, guid: 7d0385a58dc27f2409dc1e8a75a36604,
         type: 3}
+      propertyPath: tolerance
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 3739047474730391434, guid: 7d0385a58dc27f2409dc1e8a75a36604,
+        type: 3}
       propertyPath: detectionZoneData.Array.size
       value: 5
       objectReference: {fileID: 0}
@@ -2563,27 +2568,27 @@ PrefabInstance:
     - target: {fileID: 3739047474730391434, guid: 7d0385a58dc27f2409dc1e8a75a36604,
         type: 3}
       propertyPath: detectionZoneData.Array.data[0].detectionRange
-      value: 0.09
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 3739047474730391434, guid: 7d0385a58dc27f2409dc1e8a75a36604,
         type: 3}
       propertyPath: detectionZoneData.Array.data[1].detectionRange
-      value: 0.1
+      value: 0.22
       objectReference: {fileID: 0}
     - target: {fileID: 3739047474730391434, guid: 7d0385a58dc27f2409dc1e8a75a36604,
         type: 3}
       propertyPath: detectionZoneData.Array.data[2].detectionRange
-      value: 0.2
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 3739047474730391434, guid: 7d0385a58dc27f2409dc1e8a75a36604,
         type: 3}
       propertyPath: detectionZoneData.Array.data[3].detectionRange
-      value: 0.1
+      value: 0.22
       objectReference: {fileID: 0}
     - target: {fileID: 3739047474730391434, guid: 7d0385a58dc27f2409dc1e8a75a36604,
         type: 3}
       propertyPath: detectionZoneData.Array.data[4].detectionRange
-      value: 0.09
+      value: 0.16
       objectReference: {fileID: 0}
     - target: {fileID: 3739047475384043122, guid: 7d0385a58dc27f2409dc1e8a75a36604,
         type: 3}
