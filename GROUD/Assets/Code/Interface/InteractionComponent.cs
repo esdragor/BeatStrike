@@ -1,11 +1,10 @@
-using System;
 using UnityEngine;
+using Utilities;
 
-public abstract class InteractionComponent : MonoBehaviour
+public class InteractionComponent : MonoBehaviour
 {
     public InteractionKey data;
     public float speed = 3f;
-
     public InteractionSuccess successGroup;
 
     private void Update()
@@ -17,7 +16,7 @@ public abstract class InteractionComponent : MonoBehaviour
     {
         data = interactionKey;
         successGroup = InteractionSuccess.Perfect;
-        SetColor();
+        SetVisualAndColor();
     }
 
     private MeshRenderer renderer => GetComponent<MeshRenderer>();
@@ -26,16 +25,31 @@ public abstract class InteractionComponent : MonoBehaviour
         successGroup = itSuccess;
     }
 
-    public void SetColor()
+    public void SetVisualAndColor()
     {
-        switch (data.interactionColor)
+        switch (data.interactionType)
         {
-            case InteractionKey.InteractionColor.Blue:
-                renderer.material.color = Color.blue;
+            case Enums.InteractionType.Tap:
+                transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+                
+                switch (data.interactionColor)
+                {
+                    case InteractionKey.InteractionColor.Blue:
+                        renderer.material.color = Color.blue;
+                        break;
+            
+                    case InteractionKey.InteractionColor.Red:
+                        renderer.material.color = Color.red;
+                        break;
+                }
+                
                 break;
             
-            case InteractionKey.InteractionColor.Red:
-                renderer.material.color = Color.red;
+            case Enums.InteractionType.Swipe:
+                transform.localScale = new Vector3(1f, 0.5f, 0.5f);
+                
+                renderer.material.color = Color.green;
+                
                 break;
         }
     }
@@ -52,7 +66,6 @@ public abstract class InteractionComponent : MonoBehaviour
            BossManager.instance.AddDamageToPool(PlayerManager.instance.currentStats.damage);
         }
         
-        Debug.Log(successGroup);
         PlayerManager.instance.OnInteractionSuccess(successGroup);
         
         PatternPoolManager.Instance.AddCircleToPool(gameObject);

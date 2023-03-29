@@ -25,8 +25,9 @@ public class PatternToolsInterfaceData : ScriptableObject
     public Texture blueTapTexture;
     public Texture redTapTexture;
     public Color tapLine;
-    public Texture slideTexture;
-    public Color slideLine;
+    public Texture swipeTexture;
+    public Color swipeLine;
+    public float swipeLineThickness;
 
     [Header("Others")] 
     public float buttonIconHeight;

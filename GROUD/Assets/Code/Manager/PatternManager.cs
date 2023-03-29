@@ -1,19 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using NaughtyAttributes;
-using Unity.VisualScripting;
 using UnityEngine;
-using Utilities;
-
-public enum SwipeDirection
-{
-    Up,
-    Down,
-    Left,
-    Right
-}
-
 public class PatternManager : MonoBehaviour
 {
     public static PatternManager Instance;

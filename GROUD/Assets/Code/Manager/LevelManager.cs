@@ -11,6 +11,7 @@ public class LevelManager : MonoBehaviour
     public Vector3 levelOriginPosition;    
     
     public Transform leftSpawnPoint;
+    public Transform midSpawnPoint;
     public Transform rightSpawnPoint;
     
     public InteractionDetector detector;
@@ -33,6 +34,14 @@ public class LevelManager : MonoBehaviour
     {
         PatternManager.OnPatternEnd += CheckNextPattern;
         PlayPattern();
+    }
+
+    private void Update()
+    {
+        if (Math.Abs(levelData.distanceToReach - PlayerManager.instance.distanceReached) < 0.1f)
+        {
+            EndLevel();
+        }
     }
 
     public void Restart()
@@ -102,7 +111,7 @@ public class LevelManager : MonoBehaviour
 
     }
     
-    void EndLevel()
+    public void EndLevel()
     {
         UIManager.instance.endLevel.DrawPanel();
         PatternManager.OnPatternEnd -= CheckNextPattern;

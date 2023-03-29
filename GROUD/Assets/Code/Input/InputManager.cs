@@ -1,44 +1,51 @@
-using System;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Utilities;
 
 public class InputManager : MonoBehaviour
 {
     public LevelManager levelManager;
-    
-    [FormerlySerializedAs("leftListener")] public InputListener blueInputListener;
-    [FormerlySerializedAs("rightListener")] public InputListener redInputListener;
+    public InputListener inputListener;
+    private InteractionComponent selectedSwipeIt;
 
-    private void Awake()
+    void OnEnable()
     {
-        Enable();
+        inputListener.onInputPressed += TapBehaviour;
+        inputListener.onSwipeDetected += SwipeBehaviour;
     }
-
     private void OnDisable()
     {
-        Disable();
+        inputListener.onInputPressed -= TapBehaviour;
+        inputListener.onSwipeDetected -= SwipeBehaviour;
     }
 
-    void Enable()
+    private void SwipeBehaviour(InputListener.SwipeDirection dir)
     {
-        blueInputListener.onInputPressed += CheckDetector;
-        redInputListener.onInputPressed += CheckDetector;
+        
+        if ( levelManager.detector.currentIt != null &&  levelManager.detector.currentIt.data.swipeDirection == dir &&  levelManager.detector.currentIt.data.interactionType == Enums.InteractionType.Swipe)
+        {
+            levelManager.detector.currentIt.ValidateInteraction();
+        }
     }
 
-    private void CheckDetector(InteractionKey.InteractionColor color)
+    private void TapBehaviour(InputListener.TouchSide touchSide)
     {
-        if (!levelManager.detector) return;
-
-        InteractionComponent it = levelManager.detector.PeekInteraction();
-        if (!it) return;
-        Debug.Log(it.data.interactionColor);
-        if(it.data.interactionColor == color) it.ValidateInteraction();
+        InteractionKey.InteractionColor color = InteractionKey.InteractionColor.Blue;
+        
+        switch (touchSide)
+        {
+            case InputListener.TouchSide.LEFT:
+                color = InteractionKey.InteractionColor.Blue;
+                break;
+            
+            case InputListener.TouchSide.RIGHT:
+                color = InteractionKey.InteractionColor.Red;
+                break;
+        }
+        
+        if (levelManager.detector.currentIt != null &&  levelManager.detector.currentIt.data.interactionColor == color &&  levelManager.detector.currentIt.data.interactionType == Enums.InteractionType.Tap)
+        {
+            levelManager.detector.currentIt.ValidateInteraction();
+        }
     }
-
-    void Disable()
-    {
-        blueInputListener.onInputPressed -= CheckDetector;
-        redInputListener.onInputPressed -= CheckDetector;
-    }
+    
 }

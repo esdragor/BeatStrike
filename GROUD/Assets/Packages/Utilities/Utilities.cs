@@ -12,9 +12,7 @@ namespace Utilities
         public enum InteractionType
         {
             Tap,
-            Hold,
-            Slide,
-            Spam
+            Swipe,
         }
     }
 
