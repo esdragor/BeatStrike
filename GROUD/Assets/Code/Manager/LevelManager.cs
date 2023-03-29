@@ -11,6 +11,7 @@ public class LevelManager : MonoBehaviour
     public Vector3 levelOriginPosition;    
     
     public Transform leftSpawnPoint;
+    public Transform midSpawnPoint;
     public Transform rightSpawnPoint;
     
     public InteractionDetector detector;

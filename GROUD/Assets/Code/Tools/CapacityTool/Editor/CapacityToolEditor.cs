@@ -244,11 +244,11 @@ public class CapacityToolEditor : SimpleTimeArea
       
       if (GUILayout.Button("Add Slide On Top Timeline"))
       {
-         AddKeyOnTimeline(0, 0, Enums.InteractionType.Slide);
+         AddKeyOnTimeline(0, 0, Enums.InteractionType.Swipe);
       }
       if (GUILayout.Button("Add Slide On Bot Timeline"))
       {
-         AddKeyOnTimeline(1, 0, Enums.InteractionType.Slide);
+         AddKeyOnTimeline(1, 0, Enums.InteractionType.Swipe);
       }
       
       GUILayout.EndHorizontal();
@@ -279,7 +279,17 @@ public class CapacityToolEditor : SimpleTimeArea
          EditorGUILayout.LabelField($"Time Code : {selectedInteractionKey.timeCode}");
          selectedInteractionKey.time = EditorGUILayout.Slider((float)selectedInteractionKey.time, 0f, (float)currentPattern.maxTime);
          selectedInteractionKey.interactionType = (Enums.InteractionType) EditorGUILayout.EnumPopup("Type", selectedInteractionKey.interactionType);
-         selectedInteractionKey.interactionColor = (InteractionKey.InteractionColor)EditorGUILayout.EnumPopup("Color", selectedInteractionKey.interactionColor);
+
+         switch ( selectedInteractionKey.interactionType)
+         {
+            case Enums.InteractionType.Tap:
+               selectedInteractionKey.interactionColor = (InteractionKey.InteractionColor)EditorGUILayout.EnumPopup("Color", selectedInteractionKey.interactionColor);
+               break;
+            
+            case Enums.InteractionType.Swipe:
+               selectedInteractionKey.swipeDirection = (InputListener.SwipeDirection)EditorGUILayout.EnumPopup("Swipe Direction", selectedInteractionKey.swipeDirection);
+               break;
+         }
          
          if (GUILayout.Button("Delete Key"))
          {
@@ -330,7 +340,7 @@ public class CapacityToolEditor : SimpleTimeArea
       
          menu.AddDisabledItem(new GUIContent("Timeline Actions List")); 
          menu.AddItem(new GUIContent("Add a red tap."), false, MenuAddKeyOnTimeline(1, (float)GetSnappedTimeAtMousePosition(mousePositionWhenClick), Enums.InteractionType.Tap));
-         menu.AddItem(new GUIContent("Add a slide."), false, MenuAddKeyOnTimeline(1, (float)GetSnappedTimeAtMousePosition(mousePositionWhenClick), Enums.InteractionType.Slide));
+         menu.AddItem(new GUIContent("Add a slide."), false, MenuAddKeyOnTimeline(1, (float)GetSnappedTimeAtMousePosition(mousePositionWhenClick), Enums.InteractionType.Swipe));
          menu.ShowAsContext();
       
          eventListener.Use();
@@ -343,7 +353,7 @@ public class CapacityToolEditor : SimpleTimeArea
       
          menu.AddDisabledItem(new GUIContent("Timeline Actions List")); 
          menu.AddItem(new GUIContent("Add a blue tap."), false, MenuAddKeyOnTimeline(0, (float)GetSnappedTimeAtMousePosition(mousePositionWhenClick), Enums.InteractionType.Tap));
-         menu.AddItem(new GUIContent("Add a slide."), false, MenuAddKeyOnTimeline(0, (float)GetSnappedTimeAtMousePosition(mousePositionWhenClick), Enums.InteractionType.Slide));
+         menu.AddItem(new GUIContent("Add a slide."), false, MenuAddKeyOnTimeline(0, (float)GetSnappedTimeAtMousePosition(mousePositionWhenClick), Enums.InteractionType.Swipe));
          menu.ShowAsContext();
       
          eventListener.Use();
@@ -433,7 +443,17 @@ public class CapacityToolEditor : SimpleTimeArea
       {
          InteractionKey iKey = currentPattern.interactions[i];
          double timeToPos = TimeToPixel(iKey.time);
-         float positionY = iKey.row == 1 ? botContent.y + (botContent.height * 0.5f) : topContent.y + (topContent.height * 0.5f);
+         float positionY = 0;
+         switch (iKey.interactionType)
+         {
+            case Enums.InteractionType.Tap:
+               positionY = iKey.row == 1 ? botContent.y + (botContent.height * 0.5f) : topContent.y + (topContent.height * 0.5f);
+               break;
+            case Enums.InteractionType.Swipe:
+               positionY = contentSeparator.y;
+               break;
+            
+         }
          Rect interactionIconRect = new Rect((float)timeToPos - (interfaceData.interactionIconWidth * 0.5f), positionY - 15f, interfaceData.interactionIconWidth, interfaceData.interactionIconHeight);
          Rect verticalLine = new Rect((float)timeToPos - (interfaceData.lineThickness * 0.5f),  rectContent.y, interfaceData.lineThickness, rectContent.height);
          Texture interactionTexture = null;
@@ -448,9 +468,9 @@ public class CapacityToolEditor : SimpleTimeArea
                lineColor = interfaceData.tapLine;
                break;
             
-            case Enums.InteractionType.Slide:
-               interactionTexture = interfaceData.slideTexture;
-               lineColor = interfaceData.slideLine;
+            case Enums.InteractionType.Swipe:
+               interactionTexture = interfaceData.swipeTexture;
+               lineColor = interfaceData.swipeLine;
                break;
          }
          

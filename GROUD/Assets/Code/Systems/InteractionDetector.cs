@@ -41,7 +41,7 @@ public class InteractionDetector : MonoBehaviour
         {
             Vector3 topPoint = new Vector3(transform.position.x, transform.position.y, transform.position.z + transform.localScale.z * 0.5f);
             float itDistanceToTop = Vector3.Distance(topPoint, it.transform.position);
-            
+            Debug.Log(itDistanceToTop);
             float itOffset = 0;
 
             for (int i = 0; i < detectionZoneData.Length; i++)
@@ -51,10 +51,19 @@ public class InteractionDetector : MonoBehaviour
                     itOffset += detectionZoneData[i - 1].detectionRange;
                 }
 
-                if (Math.Abs(((detectionZoneData)[i].detectionRange + itOffset) - itDistanceToTop) < tolerance)
+                if (i < detectionZoneData.Length)
                 {
-                   // Debug.Log($"Distance { itDistanceToTop } | DetectionZone {detectionZoneData[i].detectionRange + itOffset} | Success { detectionZoneData[i].success }");
-                    it.SetSuccess(detectionZoneData[i].success);
+                    if (itDistanceToTop > detectionZoneData[i].detectionRange + itOffset && itDistanceToTop < detectionZoneData[i+1].detectionRange + itOffset)
+                    {
+                        it.SetSuccess(detectionZoneData[i].success);
+                    }
+                }
+                else
+                {
+                    if (itDistanceToTop > detectionZoneData[i].detectionRange + itOffset)
+                    {
+                        it.SetSuccess(detectionZoneData[i].success);
+                    }
                 }
             }
         }
@@ -63,6 +72,7 @@ public class InteractionDetector : MonoBehaviour
     private float offSet;
     private void OnDrawGizmosSelected()
     {
+        Gizmos.DrawSphere(new Vector3(transform.position.x, transform.position.y, transform.position.z + transform.localScale.z * 0.5f), 0.2f);
         offSet = 0;
         for (int i = 0; i < detectionZoneData.Length; i++)
         {
