@@ -7,6 +7,8 @@ using UnityEngine.UI;
 public class PlayerManager : MonoBehaviour
 {
     public static PlayerManager instance;
+
+    public float distanceReached;
     public PlayerStats playerStats;
     public PlayerStats currentStats;
     public Animator animator;
@@ -25,14 +27,19 @@ public class PlayerManager : MonoBehaviour
     private void Awake()
     {
         if (instance == null) instance = this;
+    }
+
+    private void Start()
+    {
         SetPlayer();
     }
-    
+
     public void SetPlayer()
     {
         currentStats = new PlayerStats(playerStats.hp, playerStats.speed, playerStats.experienceFactor, playerStats.damage);
-        
+        distanceReached = 0;
         SetUIHealth();
+        UIManager.instance.score.SetScore(distanceReached);
     }
 
     public void AddExperience(float amount)
@@ -64,45 +71,35 @@ public class PlayerManager : MonoBehaviour
                 {
                     animator.SetBool("IsRunning", true);
                     LevelManager.instance.MoveWorld(5, currentStats.speed, animator);
-                }
-                else
-                {
-                    
+                    distanceReached += 5;
                 }
                 break;
             
             case InteractionSuccess.Good:
-                
                 UIManager.instance.announcer.Announce("Good", Color.blue);
 
                 if (GameManager.instance.gameState.IsLevelExploration())
                 {
                     animator.SetBool("IsRunning", true);
                     LevelManager.instance.MoveWorld(10, currentStats.speed, animator);
-
-                }
-                else
-                {
-                    
+                    distanceReached += 10;
                 }
                 break;
             
             case InteractionSuccess.Perfect:
+                UIManager.instance.announcer.Announce("Perfect", Color.green);
                 
-              UIManager.instance.announcer.Announce("Perfect", Color.green);
-
                 if (GameManager.instance.gameState.IsLevelExploration())
                 {
                     isRunning = true;
                     animator.SetBool("IsRunning", true);
                     LevelManager.instance.MoveWorld(15, currentStats.speed, animator);
-                }
-                else
-                {
-                    
+                    distanceReached += 15;
                 }
                 break;
         }
+        
+        UIManager.instance.score.SetScore(distanceReached);
     }
 
     public void TakeDamage(float amount)

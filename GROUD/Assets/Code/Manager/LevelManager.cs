@@ -36,6 +36,14 @@ public class LevelManager : MonoBehaviour
         PlayPattern();
     }
 
+    private void Update()
+    {
+        if (Math.Abs(levelData.distanceToReach - PlayerManager.instance.distanceReached) < 0.1f)
+        {
+            EndLevel();
+        }
+    }
+
     public void Restart()
     {
         levelObject.DOKill();
