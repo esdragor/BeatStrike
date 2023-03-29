@@ -13,6 +13,7 @@ public class SpinManager : MonoBehaviour
     [SerializeField, ReadOnly] private int nbSide = 10;
     [SerializeField] private float speed = 10;
     [SerializeField] private Material mat;
+    [SerializeField] private float nbColorOnSpine = 16;
     [SerializeField, ReadOnly] private GameObject obj;
 
     private PlayerInputs inputs;
@@ -21,21 +22,14 @@ public class SpinManager : MonoBehaviour
     public void CheckColor(float index, int color)
     {
         float offset = mat.mainTextureOffset.x + index;
-        if (offset % 0.25f < 0.1f && offset % 0.25f > 0 || offset % 0.25f > -0.1f && offset % 0.25f < 0)
+        float indexReference = 0.04f * nbColorOnSpine;
+        if (offset % color * indexReference < 0.1f && offset % color * indexReference > 0 || 
+            offset % color * indexReference > -0.1f && color % indexReference < 0)
         {
-            //UIManager.instance.announcer.Announce("Fail", Color.white);
+            UIManager.instance.announcer.Announce("Fail", Color.white);
+            return;
         }
-        
-        //UIManager.instance.announcer.Announce("Message", Color.white);
-
-        // else if (((int)(offset / 0.5f)) % 2 == 0)
-        // {
-        //     return (!color) ? "good" : "fail";
-        // }
-        // else
-        // {
-        //     return (color) ? "good" : "fail";
-        // }
+        UIManager.instance.announcer.Announce("Success", Color.white);
     }
 
     private void SwipeL()

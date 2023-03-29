@@ -18,7 +18,10 @@ public class LevelManager : MonoBehaviour
     public LevelData levelData;
     public int currentPatternIndex = 0;
     public int currentRoundIndex = 0;
-    public Transform[] spinPoints;
+    public Vector3[] spinPoints;
+    public float DistanceToSpawnPointSpin = 30;
+    
+    [SerializeField] private GameObject TriggerSpinDetectorPrefab;
 
     private void Awake()
     {
@@ -28,7 +31,6 @@ public class LevelManager : MonoBehaviour
 
     public void StartLevel()
     {
-        //UIManager.PlayStartLevelUI
         PatternManager.OnPatternEnd += CheckNextPattern;
         PlayPattern();
     }
