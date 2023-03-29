@@ -103,7 +103,7 @@ public class LevelManager : MonoBehaviour
 
     }
     
-    void EndLevel()
+    public void EndLevel()
     {
         UIManager.instance.endLevel.DrawPanel();
         PatternManager.OnPatternEnd -= CheckNextPattern;

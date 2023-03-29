@@ -1,61 +1,39 @@
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class InteractionDetector : MonoBehaviour
 {
     public Action<InteractionComponent> OnInteractionAdded;
     public Action<InteractionComponent> OnInteractionRemoved;
-    private List<InteractionComponent> interactions;
+    public InteractionComponent currentIt;
     public DetectionZoneData[] detectionZoneData;
     public float tolerance = 0.01f;
-
-    public bool IsInteractionEmpty()
-    {
-        return interactions.Count <= 0;
-    }
-
-    private void Awake()
-    {
-        interactions = new List<InteractionComponent>();
-    }
-
+    
     private void Update()
     {
-        if(!IsInteractionEmpty()) SetInteractionGroup();
+        if(currentIt != null) SetInteractionGroup();
     }
 
-    public InteractionComponent PeekInteraction()
-    {
-        InteractionComponent it = IsInteractionEmpty() ? null : interactions[0];
-        if (it != null) interactions.Remove(it);
-        return it;
-    }
-   
     private void SetInteractionGroup()
     {
-        if(detectionZoneData.Length <= 0) return;
-
+        if(detectionZoneData.Length <= 0 || currentIt == null) return;
         
-        foreach (InteractionComponent it in interactions)
+        Vector3 topPoint = new Vector3(transform.position.x, transform.position.y, transform.position.z + transform.localScale.z * 0.5f);
+        Vector3 posInside = topPoint - currentIt.transform.position;
+
+        float itOffset = 0;
+
+        for (int i = 0; i < detectionZoneData.Length; i++)
         {
-            Vector3 topPoint = new Vector3(transform.position.x, transform.position.y, transform.position.z + transform.localScale.z * 0.5f);
-            Vector3 posInside = topPoint - it.transform.position;
-
-            float itOffset = 0;
-
-            for (int i = 0; i < detectionZoneData.Length; i++)
+            if (i > 0)
             {
-                if (i > 0)
-                {
-                    itOffset += transform.localScale.z * detectionZoneData[i - 1].detectionRange;
-                }
+                itOffset += transform.localScale.z * detectionZoneData[i - 1].detectionRange;
+            }
 
-                if (Math.Abs(posInside.z - (detectionZoneData[i].detectionRange + itOffset) ) < tolerance && it.successGroup != detectionZoneData[i].success)
-                {
-                    Debug.Log($"Distance was {posInside.z} so it's {detectionZoneData[i].success}");
-                    it.SetSuccess(detectionZoneData[i].success);
-                }
+            if (Math.Abs(posInside.z - (detectionZoneData[i].detectionRange + itOffset) ) < tolerance && currentIt.successGroup != detectionZoneData[i].success)
+            {
+                //Debug.Log($"Distance was {posInside.z} so it's {detectionZoneData[i].success}");
+                currentIt.SetSuccess(detectionZoneData[i].success);
             }
         }
     }
@@ -80,30 +58,14 @@ public class InteractionDetector : MonoBehaviour
             Gizmos.DrawCube(zoneCenter, new Vector3(transform.localScale.x, transform.localScale.y + 0.2f, transform.localScale.z * detectionZoneData[i].detectionRange));
         }
     }
-
-    private void OnValidate()
-    {
-        float percentage = 0;
-        
-        for (int i = 0; i < detectionZoneData.Length; i++)
-        {
-            percentage += detectionZoneData[i].detectionRange;
-        }
-
-        if (percentage > 1)
-        {
-            Debug.LogError($"InteractionDetector : Percentage combinaison is over 100%. Please Check Interaction Detector in {gameObject.name}");
-        }
-    }
-
+    
     private void OnTriggerEnter(Collider other)
     {
         InteractionComponent it = other.GetComponent<InteractionComponent>();
 
-        if (it && !interactions.Contains(it))
+        if (it)
         {
-            interactions.Add(it);
-            OnInteractionAdded?.Invoke(it);
+            currentIt = it;
         }
     }
 
@@ -111,10 +73,9 @@ public class InteractionDetector : MonoBehaviour
     {
         InteractionComponent it = other.GetComponent<InteractionComponent>();
 
-        if (it && interactions.Contains(it))
+        if (it && currentIt == it)
         {
-            interactions.Remove(it);
-            OnInteractionRemoved?.Invoke(it);
+            currentIt = null;
         }
         
     }

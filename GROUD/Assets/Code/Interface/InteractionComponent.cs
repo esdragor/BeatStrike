@@ -66,7 +66,6 @@ public class InteractionComponent : MonoBehaviour
            BossManager.instance.AddDamageToPool(PlayerManager.instance.currentStats.damage);
         }
         
-        Debug.Log(successGroup);
         PlayerManager.instance.OnInteractionSuccess(successGroup);
         
         PatternPoolManager.Instance.AddCircleToPool(gameObject);

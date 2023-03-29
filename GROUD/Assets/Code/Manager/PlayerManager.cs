@@ -89,7 +89,7 @@ public class PlayerManager : MonoBehaviour
             
             case InteractionSuccess.Perfect:
                 
-                UIManager.instance.announcer.Announce("Perfect", Color.green);
+              UIManager.instance.announcer.Announce("Perfect", Color.green);
 
                 if (GameManager.instance.gameState.IsLevelExploration())
                 {
@@ -113,7 +113,8 @@ public class PlayerManager : MonoBehaviour
         
         if (currentStats.hp  <= 0)
         {
-            Debug.Log("Player is dead");
+            UIManager.instance.announcer.Announce("You died !", Color.black);
+           LevelManager.instance.EndLevel();
         }
     }
 

@@ -4,27 +4,21 @@ using UnityEngine.EventSystems;
 
 public class InputListener : MonoBehaviour,  IPointerDownHandler, IPointerUpHandler, IPointerMoveHandler
 {
-    
-    public Vector2 onTouchPosition;
-    public Vector2 currentTouchPosition;
-
-    public float pressTime;
-    public float swipePressDuration = 1.2f;
-    public float swipeTolerance = 0.2f;
-
-    public SwipeDirection lastSwipeDirection;
-
     public RectTransform leftDetector;
     public RectTransform rightDetector;
+    private float pressTime;
+
+    private Vector2 onTouchPosition;
+    private Vector2 currentTouchPosition;
+    
+    [Tooltip("A partir de quel distance le swipe se déclenche.")] public float swipeTolerance = 0.2f;
     
     public Action<TouchSide> onInputPressed;
     public Action onInputReleased;
     public Action<SwipeDirection> onSwipeDetected;
-    public InteractionKey.InteractionColor listenerColor;
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        Debug.Log("Touch");
         onTouchPosition = eventData.position;
         onInputPressed?.Invoke(CheckTouchSide());
         GameManager.onUpdated += TouchTime;
@@ -48,6 +42,13 @@ public class InputListener : MonoBehaviour,  IPointerDownHandler, IPointerUpHand
     void TouchTime()
     {
         pressTime += Time.deltaTime;
+        
+        float mag = Mathf.Abs(currentTouchPosition.magnitude - onTouchPosition.magnitude);
+
+        if (mag > swipeTolerance && !swiping)
+        {
+            onSwipeDetected?.Invoke(CheckForSwipe());
+        }
     }
     
     public void OnPointerMove(PointerEventData eventData)
@@ -58,36 +59,46 @@ public class InputListener : MonoBehaviour,  IPointerDownHandler, IPointerUpHand
     public void OnPointerUp(PointerEventData eventData)
     {
         GameManager.onUpdated -= TouchTime;
-
-        if (pressTime > swipePressDuration)
-        {
-            CheckForSwipe();
-        }
-
+        swiping = false;
         pressTime = 0;
+        
+        onInputReleased?.Invoke();
     }
 
-    void CheckForSwipe()
+    private bool swiping;
+    SwipeDirection CheckForSwipe()
     {
+        swiping = true;
+
         Vector2 direction = currentTouchPosition - onTouchPosition;
         Vector2 nDirection = direction.normalized;
-        
         if (Mathf.Abs(nDirection.x) > Mathf.Abs(nDirection.y))
         {
-            lastSwipeDirection = nDirection.x > 0 ? SwipeDirection.RIGHT : SwipeDirection.LEFT;
+            switch (nDirection.x)
+            {
+                case > 0:
+                    return SwipeDirection.RIGHT;
+                case < 0:
+                    return SwipeDirection.LEFT;
+            }
         }
         else
         {
-            lastSwipeDirection = nDirection.y > 0 ? SwipeDirection.UP : SwipeDirection.DOWN;
+            switch (nDirection.y)
+            {
+                case > 0:
+                    return SwipeDirection.UP;
+                case < 0:
+                    return SwipeDirection.DOWN;
+            }
         }
-        
-        onSwipeDetected?.Invoke(lastSwipeDirection);
-        
-        UIManager.instance.announcer.Announce($"{lastSwipeDirection}", Color.gray);
+
+        return SwipeDirection.NULL;
     }
     
     public enum SwipeDirection
     {
+        NULL,
         UP,
         DOWN,
         LEFT,

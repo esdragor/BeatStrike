@@ -32,7 +32,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3836136853500253099}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -51,15 +51,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1dc565ca013ab547b28dcc45c0d5520, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onTouchPosition: {x: 0, y: 0}
-  currentTouchPosition: {x: 0, y: 0}
-  pressTime: 0
-  swipePressDuration: 0.1
-  swipeTolerance: 0.2
-  lastSwipeDirection: 0
   leftDetector: {fileID: 3836136852658533956}
   rightDetector: {fileID: 3836136854293593258}
-  listenerColor: 0
+  swipeTolerance: 0.2
 --- !u!222 &1561042028
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -110,7 +104,7 @@ GameObject:
   - component: {fileID: 3836136852658533958}
   - component: {fileID: 3836136852658533957}
   m_Layer: 5
-  m_Name: Blue Input
+  m_Name: (Blue) Left Input Detector Rect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -129,7 +123,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3836136853500253099}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
@@ -206,9 +200,9 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1561042025}
   - {fileID: 3836136852658533956}
   - {fileID: 3836136854293593258}
-  - {fileID: 1561042025}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -304,7 +298,7 @@ GameObject:
   - component: {fileID: 3836136854293593260}
   - component: {fileID: 3836136854293593259}
   m_Layer: 5
-  m_Name: Red Input
+  m_Name: (Red) Right Input Detector Rect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -323,7 +317,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3836136853500253099}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}

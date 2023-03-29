@@ -4,24 +4,31 @@ using Utilities;
 public class InputManager : MonoBehaviour
 {
     public LevelManager levelManager;
-    
     public InputListener inputListener;
+    private InteractionComponent selectedSwipeIt;
 
-    private void Awake()
+    void OnEnable()
     {
-        Enable();
+        inputListener.onInputPressed += TapBehaviour;
+        inputListener.onSwipeDetected += SwipeBehaviour;
+    }
+    private void OnDisable()
+    {
+        inputListener.onInputPressed -= TapBehaviour;
+        inputListener.onSwipeDetected -= SwipeBehaviour;
     }
 
-    void Enable()
+    private void SwipeBehaviour(InputListener.SwipeDirection dir)
     {
-        inputListener.onInputPressed += TapCheckDetector;
-        inputListener.onSwipeDetected += SwipeCheckDetector;
+        
+        if ( levelManager.detector.currentIt != null &&  levelManager.detector.currentIt.data.swipeDirection == dir &&  levelManager.detector.currentIt.data.interactionType == Enums.InteractionType.Swipe)
+        {
+            levelManager.detector.currentIt.ValidateInteraction();
+        }
     }
 
-    private void TapCheckDetector(InputListener.TouchSide touchSide)
+    private void TapBehaviour(InputListener.TouchSide touchSide)
     {
-        if (!levelManager.detector) return;
-
         InteractionKey.InteractionColor color = InteractionKey.InteractionColor.Blue;
         
         switch (touchSide)
@@ -35,26 +42,10 @@ public class InputManager : MonoBehaviour
                 break;
         }
         
-        InteractionComponent it = levelManager.detector.PeekInteraction();
-        if (!it || it.data.interactionType != Enums.InteractionType.Tap) return;
-        if(it.data.interactionColor == color) it.ValidateInteraction();
-    }
-
-    private void SwipeCheckDetector(InputListener.SwipeDirection direction)
-    {
-        Debug.Log("Swipe");
-        
-        if (!levelManager.detector) return;
-
-        InteractionComponent it = levelManager.detector.PeekInteraction();
-        
-        if (!it || it.data.interactionType != Enums.InteractionType.Swipe) return;
-
-        Debug.Log($"It's {it.data.swipeDirection} ans you do {direction}");
-        if (it.data.swipeDirection == direction)
+        if (levelManager.detector.currentIt != null &&  levelManager.detector.currentIt.data.interactionColor == color &&  levelManager.detector.currentIt.data.interactionType == Enums.InteractionType.Tap)
         {
-            it.ValidateInteraction();
-            Debug.Log("OK !");
+            levelManager.detector.currentIt.ValidateInteraction();
         }
     }
+    
 }

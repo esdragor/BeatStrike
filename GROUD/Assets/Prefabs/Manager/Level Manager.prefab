@@ -53,12 +53,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelObject: {fileID: 0}
+  levelOriginPosition: {x: 0, y: 0, z: 0}
   leftSpawnPoint: {fileID: 2342571146644682442}
+  midSpawnPoint: {fileID: 0}
   rightSpawnPoint: {fileID: 2342571146194709497}
   detector: {fileID: 2342571145866177338}
   levelData: {fileID: 11400000, guid: e012d31a0321dbe46b8f28ba49db8626, type: 2}
   currentPatternIndex: 0
   currentRoundIndex: 0
+  spinPoints: []
+  DistanceToSpawnPointSpin: 30
+  TriggerSpinDetectorPrefab: {fileID: 0}
 --- !u!114 &2342571145294892839
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -72,16 +77,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentPattern: {fileID: 0}
-  currentInteraction:
-    time: 0
-    row: 0
-    timeCode: 
-    scale: 0
-    spawnPosition: {x: 0, y: 0, z: 0}
-    interactionType: 0
-    interactionColor: 0
   isTimelineActive: 0
   timer: 0
+  isDebugMultiChannel: 0
 --- !u!114 &2342571145294892838
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -174,7 +172,7 @@ Transform:
   m_GameObject: {fileID: 2342571145866177329}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.9479, y: 0.611, z: 0.4499}
-  m_LocalScale: {x: 3.6063309, y: 0.18758243, z: 1.667861}
+  m_LocalScale: {x: 3.95, y: 0.18758243, z: 1.2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2342571146050260519}
@@ -192,17 +190,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab9730021d0f0814ab995e004e8142aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentIt: {fileID: 0}
   detectionZoneData:
-  - detectionRange: 0.73
-    success: 2
-    gizmoColor: {r: 0.78431374, g: 0.7757872, b: 0.39607844, a: 0.6039216}
-  - detectionRange: 0.68
+  - detectionRange: 0.1
+    success: 0
+    gizmoColor: {r: 0.7843138, g: 0.43921572, b: 0.39607847, a: 0.6039216}
+  - detectionRange: 0.22
     success: 1
     gizmoColor: {r: 0.39607844, g: 0.75893164, b: 0.78431374, a: 0.6039216}
-  - detectionRange: 0.18
+  - detectionRange: 0.25
+    success: 2
+    gizmoColor: {r: 0.7843138, g: 0.77647066, b: 0.39607847, a: 0.6039216}
+  - detectionRange: 0.22
+    success: 1
+    gizmoColor: {r: 0.39607847, g: 0.7607844, b: 0.7843138, a: 0.6039216}
+  - detectionRange: 0.16
     success: 0
     gizmoColor: {r: 0.78431374, g: 0.43772918, b: 0.39607844, a: 0.6039216}
-  tolerance: 0.82
+  tolerance: 0.01
 --- !u!33 &2342571145866177333
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -264,8 +269,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 12.722815, z: 1}
-  m_Center: {x: 0, y: 5.8614173, z: 0}
+  m_Size: {x: 1, y: 17.06, z: 1}
+  m_Center: {x: 0, y: 5.03, z: 0}
 --- !u!1 &2342571146050260518
 GameObject:
   m_ObjectHideFlags: 0
@@ -275,7 +280,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2342571146050260519}
-  - component: {fileID: 2342571146050260516}
   m_Layer: 0
   m_Name: Detector Manager
   m_TagString: Untagged
@@ -299,18 +303,6 @@ Transform:
   m_Father: {fileID: 2342571145294892833}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2342571146050260516
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2342571146050260518}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 735815810fe0a5c4dbfecda383fcb157, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2342571146194709496
 GameObject:
   m_ObjectHideFlags: 0

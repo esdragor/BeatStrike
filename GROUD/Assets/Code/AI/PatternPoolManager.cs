@@ -22,6 +22,7 @@ public class PatternPoolManager : MonoBehaviour
         for (int i = 0; i < maxPoolSize; i++)
         {
             circlePool.Add(Instantiate(circlePrefab, transform));
+            circlePool[i].name = $"Interaction_{i}";
             circlePool[i].SetActive(false);
         }
     }
