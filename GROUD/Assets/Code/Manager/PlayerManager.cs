@@ -19,10 +19,11 @@ public class PlayerManager : MonoBehaviour
     public float runTime;
     private bool isRunning;
 
+    public bool immortality = false;
     [Header("DEBUG")] 
     public Image healthFill;
     public TMP_Text healthTxt;
-    
+
     private void Awake()
     {
         if (instance == null) instance = this;

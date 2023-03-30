@@ -6,7 +6,7 @@ public class PlayerTriggerEvent : MonoBehaviour
     {
         InteractionComponent it = other.GetComponent<InteractionComponent>();
 
-        if (it)
+        if (it && !PlayerManager.instance.immortality)
         {
             it.HurtPlayer();
         }
