@@ -10,6 +10,6 @@ public class BoxColliderLineSpin : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         //SpinManager.instance.CheckColor(-0.25f + index * 0.25f, other.GetComponent<TESTCOLOR>().color);
-        PatternPoolManager.Instance.AddCircleToPool(other.gameObject);
+        PatternPoolManager.Instance.AddInteractionToPool(other.gameObject);
     }
 }

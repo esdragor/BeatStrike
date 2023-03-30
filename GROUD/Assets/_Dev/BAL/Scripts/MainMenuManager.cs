@@ -142,6 +142,7 @@ public class MainMenuManager : MonoBehaviour
         {
             GameManager.instance.SetPlayerStats(currentCharacterInfos);
             SceneManager.LoadScene(1);
+            GameManager.instance.gameState.SwitchEngineState(Enums.EngineState.Game);
         }
         else
         {

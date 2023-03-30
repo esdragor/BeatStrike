@@ -14,6 +14,24 @@ namespace Utilities
             Tap,
             Swipe,
         }
+        
+        public enum EngineState
+        {
+            Menu,
+            Game
+        }
+
+        public enum TimeState
+        {
+            Play,
+            Pause
+        }
+     
+        public enum LevelState
+        {
+            Exploration,
+            Boss
+        }
     }
 
     public static class Delegates

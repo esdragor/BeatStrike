@@ -13,4 +13,10 @@ public class UI_EndLevel : MonoBehaviour
     {
         gameObject.SetActive(false);
     }
+
+    public void Restart()
+    {
+        DisablePanel();
+        LevelManager.instance.Restart();
+    }
 }

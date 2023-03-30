@@ -2,6 +2,7 @@
 using System.Collections;
 using DG.Tweening;
 using UnityEngine;
+using Utilities;
 
 public class LevelManager : MonoBehaviour
 {
@@ -38,7 +39,7 @@ public class LevelManager : MonoBehaviour
 
     private void Update()
     {
-        if (Math.Abs(levelData.distanceToReach - PlayerManager.instance.distanceReached) < 0.1f)
+        if ( PlayerManager.instance.distanceReached >=  levelData.distanceToReach)
         {
             EndLevel();
         }
@@ -46,15 +47,18 @@ public class LevelManager : MonoBehaviour
 
     public void Restart()
     {
+        PatternPoolManager.Instance.DisableAllInteractions();
+        
         levelObject.DOKill();
         levelObject.position = levelOriginPosition;
+        
         PlayerManager.instance.SetPlayer();
 
         currentPatternIndex = 0;
         currentRoundIndex = 0;
         
-        UIManager.instance.endLevel.DisablePanel();
-        
+        GameManager.instance.gameState.SwitchTimeState(Enums.TimeState.Play);
+
         StartLevel();
     }
 
@@ -106,14 +110,18 @@ public class LevelManager : MonoBehaviour
 
     IEnumerator WaitUntilInteractionAreEnded()
     {
-        yield return new WaitUntil(() => PatternPoolManager.Instance.ActiveCircles.Count <= 0);
+        yield return new WaitUntil(() => PatternPoolManager.Instance.ActiveInteractions.Count <= 0);
         EndLevel();
 
     }
     
     public void EndLevel()
     {
-        UIManager.instance.endLevel.DrawPanel();
         PatternManager.OnPatternEnd -= CheckNextPattern;
+        
+        GameManager.instance.gameState.SwitchTimeState(Enums.TimeState.Pause);
+        UIManager.instance.endLevel.DrawPanel();
+        
+        PatternManager.Instance.ForceEnd();
     }
 }

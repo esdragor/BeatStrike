@@ -92,8 +92,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4541016bb56e51c40ab6bbef1c52250d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ActiveCircles: []
-  circlePrefab: {fileID: 3615221734236934782, guid: eca9474de71659d4b92bff4db4690524,
+  ActiveInteractions: []
+  interactionPrefab: {fileID: 3615221734236934782, guid: eca9474de71659d4b92bff4db4690524,
     type: 3}
   maxPoolSize: 10
 --- !u!114 &2342571145294892837
@@ -108,12 +108,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3e989f8e82875f40b3692bfafb30ec2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerStats:
-    hp: 100
-    speed: 4
-    tolerance: 0.15
-    experienceFactor: 0.2
-    damage: 12
+  distanceReached: 0
   currentStats:
     hp: 0
     speed: 0

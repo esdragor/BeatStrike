@@ -5,11 +5,11 @@ using UnityEngine;
 public class PatternPoolManager : MonoBehaviour
 {
     public static PatternPoolManager Instance;
-    public List<GameObject> ActiveCircles = new ();
-    [SerializeField] private GameObject circlePrefab;
+    public List<GameObject> ActiveInteractions = new ();
+    [SerializeField] private GameObject interactionPrefab;
     [SerializeField] private int maxPoolSize = 10;
     
-    private List<GameObject> circlePool = new ();
+    private List<GameObject> interactionPool = new ();
 
     private void Awake()
     {
@@ -21,36 +21,48 @@ public class PatternPoolManager : MonoBehaviour
     {
         for (int i = 0; i < maxPoolSize; i++)
         {
-            circlePool.Add(Instantiate(circlePrefab, transform));
-            circlePool[i].name = $"Interaction_{i}";
-            circlePool[i].SetActive(false);
+            interactionPool.Add(Instantiate(interactionPrefab, transform));
+            interactionPool[i].name = $"Interaction_{i}";
+            interactionPool[i].SetActive(false);
         }
     }
 
-    public void AddCircleToPool(GameObject circle)
+    public void DisableAllInteractions()
     {
-        circle.SetActive(false);
+        foreach (GameObject it in ActiveInteractions)
+        {
+            it.SetActive(false);
+            it.transform.parent = transform;
+            interactionPool.Add(it);
+        }
         
-        ActiveCircles.Remove(circle);
-        circle.transform.parent = transform;
-        circlePool.Add(circle);
+        ActiveInteractions.Clear();
+    }
+
+    public void AddInteractionToPool(GameObject it)
+    {
+        it.SetActive(false);
+        
+        ActiveInteractions.Remove(it);
+        it.transform.parent = transform;
+        interactionPool.Add(it);
     }
     
     public GameObject GetCircleFromPool()
     {
-        if (circlePool.Count > 0)
+        if (interactionPool.Count > 0)
         {
-            var circle = circlePool[0];
-            circlePool.RemoveAt(0);
+            var circle = interactionPool[0];
+            interactionPool.RemoveAt(0);
             circle.SetActive(true);
-            ActiveCircles.Add(circle);
+            ActiveInteractions.Add(circle);
             return circle;
         }
         else
         {
-            var circle = Instantiate(circlePrefab, transform);
+            var circle = Instantiate(interactionPrefab, transform);
             circle.SetActive(true);
-            ActiveCircles.Add(circle);
+            ActiveInteractions.Add(circle);
             return circle;
         }
     }

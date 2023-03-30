@@ -3,7 +3,6 @@ using Utilities;
 
 public class InputManager : MonoBehaviour
 {
-    public LevelManager levelManager;
     public InputListener inputListener;
     private InteractionComponent selectedSwipeIt;
 
@@ -18,12 +17,17 @@ public class InputManager : MonoBehaviour
         inputListener.onSwipeDetected -= SwipeBehaviour;
     }
 
+    private void Start()
+    {
+        if(GameManager.instance.gameState.IsEngineMenu()) gameObject.SetActive(false);
+    }
+
     private void SwipeBehaviour(InputListener.SwipeDirection dir)
     {
         
-        if ( levelManager.detector.currentIt != null &&  levelManager.detector.currentIt.data.swipeDirection == dir &&  levelManager.detector.currentIt.data.interactionType == Enums.InteractionType.Swipe)
+        if ( LevelManager.instance.detector.currentIt != null &&  LevelManager.instance.detector.currentIt.data.swipeDirection == dir &&  LevelManager.instance.detector.currentIt.data.interactionType == Enums.InteractionType.Swipe)
         {
-            levelManager.detector.currentIt.ValidateInteraction();
+            LevelManager.instance.detector.currentIt.ValidateInteraction();
         }
     }
 
@@ -42,9 +46,9 @@ public class InputManager : MonoBehaviour
                 break;
         }
         
-        if (levelManager.detector.currentIt != null &&  levelManager.detector.currentIt.data.interactionColor == color &&  levelManager.detector.currentIt.data.interactionType == Enums.InteractionType.Tap)
+        if (LevelManager.instance.detector.currentIt != null &&  LevelManager.instance.detector.currentIt.data.interactionColor == color &&  LevelManager.instance.detector.currentIt.data.interactionType == Enums.InteractionType.Tap)
         {
-            levelManager.detector.currentIt.ValidateInteraction();
+            LevelManager.instance.detector.currentIt.ValidateInteraction();
         }
     }
     

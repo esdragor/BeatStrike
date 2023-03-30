@@ -9,7 +9,10 @@ public class InteractionComponent : MonoBehaviour
 
     private void Update()
     {
-        transform.position += -transform.forward * speed * Time.deltaTime;
+        if (GameManager.instance.gameState.IsTimePlay())
+        {
+            transform.position += -transform.forward * speed * Time.deltaTime;
+        }
     }
     
     public void SetData(InteractionKey interactionKey)
@@ -68,13 +71,13 @@ public class InteractionComponent : MonoBehaviour
         
         PlayerManager.instance.OnInteractionSuccess(successGroup);
         
-        PatternPoolManager.Instance.AddCircleToPool(gameObject);
+        PatternPoolManager.Instance.AddInteractionToPool(gameObject);
     }
 
     public virtual void HurtPlayer()
     {
         PlayerManager.instance.TakeDamage(10f);
         
-        PatternPoolManager.Instance.AddCircleToPool(gameObject);
+        PatternPoolManager.Instance.AddInteractionToPool(gameObject);
     }
 }

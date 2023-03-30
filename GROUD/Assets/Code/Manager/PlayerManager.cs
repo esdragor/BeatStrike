@@ -1,5 +1,4 @@
 using System;
-using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,7 +8,7 @@ public class PlayerManager : MonoBehaviour
     public static PlayerManager instance;
 
     public float distanceReached;
-    public PlayerStats playerStats;
+    private PlayerStats playerStats;
     public PlayerStats currentStats;
     public Animator animator;
     
@@ -31,6 +30,8 @@ public class PlayerManager : MonoBehaviour
 
     private void Start()
     {
+        playerStats = GameManager.instance.currentCharacterInfos.playerStats;
+        
         SetPlayer();
     }
 
@@ -117,8 +118,7 @@ public class PlayerManager : MonoBehaviour
 
     void SetUIHealth()
     {
-        healthFill.DOFillAmount(currentStats.hp /playerStats.hp , 1f).OnPlay(() => healthFill.rectTransform.DOShakePosition(1f, 3f));
-        healthTxt.text = $"{currentStats.hp}/{playerStats.hp}";
+        UIManager.instance.hud.playerHealth.SetHealth(currentStats.hp, playerStats.hp);
     }
 }
 

@@ -61,14 +61,14 @@ public class TimerCircle : MonoBehaviour
         }
         else
         {
-            PatternPoolManager.Instance.AddCircleToPool(gameObject.transform.parent.gameObject);
+            PatternPoolManager.Instance.AddInteractionToPool(gameObject.transform.parent.gameObject);
         }
     }
 
     public float TouchCircle()
     {
         time = 0f;
-        PatternPoolManager.Instance.AddCircleToPool(gameObject.transform.parent.gameObject);
+        PatternPoolManager.Instance.AddInteractionToPool(gameObject.transform.parent.gameObject);
         return Mathf.Clamp(
             100 - (circle.GetComponent<RectTransform>().localScale.x - 1) * 100 / (maxSizeCircle - 1),
             1f, 99.99f);

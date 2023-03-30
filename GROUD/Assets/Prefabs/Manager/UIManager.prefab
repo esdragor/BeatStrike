@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 1415441058}
   - component: {fileID: 1415441060}
   - component: {fileID: 1415441059}
+  - component: {fileID: 7345897257288660725}
+  - component: {fileID: 465688346}
   m_Layer: 0
   m_Name: Player_Health
   m_TagString: Untagged
@@ -77,6 +79,34 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &7345897257288660725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1415441057}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7958909c63794144987731531914fe35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthBar: {fileID: 1504926498}
+  healthTxt: {fileID: 6198085981947268122}
+--- !u!114 &465688346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1415441057}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7958909c63794144987731531914fe35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthBar: {fileID: 0}
+  healthTxt: {fileID: 0}
 --- !u!1 &1504926496
 GameObject:
   m_ObjectHideFlags: 0
@@ -335,9 +365,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d08b47ead8a1ca2438a4f8a9ca0c55b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hud: {fileID: 5599907108714970432}
   announcer: {fileID: 654621962125408292}
   endLevel: {fileID: 4568057626842614480}
   score: {fileID: 8030923924860498471}
+  debugPanel: {fileID: 3272801028583066939}
 --- !u!1 &1296916080877243947
 GameObject:
   m_ObjectHideFlags: 0
@@ -622,13 +654,14 @@ GameObject:
   - component: {fileID: 730172554571487622}
   - component: {fileID: 720720773190865088}
   - component: {fileID: 2368534481023350534}
+  - component: {fileID: 5599907108714970432}
   m_Layer: 0
-  m_Name: Debug
+  m_Name: Game_HUD
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8782814721771879118
 RectTransform:
   m_ObjectHideFlags: 0
@@ -715,6 +748,19 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &5599907108714970432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3272801028583066939}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2b1d371dd934c244b722cc16c4ba270, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerHealth: {fileID: 7345897257288660725}
 --- !u!1 &3549296354286575523
 GameObject:
   m_ObjectHideFlags: 0
@@ -972,8 +1018,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: LevelManager, Assembly-CSharp
+      - m_Target: {fileID: 4568057626842614480}
+        m_TargetAssemblyTypeName: UI_EndLevel, Assembly-CSharp
         m_MethodName: Restart
         m_Mode: 1
         m_Arguments:
@@ -1256,8 +1302,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: LevelManager, Assembly-CSharp
+      - m_Target: {fileID: 5599907108714970432}
+        m_TargetAssemblyTypeName: UI_HUD, Assembly-CSharp
         m_MethodName: StartLevel
         m_Mode: 1
         m_Arguments:
@@ -1281,8 +1327,8 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
-        m_MethodName: set_enabled
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
