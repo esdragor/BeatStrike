@@ -1,10 +1,7 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-[Serializable]
-public class CharacterInfos
+[CreateAssetMenu(fileName = "CharacterInfos", menuName = "CharacterInfos", order = 0)]
+public class CharacterInfos : ScriptableObject
 {
     public PlayerStats playerStats;
     public Sprite playerSprite;

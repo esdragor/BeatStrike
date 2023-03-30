@@ -23,7 +23,7 @@ public class PlayerSelectionStats : MonoBehaviour
 
     public void SetPlayerStats(CharacterInfos _CharacterInfos)
     {
-        playerStats = new CharacterInfos();
+        playerStats = ScriptableObject.CreateInstance<CharacterInfos>();
         playerStats.playerStats = _CharacterInfos.playerStats;
         playerStats.playerSprite = _CharacterInfos.playerSprite;
         playerStats.PowerInfo = _CharacterInfos.PowerInfo;

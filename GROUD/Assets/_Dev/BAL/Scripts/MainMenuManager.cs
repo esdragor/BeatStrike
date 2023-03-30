@@ -140,7 +140,7 @@ public class MainMenuManager : MonoBehaviour
     {
         if (currentCharacterInfos != null)
         {
-            // GameManager.instance.SetPlayerStats(currentCharacterInfos);
+            GameManager.instance.SetPlayerStats(currentCharacterInfos);
             SceneManager.LoadScene(1);
         }
         else
