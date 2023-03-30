@@ -29,5 +29,6 @@ public class GameManager : MonoBehaviour
         currentCharacterInfos.playerStats = _currentCharacterInfos.playerStats;
         currentCharacterInfos.playerSprite = _currentCharacterInfos.playerSprite;
         currentCharacterInfos.PowerInfo = _currentCharacterInfos.PowerInfo;
+        currentCharacterInfos.power = _currentCharacterInfos.power;
     }
 }

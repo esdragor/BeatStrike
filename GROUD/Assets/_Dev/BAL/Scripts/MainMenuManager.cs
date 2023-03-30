@@ -127,6 +127,7 @@ public class MainMenuManager : MonoBehaviour
         currentCharacterInfos.playerStats = characterInfos.playerStats;
         currentCharacterInfos.playerSprite = characterInfos.playerSprite;
         currentCharacterInfos.PowerInfo = characterInfos.PowerInfo;
+        currentCharacterInfos.power = characterInfos.power;
         
         playerInfoText.text = "HP: " + currentCharacterInfos.playerStats.hp + "\n" +
                               "Speed: " + currentCharacterInfos.playerStats.speed + "\n" +

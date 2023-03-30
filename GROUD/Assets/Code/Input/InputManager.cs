@@ -29,6 +29,11 @@ public class InputManager : MonoBehaviour
         {
             LevelManager.instance.detector.currentIt.ValidateInteraction();
         }
+
+        if (dir == InputListener.SwipeDirection.UP)
+        {
+            GameManager.instance.currentCharacterInfos.power.Execute();
+        }
     }
 
     private void TapBehaviour(InputListener.TouchSide touchSide)
