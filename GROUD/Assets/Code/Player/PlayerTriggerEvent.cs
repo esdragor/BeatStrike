@@ -1,3 +1,4 @@
+using Code.Interface;
 using UnityEngine;
 
 public class PlayerTriggerEvent : MonoBehaviour
@@ -6,7 +7,7 @@ public class PlayerTriggerEvent : MonoBehaviour
     {
         InteractionComponent it = other.GetComponent<InteractionComponent>();
 
-        if (it && !PlayerManager.instance.immortality)
+        if (it)
         {
             it.HurtPlayer();
         }

@@ -1,4 +1,5 @@
 using System;
+using Code.Interface;
 using UnityEngine;
 
 public class InteractionDetector : MonoBehaviour
@@ -72,12 +73,6 @@ public class InteractionDetector : MonoBehaviour
 
         if (it)
         {
-            if (PlayerManager.instance.immortality)
-            {
-                PlayerManager.instance.OnInteractionSuccess(InteractionSuccess.Ok);
-        
-                PatternPoolManager.Instance.AddInteractionToPool(other.gameObject);
-            }
             currentIt = it;
         }
     }

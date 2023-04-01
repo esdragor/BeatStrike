@@ -19,7 +19,7 @@ public class PlayerManager : MonoBehaviour
     public float runTime;
     private bool isRunning;
 
-    public bool immortality = false;
+    public bool powerIsRunning = false;
     [Header("DEBUG")] 
     public Image healthFill;
     public TMP_Text healthTxt;

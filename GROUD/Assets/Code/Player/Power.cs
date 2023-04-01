@@ -1,20 +1,23 @@
+using System;
 using System.Threading.Tasks;
+using UnityEngine;
 
+[Serializable]
 public class Power
 {
-    public float duration = 10f;
-    
-    async void isImmortal()
+    [SerializeField] private float duration = 10f;
+
+    private async void IsImmortal()
     {
-        float Waitduration = duration * 1000;
+        float waitDuration = duration * 1000;
         
-        PlayerManager.instance.immortality = true;
-        await Task.Delay((int)Waitduration);
-        PlayerManager.instance.immortality = false;
+        PlayerManager.instance.powerIsRunning = true;
+        await Task.Delay((int)waitDuration);
+        PlayerManager.instance.powerIsRunning = false;
     }
     
     public void Execute()
     {
-        isImmortal();
+        IsImmortal();
     }
 }
