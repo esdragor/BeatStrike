@@ -5,6 +5,5 @@ public class CharacterInfos : ScriptableObject
 {
     public PlayerStats playerStats;
     public Sprite playerSprite;
-    public string PowerInfo;
     public Power power;
 }

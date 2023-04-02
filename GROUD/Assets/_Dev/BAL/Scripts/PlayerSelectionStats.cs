@@ -27,7 +27,6 @@ public class PlayerSelectionStats : MonoBehaviour
         playerStats = ScriptableObject.CreateInstance<CharacterInfos>();
         playerStats.playerStats = _CharacterInfos.playerStats;
         playerStats.playerSprite = _CharacterInfos.playerSprite;
-        playerStats.PowerInfo = _CharacterInfos.PowerInfo;
         playerImage.sprite = playerStats.playerSprite;
         
     }

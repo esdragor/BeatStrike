@@ -126,15 +126,13 @@ public class MainMenuManager : MonoBehaviour
         currentCharacterInfos = new CharacterInfos();
         currentCharacterInfos.playerStats = characterInfos.playerStats;
         currentCharacterInfos.playerSprite = characterInfos.playerSprite;
-        currentCharacterInfos.PowerInfo = characterInfos.PowerInfo;
         currentCharacterInfos.power = characterInfos.power;
         
         playerInfoText.text = "HP: " + currentCharacterInfos.playerStats.hp + "\n" +
                               "Speed: " + currentCharacterInfos.playerStats.speed + "\n" +
                               "Tolerance: " + currentCharacterInfos.playerStats.tolerance + "\n" +
                               "Experience Factor: " + currentCharacterInfos.playerStats.experienceFactor + "\n" +
-                              "Damage: " + currentCharacterInfos.playerStats.damage + "\n" +
-                              "Power: " + currentCharacterInfos.PowerInfo;
+                              "Damage: " + currentCharacterInfos.playerStats.damage;
     }
 
     public void LockCharacter()
