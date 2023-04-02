@@ -14,6 +14,8 @@ public class LevelRoadManager : MonoBehaviour
     int SubStepCount() => subStepCount = subStepByStep * stepCount;
 
     public List<RoadStep> steps;
+    private List<Vector3> stepsPositions;
+    private int currentIndex;
 
     [Button("Init Road Steps")] void InitRoadSteps()
     {
@@ -24,8 +26,35 @@ public class LevelRoadManager : MonoBehaviour
         }
     }
 
+    private void Awake()
+    {
+        InitRoadSteps();
+        SetRoadStepPosition();
+    }
+
+    public Vector3 StepTo(int index)
+    {
+        currentIndex = index - 1;
+        return stepsPositions[currentIndex];
+    }
+
+    public RoadStep GetCurrentRoadStep()
+    {
+        foreach (var s in steps)
+        {
+            if (s.position == stepsPositions[currentIndex])
+            {
+                return s;
+            }
+        }
+
+        return null;
+    }
+
     void SetRoadStepPosition()
     {
+        stepsPositions = new List<Vector3>();
+        
         if (steps.Count < stepCount)
         {
             int countToAdd = stepCount - steps.Count;
@@ -40,7 +69,6 @@ public class LevelRoadManager : MonoBehaviour
             for (int i = 0; i < countToRemove; i++)
             {
                 steps.Remove(steps[^1]);
-
             }
         }
         
@@ -50,11 +78,14 @@ public class LevelRoadManager : MonoBehaviour
             steps[i].position = new Vector3(transform.position.x, transform.position.y, transform.position.z + padding);
             
             steps[i].subStepPosition = new Vector3[subStepByStep];
+            
             for (int j = 0; j < subStepByStep; j++)
             {
                 float subPadding = j * distanceSplit;
                 Vector3 subPosition = new Vector3(steps[i].position.x, steps[i].position.y, steps[i].position.z + subPadding);
                 steps[i].subStepPosition[j] = subPosition;
+                
+                stepsPositions.Add(steps[i].subStepPosition[j]);
             }
         }
     }

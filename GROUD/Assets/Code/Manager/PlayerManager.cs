@@ -72,7 +72,6 @@ public class PlayerManager : MonoBehaviour
                 if (GameManager.instance.gameState.IsLevelExploration())
                 {
                     animator.SetBool("IsRunning", true);
-                    LevelManager.instance.MoveWorld(5, currentStats.speed, animator);
                     distanceReached += 5;
                 }
                 break;
@@ -83,8 +82,6 @@ public class PlayerManager : MonoBehaviour
                 if (GameManager.instance.gameState.IsLevelExploration())
                 {
                     animator.SetBool("IsRunning", true);
-                    LevelManager.instance.MoveWorld(10, currentStats.speed, animator);
-                    distanceReached += 10;
                 }
                 break;
             
@@ -95,8 +92,6 @@ public class PlayerManager : MonoBehaviour
                 {
                     isRunning = true;
                     animator.SetBool("IsRunning", true);
-                    LevelManager.instance.MoveWorld(15, currentStats.speed, animator);
-                    distanceReached += 15;
                 }
                 break;
         }

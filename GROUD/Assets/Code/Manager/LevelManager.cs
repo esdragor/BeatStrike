@@ -7,10 +7,13 @@ using Utilities;
 public class LevelManager : MonoBehaviour
 {
     public static LevelManager instance;
-
-    public Transform levelObject;
-    public Vector3 levelOriginPosition;    
     
+    [Header("Road")]
+    public LevelRoadManager roadManager;
+    public Transform playerObject;
+    public float scrollSpeed;
+    
+    [Header("Interaction")]
     public Transform leftSpawnPoint;
     public Transform midSpawnPoint;
     public Transform rightSpawnPoint;
@@ -22,21 +25,20 @@ public class LevelManager : MonoBehaviour
     public int currentRoundIndex = 0;
     public Vector3[] spinPoints;
     public float DistanceToSpawnPointSpin = 30;
-    
+
     [SerializeField] private GameObject TriggerSpinDetectorPrefab;
 
     private void Awake()
     {
         if (instance == null) instance = this;
-        levelOriginPosition = levelObject.transform.position;
     }
 
     public void StartLevel()
     {
+        playerObject.position = roadManager.steps[0].subStepPosition[0];
         PatternManager.OnPatternEnd += CheckNextPattern;
         PlayPattern();
     }
-
     private void Update()
     {
         if ( PlayerManager.instance.distanceReached >=  levelData.distanceToReach)
@@ -44,13 +46,9 @@ public class LevelManager : MonoBehaviour
             EndLevel();
         }
     }
-
     public void Restart()
     {
         PatternPoolManager.Instance.DisableAllInteractions();
-        
-        levelObject.DOKill();
-        levelObject.position = levelOriginPosition;
         
         PlayerManager.instance.SetPlayer();
 
@@ -61,16 +59,9 @@ public class LevelManager : MonoBehaviour
 
         StartLevel();
     }
-
     public void PlayPattern()
     {
         PatternManager.Instance.StartPattern(levelData.rounds[currentRoundIndex].patterns[currentPatternIndex]);
-    }
-
-    public void MoveWorld(float distance, float duration, Animator playerAnimator)
-    {
-        levelObject.DOKill();
-        levelObject.DOMoveZ(levelObject.transform.position.z - distance, duration).OnComplete( (() => playerAnimator.SetBool("IsRunning", false)));
     }
     
     void CheckNextPattern()
