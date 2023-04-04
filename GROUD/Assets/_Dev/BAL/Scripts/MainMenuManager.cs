@@ -130,7 +130,7 @@ public class MainMenuManager : MonoBehaviour
         
         playerInfoText.text = "HP: " + currentCharacterInfos.playerStats.hp + "\n" +
                               "Speed: " + currentCharacterInfos.playerStats.speed + "\n" +
-                              "Tolerance: " + currentCharacterInfos.playerStats.tolerance + "\n" +
+                              "Tolerance: " + currentCharacterInfos.playerStats.critTolerance + "\n" +
                               "Experience Factor: " + currentCharacterInfos.playerStats.experienceFactor + "\n" +
                               "Damage: " + currentCharacterInfos.playerStats.damage;
     }

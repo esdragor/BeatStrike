@@ -125,25 +125,86 @@ public class PlayerManager : MonoBehaviour
 
 [Serializable] public class PlayerStats
 {
+    [Header("Stats")]
     public float hp;
-    public float speed;
-    public float tolerance;
-    public float experienceFactor;
+    public float competenceDuration;
     public float damage;
+    public float speed;
+    public float critRate;
+    public float critTolerance;
     
-    public PlayerStats(float hp, float speed, float experienceFactor, float damage)
+    public float experienceFactor;
+    
+    [Header("Stats Bornes")]
+    public float minHp;
+    public float maxHp;
+    public float minSpeed;
+    public float maxSpeed;
+    public float minExperienceFactor;
+    public float maxExperienceFactor;
+    public float minDamage;
+    public float maxDamage;
+    public float minCompetenceDuration;
+    public float maxCompetenceDuration;
+    public float minCritRate;
+    public float maxCritRate;
+    public float minCritTolerance;
+    public float maxCritTolerance;
+
+    public PlayerStats(float _hp, float _speed, float _experienceFactor, float _damage, float _competenceDuration, float _critRate, float _critTolerance)
     {
-        this.hp = hp;
-        this.speed = speed;
-        this.experienceFactor = experienceFactor;
-        this.damage = damage;
+        hp = _hp;
+        speed = _speed;
+        experienceFactor = _experienceFactor;
+        damage = _damage;
+        competenceDuration = _competenceDuration;
+        critRate = _critRate;
+        critTolerance = _critTolerance;
     }
 
-    public void SetHp(float amount) => hp = amount;
-    public void SetSpeed(float amount) => speed = amount;
-    public void SetTolerance(float amount) => tolerance = amount;
-    public void SetExperienceFactor(float amount) => experienceFactor = amount;
-    public void SetDamage(float amount) => damage = amount;
+    public void SetHp(float amount)
+    {
+        if (amount < minHp) amount = minHp;
+        if (amount > maxHp) amount = maxHp;
+        hp = amount;
+    }
+    public void SetSpeed(float amount)
+    {
+        if (amount < minSpeed) amount = minSpeed;
+        if (amount > maxSpeed) amount = maxSpeed;
+        speed = amount;
+    }
+    public void SetTolerance(float amount) => critTolerance = amount;
+    public void SetExperienceFactor(float amount)
+    {
+        if (amount < minExperienceFactor) amount = minExperienceFactor;
+        if (amount > maxExperienceFactor) amount = maxExperienceFactor;
+        experienceFactor = amount;
+    }
+    public void SetDamage(float amount)
+    {
+        if (amount < minDamage) amount = minDamage;
+        if (amount > maxDamage) amount = maxDamage;
+        damage = amount;
+    }
+    public void SetCompetenceDuration(float amount)
+    {
+        if (amount < minCompetenceDuration) amount = minCompetenceDuration;
+        if (amount > maxCompetenceDuration) amount = maxCompetenceDuration;
+        competenceDuration = amount;
+    }
+    public void SetCritRate(float amount)
+    {
+        if (amount < minCritRate) amount = minCritRate;
+        if (amount > maxCritRate) amount = maxCritRate;
+        critRate = amount;
+    }
+    public void SetCritTolerance(float amount)
+    {
+        if (amount < minCritTolerance) amount = minCritTolerance;
+        if (amount > maxCritTolerance) amount = maxCritTolerance;
+        critTolerance = amount;
+    }
 }
 
 public enum InteractionSuccess
