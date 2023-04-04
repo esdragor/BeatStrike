@@ -20,6 +20,10 @@ public class PlayerManager : MonoBehaviour
     private bool isMoving;
 
     public bool powerIsRunning = false;
+    [Header("DEBUG")] 
+    public Image healthFill;
+    public TMP_Text healthTxt;
+    public Image CDPowerImage;
 
     private void Awake()
     {
@@ -134,7 +138,7 @@ public class PlayerManager : MonoBehaviour
                 }
                 break;
         }
-        
+        GameManager.instance.currentCharacterInfos.power.ModifyCooldown(interactionSuccess);
         UIManager.instance.score.SetScore(distanceReached);
     }
 
