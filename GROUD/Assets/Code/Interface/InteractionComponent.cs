@@ -80,7 +80,7 @@ namespace Code.Interface
 
         public virtual void HurtPlayer()
         {
-            PlayerManager.instance.TakeDamage(10f);
+            PlayerManager.instance.TakeDamage(1f);
 
             PatternPoolManager.Instance.AddInteractionToPool(gameObject);
         }
