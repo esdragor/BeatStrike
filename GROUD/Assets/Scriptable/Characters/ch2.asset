@@ -13,12 +13,27 @@ MonoBehaviour:
   m_Name: ch2
   m_EditorClassIdentifier: 
   playerStats:
-    hp: 120
-    speed: 5
-    tolerance: 1
-    experienceFactor: 1
+    hp: 5
+    competenceDuration: 0
     damage: 10
+    speed: 2
+    critRate: 0
+    critTolerance: 0
+    experienceFactor: 1
+    minHp: 0
+    maxHp: 0
+    minSpeed: 0
+    maxSpeed: 0
+    minExperienceFactor: 0
+    maxExperienceFactor: 0
+    minDamage: 0
+    maxDamage: 0
+    minCompetenceDuration: 0
+    maxCompetenceDuration: 0
+    minCritRate: 0
+    maxCritRate: 0
+    minCritTolerance: 0
+    maxCritTolerance: 0
   playerSprite: {fileID: 21300000, guid: 372e7b39fc8f34549ac25d8757965a2c, type: 3}
-  PowerInfo: il drift comme dans un clip des black eyed peas
   power:
     duration: 10
