@@ -5,11 +5,9 @@ using UnityEngine;
 [Serializable]
 public class Power
 {
-    [SerializeField] private float duration = 10f;
-
-    private async void IsImmortal()
+    private async void JustPerfect()
     {
-        float waitDuration = duration * 1000;
+        float waitDuration = GameManager.instance.currentCharacterInfos.playerStats.competenceDuration * 1000;
         
         PlayerManager.instance.powerIsRunning = true;
         await Task.Delay((int)waitDuration);
@@ -18,6 +16,6 @@ public class Power
     
     public void Execute()
     {
-        IsImmortal();
+        JustPerfect();
     }
 }
