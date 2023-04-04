@@ -77,7 +77,7 @@ public class PlayerManager : MonoBehaviour
 
     public void SetPlayer()
     {
-        currentStats = new PlayerStats(playerStats.hp, playerStats.speed, playerStats.experienceFactor, playerStats.damage);
+        currentStats = new PlayerStats(playerStats);
         distanceReached = 0;
         SetUIHealth();
         UIManager.instance.score.SetScore(distanceReached);
@@ -194,6 +194,17 @@ public class PlayerManager : MonoBehaviour
         competenceDuration = _competenceDuration;
         critRate = _critRate;
         critTolerance = _critTolerance;
+    }
+    
+    public PlayerStats(PlayerStats other)
+    {
+        hp = other.hp;
+        speed = other.speed;
+        experienceFactor = other.experienceFactor;
+        damage = other.damage;
+        competenceDuration = other.competenceDuration;
+        critRate = other.critRate;
+        critTolerance = other.critTolerance;
     }
 
     public void SetHp(float amount)
