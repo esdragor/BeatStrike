@@ -10,7 +10,6 @@ public class LevelRoadManager : MonoBehaviour
     [Range(1, 50)] public int subStepByStep = 10; 
     [Range(0.1f, 5f)]public float stepDistance = 1f;
     private float distanceSplit => stepDistance / subStepByStep;
-    public List<RoadStep> savedSteps;
     public List<RoadStep> majorSteps;
     private List<RoadStep> steps;
     private int currentIndex;
@@ -34,13 +33,13 @@ public class LevelRoadManager : MonoBehaviour
         if(GameManager.instance.gameState.IsLevelCombat()) return;
         int targetIndex = currentIndex + stepLenght;
         
-        if (targetIndex > savedSteps.Count)
+        if (targetIndex > steps.Count)
         {
-            targetIndex = savedSteps.Count;
+            targetIndex = steps.Count;
         }
         for (int i = currentIndex; i < targetIndex; i++)
         {
-            switch (savedSteps[i].stepAction)
+            switch (steps[i].stepAction)
             {
                 case RoadStep.StepAction.NONE:
                     Debug.Log($"{i} is None");
@@ -49,12 +48,12 @@ public class LevelRoadManager : MonoBehaviour
                 case RoadStep.StepAction.ENNEMY:
                     Debug.Log($"{i} is enemy so stop");
                     LevelManager.instance.SetCombatMode();
-                    PlayerManager.instance.MovePlayerTo(savedSteps[i].position, RoadStep.StepAction.ENNEMY);
+                    PlayerManager.instance.MovePlayerTo(steps[i].position, RoadStep.StepAction.ENNEMY);
                     return;
                 
                 case RoadStep.StepAction.END:
                     Debug.Log($"{i} is end so stop");
-                    PlayerManager.instance.MovePlayerTo(savedSteps[i].position, RoadStep.StepAction.END);
+                    PlayerManager.instance.MovePlayerTo(steps[i].position, RoadStep.StepAction.END);
                     return;
             }
             
@@ -63,7 +62,7 @@ public class LevelRoadManager : MonoBehaviour
             if (i == targetIndex -1)
             {
                 Debug.Log($"{i} is last so move");
-                PlayerManager.instance.MovePlayerTo(savedSteps[i].position);
+                PlayerManager.instance.MovePlayerTo(steps[i].position);
                 currentIndex = targetIndex;
             }
         }
@@ -150,6 +149,7 @@ public class LevelRoadManager : MonoBehaviour
     [Serializable] public class RoadStep
     {
         public StepAction stepAction;
+        public int index;
         public Vector3 position;
         public Vector3[] subStepPosition;
 
