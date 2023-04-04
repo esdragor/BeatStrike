@@ -14,9 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerStats:
     hp: 120
-    speed: 2
+    speed: 5
     tolerance: 1
     experienceFactor: 1
     damage: 10
   playerSprite: {fileID: 21300000, guid: 372e7b39fc8f34549ac25d8757965a2c, type: 3}
   PowerInfo: il drift comme dans un clip des black eyed peas
+  power:
+    duration: 10

@@ -46,7 +46,7 @@
      public bool IsTimePause() => timeState == Enums.TimeState.Pause;
      
      public bool IsLevelExploration() => levelState == Enums.LevelState.Exploration;
-     public bool IsLevelBoss() => levelState == Enums.LevelState.Boss;
+     public bool IsLevelCombat() => levelState == Enums.LevelState.Combat;
 
      public bool IsEngineMenu() => engineState == Enums.EngineState.Menu;
      public bool IsEngineGame() => engineState == Enums.EngineState.Game;

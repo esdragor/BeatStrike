@@ -30,7 +30,7 @@ namespace Utilities
         public enum LevelState
         {
             Exploration,
-            Boss
+            Combat
         }
     }
 

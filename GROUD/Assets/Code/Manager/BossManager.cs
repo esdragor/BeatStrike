@@ -36,7 +36,7 @@ public class BossManager : MonoBehaviour
         bossObj.transform.position -= Vector3.forward * Time.deltaTime * speed;
         if (bossObj.transform.position.z <= 30f)
         {
-            GameManager.instance.gameState.SwitchLevelState(Enums.LevelState.Boss);
+            GameManager.instance.gameState.SwitchLevelState(Enums.LevelState.Combat);
             GameManager.onUpdated -= BossArrival;
             LevelManager.instance.PlayPattern();
         }

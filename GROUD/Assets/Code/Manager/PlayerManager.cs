@@ -1,13 +1,14 @@
 using System;
-using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class PlayerManager : MonoBehaviour
 {
     public static PlayerManager instance;
 
     public float distanceReached;
+    private Vector3 previousPosition;
+    private Vector3 targetPosition;
+    public float runningSpeed;
     private PlayerStats playerStats;
     public PlayerStats currentStats;
     public Animator animator;
@@ -16,13 +17,9 @@ public class PlayerManager : MonoBehaviour
     public float currentExperience;
     public int level = 1;
 
-    public float runTime;
-    private bool isRunning;
+    private bool isMoving;
 
     public bool powerIsRunning = false;
-    [Header("DEBUG")] 
-    public Image healthFill;
-    public TMP_Text healthTxt;
 
     private void Awake()
     {
@@ -34,6 +31,48 @@ public class PlayerManager : MonoBehaviour
         playerStats = GameManager.instance.currentCharacterInfos.playerStats;
         
         SetPlayer();
+    }
+
+    private void Update()
+    {
+        if (isMoving)
+        {
+            Move();
+        }
+    }
+
+    private float runningStep;
+    private LevelRoadManager.RoadStep.StepAction nextAction;
+    public void MovePlayerTo(Vector3 pos, LevelRoadManager.RoadStep.StepAction stepAction = LevelRoadManager.RoadStep.StepAction.NONE)
+    {
+        Debug.Log($"Player Move");
+        nextAction = stepAction;
+        targetPosition = pos;
+        previousPosition = transform.position;
+        isMoving = true;
+    }
+    
+    void Move()
+    {
+        runningStep += runningSpeed * Time.deltaTime;
+        runningStep = Mathf.Clamp(runningSpeed, 0, 1);
+        
+        transform.position = Vector3.Lerp(previousPosition, targetPosition, runningStep);
+
+        if (runningSpeed >= 1)
+        {
+            Debug.Log($"Player Reach End");
+            isMoving = false;
+            switch (nextAction)
+            {
+                case LevelRoadManager.RoadStep.StepAction.ENNEMY:
+                    break;
+                
+                case LevelRoadManager.RoadStep.StepAction.END:
+                    LevelManager.instance.EndLevel();
+                    break;
+            }
+        }
     }
 
     public void SetPlayer()
@@ -71,8 +110,8 @@ public class PlayerManager : MonoBehaviour
 
                 if (GameManager.instance.gameState.IsLevelExploration())
                 {
-                    animator.SetBool("IsRunning", true);
-                    distanceReached += 5;
+                    LevelManager.instance.roadManager.CheckStepsToTarget((int)currentStats.speed + 5);
+                    
                 }
                 break;
             
@@ -81,7 +120,8 @@ public class PlayerManager : MonoBehaviour
 
                 if (GameManager.instance.gameState.IsLevelExploration())
                 {
-                    animator.SetBool("IsRunning", true);
+                    LevelManager.instance.roadManager.CheckStepsToTarget((int)currentStats.speed + 10);
+
                 }
                 break;
             
@@ -90,8 +130,7 @@ public class PlayerManager : MonoBehaviour
                 
                 if (GameManager.instance.gameState.IsLevelExploration())
                 {
-                    isRunning = true;
-                    animator.SetBool("IsRunning", true);
+                    LevelManager.instance.roadManager.CheckStepsToTarget((int)currentStats.speed + 20);
                 }
                 break;
         }

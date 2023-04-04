@@ -6,86 +6,106 @@ using UnityEngine;
 
 public class LevelRoadManager : MonoBehaviour
 {
-    [Range(1, 100)] public int stepCount = 1;
+    [Range(1, 500)] public int stepCount = 1;
     [Range(1, 50)] public int subStepByStep = 10; 
-    [Range(0.1f, 5f)]public float stepDistance = 1f; //1 meter
+    [Range(0.1f, 5f)]public float stepDistance = 1f;
     private float distanceSplit => stepDistance / subStepByStep;
-    public int subStepCount;
-    int SubStepCount() => subStepCount = subStepByStep * stepCount;
-
-    public List<RoadStep> steps;
-    private List<Vector3> stepsPositions;
+    public List<RoadStep> savedSteps;
+    public List<RoadStep> majorSteps;
+    private List<RoadStep> steps;
     private int currentIndex;
 
     [Button("Init Road Steps")] void InitRoadSteps()
     {
-        steps = new List<RoadStep>();
+        majorSteps = new List<RoadStep>();
         for (int i = 0; i < stepCount; i++)
         {
-            steps.Add(new RoadStep());
+            majorSteps.Add(new RoadStep());
         }
     }
 
-    private void Awake()
+    public void Restart()
     {
-        InitRoadSteps();
-        SetRoadStepPosition();
+        currentIndex = 0;
     }
-
-    public Vector3 StepTo(int index)
+    
+    public void CheckStepsToTarget(int stepLenght)
     {
-        currentIndex = index - 1;
-        return stepsPositions[currentIndex];
-    }
-
-    public RoadStep GetCurrentRoadStep()
-    {
-        foreach (var s in steps)
+        if(GameManager.instance.gameState.IsLevelCombat()) return;
+        int targetIndex = currentIndex + stepLenght;
+        
+        if (targetIndex > savedSteps.Count)
         {
-            if (s.position == stepsPositions[currentIndex])
+            targetIndex = savedSteps.Count;
+        }
+        for (int i = currentIndex; i < targetIndex; i++)
+        {
+            switch (savedSteps[i].stepAction)
             {
-                return s;
+                case RoadStep.StepAction.NONE:
+                    Debug.Log($"{i} is None");
+                    break;
+                
+                case RoadStep.StepAction.ENNEMY:
+                    Debug.Log($"{i} is enemy so stop");
+                    LevelManager.instance.SetCombatMode();
+                    PlayerManager.instance.MovePlayerTo(savedSteps[i].position, RoadStep.StepAction.ENNEMY);
+                    return;
+                
+                case RoadStep.StepAction.END:
+                    Debug.Log($"{i} is end so stop");
+                    PlayerManager.instance.MovePlayerTo(savedSteps[i].position, RoadStep.StepAction.END);
+                    return;
+            }
+            
+            Debug.Log($"{i} is not last so continue");
+            
+            if (i == targetIndex -1)
+            {
+                Debug.Log($"{i} is last so move");
+                PlayerManager.instance.MovePlayerTo(savedSteps[i].position);
+                currentIndex = targetIndex;
             }
         }
-
-        return null;
     }
 
     void SetRoadStepPosition()
     {
-        stepsPositions = new List<Vector3>();
+        if(EditorApplication.isPlaying) return;
         
-        if (steps.Count < stepCount)
+        steps = new List<RoadStep>();
+        
+        if (majorSteps.Count < stepCount)
         {
-            int countToAdd = stepCount - steps.Count;
+            int countToAdd = stepCount - majorSteps.Count;
             for (int i = 0; i < countToAdd; i++)
             {
-                steps.Add(new RoadStep());
+                majorSteps.Add(new RoadStep());
             }
         }
         else
         {
-            int countToRemove = steps.Count - stepCount;
+            int countToRemove = majorSteps.Count - stepCount;
             for (int i = 0; i < countToRemove; i++)
             {
-                steps.Remove(steps[^1]);
+                majorSteps.Remove(majorSteps[^1]);
             }
         }
         
-        for (int i = 0; i < steps.Count; i++)
+        for (int i = 0; i < majorSteps.Count; i++)
         {
             float padding = i * stepDistance;
-            steps[i].position = new Vector3(transform.position.x, transform.position.y, transform.position.z + padding);
-            
-            steps[i].subStepPosition = new Vector3[subStepByStep];
+            majorSteps[i].position = new Vector3(transform.position.x, transform.position.y, transform.position.z + padding);
+            majorSteps[i].subStepPosition = new Vector3[subStepByStep];
             
             for (int j = 0; j < subStepByStep; j++)
             {
                 float subPadding = j * distanceSplit;
-                Vector3 subPosition = new Vector3(steps[i].position.x, steps[i].position.y, steps[i].position.z + subPadding);
-                steps[i].subStepPosition[j] = subPosition;
+                Vector3 subPosition = new Vector3(majorSteps[i].position.x, majorSteps[i].position.y, majorSteps[i].position.z + subPadding);
+                majorSteps[i].subStepPosition[j] = subPosition;
                 
-                stepsPositions.Add(steps[i].subStepPosition[j]);
+                steps.Add(majorSteps[i]);
+                steps.Add(new RoadStep{position = majorSteps[i].subStepPosition[j]});
             }
         }
     }
@@ -93,9 +113,9 @@ public class LevelRoadManager : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         SetRoadStepPosition();
-        for (int i = 0; i < steps.Count; i++)
+        for (int i = 0; i < majorSteps.Count; i++)
         {
-            switch (steps[i].stepAction)
+            switch (majorSteps[i].stepAction)
             {
                 case RoadStep.StepAction.NONE:
                     Gizmos.color = Color.black;
@@ -111,16 +131,16 @@ public class LevelRoadManager : MonoBehaviour
                     break;
             }
             
-            Gizmos.DrawRay(steps[i].position, Vector3.up * 2);
+            Gizmos.DrawRay(majorSteps[i].position, Vector3.up * 2);
 
             if (i < stepCount - 1)
             {
-                for (int j = 0; j < steps[i].subStepPosition.Length; j++)
+                for (int j = 0; j < majorSteps[i].subStepPosition.Length; j++)
                 {
-                    if (steps[i].position != steps[i].subStepPosition[j])
+                    if (majorSteps[i].position != majorSteps[i].subStepPosition[j])
                     {
                         Gizmos.color = Color.grey;
-                        Gizmos.DrawRay(steps[i].subStepPosition[j], Vector3.up * 0.5f);
+                        Gizmos.DrawRay(majorSteps[i].subStepPosition[j], Vector3.up * 0.5f);
                     }
                 }
             }
@@ -139,5 +159,10 @@ public class LevelRoadManager : MonoBehaviour
             ENNEMY,
             END
         }
+    }
+
+    public class SavedSteps
+    {
+        public List<RoadStep> steps;
     }
 }

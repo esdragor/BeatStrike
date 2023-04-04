@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections;
-using DG.Tweening;
+﻿using System.Collections;
 using UnityEngine;
 using Utilities;
 
@@ -35,7 +33,8 @@ public class LevelManager : MonoBehaviour
 
     public void StartLevel()
     {
-        playerObject.position = roadManager.steps[0].subStepPosition[0];
+        GameManager.instance.gameState.SwitchLevelState(Enums.LevelState.Exploration);
+        playerObject.position = roadManager.majorSteps[0].subStepPosition[0];
         PatternManager.OnPatternEnd += CheckNextPattern;
         PlayPattern();
     }
@@ -54,6 +53,7 @@ public class LevelManager : MonoBehaviour
 
         currentPatternIndex = 0;
         currentRoundIndex = 0;
+        roadManager.Restart();
         
         GameManager.instance.gameState.SwitchTimeState(Enums.TimeState.Play);
 
@@ -62,6 +62,11 @@ public class LevelManager : MonoBehaviour
     public void PlayPattern()
     {
         PatternManager.Instance.StartPattern(levelData.rounds[currentRoundIndex].patterns[currentPatternIndex]);
+    }
+
+    public void SetCombatMode()
+    {
+        GameManager.instance.gameState.SwitchLevelState(Enums.LevelState.Combat);
     }
     
     void CheckNextPattern()
@@ -86,12 +91,6 @@ public class LevelManager : MonoBehaviour
         if (currentRoundIndex >= levelData.rounds.Length)
         {
             StartCoroutine(WaitUntilInteractionAreEnded());
-            return;
-        }
-        
-        if (levelData.rounds[currentRoundIndex].IsBossRound())
-        {
-            BossManager.instance.StartBossFight((BossLevelRound)levelData.rounds[currentRoundIndex]);
         }
         else
         {

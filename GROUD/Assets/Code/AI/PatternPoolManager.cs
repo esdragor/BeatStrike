@@ -8,6 +8,7 @@ public class PatternPoolManager : MonoBehaviour
     public List<GameObject> ActiveInteractions = new ();
     [SerializeField] private GameObject interactionPrefab;
     [SerializeField] private int maxPoolSize = 10;
+    [SerializeField] private Transform interactionParent;
     
     private List<GameObject> interactionPool = new ();
 
@@ -21,7 +22,7 @@ public class PatternPoolManager : MonoBehaviour
     {
         for (int i = 0; i < maxPoolSize; i++)
         {
-            interactionPool.Add(Instantiate(interactionPrefab, transform));
+            interactionPool.Add(Instantiate(interactionPrefab, interactionParent));
             interactionPool[i].name = $"Interaction_{i}";
             interactionPool[i].SetActive(false);
         }
@@ -32,7 +33,7 @@ public class PatternPoolManager : MonoBehaviour
         foreach (GameObject it in ActiveInteractions)
         {
             it.SetActive(false);
-            it.transform.parent = transform;
+            it.transform.parent = interactionParent;
             interactionPool.Add(it);
         }
         
@@ -44,7 +45,7 @@ public class PatternPoolManager : MonoBehaviour
         it.SetActive(false);
         
         ActiveInteractions.Remove(it);
-        it.transform.parent = transform;
+        it.transform.parent = interactionParent;
         interactionPool.Add(it);
     }
     
