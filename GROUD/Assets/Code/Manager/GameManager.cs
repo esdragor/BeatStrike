@@ -9,6 +9,10 @@ public class GameManager : MonoBehaviour
     public static Delegates.OnUpdated onUpdated;
     
     [HideInInspector] public CharacterInfos currentCharacterInfos;
+    public float MovementRatioOk = 1f;
+    public float MovementRatioGood = 1.5f;
+    public float MovementRatioPerfect = 1f;
+    
 
     private void Awake()
     {

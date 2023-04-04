@@ -107,6 +107,8 @@ public class PlayerManager : MonoBehaviour
 
     public void OnInteractionSuccess(InteractionSuccess interactionSuccess)
     {
+        float speed = GameManager.instance.currentCharacterInfos.playerStats.speed;
+        
         switch (interactionSuccess)
         {
             case InteractionSuccess.Ok:
