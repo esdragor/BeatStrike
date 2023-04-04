@@ -173,49 +173,83 @@ public class PlayerManager : MonoBehaviour
         critTolerance = other.critTolerance;
     }
 
-    public void SetHp(float amount)
+    private float ModVal( in float val, float amount, float min, float max)
     {
-        if (amount < minHp) amount = minHp;
-        if (amount > maxHp) amount = maxHp;
-        hp = amount;
+        float NewVal = val;
+        NewVal += amount;
+        if (val < min) NewVal = min;
+        if (val > max) NewVal = max;
+        return NewVal;
     }
-    public void SetSpeed(float amount)
+    
+    private float SetVal( in float val, float min, float max)
     {
-        if (amount < minSpeed) amount = minSpeed;
-        if (amount > maxSpeed) amount = maxSpeed;
-        speed = amount;
+        float NewVal = val;
+        if (val < min) NewVal = min;
+        if (val > max) NewVal = max;
+        return NewVal;
     }
-    public void SetTolerance(float amount) => critTolerance = amount;
-    public void SetExperienceFactor(float amount)
+    
+    public void ModifyValue(StatsType type, float value)
     {
-        if (amount < minExperienceFactor) amount = minExperienceFactor;
-        if (amount > maxExperienceFactor) amount = maxExperienceFactor;
-        experienceFactor = amount;
+        switch (type)
+        {
+            case StatsType.Hp:
+                hp = ModVal(hp, value, minHp, maxHp);
+                break;
+            case StatsType.Speed:
+                speed = ModVal(speed, value, minSpeed, maxSpeed);
+                break;
+            case StatsType.ExperienceFactor:
+                experienceFactor = ModVal(experienceFactor, value, minExperienceFactor, maxExperienceFactor);
+                break;
+            case StatsType.Damage:
+                damage = ModVal(damage, value, minDamage, maxDamage);
+                break;
+            case StatsType.CompetenceDuration:
+                competenceDuration = ModVal(competenceDuration, value, minCompetenceDuration, maxCompetenceDuration);
+                break;
+            case StatsType.CritRate:
+                critRate = ModVal(critRate, value, minCritRate, maxCritRate);
+                break;
+            case StatsType.CritTolerance:
+                critTolerance = ModVal(critTolerance, value, minCritTolerance, maxCritTolerance);
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(type), type, null);
+        }
     }
-    public void SetDamage(float amount)
+    
+    public void SetValue(StatsType type, float value)
     {
-        if (amount < minDamage) amount = minDamage;
-        if (amount > maxDamage) amount = maxDamage;
-        damage = amount;
+        switch (type)
+        {
+            case StatsType.Hp:
+                hp = SetVal(value, minHp, maxHp);
+                break;
+            case StatsType.Speed:
+                speed = SetVal(value, minSpeed, maxSpeed);
+                break;
+            case StatsType.ExperienceFactor:
+                experienceFactor = SetVal(value, minExperienceFactor, maxExperienceFactor);
+                break;
+            case StatsType.Damage:
+                damage = SetVal(value, minDamage, maxDamage);
+                break;
+            case StatsType.CompetenceDuration:
+                competenceDuration = SetVal(value, minCompetenceDuration, maxCompetenceDuration);
+                break;
+            case StatsType.CritRate:
+                critRate = SetVal(value, minCritRate, maxCritRate);
+                break;
+            case StatsType.CritTolerance:
+                critTolerance = SetVal(value, minCritTolerance, maxCritTolerance);
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(type), type, null);
+        }
     }
-    public void SetCompetenceDuration(float amount)
-    {
-        if (amount < minCompetenceDuration) amount = minCompetenceDuration;
-        if (amount > maxCompetenceDuration) amount = maxCompetenceDuration;
-        competenceDuration = amount;
-    }
-    public void SetCritRate(float amount)
-    {
-        if (amount < minCritRate) amount = minCritRate;
-        if (amount > maxCritRate) amount = maxCritRate;
-        critRate = amount;
-    }
-    public void SetCritTolerance(float amount)
-    {
-        if (amount < minCritTolerance) amount = minCritTolerance;
-        if (amount > maxCritTolerance) amount = maxCritTolerance;
-        critTolerance = amount;
-    }
+    
 }
 
 public enum InteractionSuccess
@@ -223,4 +257,15 @@ public enum InteractionSuccess
     Ok,
     Good,
     Perfect
+}
+
+public enum StatsType
+{
+    Hp,
+    Speed,
+    ExperienceFactor,
+    Damage,
+    CompetenceDuration,
+    CritRate,
+    CritTolerance
 }
