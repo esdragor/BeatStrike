@@ -65,6 +65,8 @@ public class PlayerManager : MonoBehaviour
 
     public void OnInteractionSuccess(InteractionSuccess interactionSuccess)
     {
+        float speed = GameManager.instance.currentCharacterInfos.playerStats.speed;
+        
         switch (interactionSuccess)
         {
             case InteractionSuccess.Ok:
@@ -73,7 +75,8 @@ public class PlayerManager : MonoBehaviour
                 if (GameManager.instance.gameState.IsLevelExploration())
                 {
                     animator.SetBool("IsRunning", true);
-                    LevelManager.instance.MoveWorld(5, currentStats.speed, animator);
+                    LevelManager.instance.MoveWorld(speed * GameManager.instance.MovementRatioOk,
+                        currentStats.speed, animator);
                     distanceReached += 5;
                 }
                 break;
@@ -84,7 +87,8 @@ public class PlayerManager : MonoBehaviour
                 if (GameManager.instance.gameState.IsLevelExploration())
                 {
                     animator.SetBool("IsRunning", true);
-                    LevelManager.instance.MoveWorld(10, currentStats.speed, animator);
+                    LevelManager.instance.MoveWorld((int)(speed * GameManager.instance.MovementRatioGood), 
+                        currentStats.speed, animator);
                     distanceReached += 10;
                 }
                 break;
@@ -96,7 +100,8 @@ public class PlayerManager : MonoBehaviour
                 {
                     isRunning = true;
                     animator.SetBool("IsRunning", true);
-                    LevelManager.instance.MoveWorld(15, currentStats.speed, animator);
+                    LevelManager.instance.MoveWorld((int)(speed * GameManager.instance.MovementRatioPerfect), 
+                        currentStats.speed, animator);
                     distanceReached += 15;
                 }
                 break;
