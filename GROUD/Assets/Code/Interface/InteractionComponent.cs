@@ -74,6 +74,8 @@ namespace Code.Interface
             PlayerManager.instance.OnInteractionSuccess(PlayerManager.instance.powerIsRunning
                 ? InteractionSuccess.Perfect
                 : successGroup);
+            
+            LevelManager.instance.detector.InteractionCanTrigger.Remove(this);
 
             PatternPoolManager.Instance.AddInteractionToPool(gameObject);
         }

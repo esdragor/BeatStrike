@@ -37,7 +37,6 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField] private float selectionCharacterFadeOutDuration = 1f;
     [SerializeField] private TransitionDirection transitionDirectionSelectionCharacter = TransitionDirection.Left;
     [SerializeField] private TMP_Text playerInfoText;
-    [SerializeField] private Button buttonLockCharacter;
 
     [Header("Game Manager")]
     [SerializeField] private Gear[] GearsDatas;
@@ -66,8 +65,6 @@ public class MainMenuManager : MonoBehaviour
             newGear.GetComponent<Image>().sprite = data.gearSprite;
             newGear.GetComponent<GearDescription>().gear = data;
         }
-
-        buttonLockCharacter.onClick.AddListener(LockCharacter);
     }
 
     public void SetEquipmentImage(int index, GearDescription gearDescription)
@@ -159,11 +156,10 @@ public class MainMenuManager : MonoBehaviour
                               "Crit Tolerance: " + currentCharacterInfos.playerStats.critTolerance;
     }
 
-    public void LockCharacter()
+    public void LaunchGame()
     {
         if (currentCharacterInfos != null)
         {
-            GameManager.instance.SetPlayerStats(currentCharacterInfos);
             SceneManager.LoadScene(1);
             GameManager.instance.gameState.SwitchEngineState(Enums.EngineState.Game);
         }

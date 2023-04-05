@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Code.Interface;
 using UnityEngine;
 
@@ -6,22 +7,41 @@ public class InteractionDetector : MonoBehaviour
 {
     public Action<InteractionComponent> OnInteractionAdded;
     public Action<InteractionComponent> OnInteractionRemoved;
-    public InteractionComponent currentIt;
+    public List<InteractionComponent> InteractionCanTrigger = new();
     public DetectionZoneData[] detectionZoneData;
     public float tolerance = 0.01f;
 
-    private void Update()
+    private void Start()
     {
-        if (currentIt != null) SetInteractionGroup();
+        SetupTriggerRaw();
     }
 
-    private void SetInteractionGroup()
+    private void Update()
     {
-        if (detectionZoneData.Length <= 0 || currentIt == null) return;
+        foreach (var t in InteractionCanTrigger)
+            SetInteractionGroup(t);
+    }
+
+    private void SetupTriggerRaw()
+    {
+        float critTolerance = GameManager.instance.currentCharacterInfos.playerStats.critTolerance;
+
+        float ratio = 0.5f - (critTolerance / 2);
+        
+        detectionZoneData[0].detectionRange = ratio;
+        detectionZoneData[1].detectionRange = ratio;
+        detectionZoneData[2].detectionRange = critTolerance;
+        detectionZoneData[3].detectionRange = ratio;
+        detectionZoneData[4].detectionRange = ratio;
+    }
+
+    private void SetInteractionGroup(InteractionComponent current)
+    {
+        if (detectionZoneData.Length <= 0 || current == null) return;
 
         Vector3 topPoint = new Vector3(transform.position.x, transform.position.y,
             transform.position.z + transform.localScale.z * 0.5f);
-        Vector3 posInside = topPoint - currentIt.transform.position;
+        Vector3 posInside = topPoint - current.transform.position;
 
         float itOffset = 0;
 
@@ -33,10 +53,10 @@ public class InteractionDetector : MonoBehaviour
             }
 
             if (Math.Abs(posInside.z - (detectionZoneData[i].detectionRange + itOffset)) < tolerance &&
-                currentIt.successGroup != detectionZoneData[i].success)
+                current.successGroup != detectionZoneData[i].success)
             {
                 //Debug.Log($"Distance was {posInside.z} so it's {detectionZoneData[i].success}");
-                currentIt.SetSuccess(detectionZoneData[i].success);
+                current.SetSuccess(detectionZoneData[i].success);
             }
         }
     }
@@ -73,7 +93,7 @@ public class InteractionDetector : MonoBehaviour
 
         if (it)
         {
-            currentIt = it;
+            InteractionCanTrigger.Add(it);
         }
     }
 
@@ -81,9 +101,9 @@ public class InteractionDetector : MonoBehaviour
     {
         InteractionComponent it = other.GetComponent<InteractionComponent>();
 
-        if (it && currentIt == it)
+        if (it && InteractionCanTrigger.Contains(it))
         {
-            currentIt = null;
+            InteractionCanTrigger.Remove(it);
         }
     }
 }

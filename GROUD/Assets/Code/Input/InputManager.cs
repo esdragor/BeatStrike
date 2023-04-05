@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Code.Interface;
 using UnityEngine;
 using Utilities;
@@ -25,10 +26,15 @@ public class InputManager : MonoBehaviour
 
     private void SwipeBehaviour(InputListener.SwipeDirection dir)
     {
+        List<InteractionComponent> itList = LevelManager.instance.detector.InteractionCanTrigger;
         
-        if ( LevelManager.instance.detector.currentIt != null &&  LevelManager.instance.detector.currentIt.data.swipeDirection == dir &&  LevelManager.instance.detector.currentIt.data.interactionType == Enums.InteractionType.Swipe)
+        for (int i = 0; i < itList.Count; i++)
         {
-            LevelManager.instance.detector.currentIt.ValidateInteraction();
+            if (itList[i].data.swipeDirection == dir &&
+                itList[i].data.interactionType == Enums.InteractionType.Swipe)
+            {
+                itList[i].ValidateInteraction();
+            }
         }
 
         if (dir == InputListener.SwipeDirection.UP)
@@ -39,7 +45,7 @@ public class InputManager : MonoBehaviour
 
     private void TapBehaviour(InputListener.TouchSide touchSide)
     {
-        InteractionKey.InteractionColor color = InteractionKey.InteractionColor.Blue;
+        InteractionKey.InteractionColor color;
         
         switch (touchSide)
         {
@@ -50,11 +56,19 @@ public class InputManager : MonoBehaviour
             case InputListener.TouchSide.RIGHT:
                 color = InteractionKey.InteractionColor.Red;
                 break;
+            default:
+                return;
         }
         
-        if (LevelManager.instance.detector.currentIt != null &&  LevelManager.instance.detector.currentIt.data.interactionColor == color &&  LevelManager.instance.detector.currentIt.data.interactionType == Enums.InteractionType.Tap)
+        List<InteractionComponent> itList = LevelManager.instance.detector.InteractionCanTrigger;
+        
+        for (int i = 0; i < itList.Count; i++)
         {
-            LevelManager.instance.detector.currentIt.ValidateInteraction();
+            if (itList[i].data.interactionColor == color &&
+                itList[i].data.interactionType == Enums.InteractionType.Tap)
+            {
+                itList[i].ValidateInteraction();
+            }
         }
     }
     
