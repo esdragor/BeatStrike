@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using NaughtyAttributes;
-using UnityEditor;
 using UnityEngine;
 
 public class LevelRoadManager : MonoBehaviour
@@ -21,6 +20,11 @@ public class LevelRoadManager : MonoBehaviour
         {
             majorSteps.Add(new RoadStep());
         }
+    }
+
+    private void Awake()
+    {
+        SetRoadStepPosition();
     }
 
     public void Restart()
@@ -70,8 +74,6 @@ public class LevelRoadManager : MonoBehaviour
 
     void SetRoadStepPosition()
     {
-        if(EditorApplication.isPlaying) return;
-        
         steps = new List<RoadStep>();
         
         if (majorSteps.Count < stepCount)
@@ -112,6 +114,7 @@ public class LevelRoadManager : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         SetRoadStepPosition();
+        
         for (int i = 0; i < majorSteps.Count; i++)
         {
             switch (majorSteps[i].stepAction)
@@ -159,10 +162,5 @@ public class LevelRoadManager : MonoBehaviour
             ENNEMY,
             END
         }
-    }
-
-    public class SavedSteps
-    {
-        public List<RoadStep> steps;
     }
 }
