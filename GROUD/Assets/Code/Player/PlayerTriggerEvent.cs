@@ -9,7 +9,7 @@ public class PlayerTriggerEvent : MonoBehaviour
 
         if (it)
         {
-            it.HurtPlayer();
+            //it.HurtPlayer();
         }
     }
 }
