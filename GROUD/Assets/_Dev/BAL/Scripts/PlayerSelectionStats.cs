@@ -19,7 +19,7 @@ public class PlayerSelectionStats : MonoBehaviour
 
     private void ShowStats()
     {
-        MainMenuManager.instance.PrintCharacterInfos(playerStats);
+        MainMenuManager.instance.PrintCharacterInfos();
     }
 
     public void SetPlayerStats(CharacterInfos _CharacterInfos)

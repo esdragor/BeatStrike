@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     public static Delegates.OnUpdated onUpdated;
     
+    public CharacterInfos CharacterInfosPrefab;
     [HideInInspector] public CharacterInfos currentCharacterInfos;
     public float MovementRatioOk = 1f;
     public float MovementRatioGood = 1.5f;
@@ -20,6 +21,8 @@ public class GameManager : MonoBehaviour
         else Destroy(gameObject);
         
         DontDestroyOnLoad(gameObject);
+        currentCharacterInfos = ScriptableObject.CreateInstance<CharacterInfos>();
+        currentCharacterInfos.SetPlayerStats(CharacterInfosPrefab);
     }
 
     void Update()

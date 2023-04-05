@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 79975bf7b13730648a654b4deb61f858, type: 3}
-  m_Name: ch1
+  m_Name: chSave
   m_EditorClassIdentifier: 
   playerStats:
     hp: 5
@@ -20,20 +20,20 @@ MonoBehaviour:
     critRate: 0
     critTolerance: 0
     experienceFactor: 1
-    minHp: 5
+    minHp: 1
     maxHp: 10
     minSpeed: 1
-    maxSpeed: 10
+    maxSpeed: 1
     minExperienceFactor: 1
-    maxExperienceFactor: 10
+    maxExperienceFactor: 1
     minDamage: 1
-    maxDamage: 10
+    maxDamage: 1
     minCompetenceDuration: 1
-    maxCompetenceDuration: 10
+    maxCompetenceDuration: 1
     minCritRate: 1
-    maxCritRate: 10
+    maxCritRate: 1
     minCritTolerance: 1
-    maxCritTolerance: 10
+    maxCritTolerance: 1
   playerSprite: {fileID: 21300000, guid: e5600378dd761e64d9423790c482bf36, type: 3}
   power:
     powerCooldown: 0

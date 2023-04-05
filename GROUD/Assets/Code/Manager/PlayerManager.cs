@@ -213,6 +213,21 @@ public class PlayerManager : MonoBehaviour
         competenceDuration = other.competenceDuration;
         critRate = other.critRate;
         critTolerance = other.critTolerance;
+        
+        minHp = other.minHp;
+        maxHp = other.maxHp;
+        minSpeed = other.minSpeed;
+        maxSpeed = other.maxSpeed;
+        minExperienceFactor = other.minExperienceFactor;
+        maxExperienceFactor = other.maxExperienceFactor;
+        minDamage = other.minDamage;
+        maxDamage = other.maxDamage;
+        minCompetenceDuration = other.minCompetenceDuration;
+        maxCompetenceDuration = other.maxCompetenceDuration;
+        minCritRate = other.minCritRate;
+        maxCritRate = other.maxCritRate;
+        minCritTolerance = other.minCritTolerance;
+        maxCritTolerance = other.maxCritTolerance;
     }
 
     private float ModVal( in float val, float amount, float min, float max)
