@@ -60,21 +60,25 @@ namespace Code.Interface
             }
         }
 
-        public virtual void ValidateInteraction()
+        public virtual void ValidateInteraction(bool isPerfect = false)
         {
+            PlayerStats stats = PlayerManager.instance.currentStats;
             if (GameManager.instance.gameState.IsLevelExploration())
             {
-                PlayerManager.instance.AddExperience(10f);
+                PlayerManager.instance.AddExperience(10f * stats.experienceFactor);
             }
             else
             {
-                BossManager.instance.AddDamageToPool(PlayerManager.instance.currentStats.damage);
+                float damage = stats.damage;
+                if (isPerfect)
+                    damage *= stats.critRate;
+                BossManager.instance.AddDamageToPool(damage);
             }
 
             PlayerManager.instance.OnInteractionSuccess(PlayerManager.instance.powerIsRunning
                 ? InteractionSuccess.Perfect
                 : successGroup);
-            
+
             LevelManager.instance.detector.InteractionCanTrigger.Remove(this);
 
             PatternPoolManager.Instance.AddInteractionToPool(gameObject);
