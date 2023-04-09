@@ -3,9 +3,9 @@ using UnityEngine.UI;
 
 public class GearDescription : MonoBehaviour
 {
+    public bool OnEquip = false;
     [HideInInspector] public Gear gear;
 
-    private bool OnEquip = false;
 
     private void Start()
     {
@@ -16,7 +16,10 @@ public class GearDescription : MonoBehaviour
     public void OnClick()
     {
         if (!OnEquip)
-            OnEquip = gear.EquipOnPlayer(this);
+        {
+            MainMenuManager.instance.currentGear = this;
+            //gear.EquipOnPlayer(this);
+        }
         else
              OnEquip = gear.UnequipOnPlayer(this);
     }

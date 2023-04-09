@@ -17,6 +17,7 @@ public enum TransitionDirection
 public class MainMenuManager : MonoBehaviour
 {
     public static MainMenuManager instance;
+    public GearDescription currentGear;
 
     [SerializeField] private RectTransform canvas;
 
@@ -37,6 +38,7 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField] private float selectionCharacterFadeOutDuration = 1f;
     [SerializeField] private TransitionDirection transitionDirectionSelectionCharacter = TransitionDirection.Left;
     [SerializeField] private TMP_Text playerInfoText;
+    [SerializeField] private Button ButtonEquip;
 
     [Header("Game Manager")]
     [SerializeField] private Gear[] GearsDatas;
@@ -65,6 +67,15 @@ public class MainMenuManager : MonoBehaviour
             newGear.GetComponent<Image>().sprite = data.gearSprite;
             newGear.GetComponent<GearDescription>().gear = data;
         }
+        ButtonEquip.onClick.AddListener(Equip);
+    }
+
+    public void Equip()
+    {
+        if (!currentGear) return;
+        currentGear.gear.EquipOnPlayer(currentGear);
+        currentGear.OnEquip = true;
+        currentGear = null;
     }
 
     public void SetEquipmentImage(int index, GearDescription gearDescription)
