@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -24,6 +23,7 @@ public class PatternPoolManager : MonoBehaviour
         {
             interactionPool.Add(Instantiate(interactionPrefab, interactionParent));
             interactionPool[i].name = $"Interaction_{i}";
+            interactionPool[i].transform.parent = interactionParent;
             interactionPool[i].SetActive(false);
         }
     }

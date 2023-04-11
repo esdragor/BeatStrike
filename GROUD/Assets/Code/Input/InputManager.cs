@@ -5,18 +5,18 @@ using Utilities;
 
 public class InputManager : MonoBehaviour
 {
-    public InputListener inputListener;
+    public ScreenListener screenListener;
     private InteractionComponent selectedSwipeIt;
 
     void OnEnable()
     {
-        inputListener.onInputPressed += TapBehaviour;
-        inputListener.onSwipeDetected += SwipeBehaviour;
+        screenListener.onInputPressed += TapBehaviour;
+        screenListener.onSwipeDetected += SwipeBehaviour;
     }
     private void OnDisable()
     {
-        inputListener.onInputPressed -= TapBehaviour;
-        inputListener.onSwipeDetected -= SwipeBehaviour;
+        screenListener.onInputPressed -= TapBehaviour;
+        screenListener.onSwipeDetected -= SwipeBehaviour;
     }
 
     private void Start()
@@ -24,7 +24,7 @@ public class InputManager : MonoBehaviour
         if(GameManager.instance.gameState.IsEngineMenu()) gameObject.SetActive(false);
     }
 
-    private void SwipeBehaviour(InputListener.SwipeDirection dir)
+    private void SwipeBehaviour(ScreenListener.SwipeDirection dir)
     {
         List<InteractionComponent> itList = LevelManager.instance.detector.InteractionCanTrigger;
         
@@ -37,23 +37,23 @@ public class InputManager : MonoBehaviour
             }
         }
 
-        if (dir == InputListener.SwipeDirection.UP)
+        if (dir == ScreenListener.SwipeDirection.UP)
         {
             GameManager.instance.currentCharacterInfos.power.Execute();
         }
     }
 
-    private void TapBehaviour(InputListener.TouchSide touchSide)
+    private void TapBehaviour(ScreenListener.TouchSide touchSide)
     {
         InteractionKey.InteractionColor color;
         
         switch (touchSide)
         {
-            case InputListener.TouchSide.LEFT:
+            case ScreenListener.TouchSide.LEFT:
                 color = InteractionKey.InteractionColor.Blue;
                 break;
             
-            case InputListener.TouchSide.RIGHT:
+            case ScreenListener.TouchSide.RIGHT:
                 color = InteractionKey.InteractionColor.Red;
                 break;
             default:

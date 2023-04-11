@@ -2097,7 +2097,7 @@ MonoBehaviour:
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1080, y: 1920}
-  m_ScreenMatchMode: 0
+  m_ScreenMatchMode: 1
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
@@ -2698,18 +2698,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Game Manager
       objectReference: {fileID: 0}
-    - target: {fileID: 5490769174227019159, guid: df8729ef23a6e534e8ae7fcd598e5d00,
-        type: 3}
-      propertyPath: CharacterInfosPrefab
-      value: 
-      objectReference: {fileID: 11400000, guid: 4827843e8c592604e9b10ff6f66fe028,
-        type: 2}
-    - target: {fileID: 5490769174227019159, guid: df8729ef23a6e534e8ae7fcd598e5d00,
-        type: 3}
-      propertyPath: currentCharacterInfos
-      value: 
-      objectReference: {fileID: 11400000, guid: 4827843e8c592604e9b10ff6f66fe028,
-        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: df8729ef23a6e534e8ae7fcd598e5d00, type: 3}
 --- !u!1 &1497996531
