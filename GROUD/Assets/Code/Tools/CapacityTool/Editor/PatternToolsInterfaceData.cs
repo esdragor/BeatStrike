@@ -5,19 +5,23 @@ using UnityEngine.Serialization;
 [CreateAssetMenu(order = 0, menuName = "Pattern Interface Data",fileName = "PatternInterfaceData")]
 public class PatternToolsInterfaceData : ScriptableObject
 {
+    [Header("Contents")]
     public float leftWidth;
     public Rect previewRect;
-    public Color previewBackgroundColor;
-    public Rect patternDropdownRect;
-    public Color patternDropdownBackgroundColor;
+    public Rect symphonyDropdownRect;
     public Rect timelineRectContent;
     public Rect selectedInteractionRect;
-    public Color selectedInteractionBackgroundColor;
     public Rect patternDataRect;
-    public Color patternDataBackgroundColor;
     public Rect interactionListRect;
-    public Color interactionListBackgroundDropdown;
 
+    public Rect symphonyCreatorPopupRect;
+    
+    public Rect explorationMelodyContent;
+    public Rect enemyMelodyContent;
+    public Rect bossMelodyContent;
+
+    public Color contentBackgroundColor;
+    
     [Header("Key")] 
     public float lineThickness;
     public float interactionIconWidth = 30f;

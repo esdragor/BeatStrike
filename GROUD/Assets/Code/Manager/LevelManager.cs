@@ -34,7 +34,7 @@ public class LevelManager : MonoBehaviour
     public void StartLevel()
     {
         GameManager.instance.gameState.SwitchLevelState(Enums.LevelState.Exploration);
-        playerObject.position = roadManager.majorSteps[0].subStepPosition[0];
+        PlayerManager.instance.MovePlayerTo(roadManager.majorSteps[0].subStepPosition[0]);
         PatternManager.OnPatternEnd += CheckNextPattern;
         PlayPattern();
     }

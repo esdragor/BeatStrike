@@ -24,7 +24,10 @@ namespace Code.Interface
             SetVisualAndColor();
         }
 
-        private MeshRenderer renderer => GetComponent<MeshRenderer>();
+        public MeshRenderer renderer;
+        public Material blueMat;
+        public Material redMat;
+        public Material slideMat;
 
         public void SetSuccess(InteractionSuccess itSuccess)
         {
@@ -41,20 +44,18 @@ namespace Code.Interface
                     switch (data.interactionColor)
                     {
                         case InteractionKey.InteractionColor.Blue:
-                            renderer.material.color = Color.blue;
+                            renderer.material = blueMat;
                             break;
 
                         case InteractionKey.InteractionColor.Red:
-                            renderer.material.color = Color.red;
+                            renderer.material = redMat;
                             break;
                     }
 
                     break;
 
                 case Enums.InteractionType.Swipe:
-                    transform.localScale = new Vector3(1f, 0.5f, 0.5f);
-
-                    renderer.material.color = Color.green;
+                    renderer.material = slideMat;
 
                     break;
             }

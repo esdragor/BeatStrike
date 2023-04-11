@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class InteractionDetector : MonoBehaviour
 {
+    public bool showDebug;
     public Action<InteractionComponent> OnInteractionAdded;
     public Action<InteractionComponent> OnInteractionRemoved;
     public List<InteractionComponent> InteractionCanTrigger = new();
@@ -65,6 +66,7 @@ public class InteractionDetector : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
+        if(!showDebug) return;
         offSet = 0;
 
         for (int i = 0; i < detectionZoneData.Length; i++)
