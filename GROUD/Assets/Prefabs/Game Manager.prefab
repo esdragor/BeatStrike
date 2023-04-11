@@ -46,7 +46,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1363b77879293114fb1165c017c6de41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentCharacterInfos: {fileID: 0}
+  CharacterInfosPrefab: {fileID: 11400000, guid: 4827843e8c592604e9b10ff6f66fe028,
+    type: 2}
+  currentCharacterInfos: {fileID: 11400000, guid: 4827843e8c592604e9b10ff6f66fe028,
+    type: 2}
+  MovementRatioOk: 1
+  MovementRatioGood: 1.5
+  MovementRatioPerfect: 1
 --- !u!1001 &2180602050599351878
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -185,10 +191,54 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5490769174227019156}
     m_Modifications:
+    - target: {fileID: 1415441058, guid: fc0b1f9d4d66db1489f2a4b83f09aa2e, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 15.51709
+      objectReference: {fileID: 0}
     - target: {fileID: 659596484302588829, guid: fc0b1f9d4d66db1489f2a4b83f09aa2e,
         type: 3}
       propertyPath: m_Name
       value: UIManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 659596484302588829, guid: fc0b1f9d4d66db1489f2a4b83f09aa2e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 720720773190865088, guid: fc0b1f9d4d66db1489f2a4b83f09aa2e,
+        type: 3}
+      propertyPath: m_ScreenMatchMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 720720773190865088, guid: fc0b1f9d4d66db1489f2a4b83f09aa2e,
+        type: 3}
+      propertyPath: m_MatchWidthOrHeight
+      value: 0.955
+      objectReference: {fileID: 0}
+    - target: {fileID: 3272801028583066939, guid: fc0b1f9d4d66db1489f2a4b83f09aa2e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3771986845908608374, guid: fc0b1f9d4d66db1489f2a4b83f09aa2e,
+        type: 3}
+      propertyPath: m_Pivot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3771986845908608374, guid: fc0b1f9d4d66db1489f2a4b83f09aa2e,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3771986845908608374, guid: fc0b1f9d4d66db1489f2a4b83f09aa2e,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3771986845908608374, guid: fc0b1f9d4d66db1489f2a4b83f09aa2e,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 26
       objectReference: {fileID: 0}
     - target: {fileID: 4125282992678354495, guid: fc0b1f9d4d66db1489f2a4b83f09aa2e,
         type: 3}

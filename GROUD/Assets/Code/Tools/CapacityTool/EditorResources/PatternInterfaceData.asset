@@ -19,14 +19,12 @@ MonoBehaviour:
     y: 10.8
     width: 344.4
     height: 509.1
-  previewBackgroundColor: {r: 0.15686275, g: 0.15686275, b: 0.15686275, a: 0.2901961}
-  patternDropdownRect:
+  symphonyDropdownRect:
     serializedVersion: 2
-    x: 5.2
-    y: 31
-    width: 400
-    height: 36.5
-  patternDropdownBackgroundColor: {r: 0.15686275, g: 0.15686275, b: 0.15686275, a: 0.2901961}
+    x: 0
+    y: 0
+    width: 325.11
+    height: 50.82
   timelineRectContent:
     serializedVersion: 2
     x: 0
@@ -39,23 +37,43 @@ MonoBehaviour:
     y: 30.1
     width: 400
     height: 477.84
-  selectedInteractionBackgroundColor: {r: 0.15686275, g: 0.15686275, b: 0.15686275,
-    a: 0.2901961}
   patternDataRect:
     serializedVersion: 2
     x: 5.2
     y: 71.49
     width: 400
     height: 271.1
-  patternDataBackgroundColor: {r: 0.15686275, g: 0.15686275, b: 0.15686275, a: 0.2901961}
   interactionListRect:
     serializedVersion: 2
     x: 5.05
     y: 351.17
     width: 400
     height: 157.2
-  interactionListBackgroundDropdown: {r: 0.15686275, g: 0.15686275, b: 0.15686275,
-    a: 0.2901961}
+  symphonyCreatorPopupRect:
+    serializedVersion: 2
+    x: 681.6
+    y: 184.6
+    width: 589.7
+    height: 264.5
+  explorationMelodyContent:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 0
+    height: 0
+  enemyMelodyContent:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 0
+    height: 0
+  bossMelodyContent:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 0
+    height: 0
+  contentBackgroundColor: {r: 0.16470589, g: 0.16470589, b: 0.16470589, a: 1}
   lineThickness: 2
   interactionIconWidth: 30
   interactionIconHeight: 30

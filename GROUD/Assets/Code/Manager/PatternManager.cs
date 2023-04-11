@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using Code.Interface;
 using UnityEngine;
+using UnityEngine.Serialization;
+using Utilities;
+
 public class PatternManager : MonoBehaviour
 {
     public static PatternManager Instance;
     public static Action OnPatternEnd;
-    public Pattern currentPattern;
+    [FormerlySerializedAs("currentPattern")] public PatternSO currentPatternSo;
     private Queue<InteractionKey> timelineRunnerKeys;
     public bool isTimelineActive;
 
@@ -22,13 +25,13 @@ public class PatternManager : MonoBehaviour
         Instance = this;
     }
 
-    public void StartPattern(Pattern p)
+    public void StartPattern(PatternSO p)
     {
         if (isTimelineActive) return;
 
         InitializeQueue(p.interactions);
 
-        currentPattern = p;
+        currentPatternSo = p;
         timer = 0;
 
         GameManager.onUpdated += TimelineEventListener;
@@ -61,7 +64,7 @@ public class PatternManager : MonoBehaviour
             }
         }
 
-        if (timer > currentPattern.maxTime)
+        if (timer > currentPatternSo.maxTime)
         {
             ForceEnd();
         }
@@ -83,16 +86,25 @@ public class PatternManager : MonoBehaviour
         Vector3 spawnPosition = Vector3.zero;
 
         if (!isDebugMultiChannel)
-            switch (dataKey.row)
+        {
+            switch (dataKey.interactionType)
             {
-                case 0:
-                    spawnPosition = LevelManager.instance.leftSpawnPoint.position;
+                case Enums.InteractionType.Tap:
+                    spawnPosition = dataKey.row switch
+                    {
+                        0 => LevelManager.instance.leftSpawnPoint.position,
+                        1 => LevelManager.instance.rightSpawnPoint.position,
+                        _ => spawnPosition
+                    };
                     break;
-
-                case 1:
-                    spawnPosition = LevelManager.instance.rightSpawnPoint.position;
+                
+                case Enums.InteractionType.Swipe:
+                    spawnPosition = LevelManager.instance.midSpawnPoint.position;
                     break;
             }
+
+           
+        }
         else
         {
             int randomIndex = dataKey.row;
@@ -102,6 +114,7 @@ public class PatternManager : MonoBehaviour
             spawnPosition.z = LevelManager.instance.DistanceToSpawnPointSpin;
         }
 
-        caster.transform.position = new Vector3(spawnPosition.x, 1, spawnPosition.z);
+
+        caster.transform.position = spawnPosition;
     }
 }

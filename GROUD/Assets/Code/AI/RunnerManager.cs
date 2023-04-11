@@ -4,7 +4,7 @@ using Utilities;
 
 public class RunnerManager : MonoBehaviour
 {
-    public Pattern[] patterns;
+    public PatternSO[] patterns;
     
     private int currentPatternIndex = 0;
 

@@ -2,5 +2,5 @@
 
 public class LevelRound : ScriptableObject
 {
-    public Pattern[] patterns;
+    public PatternSO[] patterns;
 }

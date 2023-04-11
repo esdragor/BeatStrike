@@ -32,6 +32,13 @@ namespace Utilities
             Exploration,
             Combat
         }
+
+        public enum MelodyType
+        {
+            Exploration,
+            Enemy,
+            Boss
+        }
     }
 
     public static class Delegates
