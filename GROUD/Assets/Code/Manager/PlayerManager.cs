@@ -25,6 +25,8 @@ public class PlayerManager : MonoBehaviour
     [Header("DEBUG")] public Image healthFill;
     public TMP_Text healthTxt;
     public Image CDPowerImage;
+    
+    public static Action<InteractionSuccess> onInteractionSuccess;
 
     private void Awake()
     {
@@ -142,8 +144,7 @@ public class PlayerManager : MonoBehaviour
 
                 break;
         }
-
-        GameManager.instance.currentCharacterInfos.power.ModifyCooldown(interactionSuccess);
+        onInteractionSuccess?.Invoke(interactionSuccess);
         UIManager.instance.score.SetScore(distanceReached);
     }
 

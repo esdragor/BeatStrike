@@ -14,7 +14,8 @@ public class PlayerSelectionStats : MonoBehaviour
     private void Start()
     {
         btn.onClick.AddListener(ShowStats);
-        playerStats.power = new Power();
+        playerStats.power = new JustPerfect();
+        playerStats.power.OnSet();
     }
 
     private void ShowStats()
