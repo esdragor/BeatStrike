@@ -39,7 +39,7 @@ namespace Code.Interface
             switch (data.interactionType)
             {
                 case Enums.InteractionType.Tap:
-                    transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+                    transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
 
                     switch (data.interactionColor)
                     {
@@ -55,6 +55,7 @@ namespace Code.Interface
                     break;
 
                 case Enums.InteractionType.Swipe:
+                    transform.localScale = new Vector3(1.8f, 0.8f, 0.8f);
                     renderer.material = slideMat;
 
                     break;
