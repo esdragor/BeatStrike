@@ -1,6 +1,7 @@
 using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class PlayerManager : MonoBehaviour
@@ -170,9 +171,10 @@ public class PlayerManager : MonoBehaviour
 [Serializable]
 public class PlayerStats
 {
-    [Header("Stats")] public float hp;
+    [Header("Stats")]
+    public float hp;
     public float intelligence;
-    public float strength;
+    public float stamina;
     
     public float damage = 10;
     public float critRate = 2f;
@@ -185,39 +187,39 @@ public class PlayerStats
     public float maxHp;
     public float minIntelligence;
     public float maxIntelligence;
-    public float minStrength;
-    public float maxStrength;
+    public float minStamina;
+    public float maxStamina;
 
     public PlayerStats()
     {
         hp = 0;
         intelligence = 0;
-        strength = 0;
+        stamina = 0;
     }
 
-    public PlayerStats(float _hp, float _intelligence, float _strength)
+    public PlayerStats(float _hp, float _intelligence, float stamina)
     {
         hp = _hp;
         intelligence = _intelligence;
-        strength = _strength;
+        stamina = stamina;
     }
 
     public PlayerStats(PlayerStats other)
     {
         hp = other.hp;
         intelligence = other.intelligence;
-        strength = other.strength;
+        stamina = other.stamina;
 
         overflowHp = other.hp;
         overflowIntelligence = other.intelligence;
-        overflowStrength = other.strength;
+        overflowStrength = other.stamina;
 
         minHp = other.minHp;
         maxHp = other.maxHp;
         minIntelligence = other.minIntelligence;
         maxIntelligence = other.maxIntelligence;
-        minStrength = other.minStrength;
-        maxStrength = other.maxStrength;
+        minStamina = other.minStamina;
+        maxStamina = other.maxStamina;
     }
 
     private float ModVal(in float val, float amount, float min, float max)
@@ -257,7 +259,7 @@ public class PlayerStats
                 overflowIntelligence = ModVal(overflowIntelligence, value);
                 break;
             case StatsType.Strength:
-                strength = ModVal(overflowStrength, value, minStrength, maxStrength);
+                stamina = ModVal(overflowStrength, value, minStamina, maxStamina);
                 overflowStrength = ModVal(overflowStrength, value);
                 break;
             default:
@@ -278,7 +280,7 @@ public class PlayerStats
                 overflowIntelligence = value;
                 break;
             case StatsType.Strength:
-                strength = SetVal(value, minStrength, maxStrength);
+                stamina = SetVal(value, minStamina, maxStamina);
                 overflowStrength = value;
                 break;
             default:

@@ -172,7 +172,7 @@ public class MainMenuManager : MonoBehaviour
         string intelligence = AddColor("Intelligence: " + currentCharacterInfos.playerStats.intelligence,
             changerStats.intelligence);
 
-        string strength = AddColor("Strength: " + currentCharacterInfos.playerStats.strength, changerStats.strength);
+        string strength = AddColor("Stamina: " + currentCharacterInfos.playerStats.stamina, changerStats.stamina);
 
         playerInfoText.text = hp +
                               intelligence +

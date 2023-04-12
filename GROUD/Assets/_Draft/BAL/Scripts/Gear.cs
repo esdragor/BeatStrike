@@ -53,4 +53,5 @@ public enum GearSlot
     Head,
     Chest,
     Weapon,
+    Power
 }
