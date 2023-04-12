@@ -14,26 +14,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerStats:
     hp: 5
-    competenceDuration: 0
+    intelligence: 0
+    strength: 0
     damage: 25
-    speed: 2
     critRate: 0
-    critTolerance: 0.95
-    experienceFactor: 1
+    overflowHp: 0
+    overflowIntelligence: 0
+    overflowStrength: 0
     minHp: 5
     maxHp: 10
-    minSpeed: 1
-    maxSpeed: 10
-    minExperienceFactor: 1
-    maxExperienceFactor: 10
-    minDamage: 1
-    maxDamage: 10
-    minCompetenceDuration: 1
-    maxCompetenceDuration: 10
-    minCritRate: 1
-    maxCritRate: 10
-    minCritTolerance: 0.1
-    maxCritTolerance: 1
+    minIntelligence: 0
+    maxIntelligence: 0
+    minStrength: 0
+    maxStrength: 0
   playerSprite: {fileID: 21300000, guid: e5600378dd761e64d9423790c482bf36, type: 3}
   power:
     powerCooldown: 0

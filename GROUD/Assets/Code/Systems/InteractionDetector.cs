@@ -25,7 +25,7 @@ public class InteractionDetector : MonoBehaviour
 
     private void SetupTriggerRaw()
     {
-        float critTolerance = GameManager.instance.currentCharacterInfos.playerStats.critTolerance;
+        float critTolerance = 0.5f;
 
         float ratio = 0.5f - (critTolerance / 2);
         

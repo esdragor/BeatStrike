@@ -16,7 +16,7 @@ public class Power
 
     private async void JustPerfect()
     {
-        float waitDuration = GameManager.instance.currentCharacterInfos.playerStats.competenceDuration * 1000;
+        float waitDuration = 10 * 1000;
 
         PlayerManager.instance.powerIsRunning = true;
         await Task.Delay((int)waitDuration);

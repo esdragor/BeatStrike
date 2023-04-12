@@ -66,11 +66,11 @@ namespace Code.Interface
             PlayerStats stats = PlayerManager.instance.currentStats;
             if (GameManager.instance.gameState.IsLevelExploration())
             {
-                PlayerManager.instance.AddExperience(10f * stats.experienceFactor);
+                PlayerManager.instance.AddExperience(10f);
             }
             else
             {
-                float damage = stats.damage;
+                float damage = 10;
                 if (isPerfect)
                     damage *= stats.critRate;
             }

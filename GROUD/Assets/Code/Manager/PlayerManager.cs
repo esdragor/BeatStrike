@@ -14,7 +14,7 @@ public class PlayerManager : MonoBehaviour
     private PlayerStats playerStats;
     public PlayerStats currentStats;
     public Animator animator;
-    
+
     public PlayerLevelingData playerLevelingData;
     public float currentExperience;
     public int level = 1;
@@ -22,8 +22,7 @@ public class PlayerManager : MonoBehaviour
     private bool isMoving;
 
     public bool powerIsRunning = false;
-    [Header("DEBUG")] 
-    public Image healthFill;
+    [Header("DEBUG")] public Image healthFill;
     public TMP_Text healthTxt;
     public Image CDPowerImage;
 
@@ -35,7 +34,7 @@ public class PlayerManager : MonoBehaviour
     private void Start()
     {
         playerStats = GameManager.instance.currentCharacterInfos.playerStats;
-        
+
         SetPlayer();
     }
 
@@ -49,7 +48,9 @@ public class PlayerManager : MonoBehaviour
 
     private float runningStep;
     private LevelRoadManager.RoadStep.StepAction nextAction;
-    public void MovePlayerTo(Vector3 pos, LevelRoadManager.RoadStep.StepAction stepAction = LevelRoadManager.RoadStep.StepAction.NONE)
+
+    public void MovePlayerTo(Vector3 pos,
+        LevelRoadManager.RoadStep.StepAction stepAction = LevelRoadManager.RoadStep.StepAction.NONE)
     {
         Debug.Log($"Player Move");
         nextAction = stepAction;
@@ -57,12 +58,12 @@ public class PlayerManager : MonoBehaviour
         previousPosition = transform.position;
         isMoving = true;
     }
-    
+
     void Move()
     {
         runningStep += runningSpeed * Time.deltaTime;
         runningStep = Mathf.Clamp(runningSpeed, 0, 1);
-        
+
         transform.position = Vector3.Lerp(previousPosition, targetPosition, runningStep);
 
         if (runningSpeed >= 1)
@@ -73,7 +74,7 @@ public class PlayerManager : MonoBehaviour
             {
                 case LevelRoadManager.RoadStep.StepAction.ENNEMY:
                     break;
-                
+
                 case LevelRoadManager.RoadStep.StepAction.END:
                     LevelManager.instance.EndLevel();
                     break;
@@ -91,14 +92,14 @@ public class PlayerManager : MonoBehaviour
 
     public void AddExperience(float amount)
     {
-        currentExperience += amount + (amount * currentStats.experienceFactor);
+        currentExperience += amount;
         CheckForLevelUp();
     }
 
     void CheckForLevelUp()
     {
-        if(level >= playerLevelingData.experienceTable.Length -1) return;
-        
+        if (level >= playerLevelingData.experienceTable.Length - 1) return;
+
         if (currentExperience >= playerLevelingData.experienceTable[level])
         {
             float rest = currentExperience - playerLevelingData.experienceTable[level];
@@ -109,8 +110,6 @@ public class PlayerManager : MonoBehaviour
 
     public void OnInteractionSuccess(InteractionSuccess interactionSuccess)
     {
-        float speed = GameManager.instance.currentCharacterInfos.playerStats.speed;
-        
         switch (interactionSuccess)
         {
             case InteractionSuccess.Ok:
@@ -118,30 +117,32 @@ public class PlayerManager : MonoBehaviour
 
                 if (GameManager.instance.gameState.IsLevelExploration())
                 {
-                    LevelManager.instance.roadManager.CheckStepsToTarget((int)currentStats.speed + 5);
-                    
+                    LevelManager.instance.roadManager.CheckStepsToTarget(5);
                 }
+
                 break;
-            
+
             case InteractionSuccess.Good:
                 UIManager.instance.announcer.Announce("Good", Color.blue);
 
                 if (GameManager.instance.gameState.IsLevelExploration())
                 {
-                    LevelManager.instance.roadManager.CheckStepsToTarget((int)currentStats.speed + 10);
-
+                    LevelManager.instance.roadManager.CheckStepsToTarget(10);
                 }
+
                 break;
-            
+
             case InteractionSuccess.Perfect:
                 UIManager.instance.announcer.Announce("Perfect", Color.green);
-                
+
                 if (GameManager.instance.gameState.IsLevelExploration())
                 {
-                    LevelManager.instance.roadManager.CheckStepsToTarget((int)currentStats.speed + 20);
+                    LevelManager.instance.roadManager.CheckStepsToTarget(20);
                 }
+
                 break;
         }
+
         GameManager.instance.currentCharacterInfos.power.ModifyCooldown(interactionSuccess);
         UIManager.instance.score.SetScore(distanceReached);
     }
@@ -151,11 +152,11 @@ public class PlayerManager : MonoBehaviour
         currentStats.hp -= amount;
 
         SetUIHealth();
-        
-        if (currentStats.hp  <= 0)
+
+        if (currentStats.hp <= 0)
         {
             UIManager.instance.announcer.Announce("You died !", Color.black);
-           LevelManager.instance.EndLevel();
+            LevelManager.instance.EndLevel();
         }
     }
 
@@ -165,148 +166,124 @@ public class PlayerManager : MonoBehaviour
     }
 }
 
-[Serializable] public class PlayerStats
+[Serializable]
+public class PlayerStats
 {
-    [Header("Stats")]
-    public float hp;
-    public float competenceDuration;
-    public float damage;
-    public float speed;
-    public float critRate;
-    public float critTolerance;
+    [Header("Stats")] public float hp;
+    public float intelligence;
+    public float strength;
     
-    public float experienceFactor;
-    
-    [Header("Stats Bornes")]
-    public float minHp;
-    public float maxHp;
-    public float minSpeed;
-    public float maxSpeed;
-    public float minExperienceFactor;
-    public float maxExperienceFactor;
-    public float minDamage;
-    public float maxDamage;
-    public float minCompetenceDuration;
-    public float maxCompetenceDuration;
-    public float minCritRate;
-    public float maxCritRate;
-    public float minCritTolerance;
-    public float maxCritTolerance;
+    public float damage = 10;
+    public float critRate = 2f;
 
-    public PlayerStats(float _hp, float _speed, float _experienceFactor, float _damage, float _competenceDuration, float _critRate, float _critTolerance)
+    [HideInInspector] public float overflowHp;
+    [HideInInspector] public float overflowIntelligence;
+    [HideInInspector] public float overflowStrength;
+
+    [Header("Stats Bornes")] public float minHp;
+    public float maxHp;
+    public float minIntelligence;
+    public float maxIntelligence;
+    public float minStrength;
+    public float maxStrength;
+
+    public PlayerStats()
+    {
+        hp = 0;
+        intelligence = 0;
+        strength = 0;
+    }
+
+    public PlayerStats(float _hp, float _intelligence, float _strength)
     {
         hp = _hp;
-        speed = _speed;
-        experienceFactor = _experienceFactor;
-        damage = _damage;
-        competenceDuration = _competenceDuration;
-        critRate = _critRate;
-        critTolerance = _critTolerance;
+        intelligence = _intelligence;
+        strength = _strength;
     }
-    
+
     public PlayerStats(PlayerStats other)
     {
         hp = other.hp;
-        speed = other.speed;
-        experienceFactor = other.experienceFactor;
-        damage = other.damage;
-        competenceDuration = other.competenceDuration;
-        critRate = other.critRate;
-        critTolerance = other.critTolerance;
-        
+        intelligence = other.intelligence;
+        strength = other.strength;
+
+        overflowHp = other.hp;
+        overflowIntelligence = other.intelligence;
+        overflowStrength = other.strength;
+
         minHp = other.minHp;
         maxHp = other.maxHp;
-        minSpeed = other.minSpeed;
-        maxSpeed = other.maxSpeed;
-        minExperienceFactor = other.minExperienceFactor;
-        maxExperienceFactor = other.maxExperienceFactor;
-        minDamage = other.minDamage;
-        maxDamage = other.maxDamage;
-        minCompetenceDuration = other.minCompetenceDuration;
-        maxCompetenceDuration = other.maxCompetenceDuration;
-        minCritRate = other.minCritRate;
-        maxCritRate = other.maxCritRate;
-        minCritTolerance = other.minCritTolerance;
-        maxCritTolerance = other.maxCritTolerance;
+        minIntelligence = other.minIntelligence;
+        maxIntelligence = other.maxIntelligence;
+        minStrength = other.minStrength;
+        maxStrength = other.maxStrength;
     }
 
-    private float ModVal( in float val, float amount, float min, float max)
+    private float ModVal(in float val, float amount, float min, float max)
     {
         float NewVal = val;
         NewVal += amount;
-        if (val < min) NewVal = min;
-        if (val > max) NewVal = max;
+        if (NewVal < min) NewVal = min;
+        if (NewVal > max) NewVal = max;
         return NewVal;
     }
-    
-    private float SetVal( in float val, float min, float max)
+
+    private float ModVal(in float val, float amount)
+    {
+        float NewVal = val;
+        NewVal += amount;
+        return NewVal;
+    }
+
+    private float SetVal(in float val, float min, float max)
     {
         float NewVal = val;
         if (val < min) NewVal = min;
         if (val > max) NewVal = max;
         return NewVal;
     }
-    
+
     public void ModifyValue(StatsType type, float value)
     {
         switch (type)
         {
             case StatsType.Hp:
-                hp = ModVal(hp, value, minHp, maxHp);
+                hp = ModVal(overflowHp, value, minHp, maxHp);
+                overflowHp = ModVal(overflowHp, value);
                 break;
-            case StatsType.Speed:
-                speed = ModVal(speed, value, minSpeed, maxSpeed);
+            case StatsType.Intelligence:
+                intelligence = ModVal(overflowIntelligence, value, minIntelligence, maxIntelligence);
+                overflowIntelligence = ModVal(overflowIntelligence, value);
                 break;
-            case StatsType.ExperienceFactor:
-                experienceFactor = ModVal(experienceFactor, value, minExperienceFactor, maxExperienceFactor);
-                break;
-            case StatsType.Damage:
-                damage = ModVal(damage, value, minDamage, maxDamage);
-                break;
-            case StatsType.CompetenceDuration:
-                competenceDuration = ModVal(competenceDuration, value, minCompetenceDuration, maxCompetenceDuration);
-                break;
-            case StatsType.CritRate:
-                critRate = ModVal(critRate, value, minCritRate, maxCritRate);
-                break;
-            case StatsType.CritTolerance:
-                critTolerance = ModVal(critTolerance, value, minCritTolerance, maxCritTolerance);
+            case StatsType.Strength:
+                strength = ModVal(overflowStrength, value, minStrength, maxStrength);
+                overflowStrength = ModVal(overflowStrength, value);
                 break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(type), type, null);
         }
     }
-    
+
     public void SetValue(StatsType type, float value)
     {
         switch (type)
         {
             case StatsType.Hp:
                 hp = SetVal(value, minHp, maxHp);
+                overflowHp = value;
                 break;
-            case StatsType.Speed:
-                speed = SetVal(value, minSpeed, maxSpeed);
+            case StatsType.Intelligence:
+                intelligence = SetVal(value, minIntelligence, maxIntelligence);
+                overflowIntelligence = value;
                 break;
-            case StatsType.ExperienceFactor:
-                experienceFactor = SetVal(value, minExperienceFactor, maxExperienceFactor);
-                break;
-            case StatsType.Damage:
-                damage = SetVal(value, minDamage, maxDamage);
-                break;
-            case StatsType.CompetenceDuration:
-                competenceDuration = SetVal(value, minCompetenceDuration, maxCompetenceDuration);
-                break;
-            case StatsType.CritRate:
-                critRate = SetVal(value, minCritRate, maxCritRate);
-                break;
-            case StatsType.CritTolerance:
-                critTolerance = SetVal(value, minCritTolerance, maxCritTolerance);
+            case StatsType.Strength:
+                strength = SetVal(value, minStrength, maxStrength);
+                overflowStrength = value;
                 break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(type), type, null);
         }
     }
-    
 }
 
 public enum InteractionSuccess
@@ -319,10 +296,6 @@ public enum InteractionSuccess
 public enum StatsType
 {
     Hp,
-    Speed,
-    ExperienceFactor,
-    Damage,
-    CompetenceDuration,
-    CritRate,
-    CritTolerance
+    Intelligence,
+    Strength
 }

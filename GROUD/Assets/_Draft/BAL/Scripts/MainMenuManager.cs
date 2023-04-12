@@ -1,3 +1,4 @@
+using System.Linq;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
@@ -58,7 +59,7 @@ public class MainMenuManager : MonoBehaviour
 
     private void Start()
     {
-        PrintCharacterInfos();
+        PrintCharacterInfos(new PlayerStats());
 
         offsetMainMenu = mainMenuButtonsPanel.anchoredPosition;
         foreach (var data in GearsDatas)
@@ -153,18 +154,32 @@ public class MainMenuManager : MonoBehaviour
                 selectionCharacterFadeOutDuration);
         }
     }
+    
+    private string AddColor(string text, float value, bool doubleline = false)
+    {
+        if (value > 0)
+            text += " <color=#00FF00>+" + value + "</color>";
+        else if (value < 0)
+            text += " <color=#FF0000>" + value + "</color>";
+        text += "\n";
+        return text;
+    }
 
-    public void PrintCharacterInfos()
+    public void PrintCharacterInfos(PlayerStats changerStats)
     {
         if (!currentCharacterInfos)
             currentCharacterInfos = GameManager.instance.currentCharacterInfos;
 
-        playerInfoText.text = "HP: " + currentCharacterInfos.playerStats.hp + "\n" +
-                              "Competence Duration: " + currentCharacterInfos.playerStats.competenceDuration + "\n\n" +
-                              "Damage: " + currentCharacterInfos.playerStats.damage + "\n" +
-                              "Speed: " + currentCharacterInfos.playerStats.speed + "\n\n" +
-                              "Crit Rate: " + currentCharacterInfos.playerStats.critRate + "\n" +
-                              "Crit Tolerance: " + currentCharacterInfos.playerStats.critTolerance;
+        string hp = AddColor("HP: " + currentCharacterInfos.playerStats.hp, changerStats.hp);
+
+        string intelligence = AddColor("Intelligence: " + currentCharacterInfos.playerStats.intelligence,
+            changerStats.intelligence);
+
+        string strength = AddColor("Strength: " + currentCharacterInfos.playerStats.strength, changerStats.strength);
+
+        playerInfoText.text = hp +
+                              intelligence +
+                              strength;
     }
 
     public void LaunchGame()

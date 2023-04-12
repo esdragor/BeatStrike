@@ -28,7 +28,7 @@ public class Gear : ScriptableObject
 
         if (MainMenuManager.instance == null) return false;
         MainMenuManager.instance.SetEquipmentImage((int)slot, gearDescription);
-        MainMenuManager.instance.PrintCharacterInfos();
+        MainMenuManager.instance.PrintCharacterInfos(new PlayerStats());
         return true;
     }
 
@@ -43,7 +43,7 @@ public class Gear : ScriptableObject
 
         if (MainMenuManager.instance == null) return false;
         MainMenuManager.instance.SetUnEquipmentImage((int)slot, gearDescription);
-        MainMenuManager.instance.PrintCharacterInfos();
+        MainMenuManager.instance.PrintCharacterInfos(new PlayerStats());
         return false;
     }
 }
