@@ -46,6 +46,7 @@ public class MainMenuManager : MonoBehaviour
 
     private Vector2 offsetMainMenu;
     private CharacterInfos currentCharacterInfos = null;
+    private float decal = 5000f;
 
     private void Awake()
     {
@@ -102,12 +103,12 @@ public class MainMenuManager : MonoBehaviour
 
         if (transitionDirectionMainMenu is TransitionDirection.Down or TransitionDirection.Up)
         {
-            mainMenuButtonsPanel.transform.DOMoveY(((int)transitionDirectionMainMenu - 3) * 2500f,
+            mainMenuButtonsPanel.transform.DOMoveY(((int)transitionDirectionMainMenu - 3) * decal,
                 mainMenuFadeOutDuration);
         }
         else
         {
-            mainMenuButtonsPanel.transform.DOMoveX((int)transitionDirectionMainMenu * 2500f, mainMenuFadeOutDuration);
+            mainMenuButtonsPanel.transform.DOMoveX((int)transitionDirectionMainMenu * decal, mainMenuFadeOutDuration);
         }
     }
 
@@ -115,11 +116,11 @@ public class MainMenuManager : MonoBehaviour
     {
         if (transitionDirectionMainMenu is TransitionDirection.Down or TransitionDirection.Up)
         {
-            mainMenuButtonsPanel.transform.DOMoveY(canvas.GetHeight() / 2 + offsetMainMenu.y, mainMenuFadeInDuration);
+            mainMenuButtonsPanel.transform.DOMoveY(Screen.height / 2f, mainMenuFadeInDuration);
         }
         else
         {
-            mainMenuButtonsPanel.transform.DOMoveX(canvas.GetWidth() / 2 + offsetMainMenu.x, mainMenuFadeInDuration);
+            mainMenuButtonsPanel.transform.DOMoveX(Screen.width / 2f, mainMenuFadeInDuration);
         }
 
         gameTitle.SetActive(true);
@@ -129,15 +130,11 @@ public class MainMenuManager : MonoBehaviour
     {
         if (transitionDirectionSelectionCharacter is TransitionDirection.Down or TransitionDirection.Up)
         {
-            selectionCharacterPanel.anchoredPosition = new Vector3(0,
-                ((int)transitionDirectionSelectionCharacter - 3) * 2500f);
-            selectionCharacterPanel.transform.DOMoveY(canvas.GetHeight() / 2, selectionCharacterFadeInDuration);
+            selectionCharacterPanel.transform.DOMoveY(Screen.height / 2f, selectionCharacterFadeInDuration);
         }
         else
         {
-            selectionCharacterPanel.anchoredPosition =
-                new Vector3((int)transitionDirectionSelectionCharacter * 2500f, 0);
-            selectionCharacterPanel.transform.DOMoveX(canvas.GetWidth() / 2, selectionCharacterFadeInDuration);
+            selectionCharacterPanel.transform.DOMoveX(Screen.width / 2f, selectionCharacterFadeInDuration);
         }
     }
 
@@ -145,12 +142,12 @@ public class MainMenuManager : MonoBehaviour
     {
         if (transitionDirectionSelectionCharacter is TransitionDirection.Down or TransitionDirection.Up)
         {
-            selectionCharacterPanel.transform.DOMoveY(((int)transitionDirectionSelectionCharacter - 3) * 2500f,
+            selectionCharacterPanel.transform.DOMoveY(((int)transitionDirectionSelectionCharacter - 3) * decal,
                 selectionCharacterFadeOutDuration);
         }
         else
         {
-            selectionCharacterPanel.transform.DOMoveX((int)transitionDirectionSelectionCharacter * 2500f,
+            selectionCharacterPanel.transform.DOMoveX((int)transitionDirectionSelectionCharacter * decal,
                 selectionCharacterFadeOutDuration);
         }
     }
