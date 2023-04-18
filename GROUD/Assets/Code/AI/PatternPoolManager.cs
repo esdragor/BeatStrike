@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Code.Interface;
 using UnityEngine;
 
 public class PatternPoolManager : MonoBehaviour
@@ -44,6 +45,7 @@ public class PatternPoolManager : MonoBehaviour
     {
         it.SetActive(false);
         
+        TileManager.RemoveTile(it.transform);
         ActiveInteractions.Remove(it);
         it.transform.parent = interactionParent;
         interactionPool.Add(it);
@@ -57,6 +59,7 @@ public class PatternPoolManager : MonoBehaviour
             interactionPool.RemoveAt(0);
             circle.SetActive(true);
             ActiveInteractions.Add(circle);
+            TileManager.AddTile(circle.transform);
             return circle;
         }
         else
@@ -64,6 +67,7 @@ public class PatternPoolManager : MonoBehaviour
             var circle = Instantiate(interactionPrefab, transform);
             circle.SetActive(true);
             ActiveInteractions.Add(circle);
+            TileManager.AddTile(circle.transform);
             return circle;
         }
     }

@@ -14,60 +14,59 @@ public class JustPerfect : Power
 
     private bool onCooldown = false;
     private float currentCooldown = 0;
+    private float amountCooldownPerSecond = 1000f;
 
-    
-    
+
     private async void JustPerfectAsync()
     {
-        float waitDuration = 10 * 1000;
-
-        PlayerManager.instance.powerIsRunning = true;
+        float waitDuration = amountCooldownPerSecond * 1000f;
+        PlayerManager.instance.justPerfectEnabled = true;
+        onCooldown = true;
         await Task.Delay((int)waitDuration);
-        PlayerManager.instance.powerIsRunning = false;
-        currentCooldown = powerCooldown;
+        onCooldown = false;
+        PlayerManager.instance.justPerfectEnabled = false;
     }
 
     public void ModifyCooldown(InteractionSuccess success)
     {
-        if (currentCooldown <= 0) return;
-        float amount = amountCooldown;
-        switch (success)
-        {
-            case InteractionSuccess.Perfect:
-                amount *= ratioPerfect;
-                break;
-            case InteractionSuccess.Good:
-                amount *= ratioGood;
-                break;
-            case InteractionSuccess.Ok:
-                amount *= ratioOk;
-                break;
-        }
+        // if (!onCooldown) return;
+        // float amount = amountCooldown;
+        // switch (success)
+        // {
+        //     case InteractionSuccess.Perfect:
+        //         amount *= ratioPerfect;
+        //         break;
+        //     case InteractionSuccess.Good:
+        //         amount *= ratioGood;
+        //         break;
+        //     case InteractionSuccess.Ok:
+        //         amount *= ratioOk;
+        //         break;
+        // }
 
-        currentCooldown -= amount;
-        if (currentCooldown <= 0)
-            onCooldown = false;
-
-        if (currentCooldown <= 0)
-            PlayerManager.instance.CDPowerImage.fillAmount = 1;
-        else
-            PlayerManager.instance.CDPowerImage.fillAmount = currentCooldown / powerCooldown;
+        // currentCooldown -= amount;
+        // if (currentCooldown <= 0)
+        //     onCooldown = false;
+        //
+        // if (currentCooldown <= 0)
+        //     PlayerManager.instance.CDPowerImage.fillAmount = 1;
+        // else
+        //     PlayerManager.instance.CDPowerImage.fillAmount = currentCooldown / powerCooldown;
     }
 
     public override void OnSet()
     {
-        PlayerManager.onInteractionSuccess += ModifyCooldown;
+        //PlayerManager.onInteractionSuccess += ModifyCooldown;
     }
 
     public override void OnUnset()
     {
-        PlayerManager.onInteractionSuccess -= ModifyCooldown;
+        //PlayerManager.onInteractionSuccess -= ModifyCooldown;
     }
 
     public override void Execute()
     {
         if (onCooldown) return;
-        onCooldown = true;
         JustPerfectAsync();
     }
 }

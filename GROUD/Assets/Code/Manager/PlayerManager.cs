@@ -1,4 +1,5 @@
 using System;
+using Code.Interface;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -22,11 +23,11 @@ public class PlayerManager : MonoBehaviour
 
     private bool isMoving;
 
-    public bool powerIsRunning = false;
+    public bool justPerfectEnabled = false;
     [Header("DEBUG")] public Image healthFill;
     public TMP_Text healthTxt;
     public Image CDPowerImage;
-    
+
     public static Action<InteractionSuccess> onInteractionSuccess;
 
     private void Awake()
@@ -37,7 +38,7 @@ public class PlayerManager : MonoBehaviour
     private void Start()
     {
         playerStats = GameManager.instance.currentCharacterInfos.playerStats;
-
+isMoving = false;
         SetPlayer();
     }
 
@@ -60,16 +61,24 @@ public class PlayerManager : MonoBehaviour
         targetPosition = pos;
         previousPosition = transform.position;
         isMoving = true;
+        runningStep = 0;
     }
 
     void Move()
     {
         runningStep += runningSpeed * Time.deltaTime;
-        runningStep = Mathf.Clamp(runningSpeed, 0, 1);
+        runningStep = Mathf.Clamp(runningStep, 0, 1);
 
+        Vector3 oldPos = transform.position;
+        
         transform.position = Vector3.Lerp(previousPosition, targetPosition, runningStep);
-
-        if (runningSpeed >= 1)
+        
+        float newPos = transform.position.z - oldPos.z;
+        Transform[] enemies = TileManager.GetCurrentTile().ToArray();
+        foreach (Transform enemy in enemies)
+            enemy.position += new Vector3(0, 0, newPos);
+        
+        if (runningStep >= 1)
         {
             Debug.Log($"Player Reach End");
             isMoving = false;
@@ -145,7 +154,7 @@ public class PlayerManager : MonoBehaviour
 
                 break;
         }
-        onInteractionSuccess?.Invoke(interactionSuccess);
+
         UIManager.instance.score.SetScore(distanceReached);
     }
 
@@ -171,11 +180,10 @@ public class PlayerManager : MonoBehaviour
 [Serializable]
 public class PlayerStats
 {
-    [Header("Stats")]
-    public float hp;
+    [Header("Stats")] public float hp;
     public float intelligence;
     public float stamina;
-    
+
     public float damage = 10;
     public float critRate = 2f;
 
