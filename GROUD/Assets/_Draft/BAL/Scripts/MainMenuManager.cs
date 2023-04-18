@@ -1,4 +1,6 @@
+using System;
 using System.Linq;
+using Code.Player;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
@@ -18,7 +20,9 @@ public enum TransitionDirection
 public class MainMenuManager : MonoBehaviour
 {
     public static MainMenuManager instance;
-    public GearDescription currentGear;
+    
+    [HideInInspector] public GearDescription currentGear;
+    public PowerDescription currentPower;
 
     [SerializeField] private RectTransform canvas;
 
@@ -29,9 +33,11 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField] private TransitionDirection transitionDirectionMainMenu = TransitionDirection.Right;
 
     [SerializeField] private GameObject GearPrefab;
+    [SerializeField] private GameObject powerPrefab;
     [SerializeField] private Image[] equipmentImages;
     [SerializeField] private Transform slotsVoidParent;
     [SerializeField] private Transform slotsEquipementParent;
+    [SerializeField] private Transform slotsEquipementPowerParent;
 
     [SerializeField] private Transform gearSelectionParent;
     [SerializeField] private RectTransform selectionCharacterPanel;
@@ -41,8 +47,10 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField] private TMP_Text playerInfoText;
     [SerializeField] private Button ButtonEquip;
 
+    [FormerlySerializedAs("GearsDatas")]
     [Header("Game Manager")]
-    [SerializeField] private Gear[] GearsDatas;
+    [SerializeField] private Gear[] gearsDatas;
+    [SerializeField] private PowerSO[] powerDatas;
 
     private Vector2 offsetMainMenu;
     private CharacterInfos currentCharacterInfos = null;
@@ -63,7 +71,25 @@ public class MainMenuManager : MonoBehaviour
         PrintCharacterInfos(new PlayerStats());
 
         offsetMainMenu = mainMenuButtonsPanel.anchoredPosition;
-        foreach (var data in GearsDatas)
+
+        foreach (var data in powerDatas)
+        {
+            var newGear = Instantiate(powerPrefab, gearSelectionParent);
+            newGear.GetComponent<Image>().sprite = data.powerSprite;
+            switch (data.typeOfPower)
+            {
+                case TypeOfPower.JustPerfect:
+                    newGear.GetComponent<PowerDescription>().Power = new JustPerfect();
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+            {
+                
+            }
+        }
+
+        foreach (var data in gearsDatas)
         {
             var newGear = Instantiate(GearPrefab, gearSelectionParent);
             newGear.GetComponent<Image>().sprite = data.gearSprite;
@@ -74,10 +100,18 @@ public class MainMenuManager : MonoBehaviour
 
     public void Equip()
     {
-        if (!currentGear) return;
-        currentGear.gear.EquipOnPlayer(currentGear);
-        currentGear.OnEquip = true;
-        currentGear = null;
+        if (currentGear)
+        {
+            currentGear.gear.EquipOnPlayer(currentGear);
+            currentGear.OnEquip = true;
+            currentGear = null;
+        }
+        else if (currentPower)
+        {
+            currentPower.Power.EquipOnPlayer(currentPower);
+            currentPower.OnEquip = true;
+            currentPower = null;
+        }
     }
 
     public void SetEquipmentImage(int index, GearDescription gearDescription)
@@ -195,5 +229,24 @@ public class MainMenuManager : MonoBehaviour
     public void ExitApplication()
     {
         Application.Quit();
+    }
+
+    public void SetPowerImage(PowerDescription powerDescription)
+    {
+       
+        Transform slot = slotsEquipementPowerParent.GetChild(0);
+        slot.transform.parent = slotsVoidParent;
+        slot.SetSiblingIndex(0);
+        powerDescription.transform.parent = slotsEquipementPowerParent;
+        powerDescription.transform.SetSiblingIndex(0);
+    }
+    
+    public void SetUnPowerImage(PowerDescription powerDescription)
+    {
+        int index = 3;
+        Transform slot = slotsVoidParent.GetChild(0);
+        slot.transform.parent = slotsEquipementPowerParent;
+        slot.SetSiblingIndex(index);
+        powerDescription.transform.parent = gearSelectionParent;
     }
 }

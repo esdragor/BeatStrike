@@ -1,5 +1,6 @@
 using System;
 using System.Threading.Tasks;
+using Code.Player;
 using UnityEngine;
 
 [Serializable]
@@ -14,6 +15,8 @@ public class JustPerfect : Power
     private bool onCooldown = false;
     private float currentCooldown = 0;
 
+    
+    
     private async void JustPerfectAsync()
     {
         float waitDuration = 10 * 1000;

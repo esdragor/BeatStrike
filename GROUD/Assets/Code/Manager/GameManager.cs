@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         onUpdated?.Invoke();
+        Debug.Log(currentCharacterInfos.power);
     }
 
     public void SetPlayerStats(CharacterInfos _currentCharacterInfos)
