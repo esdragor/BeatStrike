@@ -29,12 +29,12 @@ public class InputManager : MonoBehaviour
         List<InteractionComponent> itList = LevelManager.instance.detector.InteractionCanTrigger;
         
         for (int i = 0; i < itList.Count; i++)
-        {
-            if (itList[i].data.swipeDirection == dir &&
-                itList[i].data.interactionType == Enums.InteractionType.Swipe)
+        { 
+            /*if (itList[i].data.swipeDirection == dir &&
+              itList[i].data.interactionType == Enums.InteractionType.Swipe)
             {
                 itList[i].ValidateInteraction();
-            }
+            }*/
         }
 
         if (dir == ScreenListener.SwipeDirection.UP)

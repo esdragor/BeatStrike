@@ -10,7 +10,7 @@ public class PatternManager : MonoBehaviour
 {
     public static PatternManager Instance;
     public static Action OnPatternEnd;
-    [FormerlySerializedAs("currentPattern")] public PatternSO currentPatternSo;
+    [FormerlySerializedAs("currentPattern")] public Pattern currentPatternSo;
     private Queue<InteractionKey> timelineRunnerKeys;
     public bool isTimelineActive;
 
@@ -25,7 +25,7 @@ public class PatternManager : MonoBehaviour
         Instance = this;
     }
 
-    public void StartPattern(PatternSO p)
+    public void StartPattern(Pattern p)
     {
         if (isTimelineActive) return;
 

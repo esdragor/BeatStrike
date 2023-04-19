@@ -9,7 +9,7 @@ using Utilities;
     public float scale;
     public Vector3 spawnPosition;
     public Enums.InteractionType interactionType;
-    public ScreenListener.SwipeDirection swipeDirection;
+ //   public InputListener.SwipeDirection swipeDirection;
     public InteractionColor interactionColor;
 
     public InteractionKey(int row, float time, string timeCode, Enums.InteractionType keyType)
