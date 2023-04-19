@@ -1,35 +1,27 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using DMTimeArea;
 using UnityEditor;
 using UnityEngine;
 using Utilities;
-using Object = UnityEngine.Object;
 
 public class CapacityToolEditor : SimpleTimeArea
 {
    private Event eventListener;
-   public Pattern currentPattern;
-   public string[] levelOptions = new[] {"Level 1", "Level 2", "Level 3"};
-   public string[] difficultyOptions = new[] {"1", "2", "3"};
    
+   public SymphonySO selectedSymphony;
+   public PatternSO selectedPattern;
    private InteractionKey selectedInteractionKey;
 
-   private int selectedPatternInDirectory = 0;
-   private string[] patternsInDirectory;
+   public string[] levelOptions = new[] {"Level 1", "Level 2", "Level 3"};
+   public string[] difficultyOptions = new[] {"1", "2", "3"};
+
+   private int selectedIndex = 0;
+   private string[] symphonies;
    
    private string directoryPath;
 
    private PatternToolsInterfaceData interfaceData;
-   
 
-   #region Assets
-   
-   public Texture _tapIcon;
-
-   #endregion
-   
    #region Areas
 
    private Rect rectTotalArea;
@@ -45,11 +37,8 @@ public class CapacityToolEditor : SimpleTimeArea
    private Rect contentSeparator;
 
    private Rect previewRect;
-   private Rect patternDropdownRect => interfaceData.patternDropdownRect;
-   private Rect selectedInteractionRect => interfaceData.selectedInteractionRect;
-   private Rect patternDataRect => interfaceData.patternDataRect;
-   private Rect interactionListRect => interfaceData.interactionListRect;
-
+   private Rect SymphonyDropdownRect => interfaceData.symphonyDropdownRect;
+   private Rect SelectedInteractionRect => interfaceData.selectedInteractionRect;
    #endregion
    
    #region Timeline Parameters
@@ -97,30 +86,25 @@ public class CapacityToolEditor : SimpleTimeArea
    private void OnEnable()
    {
       Unintialize();
+      isDrawingSymphonyPopup = false;
       EditorApplication.update = (EditorApplication.CallbackFunction)System.Delegate.Combine(EditorApplication.update, new EditorApplication.CallbackFunction(OnEditorUpdate));
       lastUpdateTime = (float)EditorApplication.timeSinceStartup;
    }
 
+   private SerializedObject _serializedObject;
    void Unintialize()
    {
-      currentPattern = null;
-      selectedPatternInDirectory = 0;
+      selectedPattern = null;
+      selectedIndex = 0;
       _serializedObject = new SerializedObject(this);
       selectedInteractionKey = null;
    }
    
    private void OnDisable()
    {
-      SavePattern();
       Unintialize();
       EditorApplication.update = (EditorApplication.CallbackFunction)System.Delegate.Remove(EditorApplication.update, new EditorApplication.CallbackFunction(OnEditorUpdate));
    }
-   
-   private void OnDestroy()
-   {
-      SavePattern();
-   }
-   
 
    private void OnEditorUpdate()
    {
@@ -139,145 +123,149 @@ public class CapacityToolEditor : SimpleTimeArea
    }
 
    #endregion
-   
+
+   private bool isDrawingSymphonyPopup;
    private void OnGUI()
    {
-      SetPatternsInDropDown();
-      LoadAssets(); 
+      GetSymphonyInDirectory();
+      GetReferencesInDirectories();
+      
       EditorEventListener();
-      DrawPreviewArea();
-      DrawPatternListDropdown();
-      DrawSelectedInteractionArea(); 
-      DrawPatternDataArea(); 
-      DrawInteractionListArea(); 
-      DrawTimeline();
-   }
-   
-
-   #region Editor Drawing
-
-   void DrawPreviewArea()
-   {
-      previewRect = interfaceData.previewRect;
-      EditorGUI.DrawRect(previewRect, interfaceData.previewBackgroundColor);
-      GUILayout.BeginArea(previewRect);
-      GUILayout.Label("Work in progress");
-      GUILayout.EndArea();
-   }
-   
-   void DrawPatternListDropdown()
-   {
-      EditorGUI.DrawRect(patternDropdownRect, interfaceData.patternDropdownBackgroundColor);
-      GUILayout.BeginArea(patternDropdownRect);
-      selectedPatternInDirectory = EditorGUILayout.Popup("Select a pattern...", selectedPatternInDirectory, patternsInDirectory);
-
-      if (selectedPatternInDirectory != 0)
+      DrawSymphonyDropdown();
+      
+      if (selectedSymphony != null)
       {
-         LoadPattern(patternsInDirectory[selectedPatternInDirectory]);
+         DrawMelodyData(selectedSymphony.exploration, interfaceData.explorationMelodyContent);
+         DrawMelodyData(selectedSymphony.enemy, interfaceData.enemyMelodyContent);
+         DrawMelodyData(selectedSymphony.boss, interfaceData.bossMelodyContent);
+      }
+      
+      DrawSelectedInteractionData();
+
+      DrawTimeline();
+      
+      if (isDrawingSymphonyPopup)
+      {
+         DisplayCreateSymphonyPopup();
+      }
+   }
+   
+   #region Editor Drawing
+   
+   void DrawSymphonyDropdown()
+   {
+      EditorGUI.DrawRect(SymphonyDropdownRect, interfaceData.contentBackgroundColor);
+      GUILayout.BeginArea(SymphonyDropdownRect);
+      
+      selectedIndex = EditorGUILayout.Popup(selectedIndex, symphonies);
+
+      if (selectedIndex != 0)
+      {
+         //LoadPattern(symphonies[selectedIndex]);
       }
       else
       {
-         currentPattern = null;
+         selectedPattern = null;
       }
 
-      if (GUILayout.Button("Create New..."))
+      if (GUILayout.Button("Create new symphony..."))
       {
-         CreatePattern();
+         if (!isDrawingSymphonyPopup)
+         {
+            isDrawingSymphonyPopup = true;
+         }
       }
       
       GUILayout.EndArea();
    }
 
-   private SerializedObject _serializedObject;
-   
-   void DrawPatternDataArea()
+   private string tempSymphName;
+   private int tempSymphBPM;
+   void DisplayCreateSymphonyPopup()
    {
-      EditorGUI.DrawRect(patternDataRect, interfaceData.patternDataBackgroundColor); //Draw background
+      EditorGUI.DrawRect(interfaceData.symphonyCreatorPopupRect, interfaceData.contentBackgroundColor);
+      GUILayout.BeginArea(interfaceData.symphonyCreatorPopupRect);
+      GUILayout.Label("Create Symphony");
+      tempSymphName = EditorGUILayout.TextField("Symphony Name",tempSymphName);
+      tempSymphBPM = EditorGUILayout.IntField("BPM", tempSymphBPM);
       
-      if(currentPattern == null) return;
-      GUILayout.BeginArea(patternDataRect);
-      GUILayout.Space(20);
-      
-      currentPattern.patternName = EditorGUILayout.TextField("Pattern Name", currentPattern.patternName);
-      currentPattern.targetLevel = EditorGUILayout.Popup("Target Level", currentPattern.targetLevel, levelOptions); 
-      currentPattern.difficultyIndex = EditorGUILayout.Popup("Difficulty", currentPattern.difficultyIndex, difficultyOptions);
-      currentPattern.maxTime = EditorGUILayout.FloatField("Max Time", (float) currentPattern.maxTime);
-      GUILayout.BeginHorizontal();
-      GUILayout.FlexibleSpace();
-      
-      if (GUILayout.Button(interfaceData.saveTexture, GUILayout.Width(interfaceData.buttonIconWidth), GUILayout.Height(interfaceData.buttonIconHeight)))
+      if (GUILayout.Button("Create"))
       {
-         SavePattern();
+         CreateSymphony();
       }
       
-      if (GUILayout.Button(interfaceData.deleteTexture, GUILayout.Width(interfaceData.buttonIconWidth), GUILayout.Height(interfaceData.buttonIconHeight)))
+      if (GUILayout.Button("Close"))
       {
-         DeletePattern();
-      }
-
-      GUILayout.EndHorizontal();
-      GUILayout.EndArea();
-
-   }
-
-   void DrawInteractionListArea()
-   {
-      EditorGUI.DrawRect(interactionListRect, interfaceData.interactionListBackgroundDropdown);
-      
-      GUILayout.BeginArea(interactionListRect);
-      GUILayout.Space(20);
-
-      GUILayout.BeginHorizontal();
-      
-      if (GUILayout.Button("Add Tap On Top Timeline"))
-      {
-         AddKeyOnTimeline(0, 0, Enums.InteractionType.Tap);
-      }
-      if (GUILayout.Button("Add Tap On Bot Timeline"))
-      {
-         AddKeyOnTimeline(1, 0, Enums.InteractionType.Tap);
+         isDrawingSymphonyPopup = false;
       }
       
-      GUILayout.EndHorizontal();
-      
-      GUILayout.BeginHorizontal();
-      
-      if (GUILayout.Button("Add Slide On Top Timeline"))
-      {
-         AddKeyOnTimeline(0, 0, Enums.InteractionType.Swipe);
-      }
-      if (GUILayout.Button("Add Slide On Bot Timeline"))
-      {
-         AddKeyOnTimeline(1, 0, Enums.InteractionType.Swipe);
-      }
-      
-      GUILayout.EndHorizontal();
-
       GUILayout.EndArea();
    }
 
-
-
-   void DrawSelectedInteractionArea()
+   void CreateSymphony()
    {
-      EditorGUI.DrawRect(selectedInteractionRect, interfaceData.selectedInteractionBackgroundColor);
-      GUILayout.BeginArea(selectedInteractionRect);
-      
-      DrawSelectedKeyData();
-      
-      GUILayout.EndArea();
+      if (tempSymphName == "" || tempSymphBPM == 0)
+      {
+         
+      }
+      else
+      {
+         SymphonySO newSymphony = CreateInstance<SymphonySO>();
+         newSymphony.sName = tempSymphName;
+         newSymphony.bpm = tempSymphBPM;
+         AssetDatabase.CreateAsset(newSymphony, $"Assets/Resources/Scriptable/Symphony/{newSymphony.sName}.asset");
+         isDrawingSymphonyPopup = false;
+      }
 
    }
    
-   private void DrawSelectedKeyData()
+   void DrawMelodyData(MelodySO melody, Rect rect)
    {
+      EditorGUI.DrawRect(rect, interfaceData.contentBackgroundColor);
+      GUILayout.BeginArea(rect);
+
+      for (int i = 0; i < melody.patterns.Count; i++)
+      {
+         if (GUILayout.Button($"Pattern #{i}"))
+         {
+            selectedPattern = melody.patterns[i];
+         }
+      }
+
+      GUILayout.BeginHorizontal();
+      
+      if (GUILayout.Button("Create Pattern"))
+      {
+         CreatePattern(melody);  
+      }
+
+      GUILayout.EndHorizontal();
+
+      melody.seed = EditorGUILayout.IntField("Seed",melody.seed);
+
+      if (GUILayout.Button("Generate Seed"))
+      {
+         melody.GenerateSeed();
+      }
+      
+      GUILayout.Label(melody.GetSeedPatternsPreview());
+      
+
+      GUILayout.EndArea();
+   }
+
+   void DrawSelectedInteractionData()
+   {
+      EditorGUI.DrawRect(SelectedInteractionRect, interfaceData.contentBackgroundColor);
+      GUILayout.BeginArea(SelectedInteractionRect);
+      
       GUILayout.Space(20f);
       
       if (selectedInteractionKey != null)
       {
          selectedInteractionKey.timeCode = TimeAsString(selectedInteractionKey.time);
          EditorGUILayout.LabelField($"Time Code : {selectedInteractionKey.timeCode}");
-         selectedInteractionKey.time = EditorGUILayout.Slider((float)selectedInteractionKey.time, 0f, (float)currentPattern.maxTime);
+         selectedInteractionKey.time = EditorGUILayout.Slider((float)selectedInteractionKey.time, 0f, (float)selectedPattern.maxTime);
          selectedInteractionKey.interactionType = (Enums.InteractionType) EditorGUILayout.EnumPopup("Type", selectedInteractionKey.interactionType);
 
          switch ( selectedInteractionKey.interactionType)
@@ -287,7 +275,7 @@ public class CapacityToolEditor : SimpleTimeArea
                break;
             
             case Enums.InteractionType.Swipe:
-               selectedInteractionKey.swipeDirection = (InputListener.SwipeDirection)EditorGUILayout.EnumPopup("Swipe Direction", selectedInteractionKey.swipeDirection);
+               selectedInteractionKey.swipeDirection = (ScreenListener.SwipeDirection)EditorGUILayout.EnumPopup("Swipe Direction", selectedInteractionKey.swipeDirection);
                break;
          }
          
@@ -295,7 +283,8 @@ public class CapacityToolEditor : SimpleTimeArea
          {
             RemoveKeyOnTimeline();
          }
-      }
+      }      
+      GUILayout.EndArea();
    }
 
    private void DrawTimeline()
@@ -323,12 +312,11 @@ public class CapacityToolEditor : SimpleTimeArea
    #endregion
    
    #region Editor Utilities
-   void LoadAssets()
+   void GetReferencesInDirectories()
    {
-      interfaceData =
-         (EditorGUIUtility.Load("Assets/Code/Tools/CapacityTool/EditorResources/PatternInterfaceData.asset") as PatternToolsInterfaceData);
-      _tapIcon = (EditorGUIUtility.Load("Assets/Code/Tools/CapacityTool/EditorResources/tapimage.png") as Texture);
+      interfaceData = (EditorGUIUtility.Load("Assets/Code/Tools/M.A.T.H.I.S/EditorResources/PatternInterfaceData.asset") as PatternToolsInterfaceData);
    }
+
    void EditorEventListener()
    {
       eventListener = Event.current;
@@ -369,54 +357,25 @@ public class CapacityToolEditor : SimpleTimeArea
 
    #region Directory Utilities
 
-   void SetPatternsInDropDown()
+   void GetSymphonyInDirectory()
    {
-      directoryPath = $"Scriptable/Pattern/";
-      Pattern[] patterns = Resources.LoadAll<Pattern>(directoryPath);
-      patternsInDirectory = new string[patterns.Length + 1];
-      patternsInDirectory[0] = "Select a pattern here...";
-      for (int i = 1; i < patterns.Length + 1; i++)
+      directoryPath = $"Scriptable/Symphony/";
+      SymphonySO[] symphony = Resources.LoadAll<SymphonySO>(directoryPath);
+      Debug.Log(symphony.Length);
+      symphonies = new string[symphony.Length + 1];
+      symphonies[0] = "Select a symphony here...";
+      for (int i = 1; i < symphony.Length + 1; i++)
       {
-         patternsInDirectory[i] = patterns[i - 1].patternName;
+         symphonies[i] = symphony[i - 1].sName;
       }
    }
 
-   void CreatePattern()
+   void CreatePattern(MelodySO targetMelody)
    {
-      currentPattern = ScriptableObject.CreateInstance<Pattern>();
-      currentPattern.patternName = "New Pattern";
-      directoryPath = $"Assets/Resources/Scriptable/Pattern/{currentPattern.patternName}.asset";
-      AssetDatabase.CreateAsset(currentPattern, directoryPath);
+      selectedPattern = CreateInstance<PatternSO>();
+      targetMelody.patterns.Add(selectedPattern);
    }
    
-   void SavePattern()
-   {
-      if(currentPattern == null) return;
-      
-      AssetDatabase.RenameAsset($"Assets/Resources/Scriptable/Pattern/{currentPattern.name}.asset",
-         currentPattern.patternName);
-      currentPattern.patternName = currentPattern.name;
-      
-      EditorUtility.SetDirty(currentPattern);
-      AssetDatabase.SaveAssets();
-      AssetDatabase.Refresh();
-   }
-
-   void LoadPattern(string patternName)
-   {
-      if (currentPattern == null || currentPattern.patternName != patternName)
-      {
-         directoryPath = $"Assets/Resources/Scriptable/Pattern/{patternName}.asset";
-         currentPattern = (Pattern) EditorGUIUtility.Load(directoryPath);
-      }
-   }
-
-   void DeletePattern()
-   {
-      directoryPath = $"Assets/Resources/Scriptable/Pattern/{currentPattern.patternName}.asset";
-      AssetDatabase.DeleteAsset(directoryPath);
-
-   }
 
    #endregion
    
@@ -437,11 +396,11 @@ public class CapacityToolEditor : SimpleTimeArea
    private bool dragKey;
    private void DrawKeysOnTimeline()
    {
-      if(currentPattern == null || currentPattern.interactions == null || currentPattern.interactions.Count <= 0) return;
+      if(selectedPattern == null || selectedPattern.interactions == null || selectedPattern.interactions.Count <= 0) return;
 
-      for (int i = 0; i < currentPattern.interactions.Count; i++)
+      for (int i = 0; i < selectedPattern.interactions.Count; i++)
       {
-         InteractionKey iKey = currentPattern.interactions[i];
+         InteractionKey iKey = selectedPattern.interactions[i];
          double timeToPos = TimeToPixel(iKey.time);
          float positionY = 0;
          switch (iKey.interactionType)
@@ -506,9 +465,9 @@ public class CapacityToolEditor : SimpleTimeArea
    private bool dragVerticalLine;
    void DrawEndVerticalLine()
    {
-      if(currentPattern == null) return;
+      if(selectedPattern == null) return;
       
-      float timeToPos = TimeToPixel(currentPattern.maxTime);
+      float timeToPos = TimeToPixel(selectedPattern.maxTime);
       Rect endHandler = new Rect(timeToPos - (interfaceData.interactHandlerWidth * 0.5f), rectTimeRuler.y, interfaceData.interactHandlerWidth,interfaceData.interactionHandlerHeight);
       Rect endLine = new Rect(timeToPos - (interfaceData.endLineThickness * 0.5f), rectTimeRuler.y, interfaceData.endLineThickness, rectContent.height + rectTimeRuler.height);
       
@@ -517,7 +476,7 @@ public class CapacityToolEditor : SimpleTimeArea
 
       if (dragVerticalLine)
       {
-         currentPattern.maxTime = GetSnappedTimeAtMousePosition(eventListener.mousePosition);
+         selectedPattern.maxTime = GetSnappedTimeAtMousePosition(eventListener.mousePosition);
       }
 
       if (eventListener.type == EventType.MouseUp)
@@ -632,13 +591,12 @@ public class CapacityToolEditor : SimpleTimeArea
 
    private void AddKeyOnTimeline(int rowToAdd, float timeCode, Enums.InteractionType interactionType)
    {
-      currentPattern.interactions.Add(new InteractionKey(rowToAdd, timeCode,TimeAsString(timeCode, "F2"), interactionType));
-      SavePattern();
+      selectedPattern.interactions.Add(new InteractionKey(rowToAdd, timeCode,TimeAsString(timeCode, "F2"), interactionType));
    }
 
    private void RemoveKeyOnTimeline()
    {
-      currentPattern.interactions.Remove(selectedInteractionKey);
+      selectedPattern.interactions.Remove(selectedInteractionKey);
       selectedInteractionKey = null;
    }
    
@@ -664,7 +622,6 @@ public class CapacityToolEditor : SimpleTimeArea
 
    #endregion
    
-
    public static class EditorList
    {
       public static void Show(SerializedProperty list)
