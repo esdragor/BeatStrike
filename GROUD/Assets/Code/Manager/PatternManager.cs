@@ -10,7 +10,7 @@ public class PatternManager : MonoBehaviour
 {
     public static PatternManager Instance;
     public static Action OnPatternEnd;
-    [FormerlySerializedAs("currentPattern")] public PatternSO currentPatternSo;
+    [FormerlySerializedAs("currentPatternSo")] public Pattern currentPattern;
     private Queue<InteractionKey> timelineRunnerKeys;
     public bool isTimelineActive;
 
@@ -25,13 +25,13 @@ public class PatternManager : MonoBehaviour
         Instance = this;
     }
 
-    public void StartPattern(PatternSO p)
+    public void StartPattern(Pattern p)
     {
         if (isTimelineActive) return;
 
         InitializeQueue(p.interactions);
 
-        currentPatternSo = p;
+        currentPattern = p;
         timer = 0;
 
         GameManager.onUpdated += TimelineEventListener;
@@ -64,7 +64,7 @@ public class PatternManager : MonoBehaviour
             }
         }
 
-        if (timer > currentPatternSo.maxTime)
+        if (timer > currentPattern.maxTime)
         {
             ForceEnd();
         }

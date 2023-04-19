@@ -4,8 +4,8 @@ public class MelodySO : ScriptableObject
 {
     public int seed;
     
-    public List<PatternSO> patterns;
-    public List<PatternSO> selectedPatterns;
+    public List<Pattern> patterns;
+    public List<Pattern> selectedPatterns;
 
 
     public void GenerateSeed()

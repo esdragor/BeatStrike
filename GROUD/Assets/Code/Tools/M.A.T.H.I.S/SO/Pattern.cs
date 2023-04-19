@@ -4,7 +4,7 @@ using NaughtyAttributes;
 using UnityEngine;
 
 [CreateAssetMenu(order = 0, menuName = "Pattern/Create Pattern", fileName = "new Pattern")]
-public class PatternSO : ScriptableObject
+public class Pattern : ScriptableObject
 {
     public double maxTime = 10f;
     public List<InteractionKey> interactions;
