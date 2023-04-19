@@ -78,8 +78,8 @@ public class CapacityToolEditor : SimpleTimeArea
    public static void InitWindow()
    {
       var window = GetWindow<CapacityToolEditor>(false, "Capacity Tool Editor");
-      window.minSize = new Vector2(1170f, 760f);
-      window.maxSize = new Vector2(1170f, 760f);
+      //window.minSize = new Vector2(1170f, 760f);
+      //window.maxSize = new Vector2(1170f, 760f);
       window.Show();
    }
 
@@ -161,7 +161,7 @@ public class CapacityToolEditor : SimpleTimeArea
 
       if (selectedIndex != 0)
       {
-         //LoadPattern(symphonies[selectedIndex]);
+         LoadSymphonyFromDirectory(symphonies[selectedIndex]);
       }
       else
       {
@@ -177,6 +177,11 @@ public class CapacityToolEditor : SimpleTimeArea
       }
       
       GUILayout.EndArea();
+   }
+
+   void SetSymphony(SymphonySO symphony)
+   {
+      selectedSymphony = symphony;
    }
 
    private string tempSymphName;
@@ -213,6 +218,9 @@ public class CapacityToolEditor : SimpleTimeArea
          SymphonySO newSymphony = CreateInstance<SymphonySO>();
          newSymphony.sName = tempSymphName;
          newSymphony.bpm = tempSymphBPM;
+         newSymphony.exploration = CreateInstance<MelodySO>();
+         newSymphony.enemy = CreateInstance<MelodySO>();
+         newSymphony.boss = CreateInstance<MelodySO>();
          AssetDatabase.CreateAsset(newSymphony, $"Assets/Resources/Scriptable/Symphony/{newSymphony.sName}.asset");
          isDrawingSymphonyPopup = false;
       }
@@ -223,32 +231,41 @@ public class CapacityToolEditor : SimpleTimeArea
    {
       EditorGUI.DrawRect(rect, interfaceData.contentBackgroundColor);
       GUILayout.BeginArea(rect);
-
-      for (int i = 0; i < melody.patterns.Count; i++)
+      
+      if (melody != null)
       {
-         if (GUILayout.Button($"Pattern #{i}"))
+         Debug.Log("Kebab");
+         if (melody.patterns.Count > 0)
          {
-            selectedPattern = melody.patterns[i];
+            for (int i = 0; i < melody.patterns.Count; i++)
+            {
+               if (GUILayout.Button($"Pattern #{i}"))
+               {
+                  selectedPattern = melody.patterns[i];
+               }
+            }
          }
-      }
 
-      GUILayout.BeginHorizontal();
+         GUILayout.BeginHorizontal();
       
-      if (GUILayout.Button("Create Pattern"))
-      {
-         CreatePattern(melody);  
-      }
+         if (GUILayout.Button("Create Pattern"))
+         {
+            CreatePattern(melody);  
+         }
 
-      GUILayout.EndHorizontal();
+         GUILayout.EndHorizontal();
 
-      melody.seed = EditorGUILayout.IntField("Seed",melody.seed);
+         melody.seed = EditorGUILayout.IntField("Seed",melody.seed);
 
-      if (GUILayout.Button("Generate Seed"))
-      {
-         melody.GenerateSeed();
+         if (GUILayout.Button("Generate Seed"))
+         {
+            melody.GenerateSeed();
+         }
+      
+         GUILayout.Label(melody.GetSeedPatternsPreview());
       }
       
-      GUILayout.Label(melody.GetSeedPatternsPreview());
+    
       
 
       GUILayout.EndArea();
@@ -361,13 +378,18 @@ public class CapacityToolEditor : SimpleTimeArea
    {
       directoryPath = $"Scriptable/Symphony/";
       SymphonySO[] symphony = Resources.LoadAll<SymphonySO>(directoryPath);
-      Debug.Log(symphony.Length);
       symphonies = new string[symphony.Length + 1];
       symphonies[0] = "Select a symphony here...";
       for (int i = 1; i < symphony.Length + 1; i++)
       {
          symphonies[i] = symphony[i - 1].sName;
       }
+   }
+
+   void LoadSymphonyFromDirectory(string sName)
+   {
+      selectedSymphony = (SymphonySO) Resources.Load($"Scriptable/Symphony/{sName}", typeof(SymphonySO));
+      Debug.Log(selectedSymphony);
    }
 
    void CreatePattern(MelodySO targetMelody)

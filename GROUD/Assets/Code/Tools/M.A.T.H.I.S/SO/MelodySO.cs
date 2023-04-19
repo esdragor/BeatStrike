@@ -4,8 +4,8 @@ public class MelodySO : ScriptableObject
 {
     public int seed;
     
-    public List<PatternSO> patterns;
-    public List<PatternSO> selectedPatterns;
+    public List<PatternSO> patterns = new List<PatternSO>();
+    public List<PatternSO> selectedPatterns = new List<PatternSO>();
 
 
     public void GenerateSeed()
@@ -22,6 +22,7 @@ public class MelodySO : ScriptableObject
 
     public void SetRandomPatterns()
     {
+        selectedPatterns.Clear();
         for (int i = 0; i < 18; i++)
         {
             selectedPatterns.Add(patterns[Random.Range(0, patterns.Count)]);
@@ -32,15 +33,12 @@ public class MelodySO : ScriptableObject
     {
         string seedID = "";
         string insert = "";
-        
+
         for (int i = 0; i < patterns.Count; i++)
         {
-            for (int j = 0; j < selectedPatterns.Count; j++)
+            if (selectedPatterns.Contains(patterns[i]))
             {
-                if (selectedPatterns[j] == patterns[i])
-                {
-                    insert = seedID.Insert(seedID.Length, $"{i}");
-                }
+                insert = insert + $"{i}";
             }
         }
         
