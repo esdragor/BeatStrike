@@ -287,7 +287,7 @@ public class CapacityToolEditor : SimpleTimeArea
                break;
             
             case Enums.InteractionType.Swipe:
-            //   selectedInteractionKey.swipeDirection = (InputListener.SwipeDirection)EditorGUILayout.EnumPopup("Swipe Direction", selectedInteractionKey.swipeDirection);
+             selectedInteractionKey.swipeDirection = (ScreenListener.SwipeDirection)EditorGUILayout.EnumPopup("Swipe Direction", selectedInteractionKey.swipeDirection);
                break;
          }
          
