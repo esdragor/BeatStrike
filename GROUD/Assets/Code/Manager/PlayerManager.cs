@@ -38,7 +38,7 @@ public class PlayerManager : MonoBehaviour
     private void Start()
     {
         playerStats = GameManager.instance.currentCharacterInfos.playerStats;
-isMoving = false;
+        isMoving = false;
         SetPlayer();
     }
 
@@ -70,14 +70,14 @@ isMoving = false;
         runningStep = Mathf.Clamp(runningStep, 0, 1);
 
         Vector3 oldPos = transform.position;
-        
+
         transform.position = Vector3.Lerp(previousPosition, targetPosition, runningStep);
-        
+
         float newPos = transform.position.z - oldPos.z;
         Transform[] enemies = TileManager.GetCurrentTile().ToArray();
         foreach (Transform enemy in enemies)
             enemy.position += new Vector3(0, 0, newPos);
-        
+
         if (runningStep >= 1)
         {
             Debug.Log($"Player Reach End");
@@ -130,6 +130,7 @@ isMoving = false;
                 if (GameManager.instance.gameState.IsLevelExploration())
                 {
                     LevelManager.instance.roadManager.CheckStepsToTarget(5);
+                    ScoreManager.AddScore(5);
                 }
 
                 break;
@@ -140,6 +141,7 @@ isMoving = false;
                 if (GameManager.instance.gameState.IsLevelExploration())
                 {
                     LevelManager.instance.roadManager.CheckStepsToTarget(10);
+                    ScoreManager.AddScore(10);
                 }
 
                 break;
@@ -150,11 +152,13 @@ isMoving = false;
                 if (GameManager.instance.gameState.IsLevelExploration())
                 {
                     LevelManager.instance.roadManager.CheckStepsToTarget(20);
+                    ScoreManager.AddScore(20);
                 }
 
                 break;
         }
 
+        distanceReached = ScoreManager.GetScore();
         UIManager.instance.score.SetScore(distanceReached);
     }
 
