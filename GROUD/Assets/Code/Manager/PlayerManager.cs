@@ -52,15 +52,26 @@ isMoving = false;
 
     private float runningStep;
     private LevelRoadManager.RoadStep.StepAction nextAction;
+    private int index;
 
-    public void MovePlayerTo(Vector3 pos,
-        LevelRoadManager.RoadStep.StepAction stepAction = LevelRoadManager.RoadStep.StepAction.NONE)
+    public void MovePlayerTo(Vector3 pos, LevelRoadManager.RoadStep.StepAction stepAction = LevelRoadManager.RoadStep.StepAction.NONE)
     {
-        Debug.Log($"Player Move");
         nextAction = stepAction;
         targetPosition = pos;
         previousPosition = transform.position;
         isMoving = true;
+
+        if (stepAction == LevelRoadManager.RoadStep.StepAction.ENNEMY)
+        {
+            animator.SetTrigger(index % 2 == 0 ? "AttackLeft" : "AttackRight");
+        }
+        else
+        {       
+            animator.SetTrigger(index % 2 == 0 ? "StepLeft" : "StepRight");
+        }
+        
+        index++;
+
         runningStep = 0;
     }
 
