@@ -2049,6 +2049,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Level ManagerPortrait
       objectReference: {fileID: 0}
+    - target: {fileID: 2869541835473398601, guid: 1e8243ca050053247a78678ad01afd74,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2869541835473398603, guid: 1e8243ca050053247a78678ad01afd74,
         type: 3}
       propertyPath: m_RootOrder
@@ -9185,7 +9190,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1414634389
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12342,7 +12347,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1830690100}
-  - component: {fileID: 1830690102}
   - component: {fileID: 1830690101}
   m_Layer: 0
   m_Name: Player
@@ -12399,7 +12403,7 @@ MonoBehaviour:
     maxIntelligence: 0
     minStamina: 0
     maxStamina: 0
-  animator: {fileID: 1830690102}
+  animator: {fileID: 1863301564}
   playerLevelingData: {fileID: 11400000, guid: 65e04eaa23623294db898c64482252b1, type: 2}
   currentExperience: 0
   level: 0
@@ -12407,26 +12411,6 @@ MonoBehaviour:
   healthFill: {fileID: 0}
   healthTxt: {fileID: 0}
   CDPowerImage: {fileID: 0}
---- !u!95 &1830690102
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1830690099}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 80aa6adaf91ba7e4d870480c4bdbbe61, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
 --- !u!1 &1837703355
 GameObject:
   m_ObjectHideFlags: 0
@@ -12602,6 +12586,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1863301563}
+  - component: {fileID: 1863301564}
   m_Layer: 0
   m_Name: SK_Player_01
   m_TagString: Untagged
@@ -12626,6 +12611,26 @@ Transform:
   m_Father: {fileID: 1830690100}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1863301564
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1863301562}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 80aa6adaf91ba7e4d870480c4bdbbe61, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!1 &1871116750
 GameObject:
   m_ObjectHideFlags: 0
