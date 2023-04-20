@@ -14,6 +14,10 @@ namespace Code.Interface
             if (GameManager.instance.gameState.IsTimePlay())
             {
                 transform.position += -transform.forward * (speed * Time.deltaTime);
+                if (transform.position.z < PlayerManager.instance.transform.position.z - 2f)
+                {
+                    PatternPoolManager.Instance.AddInteractionToPool(gameObject);
+                }
             }
         }
 
