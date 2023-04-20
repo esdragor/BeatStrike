@@ -24,7 +24,7 @@ public class PatternPoolManager : MonoBehaviour
         {
             interactionPool.Add(Instantiate(interactionPrefab, interactionParent));
             interactionPool[i].name = $"Interaction_{i}";
-            interactionPool[i].transform.parent = interactionParent;
+            interactionPool[i].transform.parent.SetParent(interactionParent);
             interactionPool[i].SetActive(false);
         }
     }
@@ -34,7 +34,7 @@ public class PatternPoolManager : MonoBehaviour
         foreach (GameObject it in ActiveInteractions)
         {
             it.SetActive(false);
-            it.transform.parent = interactionParent;
+            it.transform.parent.SetParent(interactionParent);
             interactionPool.Add(it);
         }
         
@@ -66,6 +66,7 @@ public class PatternPoolManager : MonoBehaviour
         {
             var circle = Instantiate(interactionPrefab, transform);
             circle.SetActive(true);
+            circle.transform.SetParent(interactionParent);
             ActiveInteractions.Add(circle);
             TileManager.AddTile(circle.transform);
             return circle;
