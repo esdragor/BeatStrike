@@ -26,13 +26,18 @@ public class ScreenListener : MonoBehaviour,  IPointerDownHandler, IPointerUpHan
 
     TouchSide CheckTouchSide()
     {
-        if (onTouchPosition.x > leftDetector.position.x && onTouchPosition.x < leftDetector.position.x + leftDetector.rect.width)
+        Bounds leftBounds = new Bounds(leftDetector.transform.position, new Vector3(leftDetector.rect.width, leftDetector.rect.height, 0.0f));
+        Bounds rightBounds = new Bounds(rightDetector.transform.position, new Vector3(rightDetector.rect.width, leftDetector.rect.height, 0.0f));
+        
+        if (leftBounds.Contains(onTouchPosition))
         {
+            Debug.Log("Left touched");
             return TouchSide.LEFT;
         }
-        
-        if (onTouchPosition.x > rightDetector.position.x && onTouchPosition.x < rightDetector.position.x + rightDetector.rect.width)
+
+        if (rightBounds.Contains(onTouchPosition))
         {
+            Debug.Log("Right touched");
             return TouchSide.RIGHT;
         }
 

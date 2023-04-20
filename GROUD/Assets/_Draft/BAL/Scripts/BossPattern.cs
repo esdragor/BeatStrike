@@ -8,7 +8,7 @@ public class BossPattern : MonoBehaviour
 {
     public float MaxHealth = 500f;
     [HideInInspector] public float CurrentHealth = -999f;
-    public PatternSO[] Patterns;
+    public Pattern[] Patterns;
     
     public bool success;
     

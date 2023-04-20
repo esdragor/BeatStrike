@@ -75,8 +75,8 @@ namespace Code.Interface
                 if (isPerfect)
                     damage *= stats.critRate;
             }
-
-            PlayerManager.instance.OnInteractionSuccess(PlayerManager.instance.powerIsRunning
+            PlayerManager.onInteractionSuccess?.Invoke(successGroup);
+            PlayerManager.instance.OnInteractionSuccess(PlayerManager.instance.justPerfectEnabled
                 ? InteractionSuccess.Perfect
                 : successGroup);
 

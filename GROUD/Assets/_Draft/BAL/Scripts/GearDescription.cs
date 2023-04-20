@@ -18,6 +18,7 @@ public class GearDescription : MonoBehaviour
         if (!OnEquip)
         {
             MainMenuManager.instance.currentGear = this;
+            MainMenuManager.instance.currentPower = null;
             PlayerStats stats = new PlayerStats();
             if (gear.statsType1 == StatsType.Hp) stats.hp = gear.statsValue1;
             if (gear.statsType1 == StatsType.Intelligence) stats.intelligence = gear.statsValue1;
