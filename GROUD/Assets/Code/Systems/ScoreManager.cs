@@ -20,6 +20,6 @@ public class ScoreManager : MonoBehaviour
     
     public static float GetScore()
     {
-        return instance.score;
+        return instance.score * StreakManager.GetMultiplier();
     }
 }

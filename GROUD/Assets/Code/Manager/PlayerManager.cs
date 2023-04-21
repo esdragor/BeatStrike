@@ -133,6 +133,7 @@ public class PlayerManager : MonoBehaviour
 
     public void OnInteractionSuccess(InteractionSuccess interactionSuccess)
     {
+        StreakManager.AddStreak();
         switch (interactionSuccess)
         {
             case InteractionSuccess.Ok:
@@ -163,13 +164,11 @@ public class PlayerManager : MonoBehaviour
                 if (GameManager.instance.gameState.IsLevelExploration())
                 {
                     LevelManager.instance.roadManager.CheckStepsToTarget(20);
-                    ScoreManager.AddScore(20);
                     StreakManager.AddStreak();
+                    ScoreManager.AddScore(20);
                 }
-
                 break;
         }
-        StreakManager.AddStreak();
 
         distanceReached = ScoreManager.GetScore();
         UIManager.instance.score.SetScore(distanceReached);
