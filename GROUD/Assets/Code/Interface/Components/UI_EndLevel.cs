@@ -7,10 +7,10 @@ using UnityEngine.SceneManagement;
 public class UI_EndLevel : MonoBehaviour
 {
     [SerializeField] private TMP_Text textScore;
-    
+
     public void DrawPanel()
     {
-      gameObject.SetActive(true);
+        gameObject.SetActive(true);
         textScore.text = $"Score: \n\n{ScoreManager.GetScore()}";
     }
 
@@ -24,9 +24,10 @@ public class UI_EndLevel : MonoBehaviour
         DisablePanel();
         LevelManager.instance.Restart();
     }
-    
+
     public void Quit()
     {
+        Destroy(GameManager.instance.gameObject);
         SceneManager.LoadScene("MainMenu");
         DisablePanel();
     }
