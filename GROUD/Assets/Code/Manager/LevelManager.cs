@@ -40,10 +40,7 @@ public class LevelManager : MonoBehaviour
     }
     private void Update()
     {
-        if ( PlayerManager.instance.distanceReached >=  levelData.distanceToReach)
-        {
-            EndLevel();
-        }
+      
     }
     public void Restart()
     {
@@ -66,6 +63,7 @@ public class LevelManager : MonoBehaviour
 
     public void SetCombatMode()
     {
+        EnemyManager.instance.SetEnemy(levelData.enemy);
         GameManager.instance.gameState.SwitchLevelState(Enums.LevelState.Combat);
     }
     

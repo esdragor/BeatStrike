@@ -54,6 +54,11 @@ public class PlayerManager : MonoBehaviour
     private LevelRoadManager.RoadStep.StepAction nextAction;
     private int index;
 
+    public void HurtEnemy()
+    {
+        EnemyManager.instance.GetHurt(currentStats.damage);
+    }
+
     public void MovePlayerTo(Vector3 pos, LevelRoadManager.RoadStep.StepAction stepAction = LevelRoadManager.RoadStep.StepAction.NONE)
     {
         nextAction = stepAction;
@@ -144,6 +149,10 @@ public class PlayerManager : MonoBehaviour
                     LevelManager.instance.roadManager.CheckStepsToTarget(5);
                     ScoreManager.AddScore(5);
                 }
+                else
+                {
+                   HurtEnemy();
+                }
 
                 break;
 
@@ -154,6 +163,10 @@ public class PlayerManager : MonoBehaviour
                 {
                     LevelManager.instance.roadManager.CheckStepsToTarget(10);
                     ScoreManager.AddScore(10);
+                }
+                else
+                {
+                    HurtEnemy();
                 }
 
                 break;
@@ -166,6 +179,10 @@ public class PlayerManager : MonoBehaviour
                     LevelManager.instance.roadManager.CheckStepsToTarget(20);
                     StreakManager.AddStreak();
                     ScoreManager.AddScore(20);
+                }
+                else
+                {
+                    HurtEnemy();
                 }
                 break;
         }

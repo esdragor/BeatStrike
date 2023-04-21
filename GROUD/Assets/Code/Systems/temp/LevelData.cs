@@ -4,5 +4,6 @@
 public class LevelData : ScriptableObject
 {
     public LevelRound[] rounds;
+    public EnemySO enemy;
     public float distanceToReach;
 }

@@ -9,10 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29d48042aa8b46fe84e39bf9e26070e6, type: 3}
-  m_Name: Level Data
+  m_Script: {fileID: 11500000, guid: 8a2cd3be39344484885bf5bbac5557e3, type: 3}
+  m_Name: EnemyData
   m_EditorClassIdentifier: 
-  rounds:
-  - {fileID: 11400000, guid: 33db1d70b85b65141906ea565e7b2993, type: 2}
-  enemy: {fileID: 11400000, guid: d391b78341d5c774fa40ac4ee881238e, type: 2}
-  distanceToReach: 200
+  healthPoint: 30

@@ -41,32 +41,37 @@ public class LevelRoadManager : MonoBehaviour
         {
             targetIndex = steps.Count;
         }
+        
         for (int i = currentIndex; i < targetIndex; i++)
         {
             switch (steps[i].stepAction)
             {
                 case RoadStep.StepAction.NONE:
-                    Debug.Log($"{i} is None");
                     break;
                 
                 case RoadStep.StepAction.ENNEMY:
-                    Debug.Log($"{i} is enemy so stop");
-                    LevelManager.instance.SetCombatMode();
-                    PlayerManager.instance.MovePlayerTo(steps[i].position, RoadStep.StepAction.ENNEMY);
+                    if (steps[i].complete) break;
+                        
+                    if (!GameManager.instance.gameState.IsLevelCombat())
+                    {                  
+                        LevelManager.instance.SetCombatMode();
+                    }
+                    
+                    steps[i].complete = true;
+                    
                     return;
                 
                 case RoadStep.StepAction.END:
-                    Debug.Log($"{i} is end so stop");
                     PlayerManager.instance.MovePlayerTo(steps[i].position, RoadStep.StepAction.END);
+                    steps[i].complete = true;
                     return;
             }
             
-            Debug.Log($"{i} is not last so continue");
             
             if (i == targetIndex -1)
             {
-                Debug.Log($"{i} is last so move");
                 PlayerManager.instance.MovePlayerTo(steps[i].position);
+                steps[i].complete = true;
                 currentIndex = targetIndex;
             }
         }
@@ -153,6 +158,7 @@ public class LevelRoadManager : MonoBehaviour
     {
         public StepAction stepAction;
         public int index;
+        public bool complete;
         public Vector3 position;
         public Vector3[] subStepPosition;
 
