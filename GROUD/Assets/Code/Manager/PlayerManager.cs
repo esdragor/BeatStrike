@@ -164,10 +164,12 @@ public class PlayerManager : MonoBehaviour
                 {
                     LevelManager.instance.roadManager.CheckStepsToTarget(20);
                     ScoreManager.AddScore(20);
+                    StreakManager.AddStreak();
                 }
 
                 break;
         }
+        StreakManager.AddStreak();
 
         distanceReached = ScoreManager.GetScore();
         UIManager.instance.score.SetScore(distanceReached);

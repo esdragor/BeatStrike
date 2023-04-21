@@ -10,6 +10,7 @@ public class UIManager : MonoBehaviour
     public UI_Announcer announcer;
     public UI_EndLevel endLevel;
     public UI_Score score;
+    public UI_Streak streak;
 
     [Header("Objets")] 
     public GameObject debugPanel;
