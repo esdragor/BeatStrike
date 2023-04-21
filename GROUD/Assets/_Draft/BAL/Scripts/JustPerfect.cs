@@ -6,14 +6,14 @@ using UnityEngine;
 [Serializable]
 public class JustPerfect : Power
 {
-    [SerializeField] private float powerCooldown;
-    [SerializeField] private float ratioPerfect = 2.5f;
-    [SerializeField] private float ratioGood = 1.75f;
-    [SerializeField] private float ratioOk = 1f;
-    [SerializeField] private float amountCooldown = 1f;
+    // [SerializeField] private float powerCooldown;
+    // [SerializeField] private float ratioPerfect = 2.5f;
+    // [SerializeField] private float ratioGood = 1.75f;
+    // [SerializeField] private float ratioOk = 1f;
+    // [SerializeField] private float amountCooldown = 1f;
 
     private bool onCooldown = false;
-    private float currentCooldown = 0;
+    //private float currentCooldown = 0;
     private float amountCooldownPerSecond = 1000f;
 
 

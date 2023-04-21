@@ -17,6 +17,7 @@ namespace Code.Interface
                 if (transform.position.z < PlayerManager.instance.transform.position.z - 2f)
                 {
                     PatternPoolManager.Instance.AddInteractionToPool(gameObject);
+                    StreakManager.RemoveStreak();
                 }
             }
         }
