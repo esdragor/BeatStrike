@@ -19,6 +19,7 @@ public class StreakManager : MonoBehaviour
     private void Start()
     {
         UIManager.instance.streak.Enable();
+        ResetStreak();
     }
 
     public static void AddStreak()

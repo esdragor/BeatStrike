@@ -51,6 +51,8 @@ public class LevelManager : MonoBehaviour
         currentPatternIndex = 0;
         currentRoundIndex = 0;
         roadManager.Restart();
+        StreakManager.ResetStreak();
+        ScoreManager.ResetScore();
         
         GameManager.instance.gameState.SwitchTimeState(Enums.TimeState.Play);
 
