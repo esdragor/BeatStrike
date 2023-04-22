@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerStats:
     hp: 5
-    intelligence: 0
-    strength: 0
-    damage: 25
+    intelligence: 1
+    stamina: 1
+    damage: 1
     critRate: 0
     overflowHp: 0
     overflowIntelligence: 0
@@ -25,15 +25,9 @@ MonoBehaviour:
     maxHp: 10
     minIntelligence: 0
     maxIntelligence: 0
-    minStrength: 0
-    maxStrength: 0
+    minStamina: 0
+    maxStamina: 0
   playerSprite: {fileID: 21300000, guid: e5600378dd761e64d9423790c482bf36, type: 3}
-  power:
-    powerCooldown: 0
-    ratioPerfect: 2.5
-    ratioGood: 1.75
-    ratioOk: 1
-    amountCooldown: 1
   equipment:
   - {fileID: 0}
   - {fileID: 0}

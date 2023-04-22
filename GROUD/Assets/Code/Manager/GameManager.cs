@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
         currentCharacterInfos = ScriptableObject.CreateInstance<CharacterInfos>();
         currentCharacterInfos.SetPlayerStats(CharacterInfosPrefab);
+        currentCharacterInfos.power = new JustPerfect();
     }
 
     void Update()

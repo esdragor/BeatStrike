@@ -109,7 +109,7 @@ public class PlayerManager : MonoBehaviour
         currentStats = new PlayerStats(playerStats);
         distanceReached = 0;
         SetUIHealth();
-        UIManager.instance.score.SetScore(distanceReached);
+        UIManager.instance.score.SetScore((int)distanceReached);
     }
 
     public void AddExperience(float amount)
@@ -182,7 +182,7 @@ public class PlayerManager : MonoBehaviour
         }
 
         distanceReached = ScoreManager.GetScore();
-        UIManager.instance.score.SetScore(distanceReached);
+        UIManager.instance.score.SetScore((int)distanceReached);
     }
 
     public void TakeDamage(float amount)
