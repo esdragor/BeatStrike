@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: M_Slide
-  m_Shader: {fileID: -6465566751694194690, guid: 9067aec8b0358a1448f61630ed190ace,
+  m_Shader: {fileID: -6465566751694194690, guid: 96cb50d97b2160d489eba9abae793bc9,
     type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -21,8 +21,16 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _Accent:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _Albedo:
         m_Texture: {fileID: 2800000, guid: 4896b5aa9d63dec498136c21ffce735b, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Base_Color:
+        m_Texture: {fileID: 2800000, guid: 789ef07ba2573f6448fa8b5dc5224c44, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
@@ -76,7 +84,10 @@ Material:
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
+    - _Offset: 0
+    - _Opacity: 0.45
     - _Parallax: 0.02
+    - _Roughness: 0.85
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
