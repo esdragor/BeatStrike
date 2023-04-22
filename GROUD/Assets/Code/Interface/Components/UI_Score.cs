@@ -5,8 +5,8 @@ public class UI_Score : MonoBehaviour
 {
     private TMP_Text text => GetComponent<TMP_Text>();
     
-    public void SetScore(float value)
+    public void SetScore(int value)
     {
-        text.text = $"DISTANCE : {value}";
+        text.text = value.ToString();
     }
 }

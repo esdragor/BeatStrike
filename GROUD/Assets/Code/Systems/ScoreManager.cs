@@ -11,6 +11,7 @@ public class ScoreManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
+        ResetScore();
     }
 
     public static void AddScore(float value)
@@ -21,5 +22,10 @@ public class ScoreManager : MonoBehaviour
     public static float GetScore()
     {
         return instance.score * StreakManager.GetMultiplier();
+    }
+
+    public static void ResetScore()
+    {
+        instance.score = 0;
     }
 }
