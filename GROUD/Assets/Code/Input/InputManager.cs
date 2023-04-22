@@ -40,6 +40,7 @@ public class InputManager : MonoBehaviour
         {
             GameManager.instance.currentCharacterInfos.power.Execute();
         }
+        
     }
 
     private void TapBehaviour(ScreenListener.TouchSide touchSide)
@@ -69,6 +70,7 @@ public class InputManager : MonoBehaviour
                 itList[i].ValidateInteraction();
             }
         }
+        
     }
     
 }

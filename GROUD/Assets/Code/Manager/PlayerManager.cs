@@ -136,8 +136,8 @@ public class PlayerManager : MonoBehaviour
         switch (interactionSuccess)
         {
             case InteractionSuccess.Ok:
-                UIManager.instance.announcer.Announce("Ok", Color.red);
-
+                GameManager.instance.detectorVisual.PlayVFX("Ok");
+                
                 if (GameManager.instance.gameState.IsLevelExploration())
                 {
                     LevelManager.instance.roadManager.CheckStepsToTarget(5);
@@ -151,7 +151,7 @@ public class PlayerManager : MonoBehaviour
                 break;
 
             case InteractionSuccess.Good:
-                UIManager.instance.announcer.Announce("Good", Color.blue);
+                GameManager.instance.detectorVisual.PlayVFX("Great");
 
                 if (GameManager.instance.gameState.IsLevelExploration())
                 {
@@ -166,7 +166,7 @@ public class PlayerManager : MonoBehaviour
                 break;
 
             case InteractionSuccess.Perfect:
-                UIManager.instance.announcer.Announce("Perfect", Color.green);
+                GameManager.instance.detectorVisual.PlayVFX("Perfect");
 
                 if (GameManager.instance.gameState.IsLevelExploration())
                 {

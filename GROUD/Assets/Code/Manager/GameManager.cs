@@ -13,7 +13,8 @@ public class GameManager : MonoBehaviour
     public float MovementRatioOk = 1f;
     public float MovementRatioGood = 1.5f;
     public float MovementRatioPerfect = 1f;
-    
+
+    public DetectorVisual detectorVisual;
 
     private void Awake()
     {

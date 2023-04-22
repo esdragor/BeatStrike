@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-4281614109242472526
+--- !u!114 &-6926977443199303099
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
@@ -20,8 +20,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Black
-  m_Shader: {fileID: -6465566751694194690, guid: 96cb50d97b2160d489eba9abae793bc9,
+  m_Name: Ground
+  m_Shader: {fileID: -6465566751694194690, guid: 358a8d26e6a69a6468fd5c72225b5d71,
     type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -34,14 +34,6 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - _Accent:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _Base_Color:
-        m_Texture: {fileID: 2800000, guid: 7ba4b2810f605d945af87e032ca2957b, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _BumpMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -80,7 +72,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Amount: 0.001
+    - _Amount: 0.0019
     - _BUILTIN_QueueControl: 0
     - _BUILTIN_QueueOffset: 0
     - _BumpScale: 1
@@ -93,16 +85,14 @@ Material:
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
-    - _Offset: 0
-    - _Opacity: 0.484
+    - _Offset: -0.83
     - _Parallax: 0.02
-    - _Roughness: 0
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 0.2735849, g: 0.2735849, b: 0.2735849, a: 1}
+    - _Color: {r: 1, g: 0.68235296, b: 0.32156864, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []
