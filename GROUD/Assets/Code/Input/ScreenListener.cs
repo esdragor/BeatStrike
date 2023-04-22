@@ -31,13 +31,11 @@ public class ScreenListener : MonoBehaviour,  IPointerDownHandler, IPointerUpHan
         
         if (leftBounds.Contains(onTouchPosition))
         {
-            Debug.Log("Left touched");
             return TouchSide.LEFT;
         }
 
         if (rightBounds.Contains(onTouchPosition))
         {
-            Debug.Log("Right touched");
             return TouchSide.RIGHT;
         }
 

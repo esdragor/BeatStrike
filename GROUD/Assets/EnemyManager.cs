@@ -41,7 +41,7 @@ public class EnemyManager : MonoBehaviour
         if (isActive)
         {
             currentHealth -= amount;
-            Debug.Log("ENEMY HURT");
+
             enemyInterface.UpdateHealthUI(currentHealth, currentEnemy.healthPoint);
             
             if (currentHealth <= 0)

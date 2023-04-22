@@ -84,20 +84,13 @@ public class PlayerManager : MonoBehaviour
     {
         runningStep += runningSpeed * Time.deltaTime;
         runningStep = Mathf.Clamp(runningStep, 0, 1);
-
-        Vector3 oldPos = transform.position;
-
+        
         transform.position = Vector3.Lerp(previousPosition, targetPosition, runningStep);
 
-        float newPos = transform.position.z - oldPos.z;
-        /*
-        Transform[] enemies = TileManager.GetCurrentTile().ToArray();
-        foreach (Transform enemy in enemies)
-            enemy.position += new Vector3(0, 0, newPos);
-        */
+       
+        
         if (runningStep >= 1)
         {
-            Debug.Log($"Player Reach End");
             isMoving = false;
             switch (nextAction)
             {

@@ -11,7 +11,6 @@ public class UIEnemy : MonoBehaviour
     
     public void UpdateHealthUI(float healthAmount, float healthMax)
     {
-        Debug.Log("Update");
         healthImage.fillAmount = healthAmount / healthMax;
         healthText.text = $"{healthAmount}/{healthMax}";
     }
