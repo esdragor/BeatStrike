@@ -9,6 +9,7 @@ public class InteractionDetector : MonoBehaviour
     public Action<InteractionComponent> OnInteractionAdded;
     public Action<InteractionComponent> OnInteractionRemoved;
     public List<InteractionComponent> InteractionCanTrigger = new();
+    public BoxCollider collider;
     public DetectionZoneData[] detectionZoneData;
     public float tolerance = 0.01f;
 
@@ -39,9 +40,9 @@ public class InteractionDetector : MonoBehaviour
     private void SetInteractionGroup(InteractionComponent current)
     {
         if (detectionZoneData.Length <= 0 || current == null) return;
-
-        Vector3 topPoint = new Vector3(transform.position.x, transform.position.y,
-            transform.position.z + transform.localScale.z * 0.5f);
+        
+        Vector3 topPoint = new Vector3(transform.position.x + collider.center.x , transform.position.y + collider.center.y,
+            transform.position.z  + collider.center.z + collider.size.z * 0.5f);
         Vector3 posInside = topPoint - current.transform.position;
 
         float itOffset = 0;
@@ -71,10 +72,10 @@ public class InteractionDetector : MonoBehaviour
 
         for (int i = 0; i < detectionZoneData.Length; i++)
         {
-            Vector3 topPoint = new Vector3(transform.position.x, transform.position.y,
-                transform.position.z + transform.localScale.z * 0.5f);
+            Vector3 topPoint = new Vector3(transform.position.x + collider.center.x , transform.position.y + collider.center.y,
+                transform.position.z  + collider.center.z + collider.size.z * 0.5f);
             Vector3 zoneCenter = new Vector3(topPoint.x, topPoint.y + 0.2f * 0.5f,
-                topPoint.z - (transform.localScale.z * detectionZoneData[i].detectionRange) * 0.5f);
+                topPoint.z - (collider.size.z * detectionZoneData[i].detectionRange) * 0.5f);
 
             if (i > 0)
             {
@@ -84,8 +85,8 @@ public class InteractionDetector : MonoBehaviour
 
             Gizmos.color = detectionZoneData[i].gizmoColor;
             Gizmos.DrawCube(zoneCenter,
-                new Vector3(transform.localScale.x, transform.localScale.y + 0.2f,
-                    transform.localScale.z * detectionZoneData[i].detectionRange));
+                new Vector3(collider.size.x, collider.size.y + 0.2f,
+                    collider.size.z * detectionZoneData[i].detectionRange));
         }
     }
 
