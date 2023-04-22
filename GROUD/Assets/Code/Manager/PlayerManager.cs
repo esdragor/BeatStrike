@@ -90,10 +90,11 @@ public class PlayerManager : MonoBehaviour
         transform.position = Vector3.Lerp(previousPosition, targetPosition, runningStep);
 
         float newPos = transform.position.z - oldPos.z;
+        /*
         Transform[] enemies = TileManager.GetCurrentTile().ToArray();
         foreach (Transform enemy in enemies)
             enemy.position += new Vector3(0, 0, newPos);
-
+        */
         if (runningStep >= 1)
         {
             Debug.Log($"Player Reach End");
