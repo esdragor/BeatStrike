@@ -11,6 +11,8 @@ public class DetectorVisual : MonoBehaviour
     public ParticleSystem perfectVFX;
     public ParticleSystem attackVFX;
     public ParticleSystem dodgeVFX;
+    public ParticleSystem rightBopVFX;
+    public ParticleSystem leftBopVFX;
 
     private void Awake()
     {
@@ -43,6 +45,14 @@ public class DetectorVisual : MonoBehaviour
             
             case "Dodge":
                 dodgeVFX.Play();
+                break;
+            
+            case "RightBop":
+                rightBopVFX.Play();
+                break;
+            
+            case "LeftBop":
+                leftBopVFX.Play();
                 break;
         }
     }
