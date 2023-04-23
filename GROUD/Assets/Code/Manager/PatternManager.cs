@@ -28,6 +28,7 @@ public class PatternManager : MonoBehaviour
     public void StartPattern(Pattern p)
     {
         if (isTimelineActive) return;
+        
 
         InitializeQueue(p.interactions);
 
@@ -41,12 +42,14 @@ public class PatternManager : MonoBehaviour
 
     private void InitializeQueue(List<InteractionKey> interactionKeys)
     {
+
         timelineRunnerKeys = new Queue<InteractionKey>();
 
-        interactionKeys = interactionKeys.OrderBy(it => it.timeCode).ToList();
-
+        interactionKeys = interactionKeys.OrderBy(it => it.time).ToList();
+        
         foreach (var t in interactionKeys)
         {
+            Debug.Log(t.time);
             timelineRunnerKeys.Enqueue(t);
         }
     }
@@ -58,6 +61,7 @@ public class PatternManager : MonoBehaviour
 
         if (timelineRunnerKeys.Count > 0)
         {
+
             if (Math.Abs(timelineRunnerKeys.Peek().time - timer) < 0.1f)
             {
                 DrawInteractionOnScreen(timelineRunnerKeys.Dequeue());
@@ -80,6 +84,8 @@ public class PatternManager : MonoBehaviour
 
     public void DrawInteractionOnScreen(InteractionKey dataKey)
     {
+        Debug.Log("Draw interaction");
+
         caster = PatternPoolManager.Instance.GetCircleFromPool();
         caster.GetComponent<InteractionComponent>().SetData(dataKey);
 

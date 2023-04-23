@@ -38,10 +38,7 @@ public class LevelManager : MonoBehaviour
         PatternManager.OnPatternEnd += CheckNextPattern;
         PlayPattern();
     }
-    private void Update()
-    {
-      
-    }
+    
     public void Restart()
     {
         PatternPoolManager.Instance.DisableAllInteractions();
