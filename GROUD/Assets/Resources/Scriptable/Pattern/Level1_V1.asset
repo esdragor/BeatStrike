@@ -13,13 +13,45 @@ MonoBehaviour:
   m_Name: Level1_V1
   m_EditorClassIdentifier: 
   patternName: Level1_V1
-  targetLevel: 1
-  difficultyIndex: 1
+  targetLevel: 0
+  difficultyIndex: 0
   maxTime: 120
   interactions:
+  - time: 1
+    row: 1
+    timeCode: 1:00
+    scale: 0
+    spawnPosition: {x: 0, y: 0, z: 0}
+    interactionType: 0
+    swipeDirection: 0
+    interactionColor: 1
   - time: 2
     row: 1
     timeCode: 2:00
+    scale: 0
+    spawnPosition: {x: 0, y: 0, z: 0}
+    interactionType: 0
+    swipeDirection: 0
+    interactionColor: 1
+  - time: 3
+    row: 1
+    timeCode: 3:00
+    scale: 0
+    spawnPosition: {x: 0, y: 0, z: 0}
+    interactionType: 0
+    swipeDirection: 0
+    interactionColor: 1
+  - time: 5
+    row: 1
+    timeCode: 5:00
+    scale: 0
+    spawnPosition: {x: 0, y: 0, z: 0}
+    interactionType: 0
+    swipeDirection: 0
+    interactionColor: 1
+  - time: 4.5
+    row: 1
+    timeCode: 4:30
     scale: 0
     spawnPosition: {x: 0, y: 0, z: 0}
     interactionType: 0
@@ -33,17 +65,17 @@ MonoBehaviour:
     interactionType: 0
     swipeDirection: 0
     interactionColor: 1
-  - time: 6
+  - time: 7
     row: 1
-    timeCode: 6:00
+    timeCode: 7:00
     scale: 0
     spawnPosition: {x: 0, y: 0, z: 0}
     interactionType: 0
     swipeDirection: 0
     interactionColor: 1
-  - time: 10
+  - time: 6
     row: 1
-    timeCode: 10:00
+    timeCode: 6:00
     scale: 0
     spawnPosition: {x: 0, y: 0, z: 0}
     interactionType: 0
@@ -57,17 +89,17 @@ MonoBehaviour:
     interactionType: 0
     swipeDirection: 0
     interactionColor: 1
-  - time: 8
+  - time: 8.5
     row: 1
-    timeCode: 8:00
+    timeCode: 8:30
     scale: 0
     spawnPosition: {x: 0, y: 0, z: 0}
     interactionType: 0
     swipeDirection: 0
     interactionColor: 1
-  - time: 14
+  - time: 8
     row: 1
-    timeCode: 14:00
+    timeCode: 8:00
     scale: 0
     spawnPosition: {x: 0, y: 0, z: 0}
     interactionType: 0
@@ -81,17 +113,49 @@ MonoBehaviour:
     interactionType: 0
     swipeDirection: 0
     interactionColor: 1
-  - time: 18
+  - time: 11
     row: 1
-    timeCode: 18:00
+    timeCode: 11:00
     scale: 0
     spawnPosition: {x: 0, y: 0, z: 0}
     interactionType: 0
     swipeDirection: 0
     interactionColor: 1
-  - time: 17
+  - time: 10
     row: 1
-    timeCode: 17:00
+    timeCode: 10:00
+    scale: 0
+    spawnPosition: {x: 0, y: 0, z: 0}
+    interactionType: 0
+    swipeDirection: 0
+    interactionColor: 1
+  - time: 13
+    row: 0
+    timeCode: 13:00
+    scale: 0
+    spawnPosition: {x: 0, y: 0, z: 0}
+    interactionType: 0
+    swipeDirection: 0
+    interactionColor: 0
+  - time: 14
+    row: 1
+    timeCode: 14:00
+    scale: 0
+    spawnPosition: {x: 0, y: 0, z: 0}
+    interactionType: 0
+    swipeDirection: 0
+    interactionColor: 1
+  - time: 15
+    row: 0
+    timeCode: 15:00
+    scale: 0
+    spawnPosition: {x: 0, y: 0, z: 0}
+    interactionType: 0
+    swipeDirection: 0
+    interactionColor: 0
+  - time: 18
+    row: 1
+    timeCode: 18:00
     scale: 0
     spawnPosition: {x: 0, y: 0, z: 0}
     interactionType: 0
@@ -105,14 +169,22 @@ MonoBehaviour:
     interactionType: 0
     swipeDirection: 0
     interactionColor: 1
-  - time: 24
-    row: 1
-    timeCode: 24:00
+  - time: 19
+    row: 0
+    timeCode: 19:00
     scale: 0
     spawnPosition: {x: 0, y: 0, z: 0}
     interactionType: 0
     swipeDirection: 0
-    interactionColor: 1
+    interactionColor: 0
+  - time: 17
+    row: 0
+    timeCode: 17:00
+    scale: 0
+    spawnPosition: {x: 0, y: 0, z: 0}
+    interactionType: 0
+    swipeDirection: 0
+    interactionColor: 0
   - time: 22
     row: 1
     timeCode: 22:00
@@ -129,9 +201,65 @@ MonoBehaviour:
     interactionType: 0
     swipeDirection: 0
     interactionColor: 1
-  - time: 26
+  - time: 21
+    row: 1
+    timeCode: 21:00
+    scale: 0
+    spawnPosition: {x: 0, y: 0, z: 0}
+    interactionType: 0
+    swipeDirection: 0
+    interactionColor: 1
+  - time: 23
+    row: 1
+    timeCode: 23:00
+    scale: 0
+    spawnPosition: {x: 0, y: 0, z: 0}
+    interactionType: 0
+    swipeDirection: 0
+    interactionColor: 1
+  - time: 23.5
     row: 0
+    timeCode: 23:30
+    scale: 0
+    spawnPosition: {x: 0, y: 0, z: 0}
+    interactionType: 0
+    swipeDirection: 0
+    interactionColor: 0
+  - time: 25
+    row: 1
+    timeCode: 25:00
+    scale: 0
+    spawnPosition: {x: 0, y: 0, z: 0}
+    interactionType: 0
+    swipeDirection: 0
+    interactionColor: 1
+  - time: 24.5
+    row: 1
+    timeCode: 24:30
+    scale: 0
+    spawnPosition: {x: 0, y: 0, z: 0}
+    interactionType: 0
+    swipeDirection: 0
+    interactionColor: 1
+  - time: 24
+    row: 1
+    timeCode: 24:00
+    scale: 0
+    spawnPosition: {x: 0, y: 0, z: 0}
+    interactionType: 0
+    swipeDirection: 0
+    interactionColor: 1
+  - time: 26
+    row: 1
     timeCode: 26:00
+    scale: 0
+    spawnPosition: {x: 0, y: 0, z: 0}
+    interactionType: 0
+    swipeDirection: 0
+    interactionColor: 1
+  - time: 26.5
+    row: 0
+    timeCode: 26:30
     scale: 0
     spawnPosition: {x: 0, y: 0, z: 0}
     interactionType: 0
@@ -145,6 +273,22 @@ MonoBehaviour:
     interactionType: 0
     swipeDirection: 0
     interactionColor: 1
+  - time: 27.5
+    row: 1
+    timeCode: 27:30
+    scale: 0
+    spawnPosition: {x: 0, y: 0, z: 0}
+    interactionType: 0
+    swipeDirection: 0
+    interactionColor: 1
+  - time: 27
+    row: 1
+    timeCode: 27:00
+    scale: 0
+    spawnPosition: {x: 0, y: 0, z: 0}
+    interactionType: 0
+    swipeDirection: 0
+    interactionColor: 1
   - time: 30
     row: 0
     timeCode: 30:00
@@ -153,9 +297,17 @@ MonoBehaviour:
     interactionType: 0
     swipeDirection: 0
     interactionColor: 0
-  - time: 36
+  - time: 29
+    row: 0
+    timeCode: 29:00
+    scale: 0
+    spawnPosition: {x: 0, y: 0, z: 0}
+    interactionType: 0
+    swipeDirection: 0
+    interactionColor: 0
+  - time: 29.5
     row: 1
-    timeCode: 36:00
+    timeCode: 29:30
     scale: 0
     spawnPosition: {x: 0, y: 0, z: 0}
     interactionType: 0
@@ -169,14 +321,30 @@ MonoBehaviour:
     interactionType: 0
     swipeDirection: 0
     interactionColor: 1
-  - time: 38
+  - time: 31
+    row: 1
+    timeCode: 31:00
+    scale: 0
+    spawnPosition: {x: 0, y: 0, z: 0}
+    interactionType: 0
+    swipeDirection: 0
+    interactionColor: 1
+  - time: 33
     row: 0
-    timeCode: 38:00
+    timeCode: 33:00
     scale: 0
     spawnPosition: {x: 0, y: 0, z: 0}
     interactionType: 0
     swipeDirection: 0
     interactionColor: 0
+  - time: 33.5
+    row: 1
+    timeCode: 33:30
+    scale: 0
+    spawnPosition: {x: 0, y: 0, z: 0}
+    interactionType: 0
+    swipeDirection: 0
+    interactionColor: 1
   - time: 34
     row: 0
     timeCode: 34:00
@@ -185,9 +353,57 @@ MonoBehaviour:
     interactionType: 0
     swipeDirection: 0
     interactionColor: 0
-  - time: 44
+  - time: 35.5
     row: 1
-    timeCode: 44:00
+    timeCode: 35:30
+    scale: 0
+    spawnPosition: {x: 0, y: 0, z: 0}
+    interactionType: 0
+    swipeDirection: 0
+    interactionColor: 1
+  - time: 35
+    row: 1
+    timeCode: 35:00
+    scale: 0
+    spawnPosition: {x: 0, y: 0, z: 0}
+    interactionType: 0
+    swipeDirection: 0
+    interactionColor: 1
+  - time: 36
+    row: 0
+    timeCode: 36:00
+    scale: 0
+    spawnPosition: {x: 0, y: 0, z: 0}
+    interactionType: 0
+    swipeDirection: 0
+    interactionColor: 0
+  - time: 37
+    row: 1
+    timeCode: 37:00
+    scale: 0
+    spawnPosition: {x: 0, y: 0, z: 0}
+    interactionType: 0
+    swipeDirection: 0
+    interactionColor: 1
+  - time: 38
+    row: 1
+    timeCode: 38:00
+    scale: 0
+    spawnPosition: {x: 0, y: 0, z: 0}
+    interactionType: 0
+    swipeDirection: 0
+    interactionColor: 1
+  - time: 39
+    row: 1
+    timeCode: 39:00
+    scale: 0
+    spawnPosition: {x: 0, y: 0, z: 0}
+    interactionType: 0
+    swipeDirection: 0
+    interactionColor: 1
+  - time: 38.5
+    row: 1
+    timeCode: 38:30
     scale: 0
     spawnPosition: {x: 0, y: 0, z: 0}
     interactionType: 0
@@ -201,6 +417,22 @@ MonoBehaviour:
     interactionType: 0
     swipeDirection: 0
     interactionColor: 1
+  - time: 40.5
+    row: 0
+    timeCode: 40:30
+    scale: 0
+    spawnPosition: {x: 0, y: 0, z: 0}
+    interactionType: 0
+    swipeDirection: 0
+    interactionColor: 0
+  - time: 41.5
+    row: 1
+    timeCode: 41:30
+    scale: 0
+    spawnPosition: {x: 0, y: 0, z: 0}
+    interactionType: 0
+    swipeDirection: 0
+    interactionColor: 1
   - time: 42
     row: 1
     timeCode: 42:00
@@ -209,6 +441,38 @@ MonoBehaviour:
     interactionType: 0
     swipeDirection: 0
     interactionColor: 1
+  - time: 41
+    row: 1
+    timeCode: 41:00
+    scale: 0
+    spawnPosition: {x: 0, y: 0, z: 0}
+    interactionType: 0
+    swipeDirection: 0
+    interactionColor: 1
+  - time: 43
+    row: 1
+    timeCode: 43:00
+    scale: 0
+    spawnPosition: {x: 0, y: 0, z: 0}
+    interactionType: 0
+    swipeDirection: 0
+    interactionColor: 1
+  - time: 43.5
+    row: 0
+    timeCode: 43:30
+    scale: 0
+    spawnPosition: {x: 0, y: 0, z: 0}
+    interactionType: 0
+    swipeDirection: 0
+    interactionColor: 0
+  - time: 45
+    row: 0
+    timeCode: 45:00
+    scale: 0
+    spawnPosition: {x: 0, y: 0, z: 0}
+    interactionType: 0
+    swipeDirection: 0
+    interactionColor: 0
   - time: 46
     row: 1
     timeCode: 46:00
@@ -218,29 +482,29 @@ MonoBehaviour:
     swipeDirection: 0
     interactionColor: 1
   - time: 47
-    row: 0
+    row: 1
     timeCode: 47:00
     scale: 0
     spawnPosition: {x: 0, y: 0, z: 0}
     interactionType: 0
     swipeDirection: 0
+    interactionColor: 1
+  - time: 46.5
+    row: 1
+    timeCode: 46:30
+    scale: 0
+    spawnPosition: {x: 0, y: 0, z: 0}
+    interactionType: 0
+    swipeDirection: 0
+    interactionColor: 1
+  - time: 47.5
+    row: 0
+    timeCode: 47:30
+    scale: 0
+    spawnPosition: {x: 0, y: 0, z: 0}
+    interactionType: 0
+    swipeDirection: 0
     interactionColor: 0
-  - time: 50
-    row: 1
-    timeCode: 50:00
-    scale: 0
-    spawnPosition: {x: 0, y: 0, z: 0}
-    interactionType: 0
-    swipeDirection: 0
-    interactionColor: 1
-  - time: 49
-    row: 1
-    timeCode: 49:00
-    scale: 0
-    spawnPosition: {x: 0, y: 0, z: 0}
-    interactionType: 0
-    swipeDirection: 0
-    interactionColor: 1
   - time: 48
     row: 1
     timeCode: 48:00
@@ -249,22 +513,110 @@ MonoBehaviour:
     interactionType: 0
     swipeDirection: 0
     interactionColor: 1
-  - time: 52
+  - time: 50
     row: 1
-    timeCode: 52:00
+    timeCode: 50:00
     scale: 0
     spawnPosition: {x: 0, y: 0, z: 0}
     interactionType: 0
     swipeDirection: 0
     interactionColor: 1
-  - time: 53
+  - time: 49.5
     row: 0
-    timeCode: 53:00
+    timeCode: 49:30
     scale: 0
     spawnPosition: {x: 0, y: 0, z: 0}
     interactionType: 0
     swipeDirection: 0
     interactionColor: 0
+  - time: 49
+    row: 1
+    timeCode: 49:00
+    scale: 0
+    spawnPosition: {x: 0, y: 0, z: 0}
+    interactionType: 0
+    swipeDirection: 0
+    interactionColor: 1
+  - time: 52
+    row: 0
+    timeCode: 52:00
+    scale: 0
+    spawnPosition: {x: 0, y: 0, z: 0}
+    interactionType: 0
+    swipeDirection: 0
+    interactionColor: 0
+  - time: 51.5
+    row: 1
+    timeCode: 51:30
+    scale: 0
+    spawnPosition: {x: 0, y: 0, z: 0}
+    interactionType: 0
+    swipeDirection: 0
+    interactionColor: 1
+  - time: 50.5
+    row: 0
+    timeCode: 50:30
+    scale: 0
+    spawnPosition: {x: 0, y: 0, z: 0}
+    interactionType: 0
+    swipeDirection: 0
+    interactionColor: 0
+  - time: 53
+    row: 1
+    timeCode: 53:00
+    scale: 0
+    spawnPosition: {x: 0, y: 0, z: 0}
+    interactionType: 0
+    swipeDirection: 0
+    interactionColor: 1
+  - time: 52.5
+    row: 1
+    timeCode: 52:30
+    scale: 0
+    spawnPosition: {x: 0, y: 0, z: 0}
+    interactionType: 0
+    swipeDirection: 0
+    interactionColor: 1
+  - time: 55.5
+    row: 0
+    timeCode: 55:30
+    scale: 0
+    spawnPosition: {x: 0, y: 0, z: 0}
+    interactionType: 0
+    swipeDirection: 0
+    interactionColor: 0
+  - time: 54.5
+    row: 1
+    timeCode: 54:30
+    scale: 0
+    spawnPosition: {x: 0, y: 0, z: 0}
+    interactionType: 0
+    swipeDirection: 0
+    interactionColor: 1
+  - time: 54
+    row: 0
+    timeCode: 54:00
+    scale: 0
+    spawnPosition: {x: 0, y: 0, z: 0}
+    interactionType: 0
+    swipeDirection: 0
+    interactionColor: 0
+  - time: 57
+    row: 1
+    timeCode: 57:00
+    scale: 0
+    spawnPosition: {x: 0, y: 0, z: 0}
+    interactionType: 0
+    swipeDirection: 0
+    interactionColor: 1
+  - time: 56.5
+    row: 1
+    timeCode: 56:30
+    scale: 0
+    spawnPosition: {x: 0, y: 0, z: 0}
+    interactionType: 0
+    swipeDirection: 0
+    interactionColor: 1
   - time: 56
     row: 1
     timeCode: 56:00
@@ -273,38 +625,6 @@ MonoBehaviour:
     interactionType: 0
     swipeDirection: 0
     interactionColor: 1
-  - time: 55
-    row: 1
-    timeCode: 55:00
-    scale: 0
-    spawnPosition: {x: 0, y: 0, z: 0}
-    interactionType: 0
-    swipeDirection: 0
-    interactionColor: 1
-  - time: 54
-    row: 1
-    timeCode: 54:00
-    scale: 0
-    spawnPosition: {x: 0, y: 0, z: 0}
-    interactionType: 0
-    swipeDirection: 0
-    interactionColor: 1
-  - time: 60
-    row: 0
-    timeCode: 1:00:00
-    scale: 0
-    spawnPosition: {x: 0, y: 0, z: 0}
-    interactionType: 0
-    swipeDirection: 0
-    interactionColor: 0
-  - time: 58
-    row: 0
-    timeCode: 58:00
-    scale: 0
-    spawnPosition: {x: 0, y: 0, z: 0}
-    interactionType: 0
-    swipeDirection: 0
-    interactionColor: 0
   - time: 59
     row: 1
     timeCode: 59:00
@@ -313,329 +633,9 @@ MonoBehaviour:
     interactionType: 0
     swipeDirection: 0
     interactionColor: 1
-  - time: 64
+  - time: 58
     row: 1
-    timeCode: 1:04:00
-    scale: 0
-    spawnPosition: {x: 0, y: 0, z: 0}
-    interactionType: 0
-    swipeDirection: 0
-    interactionColor: 1
-  - time: 62
-    row: 1
-    timeCode: 1:02:00
-    scale: 0
-    spawnPosition: {x: 0, y: 0, z: 0}
-    interactionType: 0
-    swipeDirection: 0
-    interactionColor: 1
-  - time: 66
-    row: 0
-    timeCode: 1:06:00
-    scale: 0
-    spawnPosition: {x: 0, y: 0, z: 0}
-    interactionType: 0
-    swipeDirection: 0
-    interactionColor: 0
-  - time: 67
-    row: 1
-    timeCode: 1:07:00
-    scale: 0
-    spawnPosition: {x: 0, y: 0, z: 0}
-    interactionType: 0
-    swipeDirection: 0
-    interactionColor: 1
-  - time: 68
-    row: 0
-    timeCode: 1:08:00
-    scale: 0
-    spawnPosition: {x: 0, y: 0, z: 0}
-    interactionType: 0
-    swipeDirection: 0
-    interactionColor: 0
-  - time: 71
-    row: 1
-    timeCode: 1:11:00
-    scale: 0
-    spawnPosition: {x: 0, y: 0, z: 0}
-    interactionType: 0
-    swipeDirection: 0
-    interactionColor: 1
-  - time: 70
-    row: 1
-    timeCode: 1:10:00
-    scale: 0
-    spawnPosition: {x: 0, y: 0, z: 0}
-    interactionType: 0
-    swipeDirection: 0
-    interactionColor: 1
-  - time: 72
-    row: 0
-    timeCode: 1:12:00
-    scale: 0
-    spawnPosition: {x: 0, y: 0, z: 0}
-    interactionType: 0
-    swipeDirection: 0
-    interactionColor: 0
-  - time: 74
-    row: 1
-    timeCode: 1:14:00
-    scale: 0
-    spawnPosition: {x: 0, y: 0, z: 0}
-    interactionType: 0
-    swipeDirection: 0
-    interactionColor: 1
-  - time: 76
-    row: 1
-    timeCode: 1:16:00
-    scale: 0
-    spawnPosition: {x: 0, y: 0, z: 0}
-    interactionType: 0
-    swipeDirection: 0
-    interactionColor: 1
-  - time: 78
-    row: 1
-    timeCode: 1:18:00
-    scale: 0
-    spawnPosition: {x: 0, y: 0, z: 0}
-    interactionType: 0
-    swipeDirection: 0
-    interactionColor: 1
-  - time: 77
-    row: 1
-    timeCode: 1:17:00
-    scale: 0
-    spawnPosition: {x: 0, y: 0, z: 0}
-    interactionType: 0
-    swipeDirection: 0
-    interactionColor: 1
-  - time: 80
-    row: 1
-    timeCode: 1:20:00
-    scale: 0
-    spawnPosition: {x: 0, y: 0, z: 0}
-    interactionType: 0
-    swipeDirection: 0
-    interactionColor: 1
-  - time: 81
-    row: 0
-    timeCode: 1:21:00
-    scale: 0
-    spawnPosition: {x: 0, y: 0, z: 0}
-    interactionType: 0
-    swipeDirection: 0
-    interactionColor: 0
-  - time: 82
-    row: 1
-    timeCode: 1:22:00
-    scale: 0
-    spawnPosition: {x: 0, y: 0, z: 0}
-    interactionType: 0
-    swipeDirection: 0
-    interactionColor: 1
-  - time: 84
-    row: 1
-    timeCode: 1:24:00
-    scale: 0
-    spawnPosition: {x: 0, y: 0, z: 0}
-    interactionType: 0
-    swipeDirection: 0
-    interactionColor: 1
-  - time: 83
-    row: 1
-    timeCode: 1:23:00
-    scale: 0
-    spawnPosition: {x: 0, y: 0, z: 0}
-    interactionType: 0
-    swipeDirection: 0
-    interactionColor: 1
-  - time: 86
-    row: 1
-    timeCode: 1:26:00
-    scale: 0
-    spawnPosition: {x: 0, y: 0, z: 0}
-    interactionType: 0
-    swipeDirection: 0
-    interactionColor: 1
-  - time: 87
-    row: 0
-    timeCode: 1:27:00
-    scale: 0
-    spawnPosition: {x: 0, y: 0, z: 0}
-    interactionType: 0
-    swipeDirection: 0
-    interactionColor: 0
-  - time: 90
-    row: 0
-    timeCode: 1:30:00
-    scale: 0
-    spawnPosition: {x: 0, y: 0, z: 0}
-    interactionType: 0
-    swipeDirection: 0
-    interactionColor: 0
-  - time: 92
-    row: 1
-    timeCode: 1:32:00
-    scale: 0
-    spawnPosition: {x: 0, y: 0, z: 0}
-    interactionType: 0
-    swipeDirection: 0
-    interactionColor: 1
-  - time: 94
-    row: 1
-    timeCode: 1:34:00
-    scale: 0
-    spawnPosition: {x: 0, y: 0, z: 0}
-    interactionType: 0
-    swipeDirection: 0
-    interactionColor: 1
-  - time: 93
-    row: 1
-    timeCode: 1:33:00
-    scale: 0
-    spawnPosition: {x: 0, y: 0, z: 0}
-    interactionType: 0
-    swipeDirection: 0
-    interactionColor: 1
-  - time: 95
-    row: 0
-    timeCode: 1:35:00
-    scale: 0
-    spawnPosition: {x: 0, y: 0, z: 0}
-    interactionType: 0
-    swipeDirection: 0
-    interactionColor: 0
-  - time: 96
-    row: 1
-    timeCode: 1:36:00
-    scale: 0
-    spawnPosition: {x: 0, y: 0, z: 0}
-    interactionType: 0
-    swipeDirection: 0
-    interactionColor: 1
-  - time: 100
-    row: 1
-    timeCode: 1:40:00
-    scale: 0
-    spawnPosition: {x: 0, y: 0, z: 0}
-    interactionType: 0
-    swipeDirection: 0
-    interactionColor: 1
-  - time: 99
-    row: 0
-    timeCode: 1:39:00
-    scale: 0
-    spawnPosition: {x: 0, y: 0, z: 0}
-    interactionType: 0
-    swipeDirection: 0
-    interactionColor: 0
-  - time: 98
-    row: 1
-    timeCode: 1:38:00
-    scale: 0
-    spawnPosition: {x: 0, y: 0, z: 0}
-    interactionType: 0
-    swipeDirection: 0
-    interactionColor: 1
-  - time: 104
-    row: 0
-    timeCode: 1:44:00
-    scale: 0
-    spawnPosition: {x: 0, y: 0, z: 0}
-    interactionType: 0
-    swipeDirection: 0
-    interactionColor: 0
-  - time: 103
-    row: 1
-    timeCode: 1:43:00
-    scale: 0
-    spawnPosition: {x: 0, y: 0, z: 0}
-    interactionType: 0
-    swipeDirection: 0
-    interactionColor: 1
-  - time: 101
-    row: 0
-    timeCode: 1:41:00
-    scale: 0
-    spawnPosition: {x: 0, y: 0, z: 0}
-    interactionType: 0
-    swipeDirection: 0
-    interactionColor: 0
-  - time: 106
-    row: 1
-    timeCode: 1:46:00
-    scale: 0
-    spawnPosition: {x: 0, y: 0, z: 0}
-    interactionType: 0
-    swipeDirection: 0
-    interactionColor: 1
-  - time: 105
-    row: 1
-    timeCode: 1:45:00
-    scale: 0
-    spawnPosition: {x: 0, y: 0, z: 0}
-    interactionType: 0
-    swipeDirection: 0
-    interactionColor: 1
-  - time: 111
-    row: 0
-    timeCode: 1:51:00
-    scale: 0
-    spawnPosition: {x: 0, y: 0, z: 0}
-    interactionType: 0
-    swipeDirection: 0
-    interactionColor: 0
-  - time: 109
-    row: 1
-    timeCode: 1:49:00
-    scale: 0
-    spawnPosition: {x: 0, y: 0, z: 0}
-    interactionType: 0
-    swipeDirection: 0
-    interactionColor: 1
-  - time: 108
-    row: 0
-    timeCode: 1:48:00
-    scale: 0
-    spawnPosition: {x: 0, y: 0, z: 0}
-    interactionType: 0
-    swipeDirection: 0
-    interactionColor: 0
-  - time: 114
-    row: 1
-    timeCode: 1:54:00
-    scale: 0
-    spawnPosition: {x: 0, y: 0, z: 0}
-    interactionType: 0
-    swipeDirection: 0
-    interactionColor: 1
-  - time: 113
-    row: 1
-    timeCode: 1:53:00
-    scale: 0
-    spawnPosition: {x: 0, y: 0, z: 0}
-    interactionType: 0
-    swipeDirection: 0
-    interactionColor: 1
-  - time: 112
-    row: 1
-    timeCode: 1:52:00
-    scale: 0
-    spawnPosition: {x: 0, y: 0, z: 0}
-    interactionType: 0
-    swipeDirection: 0
-    interactionColor: 1
-  - time: 118
-    row: 1
-    timeCode: 1:58:00
-    scale: 0
-    spawnPosition: {x: 0, y: 0, z: 0}
-    interactionType: 0
-    swipeDirection: 0
-    interactionColor: 1
-  - time: 116
-    row: 1
-    timeCode: 1:56:00
+    timeCode: 58:00
     scale: 0
     spawnPosition: {x: 0, y: 0, z: 0}
     interactionType: 0
