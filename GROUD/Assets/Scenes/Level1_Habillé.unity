@@ -6118,7 +6118,7 @@ MonoBehaviour:
     - {x: -1.9019036, y: 0.34087998, z: 9.355564}
     - {x: -1.9019036, y: 0.34087998, z: 9.4555645}
     - {x: -1.9019036, y: 0.34087998, z: 9.555564}
-  - stepAction: 1
+  - stepAction: 0
     index: 0
     complete: 0
     position: {x: -1.9019036, y: 0.34087998, z: 9.655564}
@@ -6238,7 +6238,7 @@ MonoBehaviour:
     - {x: -1.9019036, y: 0.34087998, z: 17.355564}
     - {x: -1.9019036, y: 0.34087998, z: 17.455563}
     - {x: -1.9019036, y: 0.34087998, z: 17.555563}
-  - stepAction: 1
+  - stepAction: 0
     index: 0
     complete: 0
     position: {x: -1.9019036, y: 0.34087998, z: 17.655563}
@@ -6343,7 +6343,7 @@ MonoBehaviour:
     - {x: -1.9019036, y: 0.34087998, z: 24.355564}
     - {x: -1.9019036, y: 0.34087998, z: 24.455563}
     - {x: -1.9019036, y: 0.34087998, z: 24.555563}
-  - stepAction: 2
+  - stepAction: 0
     index: 0
     complete: 0
     position: {x: -1.9019036, y: 0.34087998, z: 24.655563}
@@ -6373,7 +6373,7 @@ MonoBehaviour:
     - {x: -1.9019036, y: 0.34087998, z: 26.355564}
     - {x: -1.9019036, y: 0.34087998, z: 26.455563}
     - {x: -1.9019036, y: 0.34087998, z: 26.555563}
-  - stepAction: 0
+  - stepAction: 1
     index: 0
     complete: 0
     position: {x: -1.9019036, y: 0.34087998, z: 26.655563}
@@ -6598,7 +6598,7 @@ MonoBehaviour:
     - {x: -1.9019036, y: 0.34087998, z: 41.355564}
     - {x: -1.9019036, y: 0.34087998, z: 41.455563}
     - {x: -1.9019036, y: 0.34087998, z: 41.555565}
-  - stepAction: 0
+  - stepAction: 2
     index: 0
     complete: 0
     position: {x: -1.9019036, y: 0.34087998, z: 41.655563}
@@ -8458,7 +8458,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1188270007}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.6, y: -0.55, z: -1.8042068}
+  m_LocalPosition: {x: 3.74, y: -0.55, z: -1.8042068}
   m_LocalScale: {x: 0.25, y: 1, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9815,7 +9815,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roadManager: {fileID: 916072747}
   playerObject: {fileID: 1830690100}
-  scrollSpeed: 0.5
+  scrollSpeed: 1
   leftSpawnPoint: {fileID: 1158370336}
   midSpawnPoint: {fileID: 983635749}
   rightSpawnPoint: {fileID: 899402780}
