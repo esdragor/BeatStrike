@@ -35,6 +35,7 @@ public class LevelRoadManager : MonoBehaviour
     public void CheckStepsToTarget(int stepLenght)
     {
         if(GameManager.instance.gameState.IsLevelCombat()) return;
+        
         int targetIndex = currentIndex + stepLenght;
         
         if (targetIndex > steps.Count)
@@ -46,19 +47,15 @@ public class LevelRoadManager : MonoBehaviour
         {
             switch (steps[i].stepAction)
             {
-                case RoadStep.StepAction.NONE:
-                    break;
-                
                 case RoadStep.StepAction.ENNEMY:
                     if (steps[i].complete) break;
-                        
+                    
                     if (!GameManager.instance.gameState.IsLevelCombat())
                     {                  
                         LevelManager.instance.SetCombatMode();
                     }
                     
                     steps[i].complete = true;
-                    
                     return;
                 
                 case RoadStep.StepAction.END:
@@ -70,10 +67,11 @@ public class LevelRoadManager : MonoBehaviour
             
             if (i == targetIndex -1)
             {
-                PlayerManager.instance.MovePlayerTo(steps[i].position);
-                steps[i].complete = true;
-                currentIndex = targetIndex;
+                PlayerManager.instance.MovePlayerTo(steps[i + 1].position);
+                currentIndex = i + 1;
             }
+            
+            steps[i].complete = true;
         }
     }
 

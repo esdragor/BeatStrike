@@ -60,9 +60,9 @@ public class PlayerManager : MonoBehaviour
     public void MovePlayerTo(Vector3 pos, LevelRoadManager.RoadStep.StepAction stepAction = LevelRoadManager.RoadStep.StepAction.NONE)
     {
         nextAction = stepAction;
+        
         targetPosition = pos;
         previousPosition = transform.position;
-        isMoving = true;
 
         if (stepAction == LevelRoadManager.RoadStep.StepAction.ENNEMY)
         {
@@ -74,8 +74,9 @@ public class PlayerManager : MonoBehaviour
         }
         
         index++;
-
         runningStep = 0;
+        
+        isMoving = true;
     }
 
     void Move()
@@ -84,12 +85,11 @@ public class PlayerManager : MonoBehaviour
         runningStep = Mathf.Clamp(runningStep, 0, 1);
         
         transform.position = Vector3.Lerp(previousPosition, targetPosition, runningStep);
-
-       
         
         if (runningStep >= 1)
         {
             isMoving = false;
+            
             switch (nextAction)
             {
                 case LevelRoadManager.RoadStep.StepAction.ENNEMY:

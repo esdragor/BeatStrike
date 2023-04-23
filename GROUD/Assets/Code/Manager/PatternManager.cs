@@ -49,7 +49,6 @@ public class PatternManager : MonoBehaviour
         
         foreach (var t in interactionKeys)
         {
-            Debug.Log(t.time);
             timelineRunnerKeys.Enqueue(t);
         }
     }
@@ -84,8 +83,6 @@ public class PatternManager : MonoBehaviour
 
     public void DrawInteractionOnScreen(InteractionKey dataKey)
     {
-        Debug.Log("Draw interaction");
-
         caster = PatternPoolManager.Instance.GetCircleFromPool();
         caster.GetComponent<InteractionComponent>().SetData(dataKey);
 
