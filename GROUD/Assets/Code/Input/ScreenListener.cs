@@ -4,8 +4,6 @@ using UnityEngine.EventSystems;
 
 public class ScreenListener : MonoBehaviour,  IPointerDownHandler, IPointerUpHandler, IPointerMoveHandler
 {
-    public RectTransform leftDetector;
-    public RectTransform rightDetector;
     private float pressTime;
 
     private Vector2 onTouchPosition;
@@ -17,6 +15,13 @@ public class ScreenListener : MonoBehaviour,  IPointerDownHandler, IPointerUpHan
     public Action onInputReleased;
     public Action<SwipeDirection> onSwipeDetected;
 
+    private float screenCenter;
+
+    private void Awake()
+    {
+        screenCenter = Screen.width * 0.5f;
+    }
+
     public void OnPointerDown(PointerEventData eventData)
     {
         onTouchPosition = eventData.position;
@@ -27,17 +32,14 @@ public class ScreenListener : MonoBehaviour,  IPointerDownHandler, IPointerUpHan
     TouchSide CheckTouchSide()
     {
         if (GameManager.instance.gameState.IsEngineMenu()) return TouchSide.NULL;
-        
-        Bounds leftBounds = new Bounds(leftDetector.transform.position, new Vector3(leftDetector.rect.width, leftDetector.rect.height, 0.0f));
-        Bounds rightBounds = new Bounds(rightDetector.transform.position, new Vector3(rightDetector.rect.width, leftDetector.rect.height, 0.0f));
-        
-        if (leftBounds.Contains(onTouchPosition))
+     
+        if (onTouchPosition.x < screenCenter)
         {
             GameManager.instance.detectorVisual.PlayVFX("LeftBop");
             return TouchSide.LEFT;
         }
 
-        if (rightBounds.Contains(onTouchPosition))
+        if (onTouchPosition.x > screenCenter)
         {
             GameManager.instance.detectorVisual.PlayVFX("RightBop");
             return TouchSide.RIGHT;
