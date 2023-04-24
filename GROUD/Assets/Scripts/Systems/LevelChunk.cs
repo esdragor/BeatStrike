@@ -11,9 +11,17 @@ public class LevelChunk : MonoBehaviour
 
     public Vector3 GetCorridorPosition()
     {
-        int oldIndex = index;
-        index++;
         
-        return corridorPositions[oldIndex].position;
+        if (index < corridorPositions.Length)
+        {
+            int oldIndex = index;
+            index++;
+            
+            return corridorPositions[oldIndex].position;
+        }
+        else
+        {
+            return Vector3.zero;
+        }
     }
 }
