@@ -4,7 +4,7 @@ using Utilities;
 
 public class GameManager : MonoBehaviour
 {
-    public GameState gameState = new GameState(Enums.LevelState.Exploration, Enums.TimeState.Play, Enums.EngineState.Menu);
+    public static GameState gameState = new (Enums.LevelState.Exploration, Enums.TimeState.Play, Enums.EngineState.Menu);
     
     public static GameManager instance;
     public static Delegates.OnUpdated onUpdated;

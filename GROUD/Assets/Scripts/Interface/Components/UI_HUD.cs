@@ -16,6 +16,6 @@ public class UI_HUD : MonoBehaviour
 
    public void StartLevel()
    {
-      LevelManager.instance.StartLevel();
+      LevelManager.instance.InitLevel();
    }
 }

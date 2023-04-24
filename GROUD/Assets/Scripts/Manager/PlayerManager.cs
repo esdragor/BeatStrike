@@ -10,15 +10,10 @@ public class PlayerManager : MonoBehaviour
     public float distanceReached;
     private Vector3 previousPosition;
     private Vector3 targetPosition;
-    public float runningSpeed;
     public Animator animator;
-
-    public float currentExperience;
-    public int level = 1;
-
-    private bool isMoving;
-
+    
     public bool justPerfectEnabled = false;
+    
     [Header("DEBUG")] public Image healthFill;
     public TMP_Text healthTxt;
     public Image CDPowerImage;
@@ -30,103 +25,46 @@ public class PlayerManager : MonoBehaviour
         if (instance == null) instance = this;
     }
 
-    private void Start()
-    {
-        isMoving = false;
-        SetPlayer();
-    }
-
-    private void Update()
-    {
-        if (isMoving)
-        {
-            Move();
-        }
-    }
-
-    private float runningStep;
-    private int index;
-
-    public void HurtEnemy()
-    {
-        EnemyManager.instance.GetHurt(1);
-    }
-
-    public void MovePlayerTo(Vector3 pos, bool IsNotFight)
-    {
-        targetPosition = pos;
-        previousPosition = transform.position;
-
-        if (!IsNotFight)
-        {
-            animator.SetTrigger(index % 2 == 0 ? "AttackLeft" : "AttackRight");
-        }
-        else
-        {       
-            animator.SetTrigger(index % 2 == 0 ? "StepLeft" : "StepRight");
-        }
-        
-        index++;
-        runningStep = 0;
-        
-        isMoving = true;
-    }
-
-    void Move()
-    {
-        runningStep += runningSpeed * Time.deltaTime;
-        runningStep = Mathf.Clamp(runningStep, 0, 1);
-        
-        transform.position = Vector3.Lerp(previousPosition, targetPosition, runningStep);
-    }
-
-    public void SetPlayer()
-    {
-        distanceReached = 0;
-        UIManager.instance.score.SetScore((int)distanceReached);
-    }
-
-
     public void OnInteractionSuccess(InteractionSuccess interactionSuccess)
     {
         StreakManager.AddStreak();
         switch (interactionSuccess)
         {
             case InteractionSuccess.Ok:
-                if (GameManager.instance.gameState.IsLevelExploration())
+                if (GameManager.gameState.IsLevelExploration())
                 {
                     ScoreManager.AddScore(5);
                 }
                 else
                 {
-                   HurtEnemy();
+                    LevelManager.combatManager.DealDamage(1);
                 }
 
                 break;
 
             case InteractionSuccess.Good:
 
-                if (GameManager.instance.gameState.IsLevelExploration())
+                if (GameManager.gameState.IsLevelExploration())
                 {
                     ScoreManager.AddScore(10);
                 }
                 else
                 {
-                    HurtEnemy();
+                    LevelManager.combatManager.DealDamage(1);
                 }
 
                 break;
 
             case InteractionSuccess.Perfect:
 
-                if (GameManager.instance.gameState.IsLevelExploration())
+                if (GameManager.gameState.IsLevelExploration())
                 {
                     StreakManager.AddStreak();
                     ScoreManager.AddScore(20);
                 }
                 else
                 {
-                    HurtEnemy();
+                    LevelManager.combatManager.DealDamage(1);
                 }
                 break;
         }

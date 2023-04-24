@@ -326,8 +326,8 @@ public class CapacityToolEditor : SimpleTimeArea
    void LoadAssets()
    {
       interfaceData =
-         (EditorGUIUtility.Load("Assets/Code/Tools/CapacityTool/EditorResources/PatternInterfaceData.asset") as PatternToolsInterfaceData);
-      _tapIcon = (EditorGUIUtility.Load("Assets/Code/Tools/CapacityTool/EditorResources/tapimage.png") as Texture);
+         (EditorGUIUtility.Load("Assets/Scripts/Tools/CapacityTool/EditorResources/PatternInterfaceData.asset") as PatternToolsInterfaceData);
+      _tapIcon = (EditorGUIUtility.Load("Assets/Scripts/Tools/CapacityTool/EditorResources/tapimage.png") as Texture);
    }
    void EditorEventListener()
    {

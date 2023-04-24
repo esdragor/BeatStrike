@@ -11,12 +11,12 @@ namespace Code.Interface
 
         private void Update()
         {
-            if (GameManager.instance.gameState.IsTimePlay())
+            if (GameManager.gameState.IsTimePlay())
             {
                 transform.position += -transform.forward * (speed * Time.deltaTime);
                 if (transform.position.z < PlayerManager.instance.transform.position.z - 2f)
                 {
-                    PatternPoolManager.Instance.AddInteractionToPool(gameObject);
+                    LevelManager.interactionPool.AddInteractionToPool(gameObject);
                     StreakManager.RemoveStreak();
                 }
             }
@@ -69,7 +69,7 @@ namespace Code.Interface
 
         public virtual void ValidateInteraction(bool isPerfect = false)
         {
-            if (GameManager.instance.gameState.IsLevelExploration())
+            if (GameManager.gameState.IsLevelExploration())
             {
             }
             PlayerManager.onInteractionSuccess?.Invoke(successGroup);
@@ -79,7 +79,7 @@ namespace Code.Interface
 
             LevelManager.instance.detector.InteractionCanTrigger.Remove(this);
 
-            PatternPoolManager.Instance.AddInteractionToPool(gameObject);
+            LevelManager.interactionPool.AddInteractionToPool(gameObject);
         }
     }
 }

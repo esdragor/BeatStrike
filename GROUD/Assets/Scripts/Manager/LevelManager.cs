@@ -5,102 +5,84 @@ using Utilities;
 public class LevelManager : MonoBehaviour
 {
     public static LevelManager instance;
+    public static PatternManager patternManager;
+    public static InteractionPool interactionPool;
+    public static CombatManager combatManager;
+    public static ExplorationManager explorationManager;
     
+    public LevelData levelData;
+
     [Header("Interaction")]
     public Transform leftSpawnPoint;
     public Transform midSpawnPoint;
     public Transform rightSpawnPoint;
-    
+    public Transform interactionParent;
     public InteractionDetector detector;
     
-    public LevelData levelData;
-    public int currentPatternIndex = 0;
-    public int currentRoundIndex = 0;
-    public Vector3[] spinPoints;
-    public float DistanceToSpawnPointSpin = 30;
-    
+    private int currentIndex;
+
     private void Awake()
     {
         if (instance == null) instance = this;
+
+        interactionPool = new InteractionPool(interactionParent);
+        patternManager = new PatternManager();
+        combatManager = new CombatManager();
     }
 
-    public void StartLevel()
+    public void InitLevel()
     {
-        GameManager.instance.gameState.SwitchLevelState(Enums.LevelState.Exploration);
-        //PlayerManager.instance.MovePlayerTo(Vector3.zero, true);
-        PatternManager.OnPatternEnd += CheckNextPattern;
+        GameManager.gameState.SwitchLevelState(Enums.LevelState.Exploration);
+        
         PlayPattern();
     }
-    
-    public void Restart()
-    {
-        PatternPoolManager.Instance.DisableAllInteractions();
-        
-        PlayerManager.instance.SetPlayer();
 
-        currentPatternIndex = 0;
-        currentRoundIndex = 0;
-        StreakManager.ResetStreak();
-        ScoreManager.ResetScore();
-        
-        GameManager.instance.gameState.SwitchTimeState(Enums.TimeState.Play);
-
-        StartLevel();
-    }
-    public void PlayPattern()
+    private void PlayPattern()
     {
-        PatternManager.Instance.StartPattern(levelData.patterns[currentPatternIndex]);
-    }
-
-    public void SetCombatMode()
-    {
-        EnemyManager.instance.SetEnemy(levelData.enemy);
-        GameManager.instance.gameState.SwitchLevelState(Enums.LevelState.Combat);
-    }
-    
-    void CheckNextPattern()
-    {
-        currentPatternIndex++;
-
-        if (currentPatternIndex >= levelData.patterns.Length)
+        if (GameManager.gameState.IsLevelCombat())
         {
-            CheckNextRound();
+            combatManager.InitCombat(levelData.enemy[currentIndex]);
         }
         else
         {
-            PlayPattern();
+            explorationManager.InitExploration(levelData.corridorPattern[Random.Range(0, levelData.corridorPattern.Length)]);   
         }
     }
 
-    void CheckNextRound()
+    public void CheckForNextPattern()
     {
-        currentRoundIndex++;
-        currentPatternIndex = 0;
-
-        if (currentRoundIndex >= levelData.patterns.Length)
-        {
-            StartCoroutine(WaitUntilInteractionAreEnded());
-        }
-        else
-        {
-            PlayPattern();
-        }
+        currentIndex++;
+        
+        GameManager.gameState.SwitchLevelState(GameManager.gameState.IsLevelCombat() ? Enums.LevelState.Exploration : Enums.LevelState.Combat);
+        
+        PlayPattern();
     }
 
     IEnumerator WaitUntilInteractionAreEnded()
     {
-        yield return new WaitUntil(() => PatternPoolManager.Instance.ActiveInteractions.Count <= 0);
+        yield return new WaitUntil(() => interactionPool.activeInteractions.Count <= 0);
         EndLevel();
-
     }
     
-    public void EndLevel()
+    private void EndLevel()
     {
-        PatternManager.OnPatternEnd -= CheckNextPattern;
-        
-        GameManager.instance.gameState.SwitchTimeState(Enums.TimeState.Pause);
+        GameManager.gameState.SwitchTimeState(Enums.TimeState.Pause);
         UIManager.instance.endLevel.DrawPanel();
         
-        PatternManager.Instance.ForceEnd();
+        patternManager.EndPattern();
+    }
+    
+    public void Restart()
+    {
+        interactionPool.DisableAllInteractions();
+        
+        currentIndex = 0;
+        
+        StreakManager.ResetStreak();
+        ScoreManager.ResetScore();
+        
+        GameManager.gameState.SwitchTimeState(Enums.TimeState.Play);
+
+        InitLevel();
     }
 }

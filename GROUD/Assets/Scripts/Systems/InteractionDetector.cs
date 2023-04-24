@@ -57,7 +57,6 @@ public class InteractionDetector : MonoBehaviour
             if (Math.Abs(posInside.z - (detectionZoneData[i].detectionRange + itOffset)) < tolerance &&
                 current.successGroup != detectionZoneData[i].success)
             {
-                //Debug.Log($"Distance was {posInside.z} so it's {detectionZoneData[i].success}");
                 current.SetSuccess(detectionZoneData[i].success);
             }
         }

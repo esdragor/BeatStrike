@@ -131,7 +131,7 @@ public class MainMenuManager : MonoBehaviour
     public void LaunchGame()
     {
         SceneManager.LoadScene(1);
-        GameManager.instance.gameState.SwitchEngineState(Enums.EngineState.Game);
+        GameManager.gameState.SwitchEngineState(Enums.EngineState.Game);
     }
 
     public void ExitApplication()
