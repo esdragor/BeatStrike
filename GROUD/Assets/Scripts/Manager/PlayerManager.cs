@@ -11,13 +11,7 @@ public class PlayerManager : MonoBehaviour
     public float distanceReached;
     private Vector3 previousPosition;
     private Vector3 targetPosition;
-    public Animator animator;
-
-    public float currentExperience;
-    public int level = 1;
     public int MaxHP = 5;
-
-    private bool isMoving;
 
     public bool justPerfectEnabled = false;
     
@@ -36,7 +30,6 @@ public class PlayerManager : MonoBehaviour
 
     private void Start()
     {
-        isMoving = false;
         SetPlayer();
         currentHP = MaxHP;
     }
