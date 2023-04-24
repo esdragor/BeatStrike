@@ -104,6 +104,12 @@ public class PatternManager : MonoBehaviour
                 case Enums.InteractionType.Dodge:
                     spawnPosition = LevelManager.instance.midSpawnPoint.position;
                     break;
+                case Enums.InteractionType.Fake:
+                    spawnPosition = LevelManager.instance.midSpawnPoint.position;
+                    break;
+                case Enums.InteractionType.Power:
+                    spawnPosition = LevelManager.instance.midSpawnPoint.position;
+                    break;
             }
 
            

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 using Utilities;
 
 namespace Code.Interface
@@ -35,6 +36,8 @@ namespace Code.Interface
         public Material blueMat;
         public Material redMat;
         public Material slideMat;
+        [FormerlySerializedAs("FakeMat")] public Material fakeMat;
+        [FormerlySerializedAs("PowerMat")] public Material powerMat;
 
         public void SetSuccess(InteractionSuccess itSuccess)
         {
@@ -64,7 +67,14 @@ namespace Code.Interface
                 case Enums.InteractionType.Dodge:
                     transform.localScale = new Vector3(1.8f, 0.8f, 0.8f);
                     renderer.material = slideMat;
-
+                    break;
+                case Enums.InteractionType.Fake:
+                    transform.localScale = new Vector3(1.8f, 0.8f, 0.8f);
+                    renderer.material = fakeMat;
+                    break;
+                case Enums.InteractionType.Power:
+                    transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+                    renderer.material = powerMat;
                     break;
             }
         }
