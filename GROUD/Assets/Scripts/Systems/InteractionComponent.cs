@@ -16,6 +16,8 @@ namespace Code.Interface
                 transform.position += -transform.forward * (speed * Time.deltaTime);
                 if (transform.position.z < PlayerManager.instance.transform.position.z - 2f)
                 {
+                    if (data.interactionType is Enums.InteractionType.Dodge or Enums.InteractionType.Fake)
+                        PlayerManager.instance.HurtPlayer();
                     PatternPoolManager.Instance.AddInteractionToPool(gameObject);
                     StreakManager.RemoveStreak();
                 }
@@ -43,7 +45,7 @@ namespace Code.Interface
         {
             switch (data.interactionType)
             {
-                case Enums.InteractionType.Tap:
+                case Enums.InteractionType.Attack:
                     transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
 
                     switch (data.interactionColor)
@@ -59,7 +61,7 @@ namespace Code.Interface
 
                     break;
 
-                case Enums.InteractionType.Swipe:
+                case Enums.InteractionType.Dodge:
                     transform.localScale = new Vector3(1.8f, 0.8f, 0.8f);
                     renderer.material = slideMat;
 
@@ -69,13 +71,8 @@ namespace Code.Interface
 
         public virtual void ValidateInteraction(bool isPerfect = false)
         {
-            if (GameManager.instance.gameState.IsLevelExploration())
-            {
-            }
             PlayerManager.onInteractionSuccess?.Invoke(successGroup);
-            PlayerManager.instance.OnInteractionSuccess(PlayerManager.instance.justPerfectEnabled
-                ? InteractionSuccess.Perfect
-                : successGroup);
+            PlayerManager.instance.OnInteractionSuccess(successGroup, data.interactionType);
 
             LevelManager.instance.detector.InteractionCanTrigger.Remove(this);
 

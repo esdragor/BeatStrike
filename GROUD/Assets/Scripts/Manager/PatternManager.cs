@@ -92,7 +92,7 @@ public class PatternManager : MonoBehaviour
         {
             switch (dataKey.interactionType)
             {
-                case Enums.InteractionType.Tap:
+                case Enums.InteractionType.Attack:
                     spawnPosition = dataKey.row switch
                     {
                         0 => LevelManager.instance.leftSpawnPoint.position,
@@ -101,7 +101,7 @@ public class PatternManager : MonoBehaviour
                     };
                     break;
                 
-                case Enums.InteractionType.Swipe:
+                case Enums.InteractionType.Dodge:
                     spawnPosition = LevelManager.instance.midSpawnPoint.position;
                     break;
             }

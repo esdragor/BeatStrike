@@ -30,7 +30,7 @@ public class InputManager : MonoBehaviour
         
         for (int i = 0; i < itList.Count; i++)
         { 
-            if(itList[i].data.swipeDirection == dir && itList[i].data.interactionType == Enums.InteractionType.Swipe)
+            if(itList[i].data.swipeDirection == dir && itList[i].data.interactionType == Enums.InteractionType.Dodge)
             {
                 itList[i].ValidateInteraction();
             }
@@ -65,7 +65,7 @@ public class InputManager : MonoBehaviour
         for (int i = 0; i < itList.Count; i++)
         {
             if (itList[i].data.interactionColor == color &&
-                itList[i].data.interactionType == Enums.InteractionType.Tap)
+                itList[i].data.interactionType == Enums.InteractionType.Attack)
             {
                 itList[i].ValidateInteraction();
             }

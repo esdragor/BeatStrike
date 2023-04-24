@@ -1,7 +1,9 @@
 using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Utilities;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -15,6 +17,7 @@ public class PlayerManager : MonoBehaviour
 
     public float currentExperience;
     public int level = 1;
+    public int MaxHP = 5;
 
     private bool isMoving;
 
@@ -24,6 +27,8 @@ public class PlayerManager : MonoBehaviour
     public Image CDPowerImage;
 
     public static Action<InteractionSuccess> onInteractionSuccess;
+    
+    private int currentHP;
 
     private void Awake()
     {
@@ -34,6 +39,7 @@ public class PlayerManager : MonoBehaviour
     {
         isMoving = false;
         SetPlayer();
+        currentHP = MaxHP;
     }
 
     private void Update()
@@ -52,6 +58,23 @@ public class PlayerManager : MonoBehaviour
         EnemyManager.instance.GetHurt(1);
     }
 
+    private void OnDead()
+    {
+        Debug.Log("Dead");
+    }
+    
+    public void HurtPlayer()
+    {
+        if (currentHP <= 0) return;
+        currentHP--;
+        healthFill.fillAmount = (float) currentHP / MaxHP;
+        healthTxt.text = currentHP.ToString();
+        if (currentHP <= 0)
+        {
+            OnDead();
+        }
+    }
+
     public void MovePlayerTo(Vector3 pos, bool IsNotFight)
     {
         targetPosition = pos;
@@ -62,13 +85,13 @@ public class PlayerManager : MonoBehaviour
             animator.SetTrigger(index % 2 == 0 ? "AttackLeft" : "AttackRight");
         }
         else
-        {       
+        {
             animator.SetTrigger(index % 2 == 0 ? "StepLeft" : "StepRight");
         }
-        
+
         index++;
         runningStep = 0;
-        
+
         isMoving = true;
     }
 
@@ -76,7 +99,7 @@ public class PlayerManager : MonoBehaviour
     {
         runningStep += runningSpeed * Time.deltaTime;
         runningStep = Mathf.Clamp(runningStep, 0, 1);
-        
+
         transform.position = Vector3.Lerp(previousPosition, targetPosition, runningStep);
     }
 
@@ -86,173 +109,55 @@ public class PlayerManager : MonoBehaviour
         UIManager.instance.score.SetScore((int)distanceReached);
     }
 
+    private void SetInputComponent(Enums.InteractionType interactionType)
+    {
+        switch (interactionType)
+        {
+            case Enums.InteractionType.Attack:
+                HurtEnemy();
+                break;
+            case Enums.InteractionType.Dodge:
+                break;
+            case Enums.InteractionType.Fake:
+                break;
+            case Enums.InteractionType.Power:
+                //change here power
+                GameManager.instance.power.Execute();
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(interactionType), interactionType, null);
+        }
+    }
 
-    public void OnInteractionSuccess(InteractionSuccess interactionSuccess)
+
+    public void OnInteractionSuccess(InteractionSuccess interactionSuccess, Enums.InteractionType interactionType)
     {
         StreakManager.AddStreak();
+        int score = 0;
+
         switch (interactionSuccess)
         {
             case InteractionSuccess.Ok:
-                if (GameManager.instance.gameState.IsLevelExploration())
-                {
-                    ScoreManager.AddScore(5);
-                }
-                else
-                {
-                   HurtEnemy();
-                }
-
+                score = 5;
                 break;
-
             case InteractionSuccess.Good:
-
-                if (GameManager.instance.gameState.IsLevelExploration())
-                {
-                    ScoreManager.AddScore(10);
-                }
-                else
-                {
-                    HurtEnemy();
-                }
-
+                score = 10;
                 break;
-
             case InteractionSuccess.Perfect:
-
-                if (GameManager.instance.gameState.IsLevelExploration())
-                {
-                    StreakManager.AddStreak();
-                    ScoreManager.AddScore(20);
-                }
-                else
-                {
-                    HurtEnemy();
-                }
+                score = 20;
                 break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(interactionSuccess), interactionSuccess, null);
+        }
+
+        ScoreManager.AddScore(score);
+        if (!GameManager.instance.gameState.IsLevelExploration())
+        {
+            SetInputComponent(interactionType);
         }
 
         distanceReached = ScoreManager.GetScore();
         UIManager.instance.score.SetScore((int)distanceReached);
-    }
-}
-
-[Serializable]
-public class PlayerStats
-{
-    [Header("Stats")] public float hp;
-    public float intelligence;
-    public float stamina;
-
-    public float damage = 10;
-    public float critRate = 2f;
-
-    [HideInInspector] public float overflowHp;
-    [HideInInspector] public float overflowIntelligence;
-    [HideInInspector] public float overflowStrength;
-
-    [Header("Stats Bornes")] public float minHp;
-    public float maxHp;
-    public float minIntelligence;
-    public float maxIntelligence;
-    public float minStamina;
-    public float maxStamina;
-
-    public PlayerStats()
-    {
-        hp = 0;
-        intelligence = 0;
-        stamina = 0;
-    }
-
-    public PlayerStats(float _hp, float _intelligence, float stamina)
-    {
-        hp = _hp;
-        intelligence = _intelligence;
-        stamina = stamina;
-    }
-
-    public PlayerStats(PlayerStats other)
-    {
-        hp = other.hp;
-        intelligence = other.intelligence;
-        stamina = other.stamina;
-
-        overflowHp = other.hp;
-        overflowIntelligence = other.intelligence;
-        overflowStrength = other.stamina;
-
-        minHp = other.minHp;
-        maxHp = other.maxHp;
-        minIntelligence = other.minIntelligence;
-        maxIntelligence = other.maxIntelligence;
-        minStamina = other.minStamina;
-        maxStamina = other.maxStamina;
-    }
-
-    private float ModVal(in float val, float amount, float min, float max)
-    {
-        float NewVal = val;
-        NewVal += amount;
-        if (NewVal < min) NewVal = min;
-        if (NewVal > max) NewVal = max;
-        return NewVal;
-    }
-
-    private float ModVal(in float val, float amount)
-    {
-        float NewVal = val;
-        NewVal += amount;
-        return NewVal;
-    }
-
-    private float SetVal(in float val, float min, float max)
-    {
-        float NewVal = val;
-        if (val < min) NewVal = min;
-        if (val > max) NewVal = max;
-        return NewVal;
-    }
-
-    public void ModifyValue(StatsType type, float value)
-    {
-        switch (type)
-        {
-            case StatsType.Hp:
-                hp = ModVal(overflowHp, value, minHp, maxHp);
-                overflowHp = ModVal(overflowHp, value);
-                break;
-            case StatsType.Intelligence:
-                intelligence = ModVal(overflowIntelligence, value, minIntelligence, maxIntelligence);
-                overflowIntelligence = ModVal(overflowIntelligence, value);
-                break;
-            case StatsType.Strength:
-                stamina = ModVal(overflowStrength, value, minStamina, maxStamina);
-                overflowStrength = ModVal(overflowStrength, value);
-                break;
-            default:
-                throw new ArgumentOutOfRangeException(nameof(type), type, null);
-        }
-    }
-
-    public void SetValue(StatsType type, float value)
-    {
-        switch (type)
-        {
-            case StatsType.Hp:
-                hp = SetVal(value, minHp, maxHp);
-                overflowHp = value;
-                break;
-            case StatsType.Intelligence:
-                intelligence = SetVal(value, minIntelligence, maxIntelligence);
-                overflowIntelligence = value;
-                break;
-            case StatsType.Strength:
-                stamina = SetVal(value, minStamina, maxStamina);
-                overflowStrength = value;
-                break;
-            default:
-                throw new ArgumentOutOfRangeException(nameof(type), type, null);
-        }
     }
 }
 
