@@ -71,7 +71,6 @@ namespace Code.Interface
         {
             if (GameManager.instance.gameState.IsLevelExploration())
             {
-                PlayerManager.instance.AddExperience(10f);
             }
             PlayerManager.onInteractionSuccess?.Invoke(successGroup);
             PlayerManager.instance.OnInteractionSuccess(PlayerManager.instance.justPerfectEnabled

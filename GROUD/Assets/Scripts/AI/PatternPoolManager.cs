@@ -15,10 +15,10 @@ public class PatternPoolManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-        InitCirclePool();
+        InitInteractionPool();
     }
     
-    void InitCirclePool()
+    void InitInteractionPool()
     {
         for (int i = 0; i < maxPoolSize; i++)
         {
@@ -45,7 +45,6 @@ public class PatternPoolManager : MonoBehaviour
     {
         it.SetActive(false);
         
-        TileManager.RemoveTile(it.transform);
         ActiveInteractions.Remove(it);
         it.transform.parent = interactionParent;
         interactionPool.Add(it);
@@ -59,7 +58,6 @@ public class PatternPoolManager : MonoBehaviour
             interactionPool.RemoveAt(0);
             circle.SetActive(true);
             ActiveInteractions.Add(circle);
-            TileManager.AddTile(circle.transform);
             return circle;
         }
         else
@@ -68,7 +66,6 @@ public class PatternPoolManager : MonoBehaviour
             circle.SetActive(true);
             circle.transform.SetParent(interactionParent);
             ActiveInteractions.Add(circle);
-            TileManager.AddTile(circle.transform);
             return circle;
         }
     }

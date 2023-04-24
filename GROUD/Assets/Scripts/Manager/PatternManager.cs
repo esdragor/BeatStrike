@@ -22,7 +22,7 @@ public class PatternManager : MonoBehaviour
 
     private void Awake()
     {
-        Instance = this;
+        if (Instance == null) Instance = this;
     }
 
     public void StartPattern(Pattern p)

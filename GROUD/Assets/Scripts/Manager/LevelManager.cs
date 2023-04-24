@@ -27,7 +27,7 @@ public class LevelManager : MonoBehaviour
     public void StartLevel()
     {
         GameManager.instance.gameState.SwitchLevelState(Enums.LevelState.Exploration);
-        PlayerManager.instance.MovePlayerTo(Vector3.zero, true);
+        //PlayerManager.instance.MovePlayerTo(Vector3.zero, true);
         PatternManager.OnPatternEnd += CheckNextPattern;
         PlayPattern();
     }
@@ -49,7 +49,7 @@ public class LevelManager : MonoBehaviour
     }
     public void PlayPattern()
     {
-        PatternManager.Instance.StartPattern(levelData.rounds[currentRoundIndex].patterns[currentPatternIndex]);
+        PatternManager.Instance.StartPattern(levelData.patterns[currentPatternIndex]);
     }
 
     public void SetCombatMode()
@@ -62,7 +62,7 @@ public class LevelManager : MonoBehaviour
     {
         currentPatternIndex++;
 
-        if (currentPatternIndex >= levelData.rounds[currentRoundIndex].patterns.Length)
+        if (currentPatternIndex >= levelData.patterns.Length)
         {
             CheckNextRound();
         }
@@ -77,7 +77,7 @@ public class LevelManager : MonoBehaviour
         currentRoundIndex++;
         currentPatternIndex = 0;
 
-        if (currentRoundIndex >= levelData.rounds.Length)
+        if (currentRoundIndex >= levelData.patterns.Length)
         {
             StartCoroutine(WaitUntilInteractionAreEnded());
         }

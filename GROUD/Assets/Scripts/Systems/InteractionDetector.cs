@@ -107,7 +107,6 @@ public class InteractionDetector : MonoBehaviour
         if (it && InteractionCanTrigger.Contains(it))
         {
             InteractionCanTrigger.Remove(it);
-            GameManager.instance.detectorVisual.PlayVFX("Miss");
         }
     }
 }

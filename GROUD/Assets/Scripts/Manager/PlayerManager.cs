@@ -13,7 +13,6 @@ public class PlayerManager : MonoBehaviour
     public float runningSpeed;
     public Animator animator;
 
-    public PlayerLevelingData playerLevelingData;
     public float currentExperience;
     public int level = 1;
 
@@ -87,23 +86,6 @@ public class PlayerManager : MonoBehaviour
         UIManager.instance.score.SetScore((int)distanceReached);
     }
 
-    public void AddExperience(float amount)
-    {
-        currentExperience += amount;
-        CheckForLevelUp();
-    }
-
-    void CheckForLevelUp()
-    {
-        if (level >= playerLevelingData.experienceTable.Length - 1) return;
-
-        if (currentExperience >= playerLevelingData.experienceTable[level])
-        {
-            float rest = currentExperience - playerLevelingData.experienceTable[level];
-            level++;
-            currentExperience = rest;
-        }
-    }
 
     public void OnInteractionSuccess(InteractionSuccess interactionSuccess)
     {
@@ -111,11 +93,8 @@ public class PlayerManager : MonoBehaviour
         switch (interactionSuccess)
         {
             case InteractionSuccess.Ok:
-                GameManager.instance.detectorVisual.PlayVFX("Ok");
-                
                 if (GameManager.instance.gameState.IsLevelExploration())
                 {
-                    LevelManager.instance.roadManager.CheckStepsToTarget(5);
                     ScoreManager.AddScore(5);
                 }
                 else
@@ -126,11 +105,9 @@ public class PlayerManager : MonoBehaviour
                 break;
 
             case InteractionSuccess.Good:
-                GameManager.instance.detectorVisual.PlayVFX("Great");
 
                 if (GameManager.instance.gameState.IsLevelExploration())
                 {
-                    LevelManager.instance.roadManager.CheckStepsToTarget(10);
                     ScoreManager.AddScore(10);
                 }
                 else
@@ -141,11 +118,9 @@ public class PlayerManager : MonoBehaviour
                 break;
 
             case InteractionSuccess.Perfect:
-                GameManager.instance.detectorVisual.PlayVFX("Perfect");
 
                 if (GameManager.instance.gameState.IsLevelExploration())
                 {
-                    LevelManager.instance.roadManager.CheckStepsToTarget(20);
                     StreakManager.AddStreak();
                     ScoreManager.AddScore(20);
                 }

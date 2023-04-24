@@ -38,7 +38,7 @@ public class InputManager : MonoBehaviour
 
         if (dir == ScreenListener.SwipeDirection.UP)
         {
-            GameManager.instance.currentCharacterInfos.power.Execute();
+            GameManager.instance.power.Execute();
         }
         
     }

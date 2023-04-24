@@ -35,13 +35,11 @@ public class ScreenListener : MonoBehaviour,  IPointerDownHandler, IPointerUpHan
      
         if (onTouchPosition.x < screenCenter)
         {
-            GameManager.instance.detectorVisual.PlayVFX("LeftBop");
             return TouchSide.LEFT;
         }
 
         if (onTouchPosition.x > screenCenter)
         {
-            GameManager.instance.detectorVisual.PlayVFX("RightBop");
             return TouchSide.RIGHT;
         }
 

@@ -59,6 +59,7 @@ public class MainMenuManager : MonoBehaviour
 
     private void Start()
     {
+        currentCharacterInfos = GameManager.instance.power;
         offsetMainMenu = mainMenuButtonsPanel.anchoredPosition;
     }
 
@@ -129,15 +130,8 @@ public class MainMenuManager : MonoBehaviour
 
     public void LaunchGame()
     {
-        if (currentCharacterInfos != null)
-        {
-            SceneManager.LoadScene(1);
-            GameManager.instance.gameState.SwitchEngineState(Enums.EngineState.Game);
-        }
-        else
-        {
-            Debug.LogError("No character selected");
-        }
+        SceneManager.LoadScene(1);
+        GameManager.instance.gameState.SwitchEngineState(Enums.EngineState.Game);
     }
 
     public void ExitApplication()
