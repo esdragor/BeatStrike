@@ -231,11 +231,11 @@ public class CapacityToolEditor : SimpleTimeArea
       
       if (GUILayout.Button("Add Tap On Top Timeline"))
       {
-         AddKeyOnTimeline(0, 0, Enums.InteractionType.Tap);
+         AddKeyOnTimeline(0, 0, Enums.InteractionType.Attack);
       }
       if (GUILayout.Button("Add Tap On Bot Timeline"))
       {
-         AddKeyOnTimeline(1, 0, Enums.InteractionType.Tap);
+         AddKeyOnTimeline(1, 0, Enums.InteractionType.Attack);
       }
       
       GUILayout.EndHorizontal();
@@ -244,11 +244,11 @@ public class CapacityToolEditor : SimpleTimeArea
       
       if (GUILayout.Button("Add Slide On Top Timeline"))
       {
-         AddKeyOnTimeline(0, 0, Enums.InteractionType.Swipe);
+         AddKeyOnTimeline(0, 0, Enums.InteractionType.Dodge);
       }
       if (GUILayout.Button("Add Slide On Bot Timeline"))
       {
-         AddKeyOnTimeline(1, 0, Enums.InteractionType.Swipe);
+         AddKeyOnTimeline(1, 0, Enums.InteractionType.Dodge);
       }
       
       GUILayout.EndHorizontal();
@@ -282,11 +282,11 @@ public class CapacityToolEditor : SimpleTimeArea
 
          switch ( selectedInteractionKey.interactionType)
          {
-            case Enums.InteractionType.Tap:
+            case Enums.InteractionType.Attack:
                selectedInteractionKey.interactionColor = (InteractionKey.InteractionColor)EditorGUILayout.EnumPopup("Color", selectedInteractionKey.interactionColor);
                break;
             
-            case Enums.InteractionType.Swipe:
+            case Enums.InteractionType.Dodge:
              selectedInteractionKey.swipeDirection = (ScreenListener.SwipeDirection)EditorGUILayout.EnumPopup("Swipe Direction", selectedInteractionKey.swipeDirection);
                break;
          }
@@ -339,8 +339,8 @@ public class CapacityToolEditor : SimpleTimeArea
          GenericMenu menu = new GenericMenu();
       
          menu.AddDisabledItem(new GUIContent("Timeline Actions List")); 
-         menu.AddItem(new GUIContent("Add a red tap."), false, MenuAddKeyOnTimeline(1, (float)GetSnappedTimeAtMousePosition(mousePositionWhenClick), Enums.InteractionType.Tap));
-         menu.AddItem(new GUIContent("Add a slide."), false, MenuAddKeyOnTimeline(1, (float)GetSnappedTimeAtMousePosition(mousePositionWhenClick), Enums.InteractionType.Swipe));
+         menu.AddItem(new GUIContent("Add a red tap."), false, MenuAddKeyOnTimeline(1, (float)GetSnappedTimeAtMousePosition(mousePositionWhenClick), Enums.InteractionType.Attack));
+         menu.AddItem(new GUIContent("Add a slide."), false, MenuAddKeyOnTimeline(1, (float)GetSnappedTimeAtMousePosition(mousePositionWhenClick), Enums.InteractionType.Dodge));
          menu.ShowAsContext();
       
          eventListener.Use();
@@ -352,8 +352,8 @@ public class CapacityToolEditor : SimpleTimeArea
          GenericMenu menu = new GenericMenu();
       
          menu.AddDisabledItem(new GUIContent("Timeline Actions List")); 
-         menu.AddItem(new GUIContent("Add a blue tap."), false, MenuAddKeyOnTimeline(0, (float)GetSnappedTimeAtMousePosition(mousePositionWhenClick), Enums.InteractionType.Tap));
-         menu.AddItem(new GUIContent("Add a slide."), false, MenuAddKeyOnTimeline(0, (float)GetSnappedTimeAtMousePosition(mousePositionWhenClick), Enums.InteractionType.Swipe));
+         menu.AddItem(new GUIContent("Add a blue tap."), false, MenuAddKeyOnTimeline(0, (float)GetSnappedTimeAtMousePosition(mousePositionWhenClick), Enums.InteractionType.Attack));
+         menu.AddItem(new GUIContent("Add a slide."), false, MenuAddKeyOnTimeline(0, (float)GetSnappedTimeAtMousePosition(mousePositionWhenClick), Enums.InteractionType.Dodge));
          menu.ShowAsContext();
       
          eventListener.Use();
@@ -446,10 +446,10 @@ public class CapacityToolEditor : SimpleTimeArea
          float positionY = 0;
          switch (iKey.interactionType)
          {
-            case Enums.InteractionType.Tap:
+            case Enums.InteractionType.Attack:
                positionY = iKey.row == 1 ? botContent.y + (botContent.height * 0.5f) : topContent.y + (topContent.height * 0.5f);
                break;
-            case Enums.InteractionType.Swipe:
+            case Enums.InteractionType.Dodge:
                positionY = contentSeparator.y;
                break;
             
@@ -461,14 +461,14 @@ public class CapacityToolEditor : SimpleTimeArea
          
          switch (iKey.interactionType)
          {
-            case Enums.InteractionType.Tap:
+            case Enums.InteractionType.Attack:
                interactionTexture = iKey.interactionColor == InteractionKey.InteractionColor.Blue
                   ? interfaceData.blueTapTexture
                   : interfaceData.redTapTexture;
                lineColor = interfaceData.tapLine;
                break;
             
-            case Enums.InteractionType.Swipe:
+            case Enums.InteractionType.Dodge:
                interactionTexture = interfaceData.swipeTexture;
                lineColor = interfaceData.swipeLine;
                break;

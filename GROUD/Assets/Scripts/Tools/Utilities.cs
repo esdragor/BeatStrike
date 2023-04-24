@@ -11,8 +11,10 @@ namespace Utilities
     {
         public enum InteractionType
         {
-            Tap,
-            Swipe,
+            Attack,
+            Dodge,
+            Fake,
+            Power
         }
         
         public enum EngineState
