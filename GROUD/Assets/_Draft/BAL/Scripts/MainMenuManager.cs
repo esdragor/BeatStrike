@@ -1,11 +1,8 @@
-using System;
-using System.Linq;
 using Code.Player;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 using Utilities;
 
@@ -21,9 +18,6 @@ public class MainMenuManager : MonoBehaviour
 {
     public static MainMenuManager instance;
     
-    [HideInInspector] public GearDescription currentGear;
-    public PowerDescription currentPower;
-
     [SerializeField] private RectTransform canvas;
 
     [Header("Main Menu")] [SerializeField] private GameObject gameTitle;
@@ -47,13 +41,10 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField] private TMP_Text playerInfoText;
     [SerializeField] private Button ButtonEquip;
 
-    [FormerlySerializedAs("GearsDatas")]
     [Header("Game Manager")]
-    [SerializeField] private Gear[] gearsDatas;
-    [SerializeField] private PowerSO[] powerDatas;
 
     private Vector2 offsetMainMenu;
-    private CharacterInfos currentCharacterInfos = null;
+    private Power currentCharacterInfos = null;
     private float decal = 5000f;
 
     private void Awake()
@@ -68,69 +59,9 @@ public class MainMenuManager : MonoBehaviour
 
     private void Start()
     {
-        PrintCharacterInfos(new PlayerStats());
-
         offsetMainMenu = mainMenuButtonsPanel.anchoredPosition;
-
-        foreach (var data in powerDatas)
-        {
-            var newGear = Instantiate(powerPrefab, gearSelectionParent);
-            newGear.GetComponent<Image>().sprite = data.powerSprite;
-            switch (data.typeOfPower)
-            {
-                case TypeOfPower.JustPerfect:
-                    newGear.GetComponent<PowerDescription>().Power = new JustPerfect();
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
-            {
-                
-            }
-        }
-
-        foreach (var data in gearsDatas)
-        {
-            var newGear = Instantiate(GearPrefab, gearSelectionParent);
-            newGear.GetComponent<Image>().sprite = data.gearSprite;
-            newGear.GetComponent<GearDescription>().gear = data;
-        }
-        ButtonEquip.onClick.AddListener(Equip);
     }
 
-    public void Equip()
-    {
-        if (currentGear)
-        {
-            currentGear.gear.EquipOnPlayer(currentGear);
-            currentGear.OnEquip = true;
-            currentGear = null;
-        }
-        else if (currentPower)
-        {
-            currentPower.Power.EquipOnPlayer(currentPower);
-            currentPower.OnEquip = true;
-            currentPower = null;
-        }
-    }
-
-    public void SetEquipmentImage(int index, GearDescription gearDescription)
-    {
-        Transform slot = slotsEquipementParent.GetChild(index);
-        slot.transform.parent = slotsVoidParent;
-        slot.SetSiblingIndex(index);
-        gearDescription.transform.parent = slotsEquipementParent;
-        gearDescription.transform.SetSiblingIndex(index);
-    }
-    
-    public void SetUnEquipmentImage(int index, GearDescription gearDescription)
-    {
-        Transform slot = slotsVoidParent.GetChild(0);
-        slot.transform.parent = slotsEquipementParent;
-        slot.SetSiblingIndex(index);
-        gearDescription.transform.parent = gearSelectionParent;
-    }
-    
     public void HideMainMenuPanel()
     {
         gameTitle.SetActive(false);
@@ -196,23 +127,6 @@ public class MainMenuManager : MonoBehaviour
         return text;
     }
 
-    public void PrintCharacterInfos(PlayerStats changerStats)
-    {
-        if (!currentCharacterInfos)
-            currentCharacterInfos = GameManager.instance.currentCharacterInfos;
-
-        string hp = AddColor("HP: " + currentCharacterInfos.playerStats.hp, changerStats.hp);
-
-        string intelligence = AddColor("Intelligence: " + currentCharacterInfos.playerStats.intelligence,
-            changerStats.intelligence);
-
-        string strength = AddColor("Stamina: " + currentCharacterInfos.playerStats.stamina, changerStats.stamina);
-
-        playerInfoText.text = hp +
-                              intelligence +
-                              strength;
-    }
-
     public void LaunchGame()
     {
         if (currentCharacterInfos != null)
@@ -229,24 +143,5 @@ public class MainMenuManager : MonoBehaviour
     public void ExitApplication()
     {
         Application.Quit();
-    }
-
-    public void SetPowerImage(PowerDescription powerDescription)
-    {
-       
-        Transform slot = slotsEquipementPowerParent.GetChild(0);
-        slot.transform.parent = slotsVoidParent;
-        slot.SetSiblingIndex(0);
-        powerDescription.transform.parent = slotsEquipementPowerParent;
-        powerDescription.transform.SetSiblingIndex(0);
-    }
-    
-    public void SetUnPowerImage(PowerDescription powerDescription)
-    {
-        int index = 3;
-        Transform slot = slotsVoidParent.GetChild(0);
-        slot.transform.parent = slotsEquipementPowerParent;
-        slot.SetSiblingIndex(index);
-        powerDescription.transform.parent = gearSelectionParent;
     }
 }
