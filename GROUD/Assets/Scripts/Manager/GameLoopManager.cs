@@ -31,6 +31,7 @@ public class GameLoopManager : MonoBehaviour
         interactionPool = new InteractionPool(interactionParent, interactionPrefab);
         patternManager = new PatternManager();
         combatManager = new CombatManager();
+        explorationManager = new ExplorationManager();
     }
 
     public void InitLevel()
