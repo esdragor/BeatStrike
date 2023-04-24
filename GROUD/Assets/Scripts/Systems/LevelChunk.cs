@@ -13,6 +13,7 @@ public class LevelChunk : MonoBehaviour
     {
         int oldIndex = index;
         index++;
+        
         return corridorPositions[oldIndex].position;
     }
 }
