@@ -42,12 +42,14 @@ public class PlayerManager : MonoBehaviour
         currentHP = MaxHP;
     }
 
-    private float runningStep;
-    private int index;
+    public void MovePlayerTo(Vector3 position)
+    {
+        transform.position = position;
+    }
 
     public void HurtEnemy()
     {
-      LevelManager.combatManager.DealDamage(1);
+      GameLoopManager.combatManager.DealDamage(1);
     }
 
     private void OnDead()
@@ -71,6 +73,7 @@ public class PlayerManager : MonoBehaviour
     {
         distanceReached = 0;
         UIManager.instance.score.SetScore((int)distanceReached);
+        MovePlayerTo(GameLoopManager.instance.currentChunk.GetCorridorPosition());
     }
 
     private void SetInputComponent(Enums.InteractionType interactionType)
@@ -118,6 +121,10 @@ public class PlayerManager : MonoBehaviour
         if (!GameManager.gameState.IsLevelExploration())
         {
             SetInputComponent(interactionType);
+        }
+        else
+        {
+            MovePlayerTo(GameLoopManager.instance.currentChunk.GetCorridorPosition());
         }
 
         distanceReached = ScoreManager.GetScore();

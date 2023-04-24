@@ -26,7 +26,7 @@ public class InputManager : MonoBehaviour
 
     private void SwipeBehaviour(ScreenListener.SwipeDirection dir)
     {
-        List<InteractionComponent> itList = LevelManager.instance.detector.InteractionCanTrigger;
+        List<InteractionComponent> itList = GameLoopManager.instance.detector.InteractionCanTrigger;
         
         for (int i = 0; i < itList.Count; i++)
         { 
@@ -60,7 +60,7 @@ public class InputManager : MonoBehaviour
                 return;
         }
         
-        List<InteractionComponent> itList = LevelManager.instance.detector.InteractionCanTrigger;
+        List<InteractionComponent> itList = GameLoopManager.instance.detector.InteractionCanTrigger;
         
         for (int i = 0; i < itList.Count; i++)
         {

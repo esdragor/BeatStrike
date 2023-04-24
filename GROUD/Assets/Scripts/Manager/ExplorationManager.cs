@@ -2,11 +2,11 @@
 {
         public void InitExploration(Pattern p)
         {
-                LevelManager.patternManager.StartPattern(p);
+                GameLoopManager.patternManager.StartPattern(p);
         }
 
         public void CorridorEndReached()
         {
-                LevelManager.instance.CheckForNextPattern();
+                GameLoopManager.instance.CheckForNextPattern();
         }
 }

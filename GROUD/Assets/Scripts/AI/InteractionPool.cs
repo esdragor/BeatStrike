@@ -12,10 +12,11 @@ public class InteractionPool
     
     private List<GameObject> interactionPool = new ();
 
-    public InteractionPool(Transform interactionParent)
+    public InteractionPool(Transform interactionParent, GameObject prefab)
     {
         this.interactionParent = interactionParent;
-        
+        this.interactionPrefab = prefab;
+
         InitInteractionPool();
     }
     

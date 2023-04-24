@@ -2,22 +2,25 @@
 using UnityEngine;
 using Utilities;
 
-public class LevelManager : MonoBehaviour
+public class GameLoopManager : MonoBehaviour
 {
-    public static LevelManager instance;
+    public static GameLoopManager instance;
+    
     public static PatternManager patternManager;
     public static InteractionPool interactionPool;
     public static CombatManager combatManager;
     public static ExplorationManager explorationManager;
-    
-    public LevelData levelData;
 
+    public LevelData levelData;
+    public LevelChunk currentChunk;
+    
     [Header("Interaction")]
     public Transform leftSpawnPoint;
     public Transform midSpawnPoint;
     public Transform rightSpawnPoint;
     public Transform interactionParent;
     public InteractionDetector detector;
+    public GameObject interactionPrefab;
     
     private int currentIndex;
 
@@ -25,7 +28,7 @@ public class LevelManager : MonoBehaviour
     {
         if (instance == null) instance = this;
 
-        interactionPool = new InteractionPool(interactionParent);
+        interactionPool = new InteractionPool(interactionParent, interactionPrefab);
         patternManager = new PatternManager();
         combatManager = new CombatManager();
     }
