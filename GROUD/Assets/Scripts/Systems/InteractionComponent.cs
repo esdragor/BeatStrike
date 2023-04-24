@@ -18,7 +18,7 @@ namespace Code.Interface
                 {
                     if (data.interactionType is Enums.InteractionType.Dodge or Enums.InteractionType.Fake)
                         PlayerManager.instance.HurtPlayer();
-                    PatternPoolManager.Instance.AddInteractionToPool(gameObject);
+                    LevelManager.interactionPool.AddInteractionToPool(gameObject);
                     StreakManager.RemoveStreak();
                 }
             }

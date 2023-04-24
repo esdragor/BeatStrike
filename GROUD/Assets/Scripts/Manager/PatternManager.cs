@@ -76,7 +76,7 @@ public class PatternManager
 
         switch (dataKey.interactionType)
         {
-            case Enums.InteractionType.Tap:
+            case Enums.InteractionType.Attack:
                 spawnPosition = dataKey.row switch
                 {
                     0 => LevelManager.instance.leftSpawnPoint.position,
@@ -85,7 +85,7 @@ public class PatternManager
                 };
                 break;
                 
-            case Enums.InteractionType.Swipe:
+            default:
                 spawnPosition = LevelManager.instance.midSpawnPoint.position;
                 break;
         }

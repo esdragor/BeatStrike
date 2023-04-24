@@ -42,20 +42,12 @@ public class PlayerManager : MonoBehaviour
         currentHP = MaxHP;
     }
 
-    private void Update()
-    {
-        if (isMoving)
-        {
-            Move();
-        }
-    }
-
     private float runningStep;
     private int index;
 
     public void HurtEnemy()
     {
-        EnemyManager.instance.GetHurt(1);
+      LevelManager.combatManager.DealDamage(1);
     }
 
     private void OnDead()
@@ -74,35 +66,7 @@ public class PlayerManager : MonoBehaviour
             OnDead();
         }
     }
-
-    public void MovePlayerTo(Vector3 pos, bool IsNotFight)
-    {
-        targetPosition = pos;
-        previousPosition = transform.position;
-
-        if (!IsNotFight)
-        {
-            animator.SetTrigger(index % 2 == 0 ? "AttackLeft" : "AttackRight");
-        }
-        else
-        {
-            animator.SetTrigger(index % 2 == 0 ? "StepLeft" : "StepRight");
-        }
-
-        index++;
-        runningStep = 0;
-
-        isMoving = true;
-    }
-
-    void Move()
-    {
-        runningStep += runningSpeed * Time.deltaTime;
-        runningStep = Mathf.Clamp(runningStep, 0, 1);
-
-        transform.position = Vector3.Lerp(previousPosition, targetPosition, runningStep);
-    }
-
+    
     public void SetPlayer()
     {
         distanceReached = 0;
@@ -151,7 +115,7 @@ public class PlayerManager : MonoBehaviour
         }
 
         ScoreManager.AddScore(score);
-        if (!GameManager.instance.gameState.IsLevelExploration())
+        if (!GameManager.gameState.IsLevelExploration())
         {
             SetInputComponent(interactionType);
         }
