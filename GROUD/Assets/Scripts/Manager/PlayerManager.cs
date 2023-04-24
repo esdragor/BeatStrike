@@ -11,8 +11,6 @@ public class PlayerManager : MonoBehaviour
     private Vector3 previousPosition;
     private Vector3 targetPosition;
     public float runningSpeed;
-    private PlayerStats playerStats;
-    public PlayerStats currentStats;
     public Animator animator;
 
     public PlayerLevelingData playerLevelingData;
@@ -35,7 +33,6 @@ public class PlayerManager : MonoBehaviour
 
     private void Start()
     {
-        playerStats = GameManager.instance.currentCharacterInfos.playerStats;
         isMoving = false;
         SetPlayer();
     }
@@ -49,22 +46,19 @@ public class PlayerManager : MonoBehaviour
     }
 
     private float runningStep;
-    private LevelRoadManager.RoadStep.StepAction nextAction;
     private int index;
 
     public void HurtEnemy()
     {
-        EnemyManager.instance.GetHurt(currentStats.damage);
+        EnemyManager.instance.GetHurt(1);
     }
 
-    public void MovePlayerTo(Vector3 pos, LevelRoadManager.RoadStep.StepAction stepAction = LevelRoadManager.RoadStep.StepAction.NONE)
+    public void MovePlayerTo(Vector3 pos, bool IsNotFight)
     {
-        nextAction = stepAction;
-        
         targetPosition = pos;
         previousPosition = transform.position;
 
-        if (stepAction == LevelRoadManager.RoadStep.StepAction.ENNEMY)
+        if (!IsNotFight)
         {
             animator.SetTrigger(index % 2 == 0 ? "AttackLeft" : "AttackRight");
         }
@@ -85,28 +79,11 @@ public class PlayerManager : MonoBehaviour
         runningStep = Mathf.Clamp(runningStep, 0, 1);
         
         transform.position = Vector3.Lerp(previousPosition, targetPosition, runningStep);
-        
-        if (runningStep >= 1)
-        {
-            isMoving = false;
-            
-            switch (nextAction)
-            {
-                case LevelRoadManager.RoadStep.StepAction.ENNEMY:
-                    break;
-
-                case LevelRoadManager.RoadStep.StepAction.END:
-                    LevelManager.instance.EndLevel();
-                    break;
-            }
-        }
     }
 
     public void SetPlayer()
     {
-        currentStats = new PlayerStats(playerStats);
         distanceReached = 0;
-        SetUIHealth();
         UIManager.instance.score.SetScore((int)distanceReached);
     }
 
@@ -181,24 +158,6 @@ public class PlayerManager : MonoBehaviour
 
         distanceReached = ScoreManager.GetScore();
         UIManager.instance.score.SetScore((int)distanceReached);
-    }
-
-    public void TakeDamage(float amount)
-    {
-        currentStats.hp -= amount;
-
-        SetUIHealth();
-
-        if (currentStats.hp <= 0)
-        {
-            UIManager.instance.announcer.Announce("You died !", Color.black);
-            LevelManager.instance.EndLevel();
-        }
-    }
-
-    void SetUIHealth()
-    {
-        UIManager.instance.hud.playerHealth.SetHealth(currentStats.hp, playerStats.hp);
     }
 }
 

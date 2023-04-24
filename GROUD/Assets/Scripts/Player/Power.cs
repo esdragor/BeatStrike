@@ -16,8 +16,8 @@ namespace Code.Player
         public abstract void OnSet();
         protected void OnSetBase()
         {
-            ratioCD = PlayerManager.instance.currentStats.intelligence;
-            powerCooldown = PlayerManager.instance.currentStats.stamina;
+            ratioCD = 1;
+            powerCooldown = 1;
         }
         public abstract void OnUnset();
         public abstract void Execute();

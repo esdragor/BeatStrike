@@ -5,7 +5,6 @@ using Utilities;
 public class EnemyManager : MonoBehaviour
 {
     public static EnemyManager instance;
-    private LevelRoadManager _roadManager => FindObjectOfType<LevelRoadManager>();
     
     public EnemySO currentEnemy;
     public UIEnemy enemyInterface;
@@ -47,7 +46,6 @@ public class EnemyManager : MonoBehaviour
             if (currentHealth <= 0)
             {
                 enemyInterface.gameObject.SetActive(false);
-                _roadManager.CheckStepsToTarget(20);
                 GameManager.instance.gameState.SwitchLevelState(Enums.LevelState.Exploration);
                 isActive = false;
             }

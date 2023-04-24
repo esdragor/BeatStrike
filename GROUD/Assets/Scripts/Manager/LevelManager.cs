@@ -6,11 +6,6 @@ public class LevelManager : MonoBehaviour
 {
     public static LevelManager instance;
     
-    [Header("Road")]
-    public LevelRoadManager roadManager;
-    public Transform playerObject;
-    public float scrollSpeed;
-    
     [Header("Interaction")]
     public Transform leftSpawnPoint;
     public Transform midSpawnPoint;
@@ -23,9 +18,7 @@ public class LevelManager : MonoBehaviour
     public int currentRoundIndex = 0;
     public Vector3[] spinPoints;
     public float DistanceToSpawnPointSpin = 30;
-
-    [SerializeField] private GameObject TriggerSpinDetectorPrefab;
-
+    
     private void Awake()
     {
         if (instance == null) instance = this;
@@ -34,7 +27,7 @@ public class LevelManager : MonoBehaviour
     public void StartLevel()
     {
         GameManager.instance.gameState.SwitchLevelState(Enums.LevelState.Exploration);
-        PlayerManager.instance.MovePlayerTo(roadManager.majorSteps[0].subStepPosition[0]);
+        PlayerManager.instance.MovePlayerTo(Vector3.zero, true);
         PatternManager.OnPatternEnd += CheckNextPattern;
         PlayPattern();
     }
@@ -47,7 +40,6 @@ public class LevelManager : MonoBehaviour
 
         currentPatternIndex = 0;
         currentRoundIndex = 0;
-        roadManager.Restart();
         StreakManager.ResetStreak();
         ScoreManager.ResetScore();
         

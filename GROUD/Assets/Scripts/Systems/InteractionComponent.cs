@@ -69,16 +69,9 @@ namespace Code.Interface
 
         public virtual void ValidateInteraction(bool isPerfect = false)
         {
-            PlayerStats stats = PlayerManager.instance.currentStats;
             if (GameManager.instance.gameState.IsLevelExploration())
             {
                 PlayerManager.instance.AddExperience(10f);
-            }
-            else
-            {
-                float damage = 10;
-                if (isPerfect)
-                    damage *= stats.critRate;
             }
             PlayerManager.onInteractionSuccess?.Invoke(successGroup);
             PlayerManager.instance.OnInteractionSuccess(PlayerManager.instance.justPerfectEnabled
@@ -86,13 +79,6 @@ namespace Code.Interface
                 : successGroup);
 
             LevelManager.instance.detector.InteractionCanTrigger.Remove(this);
-
-            PatternPoolManager.Instance.AddInteractionToPool(gameObject);
-        }
-
-        public virtual void HurtPlayer()
-        {
-            PlayerManager.instance.TakeDamage(1f);
 
             PatternPoolManager.Instance.AddInteractionToPool(gameObject);
         }
