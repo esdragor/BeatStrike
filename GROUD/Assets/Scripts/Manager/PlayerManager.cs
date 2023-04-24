@@ -36,7 +36,8 @@ public class PlayerManager : MonoBehaviour
 
     public void MovePlayerTo(Vector3 position)
     {
-        transform.position = position;
+        Vector3 nextPosition = new Vector3(transform.position.x, transform.position.y, position.z);
+        transform.position = nextPosition;
     }
 
     public void HurtEnemy()
