@@ -19,9 +19,7 @@ public class GameLoopManager : MonoBehaviour
     public LevelChunk currentChunk;
     
     [Header("Interaction")]
-    public Transform leftSpawnPoint;
     public Transform midSpawnPoint;
-    public Transform rightSpawnPoint;
     public Transform interactionParent;
     public InteractionDetector detector;
     public GameObject interactionPrefab;
