@@ -22,7 +22,7 @@ public class PlayerManager : MonoBehaviour
     private bool isMoving;
 
     public bool justPerfectEnabled = false;
-    [Header("DEBUG")] public Image healthFill;
+    [Header("DEBUG")] public UI_PlayerHealth healthFill;
     public TMP_Text healthTxt;
     public Image CDPowerImage;
 
@@ -67,8 +67,10 @@ public class PlayerManager : MonoBehaviour
     {
         if (currentHP <= 0) return;
         currentHP--;
-        healthFill.fillAmount = (float) currentHP / MaxHP;
-        healthTxt.text = currentHP.ToString();
+        if (!healthFill)
+            healthFill = UIManager.instance.hud.playerHealth;
+        
+        healthFill.SetHealth(currentHP, MaxHP);
         if (currentHP <= 0)
         {
             OnDead();
@@ -151,7 +153,7 @@ public class PlayerManager : MonoBehaviour
         }
 
         ScoreManager.AddScore(score);
-        if (!GameManager.instance.gameState.IsLevelExploration())
+        if (GameManager.instance.gameState.IsLevelExploration())
         {
             SetInputComponent(interactionType);
         }

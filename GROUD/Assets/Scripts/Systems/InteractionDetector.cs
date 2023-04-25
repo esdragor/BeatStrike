@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Code.Interface;
 using UnityEngine;
 
@@ -8,7 +9,7 @@ public class InteractionDetector : MonoBehaviour
     public bool showDebug;
     public Action<InteractionComponent> OnInteractionAdded;
     public Action<InteractionComponent> OnInteractionRemoved;
-    public List<InteractionComponent> InteractionCanTrigger = new();
+    public InteractionComponent InteractionCanTrigger = null;
     public BoxCollider collider;
     public DetectionZoneData[] detectionZoneData;
     public float tolerance = 0.01f;
@@ -20,8 +21,8 @@ public class InteractionDetector : MonoBehaviour
 
     private void Update()
     {
-        foreach (var t in InteractionCanTrigger)
-            SetInteractionGroup(t);
+        if (InteractionCanTrigger)
+            SetInteractionGroup(InteractionCanTrigger);
     }
 
     private void SetupTriggerRaw()
@@ -96,18 +97,18 @@ public class InteractionDetector : MonoBehaviour
 
         if (it)
         {
-            InteractionCanTrigger.Add(it);
+            InteractionCanTrigger = it;
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        InteractionComponent it = other.GetComponent<InteractionComponent>();
-
-        if (it && InteractionCanTrigger.Contains(it))
-        {
-            InteractionCanTrigger.Remove(it);
-        }
+        // InteractionComponent it = other.GetComponent<InteractionComponent>();
+        //
+        // if (it && InteractionCanTrigger.Contains(it))
+        // {
+        //     InteractionCanTrigger.Remove(it);
+        // }
     }
 }
 

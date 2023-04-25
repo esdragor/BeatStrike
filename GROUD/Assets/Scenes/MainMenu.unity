@@ -1844,8 +1844,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a59305c8f39352b49bfbacbbd3d12f21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentGear: {fileID: 0}
-  currentPower: {fileID: 0}
   canvas: {fileID: 766774924}
   gameTitle: {fileID: 440905007}
   mainMenuButtonsPanel: {fileID: 261785737}
@@ -1870,13 +1868,6 @@ MonoBehaviour:
   transitionDirectionSelectionCharacter: -1
   playerInfoText: {fileID: 1998830345}
   ButtonEquip: {fileID: 878304829}
-  gearsDatas:
-  - {fileID: 11400000, guid: 6164b4684263052409914e75c8a5f237, type: 2}
-  - {fileID: 11400000, guid: 17831cdf78fc1cf4c8cd2e90fbf8b25a, type: 2}
-  - {fileID: 11400000, guid: 86be6718d7131bc4ea54e9e40e3436e8, type: 2}
-  - {fileID: 11400000, guid: a3aaef3ab7ddb8a4c8e725899fabbbf6, type: 2}
-  powerDatas:
-  - {fileID: 11400000, guid: eded3f0bef57d6343a85e2144b009454, type: 2}
 --- !u!114 &766774921
 MonoBehaviour:
   m_ObjectHideFlags: 0

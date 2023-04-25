@@ -23,6 +23,11 @@ public class EnemyManager : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        SetEnemy(currentEnemy);
+    }
+
     public void SetEnemy(EnemySO so)
     {
         currentEnemy = so;
