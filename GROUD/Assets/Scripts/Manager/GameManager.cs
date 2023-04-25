@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
         
         DontDestroyOnLoad(gameObject);
         currentPower = new JustPerfect();
-        SetBPM((int)BPM);
+        CalculateTickRate();
     }
 
     void Update()
@@ -35,15 +35,15 @@ public class GameManager : MonoBehaviour
         onUpdated?.Invoke();
 
 
-        if (tickTimer >= tickRate)
+        if (tickTimer >= 1)
         {
             OnTick?.Invoke();
             Debug.Log("Tick");
-            tickTimer = 0f;
+            tickTimer = 0;
         }
         else
         {
-            tickTimer += Time.deltaTime;
+            tickTimer += Time.deltaTime * tickRate;
         }
     }
 
@@ -52,7 +52,7 @@ public class GameManager : MonoBehaviour
         currentPower = _power;
     }
     
-    void SetBPM(int BPM)
+    public void SetBPM(int BPM)
     {
         this.BPM = BPM;
         CalculateTickRate();

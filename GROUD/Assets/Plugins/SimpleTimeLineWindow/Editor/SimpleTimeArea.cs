@@ -276,6 +276,11 @@ namespace DMTimeArea
             return result;
         }
 
+        public float ToFrame(double timeValue)
+        {
+            return TimeUtility.ToFrames(timeValue, this._frameRate);
+        }
+
         public float TimeToPixel(double time)
         {
             return _simpleTimeArea.TimeToPixel((float)time, _timeAreaBounds);

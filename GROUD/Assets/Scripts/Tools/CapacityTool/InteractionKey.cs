@@ -6,8 +6,8 @@ using Utilities;
 {
     public int row;
     public string timeCode;
-    public float scale;
-    public Vector3 spawnPosition;
+    public float frame;
+
     public Enums.InteractionType interactionType;
     public ScreenListener.SwipeDirection swipeDirection;
     public InteractionColor interactionColor;

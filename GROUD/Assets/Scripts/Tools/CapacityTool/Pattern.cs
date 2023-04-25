@@ -10,6 +10,7 @@ public class Pattern : ScriptableObject
     public int targetLevel;
     public int difficultyIndex;
     public double maxTime = 10f;
+    public int BPM = 60;
     public List<InteractionKey> interactions;
 
     

@@ -23,8 +23,12 @@ public class GameLoopManager : MonoBehaviour
     public Transform interactionParent;
     public InteractionDetector detector;
     public GameObject interactionPrefab;
+
+    [Header("Temp")] 
+    public ParticleSystem bpmVisual;
     
     private int currentIndex;
+    public int tickCount;
 
     private void Awake()
     {
@@ -34,6 +38,9 @@ public class GameLoopManager : MonoBehaviour
         patternManager = new PatternManager();
         combatManager = new CombatManager();
         explorationManager = new ExplorationManager();
+
+        GameManager.OnTick += (() => tickCount++);
+        GameManager.OnTick += () => bpmVisual.Play();
     }
 
     #region DEBUGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG
@@ -64,12 +71,14 @@ public class GameLoopManager : MonoBehaviour
     public void InitLevel()
     {
         GameManager.gameState.SwitchLevelState(Enums.LevelState.Exploration);
-        
+        PlayerManager.instance.SetPlayer();
         PlayPattern();
     }
 
     private void PlayPattern()
     {
+        tickCount = 0;
+        
         if (GameManager.gameState.IsLevelCombat())
         {
             combatManager.InitCombat(levelData.enemy[currentIndex]);
