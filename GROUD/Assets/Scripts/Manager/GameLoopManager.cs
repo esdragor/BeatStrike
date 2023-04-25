@@ -1,6 +1,10 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using Utilities;
+using Random = UnityEngine.Random;
 
 public class GameLoopManager : MonoBehaviour
 {
@@ -33,6 +37,31 @@ public class GameLoopManager : MonoBehaviour
         combatManager = new CombatManager();
         explorationManager = new ExplorationManager();
     }
+
+    #region DEBUGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG
+
+    private void Start()
+    {
+        GameManager.OnTick += MoveTiles;
+    }
+
+    private void MoveTiles()
+    {
+        // int delayBetweenPatternInMilliseconds = 500;
+        // await Task.Delay(delayBetweenPatternInMilliseconds);
+        List<GameObject> tiles = interactionPool.GetInteractionPool();
+        foreach (var tile in tiles)
+        {
+            tile.transform.position += Vector3.back * 0.8f;
+        }
+
+        //MoveTiles();
+    }
+
+    #endregion
+    
+
+
 
     public void InitLevel()
     {

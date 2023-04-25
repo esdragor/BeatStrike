@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Code.Interface;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Utilities;
 
 public class PatternManager
@@ -76,25 +75,7 @@ public class PatternManager
     {
         caster = GameLoopManager.interactionPool.GetCircleFromPool();
         caster.GetComponent<InteractionComponent>().SetData(dataKey);
-
-        Vector3 spawnPosition = Vector3.zero;
-
-        switch (dataKey.interactionType)
-        {
-            case Enums.InteractionType.Attack:
-                spawnPosition = dataKey.row switch
-                {
-                    0 => GameLoopManager.instance.leftSpawnPoint.position,
-                    1 => GameLoopManager.instance.rightSpawnPoint.position,
-                    _ => spawnPosition
-                };
-                break;
-                
-            default:
-                spawnPosition = GameLoopManager.instance.midSpawnPoint.position;
-                break;
-        }
-
-        caster.transform.position = spawnPosition;
+        
+        caster.transform.position = GameLoopManager.instance.midSpawnPoint.position;;
     }
 }

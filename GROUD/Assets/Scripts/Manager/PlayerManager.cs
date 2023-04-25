@@ -14,8 +14,7 @@ public class PlayerManager : MonoBehaviour
     public int MaxHP = 5;
 
     public bool justPerfectEnabled = false;
-    
-    [Header("DEBUG")] public Image healthFill;
+    [Header("DEBUG")] public UI_PlayerHealth healthFill;
     public TMP_Text healthTxt;
     public Image CDPowerImage;
 
@@ -54,8 +53,10 @@ public class PlayerManager : MonoBehaviour
     {
         if (currentHP <= 0) return;
         currentHP--;
-        healthFill.fillAmount = (float) currentHP / MaxHP;
-        healthTxt.text = currentHP.ToString();
+        if (!healthFill)
+            healthFill = UIManager.instance.hud.playerHealth;
+        
+        healthFill.SetHealth(currentHP, MaxHP);
         if (currentHP <= 0)
         {
             OnDead();
@@ -78,11 +79,7 @@ public class PlayerManager : MonoBehaviour
             case Enums.InteractionType.Dodge:
                 break;
             case Enums.InteractionType.Fake:
-                break;
-            case Enums.InteractionType.Power:
-                //change here power
-                GameManager.instance.power.Execute();
-                break;
+                 break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(interactionType), interactionType, null);
         }
@@ -110,7 +107,7 @@ public class PlayerManager : MonoBehaviour
         }
 
         ScoreManager.AddScore(score);
-        if (!GameManager.gameState.IsLevelExploration())
+        if (GameManager.gameState.IsLevelExploration())
         {
             SetInputComponent(interactionType);
         }

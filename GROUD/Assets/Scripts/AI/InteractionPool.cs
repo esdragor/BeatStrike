@@ -51,7 +51,12 @@ public class InteractionPool
         it.transform.parent = interactionParent;
         interactionPool.Add(it);
     }
-    
+
+    public List<GameObject> GetInteractionPool()
+    {
+        return activeInteractions;
+    }
+
     public GameObject GetCircleFromPool()
     {
         if (interactionPool.Count > 0)

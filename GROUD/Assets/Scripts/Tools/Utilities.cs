@@ -13,8 +13,8 @@ namespace Utilities
         {
             Attack,
             Dodge,
-            Fake,
-            Power
+            Fake
+            
         }
         
         public enum EngineState

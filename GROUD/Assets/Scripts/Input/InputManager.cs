@@ -13,6 +13,7 @@ public class InputManager : MonoBehaviour
         screenListener.onInputPressed += TapBehaviour;
         screenListener.onSwipeDetected += SwipeBehaviour;
     }
+
     private void OnDisable()
     {
         screenListener.onInputPressed -= TapBehaviour;
@@ -21,47 +22,50 @@ public class InputManager : MonoBehaviour
 
     private void Start()
     {
-        if(GameManager.gameState.IsEngineMenu()) gameObject.SetActive(false);
+        if (GameManager.gameState.IsEngineMenu()) gameObject.SetActive(false);
     }
 
     private void SwipeBehaviour(ScreenListener.SwipeDirection dir)
     {
-        List<InteractionComponent> itList = GameLoopManager.instance.detector.InteractionCanTrigger;
-        
-        for (int i = 0; i < itList.Count; i++)
-        { 
-            if(itList[i].data.swipeDirection == dir && itList[i].data.interactionType == Enums.InteractionType.Dodge)
-            {
-                itList[i].ValidateInteraction();
-            }
-        }
+        InteractionComponent it = GameLoopManager.instance.detector.InteractionCanTrigger;
+        if (!it) return;
 
-        if (dir == ScreenListener.SwipeDirection.UP)
+        switch (it.data.interactionType)
         {
-            GameManager.instance.power.Execute();
+            case Enums.InteractionType.Attack:
+                it.ValidateInteraction();
+                break;
+            case Enums.InteractionType.Dodge:
+                if (it.data.swipeDirection == dir)
+                {
+                    it.ValidateInteraction();
+                }
+                break;
+            case Enums.InteractionType.Fake:
+
+                break;
         }
-        
     }
 
     private void TapBehaviour(ScreenListener.TouchSide touchSide)
     {
-        InteractionKey.InteractionColor color;
-        
+    /*InteractionKey.InteractionColor color;
+
         switch (touchSide)
         {
             case ScreenListener.TouchSide.LEFT:
                 color = InteractionKey.InteractionColor.Blue;
                 break;
-            
+
             case ScreenListener.TouchSide.RIGHT:
                 color = InteractionKey.InteractionColor.Red;
                 break;
             default:
                 return;
         }
-        
-        List<InteractionComponent> itList = GameLoopManager.instance.detector.InteractionCanTrigger;
-        
+
+        List<InteractionComponent> itList = LevelManager.instance.detector.InteractionCanTrigger;
+
         for (int i = 0; i < itList.Count; i++)
         {
             if (itList[i].data.interactionColor == color &&
@@ -69,8 +73,6 @@ public class InputManager : MonoBehaviour
             {
                 itList[i].ValidateInteraction();
             }
-        }
-        
+        }*/
     }
-    
 }

@@ -94,7 +94,6 @@ GameObject:
   - component: {fileID: 3615221734236934768}
   - component: {fileID: 6198615964587025138}
   - component: {fileID: 3615221734236934783}
-  - component: {fileID: -8878025448206291684}
   - component: {fileID: 5250671233817034715}
   m_Layer: 0
   m_Name: Interaction Tile
@@ -143,9 +142,13 @@ MonoBehaviour:
   speed: 6
   successGroup: 0
   renderer: {fileID: 9050809941209807656}
+  Tile: {fileID: 5137905365092785431}
   blueMat: {fileID: 2100000, guid: 5ce6e37273d09d543a7d47e28bcd217e, type: 2}
   redMat: {fileID: 2100000, guid: 96ff16d77f099694ab76e057ad3b63c9, type: 2}
+  whiteMat: {fileID: 2100000, guid: 859cf7140df9dd44280db27881fe6739, type: 2}
   slideMat: {fileID: 2100000, guid: d4d39b96812c69644b2a83d32e664974, type: 2}
+  fakeMat: {fileID: 2100000, guid: 9a7dce6c601cb8f49bac785799d39fd7, type: 2}
+  powerMat: {fileID: 2100000, guid: ced9a85815e4f71448ddba95065f9492, type: 2}
 --- !u!54 &3615221734236934783
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -162,19 +165,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &-8878025448206291684
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3615221734236934782}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3b059460da22234e90d7d3f8d3e02ed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  color: 0
 --- !u!65 &5250671233817034715
 BoxCollider:
   m_ObjectHideFlags: 0
