@@ -51,7 +51,8 @@ namespace Code.Interface
 
         private void SetVisualAndColor()
         {
-            transform.localScale = new Vector3(1f, 1f, 1f);
+            float scale = 0.75f;
+            transform.localScale = new Vector3(scale, scale, scale);
             rendererImage.enabled = false;
             switch (data.interactionType)
             {

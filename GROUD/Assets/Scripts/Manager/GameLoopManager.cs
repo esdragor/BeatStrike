@@ -50,7 +50,7 @@ public class GameLoopManager : MonoBehaviour
         List<GameObject> tiles = interactionPool.GetInteractionPool();
         foreach (var tile in tiles)
         {
-            tile.transform.position += Vector3.back * 0.8f;
+            tile.transform.position += Vector3.down * 0.2f;
         }
 
         //MoveTiles();
