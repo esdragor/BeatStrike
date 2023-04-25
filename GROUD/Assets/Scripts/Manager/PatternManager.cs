@@ -79,9 +79,9 @@ public class PatternManager
 
     public void DrawInteractionOnScreen(InteractionKey dataKey)
     {
-        caster = GameLoopManager.interactionPool.GetCircleFromPool();
-        caster.GetComponent<InteractionComponent>().SetData(dataKey);
+        interaction = GameLoopManager.interactionPool.GetCircleFromPool();
+        interaction.GetComponent<InteractionComponent>().SetData(dataKey);
         
-        caster.transform.position = GameLoopManager.instance.midSpawnPoint.position;;
+        interaction.transform.position = GameLoopManager.instance.midSpawnPoint.position;;
     }
 }
