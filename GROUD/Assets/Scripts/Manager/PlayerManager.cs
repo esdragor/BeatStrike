@@ -113,7 +113,7 @@ public class PlayerManager : MonoBehaviour
         }
         else
         {
-            MovePlayerTo(GameLoopManager.instance.currentChunk.GetCorridorPosition());
+            MovePlayerTo(GameLoopManager.instance.currentChunk.levelPos.position);
         }
 
         distanceReached = ScoreManager.GetScore();
