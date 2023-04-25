@@ -52,7 +52,7 @@ public class InteractionPool
         interactionPool.Add(it);
     }
     
-    public GameObject GetCircleFromPool()
+    public GameObject GetInteractionFromPool()
     {
         if (interactionPool.Count > 0)
         {

@@ -278,6 +278,8 @@ public class CapacityToolEditor : SimpleTimeArea
       {
          selectedInteractionKey.timeCode = TimeAsString(selectedInteractionKey.time);
          EditorGUILayout.LabelField($"Time Code : {selectedInteractionKey.timeCode}");
+         selectedInteractionKey.frame = ToFrame( selectedInteractionKey.time);
+         EditorGUILayout.LabelField($"Frame : {selectedInteractionKey.frame}");
          selectedInteractionKey.time = EditorGUILayout.Slider((float)selectedInteractionKey.time, 0f, (float)currentPattern.maxTime);
          selectedInteractionKey.interactionType = (Enums.InteractionType) EditorGUILayout.EnumPopup("Type", selectedInteractionKey.interactionType);
 
@@ -405,6 +407,11 @@ public class CapacityToolEditor : SimpleTimeArea
       AssetDatabase.RenameAsset($"Assets/Resources/Scriptable/Pattern/{currentPattern.name}.asset",
          currentPattern.patternName);
       currentPattern.patternName = currentPattern.name;
+
+      foreach (var it in currentPattern.interactions)
+      {
+         it.frame = ToFrame(it.time);
+      }
       
       EditorUtility.SetDirty(currentPattern);
       AssetDatabase.SaveAssets();

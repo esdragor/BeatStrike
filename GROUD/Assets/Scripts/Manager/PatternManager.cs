@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Code.Interface;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Utilities;
 
 public class PatternManager
@@ -13,11 +12,13 @@ public class PatternManager
     private bool isTimelineActive;
     private float timer;
     private bool isDebugMultiChannel;
-    private GameObject caster;
+    private GameObject interaction;
 
     public void StartPattern(Pattern p)
     {
         if (isTimelineActive) return;
+
+        GameManager.instance.SetBPM(p.BPM);
 
         InitializeQueue(p.interactions);
 
@@ -43,15 +44,19 @@ public class PatternManager
     
     private void TimelineEventListener()
     {
-        timer += Time.deltaTime;
-
+       // timer += Time.deltaTime;
+        
         if (timelineRunnerKeys.Count > 0)
         {
-
-            if (Math.Abs(timelineRunnerKeys.Peek().time - timer) < 0.1f)
+            if (Math.Abs(timelineRunnerKeys.Peek().frame - GameLoopManager.instance.tickCount) < 0.1f)
             {
+                Debug.Log($" Frame : {timelineRunnerKeys.Peek().frame} | {GameLoopManager.instance.tickCount}");
                 DrawInteractionOnScreen(timelineRunnerKeys.Dequeue());
             }
+        }
+        else
+        {
+            EndPattern();
         }
 
         if (timer > currentPatternSo.maxTime)
@@ -74,8 +79,8 @@ public class PatternManager
 
     public void DrawInteractionOnScreen(InteractionKey dataKey)
     {
-        caster = GameLoopManager.interactionPool.GetCircleFromPool();
-        caster.GetComponent<InteractionComponent>().SetData(dataKey);
+        interaction = GameLoopManager.interactionPool.GetInteractionFromPool();
+        interaction.GetComponent<InteractionComponent>().SetData(dataKey);
 
         Vector3 spawnPosition = Vector3.zero;
 
@@ -95,6 +100,6 @@ public class PatternManager
                 break;
         }
 
-        caster.transform.position = spawnPosition;
+        interaction.transform.position = spawnPosition;
     }
 }
