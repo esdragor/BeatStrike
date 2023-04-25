@@ -18,7 +18,7 @@ namespace Code.Interface
                 {
                     if (data.interactionType is Enums.InteractionType.Dodge or Enums.InteractionType.Fake)
                         PlayerManager.instance.HurtPlayer();
-                    LevelManager.interactionPool.AddInteractionToPool(gameObject);
+                    GameLoopManager.interactionPool.AddInteractionToPool(gameObject);
                     StreakManager.RemoveStreak();
                 }
             }
@@ -74,9 +74,9 @@ namespace Code.Interface
             PlayerManager.onInteractionSuccess?.Invoke(successGroup);
             PlayerManager.instance.OnInteractionSuccess(successGroup, data.interactionType);
 
-            LevelManager.instance.detector.InteractionCanTrigger.Remove(this);
+            GameLoopManager.instance.detector.InteractionCanTrigger.Remove(this);
 
-            LevelManager.interactionPool.AddInteractionToPool(gameObject);
+            GameLoopManager.interactionPool.AddInteractionToPool(gameObject);
         }
     }
 }

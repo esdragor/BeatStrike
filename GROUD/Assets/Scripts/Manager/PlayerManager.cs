@@ -1,7 +1,6 @@
 using System;
 using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Utilities;
 
@@ -12,13 +11,7 @@ public class PlayerManager : MonoBehaviour
     public float distanceReached;
     private Vector3 previousPosition;
     private Vector3 targetPosition;
-    public Animator animator;
-
-    public float currentExperience;
-    public int level = 1;
     public int MaxHP = 5;
-
-    private bool isMoving;
 
     public bool justPerfectEnabled = false;
     
@@ -37,17 +30,19 @@ public class PlayerManager : MonoBehaviour
 
     private void Start()
     {
-        isMoving = false;
         SetPlayer();
         currentHP = MaxHP;
     }
 
-    private float runningStep;
-    private int index;
+    public void MovePlayerTo(Vector3 position)
+    {
+        Vector3 nextPosition = new Vector3(transform.position.x, transform.position.y, position.z);
+        transform.position = nextPosition;
+    }
 
     public void HurtEnemy()
     {
-      LevelManager.combatManager.DealDamage(1);
+      GameLoopManager.combatManager.DealDamage(1);
     }
 
     private void OnDead()
@@ -71,6 +66,7 @@ public class PlayerManager : MonoBehaviour
     {
         distanceReached = 0;
         UIManager.instance.score.SetScore((int)distanceReached);
+        MovePlayerTo(GameLoopManager.instance.currentChunk.GetCorridorPosition());
     }
 
     private void SetInputComponent(Enums.InteractionType interactionType)
@@ -118,6 +114,10 @@ public class PlayerManager : MonoBehaviour
         if (!GameManager.gameState.IsLevelExploration())
         {
             SetInputComponent(interactionType);
+        }
+        else
+        {
+            MovePlayerTo(GameLoopManager.instance.currentChunk.GetCorridorPosition());
         }
 
         distanceReached = ScoreManager.GetScore();

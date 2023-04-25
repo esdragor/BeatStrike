@@ -22,7 +22,7 @@ public class UI_EndLevel : MonoBehaviour
     public void Restart()
     {
         DisablePanel();
-        LevelManager.instance.Restart();
+        GameLoopManager.instance.Restart();
     }
 
     public void Quit()

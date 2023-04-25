@@ -13,7 +13,9 @@ public class CombatManager
         maxHealth = enemySo.healthPoint;
         enemy = enemySo;
         
-        LevelManager.patternManager.StartPattern(enemy.patternSO);
+        PlayerManager.instance.MovePlayerTo(GameLoopManager.instance.currentChunk.roomPosition.position);
+        
+        GameLoopManager.patternManager.StartPattern(enemy.patternSO);
     }
     
     public void DealDamage(float amount)
@@ -31,6 +33,6 @@ public class CombatManager
 
     public void Death()
     {
-        LevelManager.instance.CheckForNextPattern();
+        GameLoopManager.instance.CheckForNextPattern();
     }
 }

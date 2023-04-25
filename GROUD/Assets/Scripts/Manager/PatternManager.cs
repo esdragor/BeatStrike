@@ -65,11 +65,16 @@ public class PatternManager
     {
         isTimelineActive = false;
         GameManager.onUpdated -= TimelineEventListener;
+        
+        if (GameManager.gameState.IsLevelExploration())
+        {
+            GameLoopManager.explorationManager.CorridorEndReached();
+        }
     }
 
     public void DrawInteractionOnScreen(InteractionKey dataKey)
     {
-        caster = LevelManager.interactionPool.GetCircleFromPool();
+        caster = GameLoopManager.interactionPool.GetCircleFromPool();
         caster.GetComponent<InteractionComponent>().SetData(dataKey);
 
         Vector3 spawnPosition = Vector3.zero;
@@ -79,14 +84,14 @@ public class PatternManager
             case Enums.InteractionType.Attack:
                 spawnPosition = dataKey.row switch
                 {
-                    0 => LevelManager.instance.leftSpawnPoint.position,
-                    1 => LevelManager.instance.rightSpawnPoint.position,
+                    0 => GameLoopManager.instance.leftSpawnPoint.position,
+                    1 => GameLoopManager.instance.rightSpawnPoint.position,
                     _ => spawnPosition
                 };
                 break;
                 
             default:
-                spawnPosition = LevelManager.instance.midSpawnPoint.position;
+                spawnPosition = GameLoopManager.instance.midSpawnPoint.position;
                 break;
         }
 
