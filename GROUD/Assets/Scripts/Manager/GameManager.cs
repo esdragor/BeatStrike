@@ -1,3 +1,4 @@
+using System;
 using Code.Player;
 using UnityEngine;
 using Utilities;
@@ -8,7 +9,11 @@ public class GameManager : MonoBehaviour
     
     public static GameManager instance;
     public static Delegates.OnUpdated onUpdated;
-    
+    public static Action OnTick;
+    private float tickRate;
+    private float tickTimer;
+    public float BPM = 60;
+
     public Power power;
     [HideInInspector] public Power currentPower;
     public float MovementRatioOk = 1f;
@@ -27,10 +32,29 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         onUpdated?.Invoke();
+
+
+        if (tickTimer <= tickRate)
+        {
+            OnTick?.Invoke();
+            Debug.Log("Tick");
+            tickTimer = 0f;
+        }
+        else
+        {
+            tickTimer += Time.deltaTime;
+        }
     }
 
     public void SetPlayerStats(Power _power)
     {
         currentPower = _power;
     }
+    
+    void SetBPM(int BPM)
+    {
+        this.BPM = BPM;
+        CalculateTickRate();
+    }
+    void CalculateTickRate() => tickRate = BPM / 60f;
 }

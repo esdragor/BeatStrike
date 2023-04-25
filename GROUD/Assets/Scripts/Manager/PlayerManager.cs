@@ -66,7 +66,6 @@ public class PlayerManager : MonoBehaviour
     {
         distanceReached = 0;
         UIManager.instance.score.SetScore((int)distanceReached);
-        MovePlayerTo(GameLoopManager.instance.currentChunk.GetCorridorPosition());
     }
 
     private void SetInputComponent(Enums.InteractionType interactionType)
@@ -117,7 +116,7 @@ public class PlayerManager : MonoBehaviour
         }
         else
         {
-            MovePlayerTo(GameLoopManager.instance.currentChunk.GetCorridorPosition());
+            MovePlayerTo(GameLoopManager.instance.currentChunk.levelPos.position);
         }
 
         distanceReached = ScoreManager.GetScore();

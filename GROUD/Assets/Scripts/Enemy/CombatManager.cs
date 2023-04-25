@@ -13,7 +13,7 @@ public class CombatManager
         maxHealth = enemySo.healthPoint;
         enemy = enemySo;
         
-        PlayerManager.instance.MovePlayerTo(GameLoopManager.instance.currentChunk.roomPosition.position);
+        PlayerManager.instance.MovePlayerTo(GameLoopManager.instance.currentChunk.levelPos.position);
         
         GameLoopManager.patternManager.StartPattern(enemy.patternSO);
     }
