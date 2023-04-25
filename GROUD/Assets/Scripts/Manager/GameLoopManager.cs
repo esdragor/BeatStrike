@@ -42,20 +42,20 @@ public class GameLoopManager : MonoBehaviour
 
     private void Start()
     {
-        MoveTiles();
+        GameManager.OnTick += MoveTiles;
     }
 
-    private async void MoveTiles()
+    private void MoveTiles()
     {
-        int delayBetweenPatternInMilliseconds = 500;
-        await Task.Delay(delayBetweenPatternInMilliseconds);
+        // int delayBetweenPatternInMilliseconds = 500;
+        // await Task.Delay(delayBetweenPatternInMilliseconds);
         List<GameObject> tiles = interactionPool.GetInteractionPool();
         foreach (var tile in tiles)
         {
             tile.transform.position += Vector3.back * 0.8f;
         }
 
-        MoveTiles();
+        //MoveTiles();
     }
 
     #endregion
