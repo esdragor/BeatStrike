@@ -37,7 +37,6 @@ public class GameManager : MonoBehaviour
         if (tickTimer <= tickRate)
         {
             OnTick?.Invoke();
-            Debug.Log("Tick");
             tickTimer = 0f;
         }
         else

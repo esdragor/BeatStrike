@@ -15,7 +15,8 @@ public class PlayerManager : MonoBehaviour
 
     public bool justPerfectEnabled = false;
     
-    [Header("DEBUG")] public Image healthFill;
+    [Header("DEBUG")] 
+    public Image healthFill;
     public TMP_Text healthTxt;
     public Image CDPowerImage;
 
@@ -66,6 +67,7 @@ public class PlayerManager : MonoBehaviour
     {
         distanceReached = 0;
         UIManager.instance.score.SetScore((int)distanceReached);
+        MovePlayerTo(GameLoopManager.instance.currentChunk.levelPos.position);
     }
 
     private void SetInputComponent(Enums.InteractionType interactionType)

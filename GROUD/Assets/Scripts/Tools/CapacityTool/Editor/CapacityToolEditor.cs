@@ -202,6 +202,7 @@ public class CapacityToolEditor : SimpleTimeArea
       currentPattern.targetLevel = EditorGUILayout.Popup("Target Level", currentPattern.targetLevel, levelOptions); 
       currentPattern.difficultyIndex = EditorGUILayout.Popup("Difficulty", currentPattern.difficultyIndex, difficultyOptions);
       currentPattern.maxTime = EditorGUILayout.FloatField("Max Time", (float) currentPattern.maxTime);
+      currentPattern.BPM = EditorGUILayout.IntField("BPM", currentPattern.BPM);
       GUILayout.BeginHorizontal();
       GUILayout.FlexibleSpace();
       
@@ -308,8 +309,16 @@ public class CapacityToolEditor : SimpleTimeArea
       rectTotalArea = new Rect(rectMainBodyArea.x + LEFTWIDTH, rectMainBodyArea.y, base.position.width - LEFTWIDTH, rectMainBodyArea.height);
       rectTimeRuler = new Rect(rectMainBodyArea.x + LEFTWIDTH, rectMainBodyArea.y, base.position.width - LEFTWIDTH, timeRulerHeight);
       rectContent = new Rect(rectMainBodyArea.x + LEFTWIDTH, rectMainBodyArea.y + timeRulerHeight, base.position.width - LEFTWIDTH, rectMainBodyArea.height - timeRulerHeight);
-
+      
+      if (currentPattern != null && currentPattern.BPM > 0)
+      {
+         _frameRate = currentPattern.BPM / 60f;
+         _frameSnap = true;
+         _timeInFrames = true;
+      }
+      
       InitTimeArea(false, false, true, true);
+   
       DrawTimeAreaBackGround();
       DrawSplitAreaContent();
       DrawEndVerticalLine();

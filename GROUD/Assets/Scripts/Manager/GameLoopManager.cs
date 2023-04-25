@@ -37,7 +37,7 @@ public class GameLoopManager : MonoBehaviour
     public void InitLevel()
     {
         GameManager.gameState.SwitchLevelState(Enums.LevelState.Exploration);
-        
+        PlayerManager.instance.SetPlayer();
         PlayPattern();
     }
 
