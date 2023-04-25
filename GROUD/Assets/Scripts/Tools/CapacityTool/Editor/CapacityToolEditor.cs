@@ -202,6 +202,7 @@ public class CapacityToolEditor : SimpleTimeArea
       currentPattern.targetLevel = EditorGUILayout.Popup("Target Level", currentPattern.targetLevel, levelOptions); 
       currentPattern.difficultyIndex = EditorGUILayout.Popup("Difficulty", currentPattern.difficultyIndex, difficultyOptions);
       currentPattern.maxTime = EditorGUILayout.FloatField("Max Time", (float) currentPattern.maxTime);
+      currentPattern.BPM = EditorGUILayout.IntField("BPM", currentPattern.BPM);
       GUILayout.BeginHorizontal();
       GUILayout.FlexibleSpace();
       
@@ -277,6 +278,8 @@ public class CapacityToolEditor : SimpleTimeArea
       {
          selectedInteractionKey.timeCode = TimeAsString(selectedInteractionKey.time);
          EditorGUILayout.LabelField($"Time Code : {selectedInteractionKey.timeCode}");
+         selectedInteractionKey.frame = ToFrame( selectedInteractionKey.time);
+         EditorGUILayout.LabelField($"Frame : {selectedInteractionKey.frame}");
          selectedInteractionKey.time = EditorGUILayout.Slider((float)selectedInteractionKey.time, 0f, (float)currentPattern.maxTime);
          selectedInteractionKey.interactionType = (Enums.InteractionType) EditorGUILayout.EnumPopup("Type", selectedInteractionKey.interactionType);
 
@@ -308,8 +311,16 @@ public class CapacityToolEditor : SimpleTimeArea
       rectTotalArea = new Rect(rectMainBodyArea.x + LEFTWIDTH, rectMainBodyArea.y, base.position.width - LEFTWIDTH, rectMainBodyArea.height);
       rectTimeRuler = new Rect(rectMainBodyArea.x + LEFTWIDTH, rectMainBodyArea.y, base.position.width - LEFTWIDTH, timeRulerHeight);
       rectContent = new Rect(rectMainBodyArea.x + LEFTWIDTH, rectMainBodyArea.y + timeRulerHeight, base.position.width - LEFTWIDTH, rectMainBodyArea.height - timeRulerHeight);
-
+      
+      if (currentPattern != null && currentPattern.BPM > 0)
+      {
+         _frameRate = currentPattern.BPM / 60f;
+         _frameSnap = true;
+         _timeInFrames = true;
+      }
+      
       InitTimeArea(false, false, true, true);
+   
       DrawTimeAreaBackGround();
       DrawSplitAreaContent();
       DrawEndVerticalLine();
@@ -396,6 +407,11 @@ public class CapacityToolEditor : SimpleTimeArea
       AssetDatabase.RenameAsset($"Assets/Resources/Scriptable/Pattern/{currentPattern.name}.asset",
          currentPattern.patternName);
       currentPattern.patternName = currentPattern.name;
+
+      foreach (var it in currentPattern.interactions)
+      {
+         it.frame = ToFrame(it.time);
+      }
       
       EditorUtility.SetDirty(currentPattern);
       AssetDatabase.SaveAssets();
