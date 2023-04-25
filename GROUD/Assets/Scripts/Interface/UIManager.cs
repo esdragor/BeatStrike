@@ -22,7 +22,7 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
-        GameManager.instance.gameState.OnEngineStateChanged += OnEngineStateSetUI;
+        GameManager.gameState.OnEngineStateChanged += OnEngineStateSetUI;
     }
 
     void OnEngineStateSetUI(Enums.EngineState engineState)

@@ -22,12 +22,12 @@ public class InputManager : MonoBehaviour
 
     private void Start()
     {
-        if (GameManager.instance.gameState.IsEngineMenu()) gameObject.SetActive(false);
+        if (GameManager.gameState.IsEngineMenu()) gameObject.SetActive(false);
     }
 
     private void SwipeBehaviour(ScreenListener.SwipeDirection dir)
     {
-        InteractionComponent it = LevelManager.instance.detector.InteractionCanTrigger;
+        InteractionComponent it = GameLoopManager.instance.detector.InteractionCanTrigger;
         if (!it) return;
 
         switch (it.data.interactionType)

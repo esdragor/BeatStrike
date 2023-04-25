@@ -14,14 +14,14 @@ namespace Code.Interface
 
         private void Update()
         {
-            if (GameManager.instance.gameState.IsTimePlay())
+            if (GameManager.gameState.IsTimePlay())
             {
                 //transform.position += -transform.forward * (speed * Time.deltaTime);
                 if (transform.position.z < PlayerManager.instance.transform.position.z - 2f)
                 {
                     if (data.interactionType is Enums.InteractionType.Dodge)
                         PlayerManager.instance.HurtPlayer();
-                    PatternPoolManager.Instance.AddInteractionToPool(gameObject);
+                    GameLoopManager.interactionPool.AddInteractionToPool(gameObject);
                     StreakManager.RemoveStreak();
                 }
                 renderer.material.mainTextureOffset += new Vector2(0, Time.deltaTime * speedMultiplierOffset);
@@ -36,12 +36,10 @@ namespace Code.Interface
         }
 
         public MeshRenderer renderer;
-        public GameObject Tile;
         public Material blueMat;
         public Material redMat;
-        public Material slideMat;
-        [FormerlySerializedAs("FakeMat")] public Material fakeMat;
-        [FormerlySerializedAs("PowerMat")] public Material powerMat;
+        public Material whiteMat;
+        public Material fakeMat;
 
         public void SetSuccess(InteractionSuccess itSuccess)
         {
@@ -54,18 +52,7 @@ namespace Code.Interface
             switch (data.interactionType)
             {
                 case Enums.InteractionType.Attack:
-                   // transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
-                   Tile.SetActive(false);
-                    // switch (data.interactionColor)
-                    // {
-                    //     case InteractionKey.InteractionColor.Blue:
-                    //         renderer.material = blueMat;
-                    //         break;
-                    //
-                    //     case InteractionKey.InteractionColor.Red:
-                    //         renderer.material = redMat;
-                    //         break;
-                    // }
+                    renderer.material = whiteMat;
 
                     break;
 
@@ -86,10 +73,6 @@ namespace Code.Interface
                     //transform.localScale = new Vector3(1.8f, 0.8f, 0.8f);
                     renderer.material = fakeMat;
                     break;
-                case Enums.InteractionType.Power:
-                    //transform.localScale = new Vector3(1.8f, 0.8f, 0.8f);
-                    renderer.material = powerMat;
-                    break;
             }
         }
 
@@ -98,9 +81,9 @@ namespace Code.Interface
             PlayerManager.onInteractionSuccess?.Invoke(successGroup);
             PlayerManager.instance.OnInteractionSuccess(successGroup, data.interactionType);
 
-            LevelManager.instance.detector.InteractionCanTrigger = null;
+            GameLoopManager.instance.detector.InteractionCanTrigger = null;
 
-            PatternPoolManager.Instance.AddInteractionToPool(gameObject);
+            GameLoopManager.interactionPool.AddInteractionToPool(gameObject);
         }
     }
 }

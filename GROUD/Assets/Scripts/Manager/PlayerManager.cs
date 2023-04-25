@@ -1,7 +1,6 @@
 using System;
 using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Utilities;
 
@@ -12,14 +11,7 @@ public class PlayerManager : MonoBehaviour
     public float distanceReached;
     private Vector3 previousPosition;
     private Vector3 targetPosition;
-    public float runningSpeed;
-    public Animator animator;
-
-    public float currentExperience;
-    public int level = 1;
     public int MaxHP = 5;
-
-    private bool isMoving;
 
     public bool justPerfectEnabled = false;
     [Header("DEBUG")] public UI_PlayerHealth healthFill;
@@ -37,25 +29,19 @@ public class PlayerManager : MonoBehaviour
 
     private void Start()
     {
-        isMoving = false;
         SetPlayer();
         currentHP = MaxHP;
     }
 
-    private void Update()
+    public void MovePlayerTo(Vector3 position)
     {
-        if (isMoving)
-        {
-            Move();
-        }
+        Vector3 nextPosition = new Vector3(transform.position.x, transform.position.y, position.z);
+        transform.position = nextPosition;
     }
-
-    private float runningStep;
-    private int index;
 
     public void HurtEnemy()
     {
-        EnemyManager.instance.GetHurt(1);
+      GameLoopManager.combatManager.DealDamage(1);
     }
 
     private void OnDead()
@@ -76,35 +62,7 @@ public class PlayerManager : MonoBehaviour
             OnDead();
         }
     }
-
-    public void MovePlayerTo(Vector3 pos, bool IsNotFight)
-    {
-        targetPosition = pos;
-        previousPosition = transform.position;
-
-        if (!IsNotFight)
-        {
-            animator.SetTrigger(index % 2 == 0 ? "AttackLeft" : "AttackRight");
-        }
-        else
-        {
-            animator.SetTrigger(index % 2 == 0 ? "StepLeft" : "StepRight");
-        }
-
-        index++;
-        runningStep = 0;
-
-        isMoving = true;
-    }
-
-    void Move()
-    {
-        runningStep += runningSpeed * Time.deltaTime;
-        runningStep = Mathf.Clamp(runningStep, 0, 1);
-
-        transform.position = Vector3.Lerp(previousPosition, targetPosition, runningStep);
-    }
-
+    
     public void SetPlayer()
     {
         distanceReached = 0;
@@ -121,11 +79,7 @@ public class PlayerManager : MonoBehaviour
             case Enums.InteractionType.Dodge:
                 break;
             case Enums.InteractionType.Fake:
-                break;
-            case Enums.InteractionType.Power:
-                //change here power
-                GameManager.instance.power.Execute();
-                break;
+                 break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(interactionType), interactionType, null);
         }
@@ -153,9 +107,13 @@ public class PlayerManager : MonoBehaviour
         }
 
         ScoreManager.AddScore(score);
-        if (GameManager.instance.gameState.IsLevelExploration())
+        if (GameManager.gameState.IsLevelExploration())
         {
             SetInputComponent(interactionType);
+        }
+        else
+        {
+            MovePlayerTo(GameLoopManager.instance.currentChunk.GetCorridorPosition());
         }
 
         distanceReached = ScoreManager.GetScore();

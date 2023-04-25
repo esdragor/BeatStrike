@@ -31,7 +31,7 @@ public class ScreenListener : MonoBehaviour,  IPointerDownHandler, IPointerUpHan
 
     TouchSide CheckTouchSide()
     {
-        if (GameManager.instance.gameState.IsEngineMenu()) return TouchSide.NULL;
+        if (GameManager.gameState.IsEngineMenu()) return TouchSide.NULL;
      
         if (onTouchPosition.x < screenCenter)
         {
