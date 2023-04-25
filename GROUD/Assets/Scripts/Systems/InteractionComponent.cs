@@ -1,5 +1,5 @@
 using UnityEngine;
-using UnityEngine.Serialization;
+using UnityEngine.UI;
 using Utilities;
 
 namespace Code.Interface
@@ -9,7 +9,7 @@ namespace Code.Interface
         public InteractionKey data;
         public float speed = 3f;
         public InteractionSuccess successGroup;
-        
+
         private float speedMultiplierOffset = 1.5f;
 
         private void Update()
@@ -24,6 +24,7 @@ namespace Code.Interface
                     GameLoopManager.interactionPool.AddInteractionToPool(gameObject);
                     StreakManager.RemoveStreak();
                 }
+
                 renderer.material.mainTextureOffset += new Vector2(0, Time.deltaTime * speedMultiplierOffset);
             }
         }
@@ -36,9 +37,11 @@ namespace Code.Interface
         }
 
         public MeshRenderer renderer;
-        public Material blueMat;
-        public Material redMat;
-        public Material whiteMat;
+        public Image rendererImage;
+        public Sprite upSprite;
+        public Sprite downSprite;
+        public Sprite leftSprite;
+        public Sprite rightSprite;
         public Material fakeMat;
 
         public void SetSuccess(InteractionSuccess itSuccess)
@@ -48,29 +51,25 @@ namespace Code.Interface
 
         private void SetVisualAndColor()
         {
-            transform.localScale = new Vector3(1.8f, 0.8f, 0.8f);
+            transform.localScale = new Vector3(1f, 1f, 1f);
+            rendererImage.enabled = false;
             switch (data.interactionType)
             {
                 case Enums.InteractionType.Attack:
-                    renderer.material = whiteMat;
-
                     break;
 
                 case Enums.InteractionType.Dodge:
-                    //transform.localScale = new Vector3(1.8f, 0.8f, 0.8f);
-                    switch (data.swipeDirection)
+                    rendererImage.enabled = true;
+                    rendererImage.sprite = data.swipeDirection switch
                     {
-                        case ScreenListener.SwipeDirection.LEFT:
-                            renderer.material = blueMat;
-                            break;
-
-                        case ScreenListener.SwipeDirection.RIGHT:
-                            renderer.material = redMat;
-                            break;
-                    }
+                        ScreenListener.SwipeDirection.LEFT => leftSprite,
+                        ScreenListener.SwipeDirection.RIGHT => rightSprite,
+                        ScreenListener.SwipeDirection.UP => upSprite,
+                        ScreenListener.SwipeDirection.DOWN => downSprite,
+                        _ => rendererImage.sprite
+                    };
                     break;
                 case Enums.InteractionType.Fake:
-                    //transform.localScale = new Vector3(1.8f, 0.8f, 0.8f);
                     renderer.material = fakeMat;
                     break;
             }
