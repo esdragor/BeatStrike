@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: M_Environment
-  m_Shader: {fileID: -6465566751694194690, guid: 96cb50d97b2160d489eba9abae793bc9,
+  m_Name: M_GroundExplosion
+  m_Shader: {fileID: -6465566751694194690, guid: 9aa6554c7fa26734496c71d4cfc54953,
     type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -21,14 +21,6 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - _Accent:
-        m_Texture: {fileID: 2800000, guid: f483a53254635af4688e9d74d80e37d8, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _Base_Color:
-        m_Texture: {fileID: 2800000, guid: 34c3a0f8d63bbbe4bbe2d1217838711d, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _BumpMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -65,44 +57,55 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _SampleTexture2D_919a231574f346f9901373fc1801f069_Texture_1:
-        m_Texture: {fileID: 2800000, guid: 34c3a0f8d63bbbe4bbe2d1217838711d, type: 3}
+    - _SampleTexture2D_8fdd2a0af692430b863c50c322c37886_Texture_1:
+        m_Texture: {fileID: 2800000, guid: 3e3cded7b677d7440a8190d7ac232ae3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_a56b281c84dc430aaae666f28b5e219f_Texture_1:
+        m_Texture: {fileID: 2800000, guid: 079e3b8fa099d9e4690efa6679241077, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_d75807d8be8e40c99520fd8eb749c695_Texture_1:
+        m_Texture: {fileID: 2800000, guid: 812f1e77fc2b2e6488df9897f3e436fd, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Texture:
+        m_Texture: {fileID: 2800000, guid: 6fa34732130979e40adeefafe1bb8cfa, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Amount: 0.002
     - _BUILTIN_QueueControl: 0
     - _BUILTIN_QueueOffset: 0
-    - _Bend_Amount: 0.001
     - _BumpScale: 1
+    - _CHANNEL: 2
+    - _ColorMultiplier: 3
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
-    - _Frequency: 13.13
+    - _ENUM: 1
+    - _Float: 1.73
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
-    - _Offset: -1.7
-    - _Opacity: 0
     - _Parallax: 0.02
-    - _Roughness: 1
-    - _Sine: 3.7
-    - _Sine_Amount: 0
-    - _Sine_Frequency: 1
+    - _Rotation: 0
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
+    - _UV: 0
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
+    - _ChannelValue: {r: 1, g: 0, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _Tiling: {r: 1, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []
---- !u!114 &6832693436462035154
+--- !u!114 &5355708006353180415
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
