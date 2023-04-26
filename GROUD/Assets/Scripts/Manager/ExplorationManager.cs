@@ -7,6 +7,6 @@
 
         public void CorridorEndReached()
         {
-                GameLoopManager.instance.CheckForNextPattern();
+               // GameLoopManager.instance.CheckForNextPattern();
         }
 }

@@ -6,16 +6,18 @@ using Utilities;
 public class GameManager : MonoBehaviour
 {
     public static GameState gameState = new (Enums.LevelState.Exploration, Enums.TimeState.Play, Enums.EngineState.Menu);
+    public static DatabaseManager databaseManager;
     
     public static GameManager instance;
     public static Delegates.OnUpdated onUpdated;
     public static Action OnTick;
     private float tickRate;
     private float tickTimer;
-    public float BPM = 60;
+    private float BPM = 60;
 
     public Power power;
     [HideInInspector] public Power currentPower;
+    
     public float MovementRatioOk = 1f;
     public float MovementRatioGood = 1.5f;
     public float MovementRatioPerfect = 1f;
@@ -26,19 +28,20 @@ public class GameManager : MonoBehaviour
         else Destroy(gameObject);
         
         DontDestroyOnLoad(gameObject);
+        
+        databaseManager = new DatabaseManager();
         currentPower = new JustPerfect();
+            
         CalculateTickRate();
     }
 
     void Update()
     {
         onUpdated?.Invoke();
-
-
+        
         if (tickTimer >= 1)
         {
             OnTick?.Invoke();
-            Debug.Log("Tick");
             tickTimer = 0;
         }
         else

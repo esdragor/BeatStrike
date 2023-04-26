@@ -30,7 +30,6 @@ public class PlayerManager : MonoBehaviour
     private void Start()
     {
         SetPlayer();
-        currentHP = MaxHP;
     }
 
     public void MovePlayerTo(Vector3 position)
@@ -66,7 +65,11 @@ public class PlayerManager : MonoBehaviour
     public void SetPlayer()
     {
         distanceReached = 0;
+        currentHP = MaxHP;
+
         UIManager.instance.score.SetScore((int)distanceReached);
+        UIManager.instance.hud.playerHealth.SetHealth(currentHP, MaxHP);
+        
         MovePlayerTo(GameLoopManager.instance.currentChunk.levelPos.position);
     }
 
