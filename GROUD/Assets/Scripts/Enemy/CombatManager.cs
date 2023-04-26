@@ -12,9 +12,11 @@ public class CombatManager
         currentHealth = enemySo.healthPoint;
         maxHealth = enemySo.healthPoint;
         enemy = enemySo;
+
+        isActive = true;
         
         PlayerManager.instance.MovePlayerTo(GameLoopManager.instance.currentChunk.levelPos.position);
-        
+        UIManager.instance.enemy.EnableEnemyHealth(true);
         GameLoopManager.patternManager.StartPattern(enemy.patternSO);
     }
     
@@ -23,16 +25,21 @@ public class CombatManager
         if (isActive)
         {
             currentHealth -= amount;
-
+            
             if (currentHealth <= 0)
             {
                 Death();
             }
         }
+        
+        UIManager.instance.enemy.enemyHealth.SetHealth(currentHealth, maxHealth);
     }
 
-    public void Death()
+    private void Death()
     {
-        GameLoopManager.instance.CheckForNextPattern();
+        UIManager.instance.enemy.EnableEnemyHealth(false);
+        isActive = false;
+        
+        GameLoopManager.instance.EndLevel();
     }
 }

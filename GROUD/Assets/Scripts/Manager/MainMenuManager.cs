@@ -2,7 +2,6 @@ using Code.Player;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Utilities;
 
@@ -25,15 +24,7 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField] private float mainMenuFadeInDuration = 1f;
     [SerializeField] private float mainMenuFadeOutDuration = 1f;
     [SerializeField] private TransitionDirection transitionDirectionMainMenu = TransitionDirection.Right;
-
-    [SerializeField] private GameObject GearPrefab;
-    [SerializeField] private GameObject powerPrefab;
-    [SerializeField] private Image[] equipmentImages;
-    [SerializeField] private Transform slotsVoidParent;
-    [SerializeField] private Transform slotsEquipementParent;
-    [SerializeField] private Transform slotsEquipementPowerParent;
-
-    [SerializeField] private Transform gearSelectionParent;
+    
     [SerializeField] private RectTransform selectionCharacterPanel;
     [SerializeField] private float selectionCharacterFadeInDuration = 1f;
     [SerializeField] private float selectionCharacterFadeOutDuration = 1f;
@@ -130,8 +121,9 @@ public class MainMenuManager : MonoBehaviour
 
     public void LaunchGame()
     {
-        SceneManager.LoadScene(1);
+        //SceneManager.LoadScene(1);
         GameManager.gameState.SwitchEngineState(Enums.EngineState.Game);
+        HideMainMenuPanel();
     }
 
     public void ExitApplication()

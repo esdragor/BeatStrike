@@ -7,10 +7,14 @@ public class UIManager : MonoBehaviour
 
     [Header("Interfaces")]
     public UI_HUD hud;
+
+    public UI_Enemy enemy;
     public UI_Announcer announcer;
     public UI_EndLevel endLevel;
     public UI_Score score;
     public UI_Streak streak;
+
+    public MainMenuManager mainMenu;
 
     [Header("Objets")] 
     public GameObject debugPanel;

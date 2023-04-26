@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Code.Interface;
 using UnityEngine;
-using Utilities;
 
 public class PatternManager
 {
@@ -21,7 +20,9 @@ public class PatternManager
         GameManager.instance.SetBPM(p.BPM);
 
         InitializeQueue(p.interactions);
-
+        
+        GameLoopManager.instance.tickCount = 0;
+        
         currentPatternSo = p;
         timer = 0;
 
@@ -44,22 +45,15 @@ public class PatternManager
     
     private void TimelineEventListener()
     {
-       // timer += Time.deltaTime;
         
         if (timelineRunnerKeys.Count > 0)
         {
             if (Math.Abs(timelineRunnerKeys.Peek().frame - GameLoopManager.instance.tickCount) < 0.1f)
             {
-                Debug.Log($" Frame : {timelineRunnerKeys.Peek().frame} | {GameLoopManager.instance.tickCount}");
                 DrawInteractionOnScreen(timelineRunnerKeys.Dequeue());
             }
         }
         else
-        {
-            EndPattern();
-        }
-
-        if (timer > currentPatternSo.maxTime)
         {
             EndPattern();
         }
@@ -70,11 +64,7 @@ public class PatternManager
     {
         isTimelineActive = false;
         GameManager.onUpdated -= TimelineEventListener;
-        
-        if (GameManager.gameState.IsLevelExploration())
-        {
-            GameLoopManager.explorationManager.CorridorEndReached();
-        }
+        StartPattern(currentPatternSo);
     }
 
     public void DrawInteractionOnScreen(InteractionKey dataKey)

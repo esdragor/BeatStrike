@@ -12,9 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9198888cb9a84cb09d46cbaa2a11f060, type: 3}
   m_Name: Lvl1
   m_EditorClassIdentifier: 
-  enemy:
-  - {fileID: 11400000, guid: d391b78341d5c774fa40ac4ee881238e, type: 2}
-  - {fileID: 11400000, guid: d391b78341d5c774fa40ac4ee881238e, type: 2}
-  - {fileID: 11400000, guid: d391b78341d5c774fa40ac4ee881238e, type: 2}
-  corridorPattern:
-  - {fileID: 11400000, guid: c37c115526a2add4786c61f4494fa09e, type: 2}
+  id: 1
+  enemy: {fileID: 11400000, guid: d391b78341d5c774fa40ac4ee881238e, type: 2}

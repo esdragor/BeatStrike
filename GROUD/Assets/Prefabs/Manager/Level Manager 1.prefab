@@ -768,7 +768,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 256895309357947211}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: -0.047, z: 0.32}
+  m_LocalPosition: {x: -0, y: -0.269, z: 0.32}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -791,7 +791,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 256895309357947211}
-  m_Mesh: {fileID: -3806134922476116941, guid: 3d6803b4e64b6cf4a98c8de5e7ecac4d, type: 3}
+  m_Mesh: {fileID: -3806134922476116941, guid: fa886f8c2d9b58a4e9125bce1abcb184, type: 3}
 --- !u!23 &256895309357947213
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -812,7 +812,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 293c3b5f7c146284ba18c544b8baf138, type: 2}
+  - {fileID: 2100000, guid: 1d1636d37dab25a4ea3af030b341225b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1156,9 +1156,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelData: {fileID: 11400000, guid: d5e5790d33f86f544b02813a5c269e9f, type: 2}
   currentChunk: {fileID: 0}
-  leftSpawnPoint: {fileID: 256895309556075128}
   midSpawnPoint: {fileID: 256895310030485506}
-  rightSpawnPoint: {fileID: 256895309280268868}
   interactionParent: {fileID: 256895309654077699}
   detector: {fileID: 256895310321151464}
   interactionPrefab: {fileID: 3615221734236934782, guid: eca9474de71659d4b92bff4db4690524,
@@ -1859,7 +1857,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   showDebug: 1
-  InteractionCanTrigger: []
+  InteractionCanTrigger: {fileID: 0}
   collider: {fileID: 256895310321151479}
   detectionZoneData:
   - detectionRange: 0.15
@@ -2071,12 +2069,12 @@ PrefabInstance:
     - target: {fileID: 100651126979911164, guid: 23dba20d0efa703478dab202cd1b7767,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.116
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 100651126979911164, guid: 23dba20d0efa703478dab202cd1b7767,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.849
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 100651126979911164, guid: 23dba20d0efa703478dab202cd1b7767,
         type: 3}
@@ -2457,7 +2455,7 @@ PrefabInstance:
     - target: {fileID: 1983600790873770651, guid: d5a9698b3e003f047ac3fa20753398bb,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.136
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1983600790873770651, guid: d5a9698b3e003f047ac3fa20753398bb,
         type: 3}
