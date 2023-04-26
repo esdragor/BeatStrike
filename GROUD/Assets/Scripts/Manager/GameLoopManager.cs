@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using UnityEngine;
 using Utilities;
-using Random = UnityEngine.Random;
 
 public class GameLoopManager : MonoBehaviour
 {
@@ -27,7 +24,6 @@ public class GameLoopManager : MonoBehaviour
     [Header("Temp")] 
     public ParticleSystem bpmVisual;
     
-    private int currentIndex;
     public int tickCount;
 
     private void Awake()
@@ -42,39 +38,11 @@ public class GameLoopManager : MonoBehaviour
         GameManager.OnTick += (() => tickCount++);
         GameManager.OnTick += () => bpmVisual.Play();
     }
-
-    #region DEBUG
-
-    private void Start()
-    {
-        //GameManager.OnTick += MoveTiles;
-    }
-
-    private void Update()
-    {
-    }
-
-    private void MoveTiles()
-    {
-        // int delayBetweenPatternInMilliseconds = 500;
-        // await Task.Delay(delayBetweenPatternInMilliseconds);
-        List<GameObject> tiles = interactionPool.GetInteractionPool();
-        foreach (var tile in tiles)
-        {
-            tile.transform.position += Vector3.back * 0.8f;
-        }
-
-        //MoveTiles();
-    }
-
-    #endregion
     
-
-
-
     public void InitLevel()
     {
-        GameManager.gameState.SwitchLevelState(Enums.LevelState.Exploration);
+        GameManager.gameState.SwitchTimeState(Enums.TimeState.Play);
+        
         PlayerManager.instance.SetPlayer();
         PlayPattern();
     }
@@ -83,34 +51,18 @@ public class GameLoopManager : MonoBehaviour
     {
         tickCount = 0;
         
-        if (GameManager.gameState.IsLevelCombat())
-        {
-            combatManager.InitCombat(levelData.enemy[currentIndex]);
-        }
-        else
-        {
-            explorationManager.InitExploration(levelData.corridorPattern[Random.Range(0, levelData.corridorPattern.Length)]);   
-        }
+        combatManager.InitCombat(levelData.enemy);
     }
 
     public void CheckForNextPattern()
     {
-        currentIndex++;
-        
-        GameManager.gameState.SwitchLevelState(GameManager.gameState.IsLevelCombat() ? Enums.LevelState.Exploration : Enums.LevelState.Combat);
-        
         PlayPattern();
     }
-
-    IEnumerator WaitUntilInteractionAreEnded()
-    {
-        yield return new WaitUntil(() => interactionPool.activeInteractions.Count <= 0);
-        EndLevel();
-    }
     
-    private void EndLevel()
+    public void EndLevel()
     {
         GameManager.gameState.SwitchTimeState(Enums.TimeState.Pause);
+       
         UIManager.instance.endLevel.DrawPanel();
         
         patternManager.EndPattern();
@@ -119,9 +71,7 @@ public class GameLoopManager : MonoBehaviour
     public void Restart()
     {
         interactionPool.DisableAllInteractions();
-        
-        currentIndex = 0;
-        
+
         StreakManager.ResetStreak();
         ScoreManager.ResetScore();
         

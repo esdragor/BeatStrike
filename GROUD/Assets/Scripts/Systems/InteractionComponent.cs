@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 using Utilities;
@@ -25,8 +26,6 @@ namespace Code.Interface
                     GameLoopManager.interactionPool.AddInteractionToPool(gameObject);
                     StreakManager.RemoveStreak();
                 }
-
-                renderer.material.mainTextureOffset += new Vector2(0, Time.deltaTime * speedMultiplierOffset);
             }
         }
 
@@ -37,13 +36,12 @@ namespace Code.Interface
             SetVisualAndColor();
         }
 
-        public MeshRenderer renderer;
-        public Image rendererImage;
-        public Sprite upSprite;
-        public Sprite downSprite;
-        public Sprite leftSprite;
-        public Sprite rightSprite;
-        public Material fakeMat;
+    
+        public GameObject attack;
+        public GameObject down;
+        public GameObject left;
+        public GameObject right;
+        public GameObject up;
 
         public void SetSuccess(InteractionSuccess itSuccess)
         {
@@ -53,25 +51,36 @@ namespace Code.Interface
         private void SetVisualAndColor()
         {
             transform.localScale = new Vector3(1f, 1f, 1f);
-            rendererImage.enabled = false;
+
             switch (data.interactionType)
             {
                 case Enums.InteractionType.Attack:
+                    attack.SetActive(true);
                     break;
 
                 case Enums.InteractionType.Dodge:
-                    rendererImage.enabled = true;
-                    rendererImage.sprite = data.swipeDirection switch
+                    
+                    switch (data.swipeDirection)
                     {
-                        ScreenListener.SwipeDirection.LEFT => leftSprite,
-                        ScreenListener.SwipeDirection.RIGHT => rightSprite,
-                        ScreenListener.SwipeDirection.UP => upSprite,
-                        ScreenListener.SwipeDirection.DOWN => downSprite,
-                        _ => rendererImage.sprite
-                    };
+                        case ScreenListener.SwipeDirection.UP:
+                            up.SetActive(true);
+                            break;
+                        
+                        case ScreenListener.SwipeDirection.DOWN:
+                            down.SetActive(true);
+                            break;
+                        
+                        case ScreenListener.SwipeDirection.LEFT:
+                            left.SetActive(true);
+                            break;
+                            
+                            case ScreenListener.SwipeDirection.RIGHT:
+                            right.SetActive(true);
+                                break;
+                    }
                     break;
+                
                 case Enums.InteractionType.Fake:
-                    renderer.material = fakeMat;
                     break;
             }
         }
@@ -82,6 +91,12 @@ namespace Code.Interface
             PlayerManager.instance.OnInteractionSuccess(successGroup, data.interactionType);
 
             GameLoopManager.instance.detector.InteractionCanTrigger = null;
+            
+            left.SetActive(false);
+            right.SetActive(false);
+            up.SetActive(false);
+            down.SetActive(false);
+            attack.SetActive(false);
 
             GameLoopManager.interactionPool.AddInteractionToPool(gameObject);
         }

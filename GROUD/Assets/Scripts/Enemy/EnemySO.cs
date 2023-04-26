@@ -4,5 +4,6 @@ using UnityEngine;
 public class EnemySO : ScriptableObject
 {
     public float healthPoint;
+    public GameObject visual;
     public Pattern patternSO;
 }

@@ -1,5 +1,6 @@
 using Code.Interface;
 using UnityEngine;
+using Utilities;
 
 public class PlayerTriggerEvent : MonoBehaviour
 {
@@ -9,7 +10,10 @@ public class PlayerTriggerEvent : MonoBehaviour
 
         if (it)
         {
-            //it.HurtPlayer();
+            if (it.data.interactionType != Enums.InteractionType.Dodge)
+            {
+                PlayerManager.instance.HurtPlayer();
+            }
         }
     }
 }
