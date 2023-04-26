@@ -45,11 +45,15 @@ public class GameLoopManager : MonoBehaviour
         GameManager.OnTick += () => bpmVisual.Play();
     }
 
-    #region DEBUGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG
+    #region DEBUG
 
     private void Start()
     {
-        GameManager.OnTick += MoveTiles;
+        //GameManager.OnTick += MoveTiles;
+    }
+
+    private void Update()
+    {
     }
 
     private void MoveTiles()

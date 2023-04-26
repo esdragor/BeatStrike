@@ -15,8 +15,9 @@ namespace Code.Interface
         private void Update()
         {
             if (GameManager.gameState.IsTimePlay())
-            {
-                //transform.position += -transform.forward * (speed * Time.deltaTime);
+            { 
+                transform.position += Vector3.back * (speed * Time.deltaTime);
+                
                 if (transform.position.z < PlayerManager.instance.transform.position.z - 2f)
                 {
                     if (data.interactionType is Enums.InteractionType.Dodge)
