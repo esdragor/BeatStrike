@@ -14,6 +14,8 @@ public class UIManager : MonoBehaviour
     public UI_Score score;
     public UI_Streak streak;
 
+    public MainMenuManager mainMenu;
+
     [Header("Objets")] 
     public GameObject debugPanel;
     

@@ -1,6 +1,4 @@
-using System;
 using UnityEngine;
-using UnityEngine.UI;
 using Utilities;
 
 namespace Code.Interface
@@ -13,6 +11,12 @@ namespace Code.Interface
 
         private float speedMultiplierOffset = 1.5f;
 
+        public GameObject attack;
+        public GameObject down;
+        public GameObject left;
+        public GameObject right;
+        public GameObject up;
+        
         private void Update()
         {
             if (GameManager.gameState.IsTimePlay())
@@ -22,7 +26,10 @@ namespace Code.Interface
                 if (transform.position.z < PlayerManager.instance.transform.position.z - 2f)
                 {
                     if (data.interactionType is Enums.InteractionType.Dodge)
+                    {
                         PlayerManager.instance.HurtPlayer();
+                    }
+                    
                     GameLoopManager.interactionPool.AddInteractionToPool(gameObject);
                     StreakManager.RemoveStreak();
                 }
@@ -33,15 +40,9 @@ namespace Code.Interface
         {
             data = interactionKey;
             successGroup = InteractionSuccess.Perfect;
+            
             SetVisualAndColor();
         }
-
-    
-        public GameObject attack;
-        public GameObject down;
-        public GameObject left;
-        public GameObject right;
-        public GameObject up;
 
         public void SetSuccess(InteractionSuccess itSuccess)
         {

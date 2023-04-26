@@ -10,7 +10,7 @@ public class PlayerTriggerEvent : MonoBehaviour
 
         if (it)
         {
-            if (it.data.interactionType != Enums.InteractionType.Dodge)
+            if (it.data.interactionType != Enums.InteractionType.Fake)
             {
                 PlayerManager.instance.HurtPlayer();
             }

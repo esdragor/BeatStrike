@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class UI_EndLevel : MonoBehaviour
 {
@@ -27,8 +24,7 @@ public class UI_EndLevel : MonoBehaviour
 
     public void Quit()
     {
-        Destroy(GameManager.instance.gameObject);
-        SceneManager.LoadScene("MainMenu");
+        UIManager.instance.mainMenu.PrintMainMenuPanel();
         DisablePanel();
     }
 }
