@@ -86,10 +86,10 @@ namespace Code.Interface
             }
         }
 
-        public virtual void ValidateInteraction(bool isPerfect = false)
+        public virtual void ValidateInteraction(ScreenListener.SwipeDirection dir, bool isPerfect = false)
         {
             PlayerManager.onInteractionSuccess?.Invoke(successGroup);
-            PlayerManager.instance.OnInteractionSuccess(successGroup, data.interactionType);
+            PlayerManager.instance.OnInteractionSuccess(successGroup, data.interactionType, dir);
 
             GameLoopManager.instance.detector.InteractionCanTrigger = null;
             

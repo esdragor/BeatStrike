@@ -17,6 +17,11 @@ namespace Utilities
             
         }
         
+        public enum TypeOfPower
+        {
+            Fireball,
+        }
+        
         public enum EngineState
         {
             Menu,

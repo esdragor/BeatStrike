@@ -14,9 +14,6 @@ public class GameManager : MonoBehaviour
     private float tickRate;
     private float tickTimer;
     private float BPM = 60;
-
-    public Power power;
-    [HideInInspector] public Power currentPower;
     
     public float MovementRatioOk = 1f;
     public float MovementRatioGood = 1.5f;
@@ -30,7 +27,6 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
         
         databaseManager = new DatabaseManager();
-        currentPower = new JustPerfect();
             
         CalculateTickRate();
     }
@@ -50,11 +46,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void SetPlayerStats(Power _power)
-    {
-        currentPower = _power;
-    }
-    
     public void SetBPM(int BPM)
     {
         this.BPM = BPM;

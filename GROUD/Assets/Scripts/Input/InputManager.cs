@@ -33,12 +33,12 @@ public class InputManager : MonoBehaviour
         switch (it.data.interactionType)
         {
             case Enums.InteractionType.Attack:
-                it.ValidateInteraction();
+                it.ValidateInteraction(dir);
                 break;
             case Enums.InteractionType.Dodge:
                 if (it.data.swipeDirection == dir)
                 {
-                    it.ValidateInteraction();
+                    it.ValidateInteraction(dir);
                 }
                 break;
             case Enums.InteractionType.Fake:

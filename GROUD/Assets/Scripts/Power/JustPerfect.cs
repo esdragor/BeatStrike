@@ -4,7 +4,7 @@ using Code.Player;
 using UnityEngine;
 
 [Serializable]
-public class JustPerfect : Power
+/*public class JustPerfect : Power
 {
      [SerializeField] private float ratioPerfect = 2.5f;
      [SerializeField] private float ratioGood = 1.75f;
@@ -56,4 +56,9 @@ public class JustPerfect : Power
         if (onCooldown || powerRunning) return;
         JustPerfectAsync();
     }
+}*/
+
+public class JustPerfect
+{
+    
 }

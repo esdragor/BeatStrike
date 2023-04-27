@@ -35,7 +35,6 @@ public class MainMenuManager : MonoBehaviour
     [Header("Game Manager")]
 
     private Vector2 offsetMainMenu;
-    private Power currentCharacterInfos = null;
     private float decal = 5000f;
 
     private void Awake()
@@ -50,7 +49,6 @@ public class MainMenuManager : MonoBehaviour
 
     private void Start()
     {
-        currentCharacterInfos = GameManager.instance.power;
         offsetMainMenu = mainMenuButtonsPanel.anchoredPosition;
     }
 
