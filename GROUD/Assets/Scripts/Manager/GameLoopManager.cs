@@ -11,7 +11,7 @@ public class GameLoopManager : MonoBehaviour
     public static ExplorationManager explorationManager;
 
     public LevelData levelData;
-    public LevelChunk currentChunk;
+    public LevelHeader currentChunk;
     
     [Header("Interaction")]
     public Transform midSpawnPoint;
@@ -33,6 +33,13 @@ public class GameLoopManager : MonoBehaviour
         combatManager = new CombatManager();
         explorationManager = new ExplorationManager();
 
+
+        if (currentChunk != null)
+        {
+            levelData = currentChunk.data;
+            combatManager.PreloadCombat(levelData.enemy);
+        }
+
         GameManager.OnTick += (() => tickCount++);
         GameManager.OnTick += () => bpmVisual.Play();
     }
@@ -40,7 +47,6 @@ public class GameLoopManager : MonoBehaviour
     public void InitLevel()
     {
         GameManager.gameState.SwitchTimeState(Enums.TimeState.Play);
-        
         PlayerManager.instance.SetPlayer();
         PlayPattern();
     }
@@ -49,14 +55,9 @@ public class GameLoopManager : MonoBehaviour
     {
         tickCount = 0;
         
-        combatManager.InitCombat(levelData.enemy);
+        combatManager.InitCombat();
     }
 
-    public void CheckForNextPattern()
-    {
-        PlayPattern();
-    }
-    
     public void EndLevel()
     {
         GameManager.gameState.SwitchTimeState(Enums.TimeState.Pause);
@@ -65,16 +66,20 @@ public class GameLoopManager : MonoBehaviour
         
         patternManager.EndPattern();
     }
-    
+
     public void Restart()
     {
         interactionPool.DisableAllInteractions();
 
+        if (currentChunk != null)
+        {
+            levelData = currentChunk.data;
+            combatManager.PreloadCombat(levelData.enemy);
+        }
+        
         StreakManager.ResetStreak();
         ScoreManager.ResetScore();
         
-        GameManager.gameState.SwitchTimeState(Enums.TimeState.Play);
-
         InitLevel();
     }
 }

@@ -13,9 +13,4 @@ public class UI_HUD : MonoBehaviour
    {
       gameObject.SetActive(false);
    }
-
-   public void StartLevel()
-   {
-      GameLoopManager.instance.InitLevel();
-   }
 }

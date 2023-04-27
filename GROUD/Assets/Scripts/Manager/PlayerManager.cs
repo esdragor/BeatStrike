@@ -44,7 +44,7 @@ public class PlayerManager : MonoBehaviour
     public void MovePlayerTo(Vector3 position)
     {
         Vector3 nextPosition = new Vector3(transform.position.x, transform.position.y, position.z);
-        transform.position = nextPosition;
+        transform.position = position;
     }
 
     public void HurtEnemy(int damage = 1)
@@ -79,11 +79,10 @@ public class PlayerManager : MonoBehaviour
         UIManager.instance.score.SetScore((int)distanceReached);
         UIManager.instance.hud.playerHealth.SetHealth(currentHP, MaxHP);
 
-        MovePlayerTo(GameLoopManager.instance.currentChunk.levelPos.position);
+        MovePlayerTo(GameLoopManager.instance.currentChunk.combatPos.position);
     }
 
-    private void SetInputComponent(Enums.InteractionType interactionType,
-        ScreenListener.SwipeDirection dataSwipeDirection)
+    private void SetInputComponent(Enums.InteractionType interactionType, ScreenListener.SwipeDirection dataSwipeDirection)
     {
         switch (interactionType)
         {
@@ -106,8 +105,7 @@ public class PlayerManager : MonoBehaviour
     }
 
 
-    public void OnInteractionSuccess(InteractionSuccess interactionSuccess, Enums.InteractionType interactionType,
-        ScreenListener.SwipeDirection dataSwipeDirection)
+    public void OnInteractionSuccess(InteractionSuccess interactionSuccess, Enums.InteractionType interactionType, ScreenListener.SwipeDirection dataSwipeDirection)
     {
         StreakManager.AddStreak();
         int score = 0;
@@ -128,13 +126,10 @@ public class PlayerManager : MonoBehaviour
         }
 
         ScoreManager.AddScore(score);
+        
         if (GameManager.gameState.IsLevelExploration())
         {
             SetInputComponent(interactionType, dataSwipeDirection);
-        }
-        else
-        {
-            MovePlayerTo(GameLoopManager.instance.currentChunk.levelPos.position);
         }
 
         distanceReached = ScoreManager.GetScore();

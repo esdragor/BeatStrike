@@ -1,3 +1,5 @@
+using UnityEngine;
+
 public class CombatManager
 {
     private float currentHealth;
@@ -6,18 +8,30 @@ public class CombatManager
     private bool isActive;
 
     private EnemySO enemy;
+    private GameObject currentEnemyObj;
 
-    public void InitCombat(EnemySO enemySo)
+    public void PreloadCombat(EnemySO so)
     {
-        currentHealth = enemySo.healthPoint;
-        maxHealth = enemySo.healthPoint;
-        enemy = enemySo;
-
-        isActive = true;
+        currentHealth = so.healthPoint;
+        maxHealth = so.healthPoint;
+        enemy = so;
         
-        PlayerManager.instance.MovePlayerTo(GameLoopManager.instance.currentChunk.levelPos.position);
+        SetEnemyVisual();
+    }
+    
+    public void InitCombat()
+    {
         UIManager.instance.enemy.EnableEnemyHealth(true);
+        UIManager.instance.enemy.enemyHealth.SetHealth(currentHealth, maxHealth);
+        
+        isActive = true;
+
         GameLoopManager.patternManager.StartPattern(enemy.patternSO);
+    }
+
+    private void SetEnemyVisual()
+    {
+        currentEnemyObj = Object.Instantiate(enemy.visual, GameLoopManager.instance.currentChunk.enemySpawnPoint.position, Quaternion.identity);
     }
     
     public void DealDamage(float amount)
@@ -38,6 +52,8 @@ public class CombatManager
     private void Death()
     {
         UIManager.instance.enemy.EnableEnemyHealth(false);
+        Object.Destroy(currentEnemyObj);
+        
         isActive = false;
         
         GameLoopManager.instance.EndLevel();
