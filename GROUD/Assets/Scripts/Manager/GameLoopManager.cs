@@ -10,6 +10,8 @@ public class GameLoopManager : MonoBehaviour
     public static CombatManager combatManager;
     public static ExplorationManager explorationManager;
 
+    public GameObject[] chunks;
+    
     public LevelData levelData;
     public LevelHeader currentChunk;
     
@@ -33,12 +35,8 @@ public class GameLoopManager : MonoBehaviour
         combatManager = new CombatManager();
         explorationManager = new ExplorationManager();
 
-
-        if (currentChunk != null)
-        {
-            levelData = currentChunk.data;
-            combatManager.PreloadCombat(levelData.enemy);
-        }
+        GameObject rndChunk = chunks[Random.Range(0, chunks.Length-1)];
+        Instantiate(rndChunk);
 
         GameManager.OnTick += (() => tickCount++);
         GameManager.OnTick += () => bpmVisual.Play();
@@ -46,6 +44,7 @@ public class GameLoopManager : MonoBehaviour
     
     public void InitLevel()
     {
+        combatManager.PreloadCombat(levelData.enemy);
         GameManager.gameState.SwitchTimeState(Enums.TimeState.Play);
         PlayerManager.instance.SetPlayer();
         PlayPattern();

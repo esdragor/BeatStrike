@@ -15,8 +15,6 @@ public class CombatManager
         currentHealth = so.healthPoint;
         maxHealth = so.healthPoint;
         enemy = so;
-        
-        SetEnemyVisual();
     }
     
     public void InitCombat()
@@ -27,11 +25,6 @@ public class CombatManager
         isActive = true;
 
         GameLoopManager.patternManager.StartPattern(enemy.patternSO);
-    }
-
-    private void SetEnemyVisual()
-    {
-        currentEnemyObj = Object.Instantiate(enemy.visual, GameLoopManager.instance.currentChunk.enemySpawnPoint.position, Quaternion.identity);
     }
     
     public void DealDamage(float amount)
