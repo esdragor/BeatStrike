@@ -69,8 +69,7 @@ public class UI_Gear : MonoBehaviour
     {
         if (currentGear)
         {
-            currentGear.gear.EquipOnPlayer(currentGear);
-            currentGear.OnEquip = true;
+            currentGear.OnEquip = currentGear.gear.EquipOnPlayer(currentGear);
             currentGear = null;
         }
     }

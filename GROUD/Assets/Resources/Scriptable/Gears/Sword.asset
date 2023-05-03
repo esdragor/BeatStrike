@@ -9,14 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95e524c883e1ec7468947ee9797c6cac, type: 3}
+  m_Script: {fileID: 11500000, guid: c0bb28c890540494f9db2ed1ba28fd6b, type: 3}
   m_Name: Sword
   m_EditorClassIdentifier: 
-  gearName: stick sword
-  gearSprite: {fileID: 21300000, guid: f008857e434b98b4eaabda1fd6af3059, type: 3}
-  gearDescription: a stick sword
+  gearName: Demacia
+  gearSprite: {fileID: 21300000, guid: 9c0d6ec706e01ce448aea81584af092b, type: 3}
+  gearDescription: Demacia
   slot: 2
-  statsType1: 0
-  statsValue1: 10
-  statsType2: 1
-  statsValue2: 3
+  statsType1: 1
+  statsValue1: -5
+  statsType2: 2
+  statsValue2: 10

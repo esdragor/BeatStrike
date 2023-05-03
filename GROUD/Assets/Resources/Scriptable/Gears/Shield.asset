@@ -9,14 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95e524c883e1ec7468947ee9797c6cac, type: 3}
+  m_Script: {fileID: 11500000, guid: c0bb28c890540494f9db2ed1ba28fd6b, type: 3}
   m_Name: Shield
   m_EditorClassIdentifier: 
-  gearName: Demacia's shield
-  gearSprite: {fileID: 21300000, guid: b57f03d839c25d2419d6a21b979b3ae2, type: 3}
-  gearDescription: Demacia's shield
-  slot: 2
-  statsType1: 2
+  gearName: shield
+  gearSprite: {fileID: 21300000, guid: dae33700bd23f76409a80bf78fdb8a42, type: 3}
+  gearDescription: shield
+  slot: 1
+  statsType1: 0
   statsValue1: 2
-  statsType2: 1
-  statsValue2: -0.1
+  statsType2: 2
+  statsValue2: 2
