@@ -14,6 +14,7 @@ public class UIManager : MonoBehaviour
     public UI_Score score;
     public UI_Streak streak;
     public UI_Power power;
+    public UI_Gear gear;
 
     public MainMenuManager mainMenu;
 

@@ -17,8 +17,7 @@ public class GearDescription : MonoBehaviour
     {
         if (!OnEquip)
         {
-            MainMenuManager.instance.currentGear = this;
-            MainMenuManager.instance.currentPower = null;
+            UIManager.instance.gear.currentGear = this;
             PlayerStats stats = new PlayerStats();
             if (gear.statsType1 == StatsType.Hp) stats.hp = gear.statsValue1;
             if (gear.statsType1 == StatsType.Intelligence) stats.intelligence = gear.statsValue1;
@@ -28,7 +27,7 @@ public class GearDescription : MonoBehaviour
             if (gear.statsType2 == StatsType.Intelligence) stats.intelligence = gear.statsValue2;
             if (gear.statsType2 == StatsType.Strength) stats.stamina = gear.statsValue2;
             
-            MainMenuManager.instance.PrintCharacterInfos(stats);
+            UIManager.instance.gear.PrintCharacterInfos(stats);
         }
         else
             OnEquip = gear.UnequipOnPlayer(this);

@@ -27,8 +27,8 @@ public class Gear : ScriptableObject
         ch.equipment[(int)slot] = this;
 
         if (MainMenuManager.instance == null) return false;
-        MainMenuManager.instance.SetEquipmentImage((int)slot, gearDescription);
-        MainMenuManager.instance.PrintCharacterInfos(new PlayerStats());
+        UIManager.instance.gear.SetEquipmentImage((int)slot, gearDescription);
+        UIManager.instance.gear.PrintCharacterInfos(new PlayerStats());
         return true;
     }
 
@@ -42,8 +42,8 @@ public class Gear : ScriptableObject
         ch.equipment[(int)slot] = null;
 
         if (MainMenuManager.instance == null) return false;
-        MainMenuManager.instance.SetUnEquipmentImage((int)slot, gearDescription);
-        MainMenuManager.instance.PrintCharacterInfos(new PlayerStats());
+        UIManager.instance.gear.SetUnEquipmentImage((int)slot, gearDescription);
+        UIManager.instance.gear.PrintCharacterInfos(new PlayerStats());
         return false;
     }
 }
