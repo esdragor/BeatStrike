@@ -14,9 +14,7 @@ public class UI_Gear : MonoBehaviour
     private static UI_Gear instance;
     
     [HideInInspector] public GearDescription currentGear;
-
-    [SerializeField] private RectTransform canvas;
-
+    
     [Header("Main Menu")]
     [SerializeField] private RectTransform mainMenuButtonsPanel;
     [SerializeField] private Button GearButton;
