@@ -2232,6 +2232,7 @@ GameObject:
   - component: {fileID: 3955832697234728347}
   - component: {fileID: 1886454743733605702}
   - component: {fileID: 3236973217896808454}
+  - component: {fileID: 5235942230830735644}
   m_Layer: 5
   m_Name: PanelGear
   m_TagString: Untagged
@@ -2304,6 +2305,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &5235942230830735644
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2879219844532015123}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d9fb1727ea68614fa4ae90672af2079, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3272801028583066939
 GameObject:
   m_ObjectHideFlags: 0
