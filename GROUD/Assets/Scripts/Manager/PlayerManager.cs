@@ -8,21 +8,21 @@ using Utilities;
 public class PlayerManager : MonoBehaviour
 {
     public static PlayerManager instance;
+    public static Action<InteractionSuccess> onInteractionSuccess;
+    public static Action<InteractionSuccess> onComboSuccess;
 
     public float distanceReached;
-    private Vector3 previousPosition;
-    private Vector3 targetPosition;
     public int MaxHP = 5;
+    public Animator animator;
 
     [Header("DEBUG")] public UI_PlayerHealth healthFill;
     public TMP_Text healthTxt;
     public Image CDPowerImage;
 
-    public static Action<InteractionSuccess> onInteractionSuccess;
-    public static Action<InteractionSuccess> onComboSuccess;
 
     private int currentHP;
-
+    private Vector3 previousPosition;
+    private Vector3 targetPosition;
     private PowerSO currentPower;
 
     private void Awake()

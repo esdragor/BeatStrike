@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Code.Interface;
 using UnityEngine;
@@ -7,6 +8,7 @@ public class InputManager : MonoBehaviour
 {
     public ScreenListener screenListener;
     private InteractionComponent selectedSwipeIt;
+    private PlayerManager playerManager = null;
 
     void OnEnable()
     {
@@ -24,12 +26,40 @@ public class InputManager : MonoBehaviour
     {
         if (GameManager.gameState.IsEngineMenu()) gameObject.SetActive(false);
     }
+    
+    private void LaunchAnimationSwipe(ScreenListener.SwipeDirection dir)
+    {
+        if (!playerManager) playerManager = PlayerManager.instance;
+        if (!playerManager) return;
+        
+        Debug.Log(dir);
+        
+        switch (dir)
+        {
+            case ScreenListener.SwipeDirection.UP:
+                playerManager.animator.SetTrigger("AttackUp");
+                break;
+            case ScreenListener.SwipeDirection.DOWN:
+                playerManager.animator.SetTrigger("AttackDown");
+                break;
+            case ScreenListener.SwipeDirection.LEFT:
+                playerManager.animator.SetTrigger("AttackLeft");
+                break;
+            case ScreenListener.SwipeDirection.RIGHT:
+                playerManager.animator.SetTrigger("AttackRight");
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(dir), dir, null);
+        }
+    }
 
     private void SwipeBehaviour(ScreenListener.SwipeDirection dir)
     {
         InteractionComponent it = GameLoopManager.instance.detector.InteractionCanTrigger;
         if (!it) return;
 
+        LaunchAnimationSwipe(dir);
+        
         switch (it.data.interactionType)
         {
             case Enums.InteractionType.Attack:
