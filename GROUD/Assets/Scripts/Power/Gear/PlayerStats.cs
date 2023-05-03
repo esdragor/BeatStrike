@@ -23,9 +23,9 @@ public class PlayerStats
 
     public PlayerStats()
     {
-        hp = 0;
-        intelligence = 0;
-        stamina = 0;
+        hp = 100;
+        intelligence = 10;
+        stamina = 10;
     }
 
     public PlayerStats(float _hp, float _intelligence, float stamina)

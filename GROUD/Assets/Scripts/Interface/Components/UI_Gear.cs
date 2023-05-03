@@ -17,8 +17,9 @@ public class UI_Gear : MonoBehaviour
 
     [SerializeField] private RectTransform canvas;
 
-    [Header("Main Menu")] [SerializeField] private GameObject gameTitle;
+    [Header("Main Menu")]
     [SerializeField] private RectTransform mainMenuButtonsPanel;
+    [SerializeField] private Button GearButton;
     [SerializeField] private float mainMenuFadeInDuration = 1f;
     [SerializeField] private float mainMenuFadeOutDuration = 1f;
     [SerializeField] private TransitionDirection transitionDirectionMainMenu = TransitionDirection.Right;
@@ -28,7 +29,7 @@ public class UI_Gear : MonoBehaviour
     [SerializeField] private Transform slotsEquipementParent;
 
     [SerializeField] private Transform gearSelectionParent;
-    [SerializeField] private RectTransform selectionCharacterPanel;
+    [SerializeField] private RectTransform GearPanel;
     [SerializeField] private float selectionCharacterFadeInDuration = 1f;
     [SerializeField] private float selectionCharacterFadeOutDuration = 1f;
     [SerializeField] private TransitionDirection transitionDirectionSelectionCharacter = TransitionDirection.Left;
@@ -62,6 +63,8 @@ public class UI_Gear : MonoBehaviour
             newGear.GetComponent<GearDescription>().gear = data;
         }
         ButtonEquip.onClick.AddListener(Equip);
+        GearButton.onClick.AddListener(HideMainMenuPanel);
+        GearButton.onClick.AddListener(PrintSelectionGearPanel);
     }
 
     public void Equip()
@@ -93,8 +96,6 @@ public class UI_Gear : MonoBehaviour
     
     public void HideMainMenuPanel()
     {
-        gameTitle.SetActive(false);
-
         if (transitionDirectionMainMenu is TransitionDirection.Down or TransitionDirection.Up)
         {
             mainMenuButtonsPanel.transform.DOMoveY(((int)transitionDirectionMainMenu - 3) * decal,
@@ -116,32 +117,30 @@ public class UI_Gear : MonoBehaviour
         {
             mainMenuButtonsPanel.transform.DOMoveX(Screen.width / 2f, mainMenuFadeInDuration);
         }
-
-        gameTitle.SetActive(true);
     }
 
-    public void PrintSelectionCharacterPanel()
+    public void PrintSelectionGearPanel()
     {
         if (transitionDirectionSelectionCharacter is TransitionDirection.Down or TransitionDirection.Up)
         {
-            selectionCharacterPanel.transform.DOMoveY(Screen.height / 2f, selectionCharacterFadeInDuration);
+            GearPanel.transform.DOMoveY(Screen.height / 2f, selectionCharacterFadeInDuration);
         }
         else
         {
-            selectionCharacterPanel.transform.DOMoveX(Screen.width / 2f, selectionCharacterFadeInDuration);
+            GearPanel.transform.DOMoveX(Screen.width / 2f, selectionCharacterFadeInDuration);
         }
     }
 
-    public void HideSelectionCharacterPanel()
+    public void HideSelectionGearPanel()
     {
         if (transitionDirectionSelectionCharacter is TransitionDirection.Down or TransitionDirection.Up)
         {
-            selectionCharacterPanel.transform.DOMoveY(((int)transitionDirectionSelectionCharacter - 3) * decal,
+            GearPanel.transform.DOMoveY(((int)transitionDirectionSelectionCharacter - 3) * decal,
                 selectionCharacterFadeOutDuration);
         }
         else
         {
-            selectionCharacterPanel.transform.DOMoveX((int)transitionDirectionSelectionCharacter * decal,
+            GearPanel.transform.DOMoveX((int)transitionDirectionSelectionCharacter * decal,
                 selectionCharacterFadeOutDuration);
         }
     }
@@ -160,6 +159,11 @@ public class UI_Gear : MonoBehaviour
     {
         if (!currentCharacterInfos)
             currentCharacterInfos = GameManager.instance.currentCharacterInfos;
+        if (!currentCharacterInfos)
+        {
+            currentCharacterInfos = ScriptableObject.CreateInstance<CharacterInfos>();
+            GameManager.instance.currentCharacterInfos = currentCharacterInfos;
+        }
 
         string hp = AddColor("HP: " + currentCharacterInfos.playerStats.hp, changerStats.hp);
 

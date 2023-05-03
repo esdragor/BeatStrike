@@ -15,4 +15,11 @@ public class CharacterInfos : ScriptableObject
         playerSprite = _CharacterInfos.playerSprite;
         equipment = new []{null, null, (Gear)null};
     }
+    
+    public CharacterInfos()
+    {
+        playerStats = new PlayerStats();
+        playerSprite = null;
+        equipment = new []{null, null, (Gear)null};
+    }
 }
