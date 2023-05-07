@@ -1,3 +1,4 @@
+using System;
 using Code.Player;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -7,7 +8,7 @@ public class CharacterInfos : ScriptableObject
 {
     public PlayerStats playerStats;
     public Sprite playerSprite;
-    public Gear[] equipment = { null, null, null };
+    public Gear[] equipment;
     
     public void SetPlayerStats(CharacterInfos _CharacterInfos)
     {
@@ -15,10 +16,10 @@ public class CharacterInfos : ScriptableObject
         playerSprite = _CharacterInfos.playerSprite;
         equipment = new []{null, null, (Gear)null};
     }
-    
-    public CharacterInfos()
+
+    public void ResetCH()
     {
-        playerStats = new PlayerStats();
+        playerStats.ResetStats();
         playerSprite = null;
         equipment = new []{null, null, (Gear)null};
     }

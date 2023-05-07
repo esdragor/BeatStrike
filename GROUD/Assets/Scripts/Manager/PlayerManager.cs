@@ -12,7 +12,7 @@ public class PlayerManager : MonoBehaviour
     public static Action<InteractionSuccess> onComboSuccess;
 
     public float distanceReached;
-    public int MaxHP = 5;
+    public int MaxHP => (int)GameManager.instance.currentCharacterInfos.playerStats.hp;
     public Animator animator;
 
     [Header("DEBUG")] public UI_PlayerHealth healthFill;
@@ -20,10 +20,10 @@ public class PlayerManager : MonoBehaviour
     public Image CDPowerImage;
 
 
-    private int currentHP;
     private Vector3 previousPosition;
     private Vector3 targetPosition;
     private PowerSO currentPower;
+    private int currentHP;
 
     private void Awake()
     {
@@ -108,24 +108,9 @@ public class PlayerManager : MonoBehaviour
     public void OnInteractionSuccess(InteractionSuccess interactionSuccess, Enums.InteractionType interactionType, ScreenListener.SwipeDirection dataSwipeDirection)
     {
         StreakManager.AddStreak();
-        int score = 0;
 
-        switch (interactionSuccess)
-        {
-            case InteractionSuccess.Ok:
-                score = 5;
-                break;
-            case InteractionSuccess.Good:
-                score = 10;
-                break;
-            case InteractionSuccess.Perfect:
-                score = 20;
-                break;
-            default:
-                throw new ArgumentOutOfRangeException(nameof(interactionSuccess), interactionSuccess, null);
-        }
 
-        ScoreManager.AddScore(score);
+        ScoreManager.AddScore(interactionSuccess);
         
         if (GameManager.gameState.IsLevelExploration())
         {

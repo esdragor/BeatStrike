@@ -37,7 +37,7 @@ public class UI_Gear : MonoBehaviour
     [Header("Game Manager")]
     [SerializeField] private Gear[] gearsDatas;
 
-    private CharacterInfos currentCharacterInfos = null;
+    private CharacterInfos currentCharacterInfos => GameManager.instance.currentCharacterInfos;
     private float decal = 5000f;
 
     private void Awake()
@@ -154,20 +154,12 @@ public class UI_Gear : MonoBehaviour
 
     public void PrintCharacterInfos(PlayerStats changerStats)
     {
-        if (!currentCharacterInfos)
-            currentCharacterInfos = GameManager.instance.currentCharacterInfos;
-        if (!currentCharacterInfos)
-        {
-            currentCharacterInfos = ScriptableObject.CreateInstance<CharacterInfos>();
-            GameManager.instance.currentCharacterInfos = currentCharacterInfos;
-        }
-
         string hp = AddColor("HP: " + currentCharacterInfos.playerStats.hp, changerStats.hp);
 
         string intelligence = AddColor("Intelligence: " + currentCharacterInfos.playerStats.intelligence,
             changerStats.intelligence);
 
-        string strength = AddColor("Stamina: " + currentCharacterInfos.playerStats.stamina, changerStats.stamina);
+        string strength = AddColor("Stamina: " + currentCharacterInfos.playerStats.strength, changerStats.strength);
 
         playerInfoText.text = hp +
                               intelligence +

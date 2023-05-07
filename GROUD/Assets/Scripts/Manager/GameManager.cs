@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
         
         databaseManager = new DatabaseManager();
+        currentCharacterInfos.ResetCH();
             
         CalculateTickRate();
     }

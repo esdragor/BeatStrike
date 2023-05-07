@@ -7,6 +7,7 @@ public class Fireball : ComboPower
 {
     public override void OnSuccess(float value)
     {
-       PlayerManager.instance.HurtEnemy((int)value);
+       PlayerManager.instance.HurtEnemy((int)(value * 
+                                              GameManager.instance.currentCharacterInfos.playerStats.intelligence));
     }
 }
