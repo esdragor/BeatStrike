@@ -9,6 +9,7 @@ public class Gear : ScriptableObject
     public Sprite gearSprite;
     public string gearDescription;
     public GearSlot slot;
+    public int ID = -1;
 
     [Header("Value")] public StatsType statsType1;
     public float statsValue1;
@@ -38,7 +39,19 @@ public class Gear : ScriptableObject
 
         ch.playerStats.ModifyValue(statsType1, -statsValue1);
         ch.playerStats.ModifyValue(statsType2, -statsValue2);
-        
+
+        switch (ch.equipment[(int)slot].slot)
+        {
+            case GearSlot.Weapon:
+                PlayerPrefs.SetInt("Weapon", -1);
+                break;
+            case GearSlot.Chest:
+                PlayerPrefs.SetInt("Chest", -1);
+                break;
+            case GearSlot.Head:
+                PlayerPrefs.SetInt("Head", -1);
+                break;
+        }
         ch.equipment[(int)slot] = null;
 
         if (MainMenuManager.instance == null) return false;
