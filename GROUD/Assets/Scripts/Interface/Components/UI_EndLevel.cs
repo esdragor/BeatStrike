@@ -24,7 +24,7 @@ public class UI_EndLevel : MonoBehaviour
 
     public void Quit()
     {
-        UIManager.instance.mainMenu.PrintMainMenuPanel();
-        DisablePanel();
+       
+        Application.Quit();
     }
 }

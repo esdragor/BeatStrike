@@ -55,6 +55,7 @@ public class PlayerManager : MonoBehaviour
     private void OnDead()
     {
         Debug.Log("Dead");
+        GameLoopManager.instance.EndLevel();
     }
 
     public void HurtPlayer()
