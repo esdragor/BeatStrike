@@ -63,9 +63,12 @@ public class PlayerManager : MonoBehaviour
     {
         if (currentHP <= 0) return;
         currentHP--;
+        
         if (!healthFill)
             healthFill = UIManager.instance.hud.playerHealth;
-
+        
+        vfxManager.PlaySFX("Hurt");
+        
         healthFill.SetHealth(currentHP, MaxHP);
         if (currentHP <= 0)
         {
@@ -115,13 +118,14 @@ public class PlayerManager : MonoBehaviour
 
         switch (interactionSuccess)
         {
-            case InteractionSuccess.Fail : vfxManager.PlaySFX("Miss");
+            case InteractionSuccess.Fail : vfxManager.PlaySFX("Miss", dataSwipeDirection);
                 break;
-            case InteractionSuccess.Ok: vfxManager.PlaySFX("Ok");
+            case InteractionSuccess.Ok:
+                vfxManager.PlaySFX("Ok", dataSwipeDirection);
                 break;
-            case InteractionSuccess.Good: vfxManager.PlaySFX("Great");
+            case InteractionSuccess.Good: vfxManager.PlaySFX("Great", dataSwipeDirection);
                 break;
-            case InteractionSuccess.Perfect: vfxManager.PlaySFX("Perfect");
+            case InteractionSuccess.Perfect: vfxManager.PlaySFX("Perfect", dataSwipeDirection);
                 break;
         }
         

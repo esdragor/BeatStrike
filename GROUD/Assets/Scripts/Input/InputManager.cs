@@ -38,21 +38,21 @@ public class InputManager : MonoBehaviour
         {
             case ScreenListener.SwipeDirection.UP:
                 playerManager.animator.SetTrigger("AttackUp");
-                playerManager.vfxManager.PlaySFX("Attack");
+                playerManager.vfxManager.PlaySFX("Attack", dir);
                 break;
             case ScreenListener.SwipeDirection.DOWN:
                 playerManager.animator.SetTrigger("AttackDown");
-                playerManager.vfxManager.PlaySFX("Attack");
+                playerManager.vfxManager.PlaySFX("Attack", dir);
 
                 break;
             case ScreenListener.SwipeDirection.LEFT:
                 playerManager.animator.SetTrigger("AttackLeft");
-                playerManager.vfxManager.PlaySFX("Attack");
+                playerManager.vfxManager.PlaySFX("Attack", dir);
 
                 break;
             case ScreenListener.SwipeDirection.RIGHT:
                 playerManager.animator.SetTrigger("AttackRight");
-                playerManager.vfxManager.PlaySFX("Attack");
+                playerManager.vfxManager.PlaySFX("Attack", dir);
 
                 break;
             default:
@@ -76,7 +76,7 @@ public class InputManager : MonoBehaviour
                 if (it.data.swipeDirection == dir)
                 {
                     it.ValidateInteraction(dir);
-                    playerManager.vfxManager.PlaySFX("Dodge");
+                    playerManager.vfxManager.PlaySFX("Dodge", dir);
                 }
                 break;
             case Enums.InteractionType.Fake:
