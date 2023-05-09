@@ -2279,6 +2279,7 @@ GameObject:
   - component: {fileID: 1886454743733605702}
   - component: {fileID: 3236973217896808454}
   - component: {fileID: 5235942230830735644}
+  - component: {fileID: 1396446980173640215}
   m_Layer: 5
   m_Name: PanelGear
   m_TagString: Untagged
@@ -2380,6 +2381,18 @@ MonoBehaviour:
   transitionDirectionSelectionCharacter: -1
   playerInfoText: {fileID: 5272465662937322596}
   ButtonEquip: {fileID: 8950140867239416503}
+--- !u!114 &1396446980173640215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2879219844532015123}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 610560d2f5e02e24e8e23b3d907b9d9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   gearsDatas:
   - {fileID: 11400000, guid: 458874b61520a3b4c9fcd0f8118139fb, type: 2}
   - {fileID: 11400000, guid: 17831cdf78fc1cf4c8cd2e90fbf8b25a, type: 2}

@@ -47,9 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1363b77879293114fb1165c017c6de41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MovementRatioOk: 1
-  MovementRatioGood: 1.5
-  MovementRatioPerfect: 2
+  currentCharacterInfos: {fileID: 0}
 --- !u!1 &8532820290195907789
 GameObject:
   m_ObjectHideFlags: 0
