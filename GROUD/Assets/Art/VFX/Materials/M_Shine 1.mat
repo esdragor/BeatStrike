@@ -7,14 +7,14 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: M_BigSlash
-  m_Shader: {fileID: -6465566751694194690, guid: addcb1e8d5f13df49a5094a30e77b4a7,
+  m_Name: M_Shine 1
+  m_Shader: {fileID: -6465566751694194690, guid: c2a2ed03cfa0c2a4bb8fbb38a192cca5,
     type: 3}
-  m_ValidKeywords: []
+  m_ValidKeywords:
+  - _CHANNEL_B
+  - _UV_UV1
   m_InvalidKeywords:
-  - _CHANNEL_A
   - _ENUM_G
-  - _UV_UV0
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -60,16 +60,8 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _SampleTexture2D_4fa9c7020f8746f3a9856621734c93ec_Texture_1:
-        m_Texture: {fileID: 2800000, guid: 56fe2968da9f72647aed27f9979adab2, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _SampleTexture2D_af98d1c612f0471db5fe1e3f88f9e213_Texture_1:
-        m_Texture: {fileID: 2800000, guid: 812f1e77fc2b2e6488df9897f3e436fd, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _Texture:
-        m_Texture: {fileID: 2800000, guid: 2c3fb302dc1671f48b9545696ddd1fab, type: 3}
+        m_Texture: {fileID: 2800000, guid: f7e213505070e13458e0b7ffa4a06976, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
@@ -77,8 +69,8 @@ Material:
     - _BUILTIN_QueueControl: 0
     - _BUILTIN_QueueOffset: 0
     - _BumpScale: 1
-    - _CHANNEL: 3
-    - _ColorMultiplier: 3
+    - _CHANNEL: 2
+    - _ColorMultiplier: 2
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
@@ -88,14 +80,13 @@ Material:
     - _GlossyReflections: 1
     - _Metallic: 0
     - _Mode: 0
-    - _Multiplier: 3
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _Rotation: 0
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
-    - _UV: 0
+    - _UV: 1
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:

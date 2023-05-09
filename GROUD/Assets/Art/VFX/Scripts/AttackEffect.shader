@@ -2,10 +2,10 @@ Shader "Hidden/AttackEffect"
 {
     Properties
     {
+        _LerpValue ("LerpValue", Range(0,1)) = 0
         _MainTex ("Texture", 2D) = "white" {}
         _Color ("Color", Color) = (1,0,0)
         _DistortTex ("Distort Texture", 2D) = "" {}
-        _LerpValue ("LerpValue", Range(0,1)) = 0
         _DistortStr ("DistortStrength", Range(0,1)) = 0
     }
     SubShader
