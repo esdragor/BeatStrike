@@ -20,6 +20,8 @@ public class GameLoopManager : MonoBehaviour
     public Transform interactionParent;
     public InteractionDetector detector;
     public GameObject interactionPrefab;
+    
+    [Header("EndLevel")]
 
     public int tickCount;
 

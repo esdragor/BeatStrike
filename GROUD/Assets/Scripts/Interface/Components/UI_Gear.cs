@@ -202,4 +202,12 @@ public class UI_Gear : MonoBehaviour
             }
         }
     }
+
+    public static GameObject DropItem(Gear gear)
+    {
+        var newGear = Instantiate(instance.GearPrefab, instance.gearSelectionParent);
+        newGear.GetComponent<Image>().sprite = gear.gearSprite;
+       newGear.GetComponent<GearDescription>().clickable = false;
+        return newGear;
+    }
 }

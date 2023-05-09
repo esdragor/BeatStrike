@@ -118,7 +118,21 @@ public class Inventory : MonoBehaviour
         return gears;
     }
 
-    private void OnDisable()
+    public static GameObject DropInventory(Rarity rarity)
+    {
+        List<Gear> gears = new List<Gear>();
+        foreach (var gear in instance.gearsDatas)
+        {
+            if (gear.rarity == rarity)
+                gears.Add(gear);
+        }
+        
+        int random = UnityEngine.Random.Range(0, gears.Count);
+        AddItemOnInventory(gears[random].ID);
+        return UI_Gear.DropItem(gears[random]);
+    }
+
+    private void OnDestroy()
     {
         string inventory = "";
 

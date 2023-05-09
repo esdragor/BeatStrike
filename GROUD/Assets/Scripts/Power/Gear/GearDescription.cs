@@ -4,6 +4,7 @@ using UnityEngine.UI;
 public class GearDescription : MonoBehaviour
 {
     public bool OnEquip = false;
+    public bool clickable = true;
     [HideInInspector] public Gear gear;
 
 
@@ -15,6 +16,7 @@ public class GearDescription : MonoBehaviour
 
     public void OnClick()
     {
+        if(!clickable) return;
         if (!OnEquip)
         {
             UIManager.instance.gear.currentGear = this;
