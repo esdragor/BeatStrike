@@ -74,7 +74,7 @@ public class GameLoopManager : MonoBehaviour
             levelData = currentChunk.data;
             combatManager.PreloadCombat(levelData.enemy);
         }
-        
+
         StreakManager.ResetStreak();
         ScoreManager.ResetScore();
         

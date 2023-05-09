@@ -94,6 +94,7 @@ public class UI_Gear : MonoBehaviour
     private void Sell()
     {
         if (!instance.currentGear) return;
+        CurrencyManager.AddGold(instance.currentGear.gear.priceToSell);
         Inventory.RemoveItemOnInventory(instance.currentGear.gear.ID);
     }
 

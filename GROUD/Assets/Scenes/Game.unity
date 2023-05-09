@@ -224,6 +224,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 976496630130331738, guid: df8729ef23a6e534e8ae7fcd598e5d00,
+        type: 3}
+      propertyPath: m_Name
+      value: Enemy_Health_Txt
+      objectReference: {fileID: 0}
+    - target: {fileID: 1095512541824641590, guid: df8729ef23a6e534e8ae7fcd598e5d00,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3645711670122832421, guid: df8729ef23a6e534e8ae7fcd598e5d00,
+        type: 3}
+      propertyPath: m_ConstraintCount
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3733789229286420272, guid: df8729ef23a6e534e8ae7fcd598e5d00,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -262,6 +277,11 @@ PrefabInstance:
     - target: {fileID: 5355597692675171378, guid: df8729ef23a6e534e8ae7fcd598e5d00,
         type: 3}
       propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5429976401182443413, guid: df8729ef23a6e534e8ae7fcd598e5d00,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5490769174227019156, guid: df8729ef23a6e534e8ae7fcd598e5d00,
@@ -324,6 +344,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: Game Manager
       objectReference: {fileID: 0}
+    - target: {fileID: 5490769174227019159, guid: df8729ef23a6e534e8ae7fcd598e5d00,
+        type: 3}
+      propertyPath: currentCharacterInfos
+      value: 
+      objectReference: {fileID: 11400000, guid: cff7cb37c4f6d794fa47b9d16110e49d,
+        type: 2}
     - target: {fileID: 5885805953238097163, guid: df8729ef23a6e534e8ae7fcd598e5d00,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -433,6 +459,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Level Manager
       objectReference: {fileID: 0}
+    - target: {fileID: 256895310227866477, guid: 93042f802927c1e4db9ae495068681bb,
+        type: 3}
+      propertyPath: healthTxt
+      value: 
+      objectReference: {fileID: 2000342992}
     - target: {fileID: 573255881044316930, guid: 93042f802927c1e4db9ae495068681bb,
         type: 3}
       propertyPath: looping
@@ -550,3 +581,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 93042f802927c1e4db9ae495068681bb, type: 3}
+--- !u!114 &2000342992 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8384400360898358039, guid: df8729ef23a6e534e8ae7fcd598e5d00,
+    type: 3}
+  m_PrefabInstance: {fileID: 1045646032}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

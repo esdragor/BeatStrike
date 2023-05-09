@@ -16,6 +16,8 @@ public class Gear : ScriptableObject
     public float statsValue1;
     public StatsType statsType2;
     public float statsValue2;
+    public int priceToBuy = 200;
+    public int priceToSell = 10;
 
     public bool EquipOnPlayer(GearDescription gearDescription)
     {
