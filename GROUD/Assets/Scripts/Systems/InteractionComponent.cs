@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using Utilities;
 
@@ -93,13 +94,23 @@ namespace Code.Interface
 
             GameLoopManager.instance.detector.InteractionCanTrigger = null;
             
+            Disable();
+
+            GameLoopManager.interactionPool.AddInteractionToPool(gameObject);
+        }
+
+        private void Disable()
+        {
             left.SetActive(false);
             right.SetActive(false);
             up.SetActive(false);
             down.SetActive(false);
             attack.SetActive(false);
+        }
 
-            GameLoopManager.interactionPool.AddInteractionToPool(gameObject);
+        private void OnDisable()
+        {
+            Disable();
         }
     }
 }

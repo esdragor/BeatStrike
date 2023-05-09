@@ -49,7 +49,7 @@ public class PlayerManager : MonoBehaviour
 
     public void HurtEnemy(int damage = 1)
     {
-        GameLoopManager.combatManager.DealDamage(damage);
+        //GameLoopManager.combatManager.DealDamage(damage);
     }
 
     private void OnDead()
