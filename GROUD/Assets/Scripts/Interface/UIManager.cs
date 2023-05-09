@@ -15,6 +15,7 @@ public class UIManager : MonoBehaviour
     public UI_Streak streak;
     public UI_Power power;
     public UI_Gear gear;
+    public UI_Shop shop;
 
     public MainMenuManager mainMenu;
 

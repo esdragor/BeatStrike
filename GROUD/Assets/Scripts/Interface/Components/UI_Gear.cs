@@ -30,6 +30,7 @@ public class UI_Gear : MonoBehaviour
     [SerializeField] private TMP_Text playerInfoText;
     [SerializeField] private Button ButtonEquip;
     [SerializeField] private Button ButtonSell;
+    [SerializeField] private TMP_Text nbGoldText;
 
     private CharacterInfos currentCharacterInfos => GameManager.instance.currentCharacterInfos;
     private float decal = 5000f;
@@ -43,6 +44,7 @@ public class UI_Gear : MonoBehaviour
             Destroy(instance.gameObject);
             instance = this;
         }
+        CurrencyManager.OnGoldUpdated += UpdateGoldText;
     }
 
 
@@ -55,6 +57,7 @@ public class UI_Gear : MonoBehaviour
         ButtonSell.onClick.AddListener(Sell);
         GearButton.onClick.AddListener(HideMainMenuPanel);
         GearButton.onClick.AddListener(PrintSelectionGearPanel);
+        
     }
 
     public static GearDescription AddItemUIInventory(Gear gear)
@@ -66,6 +69,11 @@ public class UI_Gear : MonoBehaviour
         instance.allItems.Add(gearDescription);
         
         return gearDescription;
+    }
+
+    public void UpdateGoldText(int gold)
+    {
+        nbGoldText.text = gold.ToString();
     }
     
  
