@@ -16,7 +16,7 @@ public class ImageEffect : MonoBehaviour
     
     private void Update()
     {
-        mat.SetFloat("_LerpValue", lerpValue);
+        //mat.SetFloat("_LerpValue", lerpValue);
         if (isActive)
         {
             lerpValue = (Time.time / (1 / effectSpeed)) % 1;
