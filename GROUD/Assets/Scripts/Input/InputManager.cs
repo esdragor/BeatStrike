@@ -38,15 +38,22 @@ public class InputManager : MonoBehaviour
         {
             case ScreenListener.SwipeDirection.UP:
                 playerManager.animator.SetTrigger("AttackUp");
+                playerManager.vfxManager.PlaySFX("Attack");
                 break;
             case ScreenListener.SwipeDirection.DOWN:
                 playerManager.animator.SetTrigger("AttackDown");
+                playerManager.vfxManager.PlaySFX("Attack");
+
                 break;
             case ScreenListener.SwipeDirection.LEFT:
                 playerManager.animator.SetTrigger("AttackLeft");
+                playerManager.vfxManager.PlaySFX("Attack");
+
                 break;
             case ScreenListener.SwipeDirection.RIGHT:
                 playerManager.animator.SetTrigger("AttackRight");
+                playerManager.vfxManager.PlaySFX("Attack");
+
                 break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(dir), dir, null);
@@ -69,6 +76,7 @@ public class InputManager : MonoBehaviour
                 if (it.data.swipeDirection == dir)
                 {
                     it.ValidateInteraction(dir);
+                    playerManager.vfxManager.PlaySFX("Dodge");
                 }
                 break;
             case Enums.InteractionType.Fake:

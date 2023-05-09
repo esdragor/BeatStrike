@@ -21,9 +21,6 @@ public class GameLoopManager : MonoBehaviour
     public InteractionDetector detector;
     public GameObject interactionPrefab;
 
-    [Header("Temp")] 
-    public ParticleSystem bpmVisual;
-    
     public int tickCount;
 
     private void Awake()
@@ -39,7 +36,7 @@ public class GameLoopManager : MonoBehaviour
         Instantiate(rndChunk);
 
         GameManager.OnTick += (() => tickCount++);
-        GameManager.OnTick += () => bpmVisual.Play();
+       // GameManager.OnTick += () => bpmVisual.Play();
     }
     
     public void InitLevel()

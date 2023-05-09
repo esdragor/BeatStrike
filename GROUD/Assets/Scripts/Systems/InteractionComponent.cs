@@ -93,10 +93,9 @@ namespace Code.Interface
             PlayerManager.instance.OnInteractionSuccess(successGroup, data.interactionType, dir);
 
             GameLoopManager.instance.detector.InteractionCanTrigger = null;
+            GameLoopManager.interactionPool.AddInteractionToPool(gameObject);
             
             Disable();
-
-            GameLoopManager.interactionPool.AddInteractionToPool(gameObject);
         }
 
         private void Disable()

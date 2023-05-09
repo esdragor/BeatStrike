@@ -123,9 +123,21 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!198 &155388921 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 6174879184656993778, guid: 93042f802927c1e4db9ae495068681bb,
+    type: 3}
+  m_PrefabInstance: {fileID: 1903983757}
+  m_PrefabAsset: {fileID: 0}
 --- !u!95 &181746939 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 7056945777339423567, guid: 93042f802927c1e4db9ae495068681bb,
+    type: 3}
+  m_PrefabInstance: {fileID: 1903983757}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &263249332 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 256895309357947211, guid: 93042f802927c1e4db9ae495068681bb,
     type: 3}
   m_PrefabInstance: {fileID: 1903983757}
   m_PrefabAsset: {fileID: 0}
@@ -510,6 +522,12 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 2336875580012852376, guid: df8729ef23a6e534e8ae7fcd598e5d00, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: df8729ef23a6e534e8ae7fcd598e5d00, type: 3}
+--- !u!198 &1077496347 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 5019317291499497009, guid: 93042f802927c1e4db9ae495068681bb,
+    type: 3}
+  m_PrefabInstance: {fileID: 1903983757}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1298882617
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -521,6 +539,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: P_TempoVisualizer
+      objectReference: {fileID: 0}
+    - target: {fileID: 6848826527350579810, guid: cb9a9cf565f730c44918bd494af5beb5,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6848826527350579837, guid: cb9a9cf565f730c44918bd494af5beb5,
         type: 3}
@@ -579,6 +602,30 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cb9a9cf565f730c44918bd494af5beb5, type: 3}
+--- !u!198 &1350431006 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 8467928835271683659, guid: 93042f802927c1e4db9ae495068681bb,
+    type: 3}
+  m_PrefabInstance: {fileID: 1903983757}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &1588729778 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 6252190094285805397, guid: 93042f802927c1e4db9ae495068681bb,
+    type: 3}
+  m_PrefabInstance: {fileID: 1903983757}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &1670980879 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 9090530197734953376, guid: 93042f802927c1e4db9ae495068681bb,
+    type: 3}
+  m_PrefabInstance: {fileID: 1903983757}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &1834392856 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 1933499475736108172, guid: 93042f802927c1e4db9ae495068681bb,
+    type: 3}
+  m_PrefabInstance: {fileID: 1903983757}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1903983757
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -656,6 +703,11 @@ PrefabInstance:
       propertyPath: animator
       value: 
       objectReference: {fileID: 181746939}
+    - target: {fileID: 256895310227866477, guid: 93042f802927c1e4db9ae495068681bb,
+        type: 3}
+      propertyPath: vfxManager
+      value: 
+      objectReference: {fileID: 1991403300}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 93042f802927c1e4db9ae495068681bb, type: 3}
 --- !u!1 &1984414024 stripped
@@ -670,3 +722,21 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1903983757}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1991403300
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 263249332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a208a894fecfe84694cce209a96bbf4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  missFX: {fileID: 1834392856}
+  okFX: {fileID: 1588729778}
+  greatFX: {fileID: 1350431006}
+  perfectFX: {fileID: 1670980879}
+  dodgeFX: {fileID: 155388921}
+  attackFX: {fileID: 1077496347}

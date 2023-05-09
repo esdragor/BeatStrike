@@ -19,6 +19,7 @@ public class PlayerManager : MonoBehaviour
     public TMP_Text healthTxt;
     public Image CDPowerImage;
 
+    public VFXManager vfxManager;
 
     private Vector3 previousPosition;
     private Vector3 targetPosition;
@@ -110,8 +111,19 @@ public class PlayerManager : MonoBehaviour
     {
         StreakManager.AddStreak();
 
-
         ScoreManager.AddScore(interactionSuccess);
+
+        switch (interactionSuccess)
+        {
+            case InteractionSuccess.Fail : vfxManager.PlaySFX("Miss");
+                break;
+            case InteractionSuccess.Ok: vfxManager.PlaySFX("Ok");
+                break;
+            case InteractionSuccess.Good: vfxManager.PlaySFX("Great");
+                break;
+            case InteractionSuccess.Perfect: vfxManager.PlaySFX("Perfect");
+                break;
+        }
         
         if (GameManager.gameState.IsLevelExploration())
         {
