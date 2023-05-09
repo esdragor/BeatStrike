@@ -10,6 +10,7 @@ public class Gear : ScriptableObject
     public string gearDescription;
     public GearSlot slot;
     public int ID = -1;
+    public Rarity rarity = Rarity.Common;
 
     [Header("Value")] public StatsType statsType1;
     public float statsValue1;
@@ -66,5 +67,13 @@ public enum GearSlot
     Head,
     Chest,
     Weapon,
-    Power
+}
+
+public enum Rarity
+{
+    Common,
+    Uncommon,
+    Rare,
+    Epic,
+    Legendary
 }

@@ -15,9 +15,6 @@ public class GameManager : MonoBehaviour
     private float tickTimer;
     private float BPM = 60;
     
-    public float MovementRatioOk = 1f;
-    public float MovementRatioGood = 1.5f;
-    public float MovementRatioPerfect = 1f;
     public CharacterInfos currentCharacterInfos;
     
     private void Awake()
