@@ -21,6 +21,7 @@ public class UI_Shop : MonoBehaviour
     [Header("Currency")]
     [SerializeField] private TMP_Text textGold;
     [SerializeField] private TMP_Text textKey;
+    [SerializeField] private TMP_Text timeToReload;
 
     private float decal = 5000f;
 
@@ -34,6 +35,9 @@ public class UI_Shop : MonoBehaviour
         }
         CurrencyManager.OnGoldUpdated += UpdateGoldText;
         CurrencyManager.OnKeysUpdated += UpdateKeyText;
+        
+        openBtn.onClick.AddListener(() => GameManager.onUpdated += CheckTime);
+        exitBtn.onClick.AddListener(() => GameManager.onUpdated -= CheckTime);
     }
 
     private void UpdateKeyText(int key)
@@ -46,34 +50,11 @@ public class UI_Shop : MonoBehaviour
         textGold.text = gold.ToString();
     }
 
-    private void Start()
+    public void CheckTime()
     {
-        exitBtn.onClick.AddListener(HideShopPanel);
-        exitBtn.onClick.AddListener(PrintMainMenuPanel);
-        
-        openBtn.onClick.AddListener(HideMainMenuPanel);
-        openBtn.onClick.AddListener(PrintShopPanel);
-        
-    }
-
-    public void HideShopPanel()
-    {
-        panel.transform.DOMoveX(decal, mainMenuFadeOutDuration);
-    }
-
-    public void PrintShopPanel()
-    {
-        panel.transform.DOMoveX(Screen.width / 2f, mainMenuFadeInDuration);
-    }
-    
-    public void HideMainMenuPanel()
-    {
-        mainMenuButtonsPanel.transform.DOMoveX((int)-decal, mainMenuFadeOutDuration);
-    }
-
-    public void PrintMainMenuPanel()
-    {
-        mainMenuButtonsPanel.transform.DOMoveX(Screen.width / 2f, mainMenuFadeInDuration);
+        double lastTime = GameManager.instance.GetLastShopReload();
+        TimeSpan ts = TimeSpan.FromSeconds(lastTime);
+        timeToReload.text = $"{ts.Minutes:00}:{ts.Seconds:00}";
     }
 
 }

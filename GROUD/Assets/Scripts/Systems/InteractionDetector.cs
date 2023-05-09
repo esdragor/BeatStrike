@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Linq;
 using Code.Interface;
 using UnityEngine;
 
@@ -37,6 +38,8 @@ public class InteractionDetector : MonoBehaviour
         detectionZoneData[3].detectionRange = ratio;
         detectionZoneData[4].detectionRange = ratio;
     }
+    
+    
 
     private void SetInteractionGroup(InteractionComponent current)
     {
@@ -102,12 +105,12 @@ public class InteractionDetector : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        // InteractionComponent it = other.GetComponent<InteractionComponent>();
-        //
-        // if (it && InteractionCanTrigger.Contains(it))
-        // {
-        //     InteractionCanTrigger.Remove(it);
-        // }
+        InteractionComponent it = other.GetComponent<InteractionComponent>();
+        
+        if (it && InteractionCanTrigger == it) 
+        {
+             InteractionCanTrigger = null;
+        }
     }
 }
 

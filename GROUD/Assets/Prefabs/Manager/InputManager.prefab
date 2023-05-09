@@ -51,8 +51,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1dc565ca013ab547b28dcc45c0d5520, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leftDetector: {fileID: 0}
-  rightDetector: {fileID: 0}
   swipeTolerance: 0.2
 --- !u!222 &1561042028
 CanvasRenderer:
@@ -145,7 +143,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a98b04bc62989e443a4cf146c5bf4aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  screenListener: {fileID: 0}
+  screenListener: {fileID: 1561042026}
 --- !u!223 &3836136853500253098
 Canvas:
   m_ObjectHideFlags: 0

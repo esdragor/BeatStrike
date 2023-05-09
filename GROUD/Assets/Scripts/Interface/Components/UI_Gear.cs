@@ -55,8 +55,8 @@ public class UI_Gear : MonoBehaviour
 
         ButtonEquip.onClick.AddListener(Equip);
         ButtonSell.onClick.AddListener(Sell);
-        GearButton.onClick.AddListener(HideMainMenuPanel);
-        GearButton.onClick.AddListener(PrintSelectionGearPanel);
+       // GearButton.onClick.AddListener(HideMainMenuPanel);
+        // GearButton.onClick.AddListener(PrintSelectionGearPanel);
         
     }
 
