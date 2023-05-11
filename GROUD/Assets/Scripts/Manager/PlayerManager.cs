@@ -15,8 +15,6 @@ public class PlayerManager : MonoBehaviour
     public int MaxHP => (int)GameManager.instance.currentCharacterInfos.playerStats.hp;
     public Animator animator;
 
-    [Header("DEBUG")] public UI_PlayerHealth healthFill;
-    public TMP_Text healthTxt;
     public Image CDPowerImage;
 
     public VFXManager vfxManager;
@@ -55,7 +53,6 @@ public class PlayerManager : MonoBehaviour
 
     private void OnDead()
     {
-        Debug.Log("Dead");
         GameLoopManager.instance.EndLevel();
     }
 
@@ -63,13 +60,12 @@ public class PlayerManager : MonoBehaviour
     {
         if (currentHP <= 0) return;
         currentHP--;
-        
-        if (!healthFill)
-            healthFill = UIManager.instance.hud.playerHealth;
-        
+
         vfxManager.PlaySFX("Hurt");
         
-        healthFill.SetHealth(currentHP, MaxHP);
+        UIManager.instance.hud.playerHealth.SetHealth(currentHP, MaxHP);
+        StreakManager.RemoveStreak();
+        
         if (currentHP <= 0)
         {
             OnDead();

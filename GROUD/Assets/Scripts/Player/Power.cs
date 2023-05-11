@@ -33,7 +33,10 @@ namespace Code.Player
         
         public Action OnSuccessAction;
 
-        public abstract void OnSuccess(float value = 0);
+        public virtual void OnSuccess(float value = 0)
+        {
+            PlayerManager.instance.vfxManager.PlaySFX("Ability");
+        }
 
         public void OnSetBase()
         {

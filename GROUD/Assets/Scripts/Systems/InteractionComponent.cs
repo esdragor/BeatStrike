@@ -24,16 +24,16 @@ namespace Code.Interface
             { 
                 transform.position += Vector3.back * (speed * Time.deltaTime);
                 
-                if (transform.position.z < PlayerManager.instance.transform.position.z - 2f)
-                {
-                    if (data.interactionType is Enums.InteractionType.Dodge)
-                    {
-                        PlayerManager.instance.HurtPlayer();
-                    }
-                    
-                    GameLoopManager.interactionPool.AddInteractionToPool(gameObject);
-                    StreakManager.RemoveStreak();
-                }
+                // if (transform.position.z < PlayerManager.instance.transform.position.z - 2f)
+                // {
+                //     if (data.interactionType is Enums.InteractionType.Dodge)
+                //     {
+                //         PlayerManager.instance.HurtPlayer();
+                //     }
+                //     
+                //     GameLoopManager.interactionPool.AddInteractionToPool(gameObject);
+                //     StreakManager.RemoveStreak();
+                // }
             }
         }
 

@@ -58,4 +58,9 @@ public class StreakManager : MonoBehaviour
     {
         return (int)(instance.streak % instance.nbNeedToMultiply);
     }
+
+    public static float GetCurrentLoadBarPercentage()
+    {
+        return (instance.streak % instance.nbNeedToMultiply) / instance.nbNeedToMultiply;
+    }
 }

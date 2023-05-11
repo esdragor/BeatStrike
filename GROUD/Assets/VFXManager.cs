@@ -20,6 +20,7 @@ public class VFXManager : MonoBehaviour
     public ParticleSystem punchL;
     public ParticleSystem punchR;
     public ParticleSystem punchU;
+    public ParticleSystem ability;
 
     public void PlaySFX(string sName, ScreenListener.SwipeDirection dir = ScreenListener.SwipeDirection.NULL)
     {
@@ -65,6 +66,10 @@ public class VFXManager : MonoBehaviour
                 break;
             case "Hurt":
                 hurtFX.Play();
+                break;
+            
+            case "Ability":
+                ability.Play();
                 break;
         }
     }
