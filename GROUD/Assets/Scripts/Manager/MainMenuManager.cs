@@ -30,11 +30,13 @@ public class MainMenuManager : MonoBehaviour
     public void HideMainMenuPanel()
     {
         gameObject.SetActive(false);
+        GameManager.gameState.SwitchEngineState(Enums.EngineState.Game);
     }
 
     public void PrintMainMenuPanel()
     {
         gameObject.SetActive(true);
+        GameManager.gameState.SwitchEngineState(Enums.EngineState.Menu);
     }
 
     private string AddColor(string text, float value, bool doubleline = false)
@@ -49,7 +51,6 @@ public class MainMenuManager : MonoBehaviour
 
     public void LaunchGame()
     {
-        GameManager.gameState.SwitchEngineState(Enums.EngineState.Game);
         GameLoopManager.instance.InitLevel();
         HideMainMenuPanel();
     }

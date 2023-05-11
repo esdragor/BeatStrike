@@ -36,7 +36,7 @@ public class GameLoopManager : MonoBehaviour
 
         GameObject rndChunk = chunks[Random.Range(0, chunks.Length-1)];
         Instantiate(rndChunk);
-
+        
         GameManager.OnTick += (() => tickCount++);
        // GameManager.OnTick += () => bpmVisual.Play();
     }
@@ -44,6 +44,7 @@ public class GameLoopManager : MonoBehaviour
     public void InitLevel()
     {
         combatManager.PreloadCombat(levelData.enemy);
+        GameManager.gameState.SwitchEngineState(Enums.EngineState.Game);
         GameManager.gameState.SwitchTimeState(Enums.TimeState.Play);
         PlayerManager.instance.SetPlayer();
         PlayPattern();
@@ -59,7 +60,7 @@ public class GameLoopManager : MonoBehaviour
     public void EndLevel()
     {
         GameManager.gameState.SwitchTimeState(Enums.TimeState.Pause);
-       
+        GameManager.gameState.SwitchEngineState(Enums.EngineState.Menu);
         UIManager.instance.endLevel.DrawPanel();
         
         patternManager.EndPattern();

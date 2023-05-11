@@ -14,19 +14,31 @@ public class InputManager : MonoBehaviour
     {
         screenListener.onInputPressed += TapBehaviour;
         screenListener.onSwipeDetected += SwipeBehaviour;
+        GameManager.gameState.OnEngineStateChanged += UpdateEnable;
     }
 
     private void OnDisable()
     {
         screenListener.onInputPressed -= TapBehaviour;
         screenListener.onSwipeDetected -= SwipeBehaviour;
+        GameManager.gameState.OnEngineStateChanged -= UpdateEnable;
+
     }
 
-    private void Start()
+    private void UpdateEnable(Enums.EngineState obj)
     {
-        if (GameManager.gameState.IsEngineMenu()) gameObject.SetActive(false);
+        switch (obj)
+        {
+            case Enums.EngineState.Game:
+                gameObject.SetActive(true);
+                break;
+            
+            case Enums.EngineState.Menu:
+                gameObject.SetActive(false);
+                break;
+        }
     }
-    
+
     private void LaunchAnimationSwipe(ScreenListener.SwipeDirection dir)
     {
         if (!playerManager) playerManager = PlayerManager.instance;

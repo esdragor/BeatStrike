@@ -52,6 +52,7 @@ public class GameManager : MonoBehaviour
         databaseManager = new DatabaseManager();
         currentCharacterInfos.ResetCH();
             
+        gameState.SwitchEngineState(Enums.EngineState.Menu);
         CalculateTickRate();
     }
 

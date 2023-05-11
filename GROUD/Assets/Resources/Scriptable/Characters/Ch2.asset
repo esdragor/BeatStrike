@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: Ch2
   m_EditorClassIdentifier: 
   playerStats:
-    hp: 5
+    hp: 1
     intelligence: 1
-    strength: 1
-    overflowHp: 5
-    overflowIntelligence: 1
-    overflowStrength: 0
+    strength: 13
+    overflowHp: 17
+    overflowIntelligence: -3
+    overflowStrength: 13
     minHp: 5
     maxHp: 150
     minIntelligence: 1
@@ -27,6 +27,6 @@ MonoBehaviour:
     maxStrength: 50
   playerSprite: {fileID: 0}
   equipment:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 458874b61520a3b4c9fcd0f8118139fb, type: 2}
+  - {fileID: 11400000, guid: 86be6718d7131bc4ea54e9e40e3436e8, type: 2}
+  - {fileID: 11400000, guid: a3aaef3ab7ddb8a4c8e725899fabbbf6, type: 2}

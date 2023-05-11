@@ -2,6 +2,7 @@ using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Utilities;
 
 public class UI_EndLevel : MonoBehaviour
 {
@@ -33,7 +34,9 @@ public class UI_EndLevel : MonoBehaviour
 
     public void Quit()
     {
-        Restart();
+        DisablePanel();
+        UIManager.instance.hud.DisableHUD();
+        UIManager.instance.mainMenu.PrintMainMenuPanel();
     }
 
     private void OnDisable()
