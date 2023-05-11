@@ -17,6 +17,7 @@ public class UI_EndLevel : MonoBehaviour
         tr = Inventory.DropInventory(Rarity.Common).GetComponent<RectTransform>();
         tr.SetParent(DroppedItemParent);
         tr.position = Vector3.zero;
+        tr.localScale = Vector3.one;
     }
 
     public void DisablePanel()
