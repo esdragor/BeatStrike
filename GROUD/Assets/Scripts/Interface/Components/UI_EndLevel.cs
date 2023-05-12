@@ -14,6 +14,7 @@ public class UI_EndLevel : MonoBehaviour
     public void DrawPanel()
     {
         gameObject.SetActive(true);
+        gameObject.transform.parent.gameObject.SetActive(true);
         textScore.text = $"Score: \n\n{ScoreManager.GetScore()}";
         tr = Inventory.DropInventory(Rarity.Common).GetComponent<RectTransform>();
         tr.SetParent(DroppedItemParent);
