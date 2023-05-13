@@ -26,6 +26,11 @@ public class Inventory : MonoBehaviour
 
         LoadEquipment(LoadInventory());
     }
+    
+    public static Gear[] GetGearsData()
+    {
+        return instance.gearsDatas;
+    }
 
     public static GearDescription AddItemOnInventory(int ID)
     {

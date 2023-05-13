@@ -23,7 +23,7 @@ public class UI_EndLevel : MonoBehaviour
         // tr.localScale = Vector3.one;
 
         int nbKey = 1;
-        int nbGold = (int)(ScoreManager.GetScore() / 100f);
+        int nbGold = (int)(ScoreManager.GetScore() * 0.1f);
         
         CurrencyManager.AddKeys(nbKey);
         CurrencyManager.AddGold(nbGold);

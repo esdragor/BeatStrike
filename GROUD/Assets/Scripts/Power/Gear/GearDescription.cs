@@ -5,6 +5,7 @@ public class GearDescription : MonoBehaviour
 {
     public bool OnEquip = false;
     public bool clickable = true;
+    public bool OnSell = false;
     [HideInInspector] public Gear gear;
 
 
@@ -17,6 +18,14 @@ public class GearDescription : MonoBehaviour
     public void OnClick()
     {
         if(!clickable) return;
+        if (OnSell)
+        {
+            if (gear.priceToBuy > CurrencyManager.GetGold()) return;
+            Inventory.AddItemOnInventory(gear.ID);
+            CurrencyManager.RemoveGold(gear.priceToBuy);
+            Destroy(gameObject);
+            return;
+        }
         if (!OnEquip)
         {
             UIManager.instance.gear.currentGear = this;

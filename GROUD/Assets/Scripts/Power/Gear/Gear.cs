@@ -62,6 +62,22 @@ public class Gear : ScriptableObject
         UIManager.instance.gear.PrintCharacterInfos(new PlayerStats());
         return false;
     }
+
+    public void CopyGear(Gear _gear)
+    {
+        gearName = _gear.gearName;
+        gearSprite = _gear.gearSprite;
+        gearDescription = _gear.gearDescription;
+        slot = _gear.slot;
+        ID = _gear.ID;
+        rarity = _gear.rarity;
+        statsType1 = _gear.statsType1;
+        statsValue1 = _gear.statsValue1;
+        statsType2 = _gear.statsType2;
+        statsValue2 = _gear.statsValue2;
+        priceToBuy = _gear.priceToBuy;
+        priceToSell = _gear.priceToSell;
+    }
 }
 
 public enum GearSlot

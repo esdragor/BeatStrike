@@ -65,7 +65,8 @@ public class UI_Gear : MonoBehaviour
         var newGear = Instantiate(instance.GearPrefab, instance.gearSelectionParent);
         newGear.GetComponent<Image>().sprite = gear.gearSprite;
         GearDescription gearDescription = newGear.GetComponent<GearDescription>();
-        gearDescription.gear = gear;
+        gearDescription.gear = ScriptableObject.CreateInstance<Gear>();
+        gearDescription.gear.CopyGear(gear);
         instance.allItems.Add(gearDescription);
         
         return gearDescription;
