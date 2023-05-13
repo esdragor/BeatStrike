@@ -64,6 +64,8 @@ public class GameLoopManager : MonoBehaviour
         UIManager.instance.endLevel.DrawPanel();
         
         patternManager.EndPattern();
+        
+        CurrencyManager.AddKeys(1);
     }
 
     public void Restart()
