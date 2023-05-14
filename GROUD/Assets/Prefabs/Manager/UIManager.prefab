@@ -6297,11 +6297,13 @@ MonoBehaviour:
   textKey: {fileID: 2076209707730314066}
   timeToReload: {fileID: 5729114183857353248}
   ParentGoldGear: {fileID: 8137454957206074675}
-  GearPrefabShop: {fileID: 2802730156338896872, guid: 0c83056d9226bf84bbc76ed56e987cb1,
+  gearPrefabShop: {fileID: 2802730156338896872, guid: 8e81da0eb58c28843ac9f36a45197bad,
     type: 3}
   commonChest: {fileID: 8166299795629570266}
   epicChest: {fileID: 5073916920281815619}
   parentLootGearChest: {fileID: 2519916871098833226}
+  ticketPriceCommon: 1
+  ticketPriceEpic: 5
 --- !u!114 &8547697997496107188
 MonoBehaviour:
   m_ObjectHideFlags: 0

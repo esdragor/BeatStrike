@@ -23,7 +23,7 @@ public class UI_Shop : MonoBehaviour
     [SerializeField] private TMP_Text textKey;
     [SerializeField] private TMP_Text timeToReload;
     [Header("Gear Gold")] [SerializeField] private Transform ParentGoldGear;
-    [SerializeField] private GameObject GearPrefabShop;
+    [SerializeField] private GameObject gearPrefabShop;
     [Header("Gear Key")] [SerializeField] private Button commonChest;
     [SerializeField] private Button epicChest;
     [SerializeField] private Transform parentLootGearChest;
@@ -59,13 +59,16 @@ public class UI_Shop : MonoBehaviour
         if (parentLootGearChest.childCount > 0)
             Destroy(parentLootGearChest.GetChild(0).gameObject);
 
-        GearDescription gd = Instantiate(GearPrefabShop, parentLootGearChest).GetComponent<GearDescription>();
+        Transform tr = Instantiate(gearPrefabShop, parentLootGearChest).transform;
+        GearDescription gd = tr.GetChild(0).GetComponent<GearDescription>();
         gd.clickable = false;
         Gear gear = Inventory.GetGearsData().First(g => g.ID == ID);
         gd.GetComponent<Image>().sprite = gear.gearSprite;
         gd.gear = ScriptableObject.CreateInstance<Gear>();
         gd.gear.CopyGear(gear);
-        Destroy(gd.gameObject, 5f);
+        Destroy(gd.transform.parent.gameObject, 5f);
+        
+        tr.GetChild(1).GetComponent<TMP_Text>().text = gear.priceToBuy.ToString();
     }
 
     private void OpenCommonChest()
@@ -109,12 +112,15 @@ public class UI_Shop : MonoBehaviour
         Gear[] gears = Inventory.GetGearsData();
         for (int i = 0; i < 3; i++)
         {
-            GearDescription gd = Instantiate(GearPrefabShop, ParentGoldGear).GetComponent<GearDescription>();
+            Transform tr = Instantiate(gearPrefabShop, ParentGoldGear).transform;
+            GearDescription gd = tr.GetChild(0).GetComponent<GearDescription>();
             gd.OnSell = true;
             Gear gear = gears[Random.Range(0, gears.Length)];
             gd.GetComponent<Image>().sprite = gear.gearSprite;
             gd.gear = ScriptableObject.CreateInstance<Gear>();
             gd.gear.CopyGear(gear);
+        
+            tr.GetChild(1).GetComponent<TMP_Text>().text = gear.priceToBuy.ToString();
         }
     }
 
