@@ -105,6 +105,7 @@ GameObject:
   - component: {fileID: 256895309123825939}
   - component: {fileID: 256895309123825943}
   - component: {fileID: 256895309123825942}
+  - component: {fileID: 833913305805607915}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -255,6 +256,84 @@ MonoBehaviour:
   m_BeforeTransparentBundles: []
   m_BeforeStackBundles: []
   m_AfterStackBundles: []
+--- !u!114 &833913305805607915
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 256895309123825938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 743cd35a22ed5014cb206165502962b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  aCurve:
+  - serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: -3.985966
+      outSlope: -3.985966
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.16421054
+    - serializedVersion: 3
+      time: 0.26265562
+      value: 0.052949343
+      inSlope: -0.16841969
+      outSlope: -0.16841969
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.26546973
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 136
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 0
+    m_PostInfinity: 0
+    m_RotationOrder: 0
+  - serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: -1
+      outSlope: -1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  lerpValue: 0
+  mat:
+  - {fileID: 2100000, guid: 056c3348d0634fb4db3debb2ade8de9b, type: 2}
+  - {fileID: 2100000, guid: fdabe8e3b95ad614e8dc1c5bbe9afe28, type: 2}
+  isActive: 0
+  effectSpeed: 1
+  pSystem:
+  - {fileID: 6370681922569252201, guid: 545cc206e3141f84b85a5a3fc6dc0860, type: 3}
+  - {fileID: 3530371322294725685, guid: 23e0345eb0afb5f4da08716a4114d0eb, type: 3}
+  effID: 1
 --- !u!1 &256895309280268867
 GameObject:
   m_ObjectHideFlags: 0
