@@ -4,6 +4,8 @@ public class CombatManager
 {
     public EnemyVFX enemyVFX;
     
+    [SerializeField] private int indexPalier = 10;
+    
     private float currentHealth;
     private float maxHealth;
     private float damage;
@@ -11,10 +13,17 @@ public class CombatManager
     private EnemySO enemy;
     private GameObject currentEnemyObj;
     private int index = -1;
+    
 
     public void PreloadCombat(EnemySO so)
     {
         index++;
+        
+        if (index > 0 && index % indexPalier == 0) // new Palier
+        {
+            GameManager.instance.NewPalier(indexPalier);
+        }
+        
         maxHealth = so.healthPoint * (1 + ((so.statModificatorValuePercentage / 100) * index));
         currentHealth = maxHealth;
         damage = so.damage * (1 + ((so.statModificatorValuePercentage / 100) * index));

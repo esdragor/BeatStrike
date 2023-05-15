@@ -17,10 +17,6 @@ public class UI_EndLevel : MonoBehaviour
         gameObject.SetActive(true);
         gameObject.transform.parent.gameObject.SetActive(true);
         textScore.text = $"Score: \n\n{ScoreManager.GetScore()}";
-        // tr = Inventory.DropInventory(Rarity.Common).GetComponent<RectTransform>();
-        // tr.SetParent(DroppedItemParent);
-        // tr.position = Vector3.zero;
-        // tr.localScale = Vector3.one;
 
         int nbKey = 1;
         int nbGold = (int)(ScoreManager.GetScore() * 0.1f);

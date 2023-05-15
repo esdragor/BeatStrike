@@ -1,3 +1,4 @@
+using System;
 using Code.Player;
 using DG.Tweening;
 using TMPro;
@@ -16,6 +17,8 @@ public enum TransitionDirection
 public class MainMenuManager : MonoBehaviour
 {
     public static MainMenuManager instance;
+    
+    [SerializeField] private TMP_Text textPalier;
 
     private void Awake()
     {
@@ -25,6 +28,21 @@ public class MainMenuManager : MonoBehaviour
             Destroy(instance.gameObject);
             instance = this;
         }
+    }
+    
+    private void OnEnable()
+    {
+        UpdatePalierText();
+    }
+    
+    private void Start()
+    {
+        UpdatePalierText();
+    }
+
+    private void UpdatePalierText()
+    {
+        textPalier.text = "Palier " + GameManager.instance.GetPalierText();
     }
 
     public void HideMainMenuPanel()

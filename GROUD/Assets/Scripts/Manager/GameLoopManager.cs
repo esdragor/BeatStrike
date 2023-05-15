@@ -106,7 +106,7 @@ public class GameLoopManager : MonoBehaviour
             EndLevel();
         }
     }
-    
+
     public void NextChunk()
     {
         GameManager.gameState.SwitchTimeState(Enums.TimeState.Pause);
