@@ -15,12 +15,11 @@ public class VFXManager : MonoBehaviour
     public ParticleSystem dodgeFX;
     public ParticleSystem hurtFX;
 
-    [Header("Enemy")] 
-    public ParticleSystem punchD;
-    public ParticleSystem punchL;
-    public ParticleSystem punchR;
-    public ParticleSystem punchU;
-    public ParticleSystem ability;
+    private ParticleSystem punchD => GameLoopManager.combatManager.enemyVFX.punchD;
+    private ParticleSystem punchL => GameLoopManager.combatManager.enemyVFX.punchL;
+    private ParticleSystem punchR => GameLoopManager.combatManager.enemyVFX.punchR;
+    private ParticleSystem punchU => GameLoopManager.combatManager.enemyVFX.punchU;
+    private ParticleSystem ability => GameLoopManager.combatManager.enemyVFX.ability;
 
     public void PlaySFX(string sName, ScreenListener.SwipeDirection dir = ScreenListener.SwipeDirection.NULL)
     {

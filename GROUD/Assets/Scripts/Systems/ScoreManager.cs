@@ -26,8 +26,7 @@ public class ScoreManager : MonoBehaviour
     
     public static float GetScore()
     {
-        return instance.score * StreakManager.GetMultiplier() * 
-               GameManager.instance.currentCharacterInfos.playerStats.strength;
+        return instance.score * StreakManager.GetMultiplier();
     }
 
     public static void ResetScore()

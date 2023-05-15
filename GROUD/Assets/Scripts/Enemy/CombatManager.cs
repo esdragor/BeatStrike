@@ -2,19 +2,25 @@ using UnityEngine;
 
 public class CombatManager
 {
+    public EnemyVFX enemyVFX;
+    
     private float currentHealth;
     private float maxHealth;
-    
+    private float damage;
     private bool isActive;
-
     private EnemySO enemy;
     private GameObject currentEnemyObj;
+    private int index = -1;
 
     public void PreloadCombat(EnemySO so)
     {
-        currentHealth = so.healthPoint;
-        maxHealth = so.healthPoint;
+        index++;
+        maxHealth = so.healthPoint * (1 + ((so.statModificatorValuePercentage / 100) * index));
+        currentHealth = maxHealth;
+        damage = so.damage * (1 + ((so.statModificatorValuePercentage / 100) * index));
         enemy = so;
+        currentEnemyObj = Object.Instantiate(so.visual);
+        enemyVFX = currentEnemyObj.GetComponent<EnemyVFX>();
     }
     
     public void InitCombat()
@@ -49,6 +55,13 @@ public class CombatManager
         
         isActive = false;
         
-        GameLoopManager.instance.EndLevel();
+        GameLoopManager.instance.NextChunk();
+        
+        //GameLoopManager.instance.EndLevel();
+    }
+
+    public float getAttackData()
+    {
+        return damage;
     }
 }

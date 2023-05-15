@@ -252,7 +252,7 @@ PrefabInstance:
     - target: {fileID: 1095512541824641590, guid: df8729ef23a6e534e8ae7fcd598e5d00,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2487349611887450964, guid: df8729ef23a6e534e8ae7fcd598e5d00,
         type: 3}
@@ -434,16 +434,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Game Manager
       objectReference: {fileID: 0}
-    - target: {fileID: 5589878160445118616, guid: df8729ef23a6e534e8ae7fcd598e5d00,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 300
-      objectReference: {fileID: 0}
-    - target: {fileID: 5589878160445118616, guid: df8729ef23a6e534e8ae7fcd598e5d00,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 300
-      objectReference: {fileID: 0}
     - target: {fileID: 5885805953238097163, guid: df8729ef23a6e534e8ae7fcd598e5d00,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -568,6 +558,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 256895309846087104, guid: 93042f802927c1e4db9ae495068681bb,
+        type: 3}
+      propertyPath: nbMetersToRun
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 256895309846087105, guid: 93042f802927c1e4db9ae495068681bb,
         type: 3}
       propertyPath: m_RootOrder
@@ -633,6 +628,21 @@ PrefabInstance:
       propertyPath: healthTxt
       value: 
       objectReference: {fileID: 2000342992}
+    - target: {fileID: 6945803318572941881, guid: 93042f802927c1e4db9ae495068681bb,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6945803318572941881, guid: 93042f802927c1e4db9ae495068681bb,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6945803318572941881, guid: 93042f802927c1e4db9ae495068681bb,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 93042f802927c1e4db9ae495068681bb, type: 3}
 --- !u!114 &2000342992 stripped

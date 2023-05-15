@@ -12,7 +12,7 @@ public class PlayerTriggerEvent : MonoBehaviour
         {
             if (it.data.interactionType != Enums.InteractionType.Fake)
             {
-                PlayerManager.instance.HurtPlayer();
+                PlayerManager.instance.HurtPlayer(GameLoopManager.combatManager.getAttackData());
             }
         }
     }

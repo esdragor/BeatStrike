@@ -22,7 +22,7 @@ public class PlayerManager : MonoBehaviour
     private Vector3 previousPosition;
     private Vector3 targetPosition;
     private PowerSO currentPower;
-    private int currentHP;
+    private float currentHP;
 
     private void Awake()
     {
@@ -46,9 +46,9 @@ public class PlayerManager : MonoBehaviour
         transform.position = position;
     }
 
-    public void HurtEnemy(int damage = 1)
+    public void HurtEnemy(int damage)
     {
-        //GameLoopManager.combatManager.DealDamage(damage);
+        GameLoopManager.combatManager.DealDamage(damage);
     }
 
     private void OnDead()
@@ -56,10 +56,10 @@ public class PlayerManager : MonoBehaviour
         GameLoopManager.instance.EndLevel();
     }
 
-    public void HurtPlayer()
+    public void HurtPlayer(float amount)
     {
         if (currentHP <= 0) return;
-        currentHP--;
+        currentHP -= amount;
 
         vfxManager.PlaySFX("Hurt");
         
@@ -94,7 +94,7 @@ public class PlayerManager : MonoBehaviour
                 else 
                     PowerManager.AssignNewPower();
 
-                HurtEnemy();
+                HurtEnemy( 1 * (int)GameManager.instance.currentCharacterInfos.playerStats.strength);
                 break;
             case Enums.InteractionType.Dodge:
                 break;

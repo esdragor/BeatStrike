@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using UnityEngine;
 using Utilities;
 
 public class GameLoopManager : MonoBehaviour
@@ -22,8 +25,12 @@ public class GameLoopManager : MonoBehaviour
     public GameObject interactionPrefab;
     
     [Header("EndLevel")]
-
     public int tickCount;
+    [SerializeField] private float speedRun = 10f;
+    [SerializeField] private float nbMetersToRun = 10f;
+    
+    private GameObject currentChunck;
+    private GameObject nextChunck;
 
     private void Awake()
     {
@@ -35,7 +42,7 @@ public class GameLoopManager : MonoBehaviour
         explorationManager = new ExplorationManager();
 
         GameObject rndChunk = chunks[Random.Range(0, chunks.Length-1)];
-        Instantiate(rndChunk);
+        currentChunck = Instantiate(rndChunk);
         
         GameManager.OnTick += (() => tickCount++);
        // GameManager.OnTick += () => bpmVisual.Play();
@@ -65,6 +72,52 @@ public class GameLoopManager : MonoBehaviour
         
         patternManager.EndPattern();
         
+    }
+
+    public IEnumerator MoveChunck()
+    {
+        Transform chunckTr = currentChunck.transform;
+        nextChunck.transform.position = chunckTr.position + Vector3.forward * nbMetersToRun;
+        
+        Vector3 chunchPos = chunckTr.position - Vector3.forward * nbMetersToRun;
+        
+        while ((chunckTr) && chunckTr.position.z > chunchPos.z)
+        {
+            currentChunck.transform.position -= Vector3.forward * Time.deltaTime * speedRun;
+            nextChunck.transform.position -= Vector3.forward * Time.deltaTime * speedRun;
+            yield return new WaitForEndOfFrame();
+        }
+        
+        
+        Destroy(currentChunck);
+        currentChunck = nextChunck;
+        
+        if (currentChunk != null)
+        {
+            levelData = currentChunk.data;
+            combatManager.PreloadCombat(levelData.enemy);
+            GameManager.gameState.SwitchEngineState(Enums.EngineState.Game);
+            GameManager.gameState.SwitchTimeState(Enums.TimeState.Play);
+            PlayerManager.instance.SetPlayer();
+            PlayPattern();
+        }
+        else
+        {
+            EndLevel();
+        }
+    }
+    
+    public void NextChunk()
+    {
+        GameManager.gameState.SwitchTimeState(Enums.TimeState.Pause);
+
+        patternManager.EndPattern();
+
+        interactionPool.DisableAllInteractions();
+
+        nextChunck = Instantiate(chunks[Random.Range(0, chunks.Length-1)]);
+        
+        StartCoroutine(MoveChunck());
     }
 
     public void Restart()
