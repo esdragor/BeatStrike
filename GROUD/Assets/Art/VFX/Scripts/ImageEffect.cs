@@ -7,42 +7,40 @@ using UnityEngine;
 [ExecuteInEditMode]
 public class ImageEffect : MonoBehaviour
 {
-    public AnimationCurve aCurve;
+    public AnimationCurve[] aCurve;
     [Range(0.0f,1.0f)]
     public float lerpValue;
-    public Material mat;
+    public Material[] mat;
     public bool isActive;
     [Range(0.0f,5.0f)]
     public float effectSpeed;
-    private float _bTime = 0;
-    public ParticleSystem pSystem;
+    public ParticleSystem[] pSystem;
     private int _propID;
+    public int effID = 0;
     private bool _yes = true;
     private void Start()
     {
         if (pSystem == null) _yes = false;
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
-        if (pSystem.isPlaying && _yes) isActive = true;
+        if (pSystem[effID].isPlaying && _yes) isActive = true;
         else
         {
             isActive = false;
-            _bTime = 0;
+            lerpValue = 0;
         }
-        mat.SetFloat("_LerpValue", lerpValue);
+        mat[effID].SetFloat("_LerpValue", lerpValue);
         
         if (isActive)
         {
-            _bTime += 0.02f;
-            lerpValue = (_bTime / (1 / effectSpeed)) % 1;
-            lerpValue = aCurve.Evaluate(lerpValue);
+            lerpValue = aCurve[effID].Evaluate(pSystem[effID].time/pSystem[effID].main.duration);
         }
     }
     
     private void OnRenderImage(RenderTexture src, RenderTexture dest)
     {
-        Graphics.Blit(src, dest, mat);
+        Graphics.Blit(src, dest, mat[effID]);
     }
 }
