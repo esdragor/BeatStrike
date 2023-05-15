@@ -94,7 +94,7 @@ public class PlayerManager : MonoBehaviour
                 else 
                     PowerManager.AssignNewPower();
 
-                HurtEnemy( 1 * (int)GameManager.instance.currentCharacterInfos.playerStats.strength);
+                HurtEnemy((int)GameManager.instance.currentCharacterInfos.playerStats.strength);
                 break;
             case Enums.InteractionType.Dodge:
                 break;
