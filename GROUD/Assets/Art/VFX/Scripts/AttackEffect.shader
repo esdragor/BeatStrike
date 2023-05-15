@@ -62,7 +62,7 @@ Shader "Hidden/AttackEffect"
                 st = st + tex2D(_MainTex, i.uv - (distCol.rg*_DistortStr));
                 fixed4 col = tex2D(_MainTex, i.uv);
                 st.rgb = (st.r *0.3 + st.g * 0.59 + st.b *0.11)*_Color;
-                col.rgb = lerp3(st,col,_LerpValue);
+                col.rgb = lerp3(col,st,_LerpValue);
                 return col;
             }
             ENDCG
