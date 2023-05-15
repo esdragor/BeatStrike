@@ -13,14 +13,6 @@ public class CharacterInfos : ScriptableObject
     public void SetPlayerStats(CharacterInfos _CharacterInfos)
     {
         playerStats = new PlayerStats(_CharacterInfos.playerStats);
-        playerSprite = _CharacterInfos.playerSprite;
-        equipment = new []{null, null, (Gear)null};
-    }
-
-    public void ResetCH()
-    {
-        playerStats.ResetStats();
-        playerSprite = null;
-        equipment = new []{null, null, (Gear)null};
+        equipment = new Gear[_CharacterInfos.equipment.Length];
     }
 }

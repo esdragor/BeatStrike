@@ -12,6 +12,8 @@ public class CurrencyManager : MonoBehaviour
     
     [SerializeField] private int nbGold;
     [SerializeField] private int nbKeys;
+    
+    private bool onReset = false;
 
     private void Awake()
     {
@@ -75,9 +77,15 @@ public class CurrencyManager : MonoBehaviour
     {
         return instance.nbKeys;
     }
+    
+    public static void OnResetValue()
+    {
+        instance.onReset = true;
+    }
 
     private void OnDestroy()
     {
+        if (onReset) return;
         PlayerPrefs.SetInt("Gold", nbGold);
         PlayerPrefs.SetInt("Keys", nbKeys);
     }

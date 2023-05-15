@@ -45,6 +45,13 @@ public class PlayerStats
         overflowHp = other.hp;
         overflowIntelligence = other.intelligence;
         overflowStrength = other.strength;
+        
+        minHp = other.minHp;
+        maxHp = other.maxHp;
+        minIntelligence = other.minIntelligence;
+        maxIntelligence = other.maxIntelligence;
+        minStrength = other.minStrength;
+        maxStrength = other.maxStrength;
     }
 
     private float ModVal(in float val, float amount, float min, float max)

@@ -59,11 +59,16 @@ public class PatternManager
         }
     }
 
-
-    public void EndPattern()
+    public void StopPattern()
     {
         isTimelineActive = false;
         GameManager.onUpdated -= TimelineEventListener;
+    }
+    
+    
+    public void EndPattern()
+    {
+        StopPattern();
         StartPattern(currentPatternSo);
     }
 

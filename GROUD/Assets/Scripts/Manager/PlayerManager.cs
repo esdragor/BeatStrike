@@ -60,6 +60,7 @@ public class PlayerManager : MonoBehaviour
     {
         if (currentHP <= 0) return;
         currentHP -= amount;
+        if (currentHP < 0) currentHP = 0;
 
         vfxManager.PlaySFX("Hurt");
         

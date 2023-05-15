@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour
     private float tickTimer;
     private float BPM = 60;
 
+    
+    public CharacterInfos CharacterInfosPrefab;
     public CharacterInfos currentCharacterInfos;
 
     public float timeToShopReset = 5;
@@ -54,11 +56,8 @@ public class GameManager : MonoBehaviour
     {
         if (instance == null) instance = this;
         else Destroy(gameObject);
-
-        DontDestroyOnLoad(gameObject);
-
+        
         databaseManager = new DatabaseManager();
-        currentCharacterInfos.ResetCH();
 
         gameState.SwitchEngineState(Enums.EngineState.Menu);
         if (PlayerPrefs.HasKey("Palier"))
@@ -80,6 +79,10 @@ public class GameManager : MonoBehaviour
         {
             lastDate = DateTime.MinValue;
         }
+        currentCharacterInfos = ScriptableObject.CreateInstance<CharacterInfos>();
+        currentCharacterInfos.SetPlayerStats(CharacterInfosPrefab);
+        Inventory.Init();
+        //currentCharacterInfos.ResetCH();
     }
 
     void Update()

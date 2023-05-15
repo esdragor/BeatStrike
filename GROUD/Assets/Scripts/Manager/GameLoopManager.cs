@@ -111,7 +111,7 @@ public class GameLoopManager : MonoBehaviour
     {
         GameManager.gameState.SwitchTimeState(Enums.TimeState.Pause);
 
-        patternManager.EndPattern();
+        patternManager.StopPattern();
 
         interactionPool.DisableAllInteractions();
 

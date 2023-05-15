@@ -3,6 +3,7 @@ using Code.Player;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Utilities;
 
@@ -17,7 +18,7 @@ public enum TransitionDirection
 public class MainMenuManager : MonoBehaviour
 {
     public static MainMenuManager instance;
-    
+
     [SerializeField] private TMP_Text textPalier;
     [SerializeField] private Button ResetButton;
 
@@ -29,27 +30,33 @@ public class MainMenuManager : MonoBehaviour
             Destroy(instance.gameObject);
             instance = this;
         }
+
         ResetButton.onClick.AddListener(ResetPlayerPrefs);
     }
-    
+
     private void OnEnable()
     {
         UpdatePalierText();
     }
-    
+
     private void Start()
     {
         UpdatePalierText();
     }
-    
+
     public void ResetPlayerPrefs()
     {
         PlayerPrefs.DeleteAll();
+        Inventory.OnResetValue();
+        CurrencyManager.OnResetValue();
+
+       Application.Quit();
     }
 
     private void UpdatePalierText()
     {
-        textPalier.text = "Palier " + GameManager.instance.GetPalierText();
+        if (textPalier && GameManager.instance)
+            textPalier.text = "Palier " + GameManager.instance.GetPalierText();
     }
 
     public void HideMainMenuPanel()

@@ -6,25 +6,27 @@ using UnityEngine;
 public class Inventory : MonoBehaviour
 {
     private static Inventory instance;
+    
 
     [SerializeField] private Gear[] gearsDatas;
 
     private List<int> inventoryIDs = new List<int>();
     private Dictionary<int, Gear> dicoGear = new Dictionary<int, Gear>();
+    private bool OnReset = false;
 
     private void Awake()
     {
         if (instance == null) instance = this;
     }
 
-    private void Start()
+    public static void Init()
     {
-        foreach (var gear in gearsDatas)
+        foreach (var gear in instance.gearsDatas)
         {
-            dicoGear.Add(gear.ID, gear);
+            instance.dicoGear.Add(gear.ID, gear);
         }
 
-        LoadEquipment(LoadInventory());
+        instance.LoadEquipment(instance.LoadInventory());
     }
     
     public static Gear[] GetGearsData()
@@ -44,6 +46,11 @@ public class Inventory : MonoBehaviour
         instance.inventoryIDs.Remove(ID);
 
         UI_Gear.RemoveItemUIInventory(instance.dicoGear[ID]);
+    }
+
+    public static void OnResetValue()
+    {
+        instance.OnReset = true;
     }
 
     private async void LoadEquipment(List<GearDescription> gears)
@@ -135,6 +142,7 @@ public class Inventory : MonoBehaviour
 
     private void OnDestroy()
     {
+        if (OnReset) return;
         string inventory = "";
 
         for (var i = 0; i < inventoryIDs.Count; i++)
