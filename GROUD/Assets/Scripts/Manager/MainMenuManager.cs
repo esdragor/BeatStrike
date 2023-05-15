@@ -19,6 +19,7 @@ public class MainMenuManager : MonoBehaviour
     public static MainMenuManager instance;
     
     [SerializeField] private TMP_Text textPalier;
+    [SerializeField] private Button ResetButton;
 
     private void Awake()
     {
@@ -28,6 +29,7 @@ public class MainMenuManager : MonoBehaviour
             Destroy(instance.gameObject);
             instance = this;
         }
+        ResetButton.onClick.AddListener(ResetPlayerPrefs);
     }
     
     private void OnEnable()
@@ -38,6 +40,11 @@ public class MainMenuManager : MonoBehaviour
     private void Start()
     {
         UpdatePalierText();
+    }
+    
+    public void ResetPlayerPrefs()
+    {
+        PlayerPrefs.DeleteAll();
     }
 
     private void UpdatePalierText()
