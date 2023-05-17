@@ -831,6 +831,7 @@ MonoBehaviour:
   perfectFX: {fileID: 9090530197734953376}
   rDodgeFX: {fileID: 6174879184656993778}
   rAttackFX: {fileID: 5019317291499497009}
+  GoodComboFX: {fileID: 7119677788040336248}
   attackFX: {fileID: 5019317291499497009}
   dodgeFX: {fileID: 6174879184656993778}
   hurtFX: {fileID: 633983815575727915}
@@ -2174,6 +2175,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1507765542585150050, guid: 448be969d1df1c14eacf7538631c5300,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.383
+      objectReference: {fileID: 0}
+    - target: {fileID: 1507765542585150050, guid: 448be969d1df1c14eacf7538631c5300,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.415
+      objectReference: {fileID: 0}
+    - target: {fileID: 1507765542585150050, guid: 448be969d1df1c14eacf7538631c5300,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.69
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 448be969d1df1c14eacf7538631c5300, type: 3}
 --- !u!198 &633983815575727915 stripped
@@ -2191,6 +2207,12 @@ Transform:
 --- !u!198 &2053409527434558309 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 833766868493647887, guid: 448be969d1df1c14eacf7538631c5300,
+    type: 3}
+  m_PrefabInstance: {fileID: 1724051383552736106}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &7119677788040336248 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 8440628200103241746, guid: 448be969d1df1c14eacf7538631c5300,
     type: 3}
   m_PrefabInstance: {fileID: 1724051383552736106}
   m_PrefabAsset: {fileID: 0}

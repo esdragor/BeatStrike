@@ -29,6 +29,7 @@ public class ComboPrinter : MonoBehaviour
         {
             instance.arrows[i].arrow.transform.position = instance.ArrowSpawnPoint[i].position;
         }
+        PlayerManager.instance.vfxManager.PlaySFX("GCombo");
     }
 
     public static void PrintNewCombo(ScreenListener.SwipeDirection[] combo)

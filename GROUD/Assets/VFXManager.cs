@@ -11,6 +11,7 @@ public class VFXManager : MonoBehaviour
     [SerializeField] private ParticleSystem perfectFX;
     [SerializeField] private ParticleSystem rDodgeFX;
     [SerializeField] private ParticleSystem rAttackFX;
+    [SerializeField] private ParticleSystem GoodComboFX;
 
     [Header("Player")] 
     [SerializeField] private ParticleSystem attackFX;
@@ -78,6 +79,9 @@ public class VFXManager : MonoBehaviour
             
             case "Ability":
                 ability.Play();
+                break;
+            case "GCombo":
+                GoodComboFX.Play();
                 break;
         }
     }
