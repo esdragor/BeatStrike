@@ -46,9 +46,11 @@ public class PlayerManager : MonoBehaviour
         transform.position = position;
     }
 
-    public void HurtEnemy(int damage)
+    public void HurtEnemy(int damage, bool isCritical = false)
     {
         GameLoopManager.combatManager.DealDamage(damage);
+        if (isCritical)
+            vfxManager.PlaySFX("HurtEnemy");
     }
 
     private void OnDead()
@@ -62,11 +64,11 @@ public class PlayerManager : MonoBehaviour
         currentHP -= amount;
         if (currentHP < 0) currentHP = 0;
 
-        vfxManager.PlaySFX("Hurt");
-        
         UIManager.instance.hud.playerHealth.SetHealth(currentHP, MaxHP);
         StreakManager.RemoveStreak();
         
+        vfxManager.PlaySFX("Hurt");
+
         if (currentHP <= 0)
         {
             OnDead();
@@ -84,7 +86,8 @@ public class PlayerManager : MonoBehaviour
         MovePlayerTo(GameLoopManager.instance.currentChunk.combatPos.position);
     }
 
-    private void SetInputComponent(Enums.InteractionType interactionType, ScreenListener.SwipeDirection dataSwipeDirection)
+    private void SetInputComponent(Enums.InteractionType interactionType,
+        ScreenListener.SwipeDirection dataSwipeDirection)
     {
         switch (interactionType)
         {
@@ -92,7 +95,7 @@ public class PlayerManager : MonoBehaviour
                 InteractionSuccess success = currentPower.power.Execute(dataSwipeDirection);
                 if (success == InteractionSuccess.Ok)
                     onComboSuccess?.Invoke(InteractionSuccess.Ok);
-                else 
+                else
                     PowerManager.AssignNewPower();
 
                 HurtEnemy((int)GameManager.instance.currentCharacterInfos.playerStats.strength);
@@ -107,7 +110,8 @@ public class PlayerManager : MonoBehaviour
     }
 
 
-    public void OnInteractionSuccess(InteractionSuccess interactionSuccess, Enums.InteractionType interactionType, ScreenListener.SwipeDirection dataSwipeDirection)
+    public void OnInteractionSuccess(InteractionSuccess interactionSuccess, Enums.InteractionType interactionType,
+        ScreenListener.SwipeDirection dataSwipeDirection)
     {
         StreakManager.AddStreak();
 
@@ -115,17 +119,20 @@ public class PlayerManager : MonoBehaviour
 
         switch (interactionSuccess)
         {
-            case InteractionSuccess.Fail : vfxManager.PlaySFX("Miss", dataSwipeDirection);
+            case InteractionSuccess.Fail:
+                vfxManager.PlaySFX("Miss", dataSwipeDirection);
                 break;
             case InteractionSuccess.Ok:
                 vfxManager.PlaySFX("Ok", dataSwipeDirection);
                 break;
-            case InteractionSuccess.Good: vfxManager.PlaySFX("Great", dataSwipeDirection);
+            case InteractionSuccess.Good:
+                vfxManager.PlaySFX("Great", dataSwipeDirection);
                 break;
-            case InteractionSuccess.Perfect: vfxManager.PlaySFX("Perfect", dataSwipeDirection);
+            case InteractionSuccess.Perfect:
+                vfxManager.PlaySFX("Perfect", dataSwipeDirection);
                 break;
         }
-        
+
         if (GameManager.gameState.IsLevelExploration())
         {
             SetInputComponent(interactionType, dataSwipeDirection);

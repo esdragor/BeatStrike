@@ -48,6 +48,7 @@ namespace Code.Player
                     Enum.GetNames(typeof(ScreenListener.SwipeDirection)).Length);
                 combo[i] = rdnSlide;
             }
+            ComboPrinter.PrintNewCombo(combo);
         }
 
         public List<ScreenListener.SwipeDirection> RemainingCombo()
@@ -76,6 +77,7 @@ namespace Code.Player
                     currentCombo = 0;
                     return InteractionSuccess.Perfect;
                 }
+                ComboPrinter.UpdateCombo();
                 return InteractionSuccess.Ok;
             }
             OnUnsuccess();

@@ -2,18 +2,22 @@ using UnityEngine;
 
 public class VFXManager : MonoBehaviour
 {
+    [SerializeField] private ImageEffect cam;
+
     [Header("Road")]
-    public ParticleSystem missFX;
-    public ParticleSystem okFX;
-    public ParticleSystem greatFX;
-    public ParticleSystem perfectFX;
-    public ParticleSystem rDodgeFX;
-    public ParticleSystem rAttackFX;
+    [SerializeField] private ParticleSystem missFX;
+    [SerializeField] private ParticleSystem okFX;
+    [SerializeField] private ParticleSystem greatFX;
+    [SerializeField] private ParticleSystem perfectFX;
+    [SerializeField] private ParticleSystem rDodgeFX;
+    [SerializeField] private ParticleSystem rAttackFX;
 
     [Header("Player")] 
-    public ParticleSystem attackFX;
-    public ParticleSystem dodgeFX;
-    public ParticleSystem hurtFX;
+    [SerializeField] private ParticleSystem attackFX;
+    [SerializeField] private ParticleSystem dodgeFX;
+    [SerializeField] private ParticleSystem hurtFX;
+    [Header("Enemy")] 
+    [SerializeField] private ParticleSystem hurtEnemyFX;
 
     private ParticleSystem punchD => GameLoopManager.combatManager.enemyVFX.punchD;
     private ParticleSystem punchL => GameLoopManager.combatManager.enemyVFX.punchL;
@@ -64,7 +68,12 @@ public class VFXManager : MonoBehaviour
                 }
                 break;
             case "Hurt":
+                cam.effID = 1;
                 hurtFX.Play();
+                break;
+            case "HurtEnemy":
+                cam.effID = 0;
+                hurtEnemyFX.Play();
                 break;
             
             case "Ability":
