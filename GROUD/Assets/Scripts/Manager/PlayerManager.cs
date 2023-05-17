@@ -37,7 +37,7 @@ public class PlayerManager : MonoBehaviour
     private void Start()
     {
         SetPlayer();
-        PowerManager.AssignNewPower();
+        //PowerManager.AssignNewPower();
     }
 
     public void MovePlayerTo(Vector3 position)

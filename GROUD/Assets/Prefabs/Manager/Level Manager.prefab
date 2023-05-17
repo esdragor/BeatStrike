@@ -938,6 +938,7 @@ GameObject:
   m_Component:
   - component: {fileID: 355456589009166073}
   - component: {fileID: 6358719866591602229}
+  - component: {fileID: 4115965701235167294}
   m_Layer: 0
   m_Name: Combo
   m_TagString: Untagged
@@ -977,6 +978,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 461de871433ccb74d98e1114c8bae51a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ArrowSpawnPoint:
+  - {fileID: 9117704620304753741}
+  - {fileID: 787612519916497057}
+  - {fileID: 191573366496269007}
+  - {fileID: 4757073091820401232}
+--- !u!114 &4115965701235167294
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3937690290870329817}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eed8e15829eb06040a74f2e6bb5f6dad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nbArrowOnPool: 4
   ArrowUpPrefab: {fileID: 933926167647589312, guid: e7ca1b19ee92e974cb914d79caf747a6,
     type: 3}
   ArrowDownPrefab: {fileID: 933926167647589312, guid: 770702881a8a0f147a50f8488462e6db,
@@ -985,11 +1004,6 @@ MonoBehaviour:
     type: 3}
   ArrowRightPrefab: {fileID: 5933811425192703165, guid: 70307cc556c031c4c84a795238a5727d,
     type: 3}
-  ArrowSpawnPoint:
-  - {fileID: 9117704620304753741}
-  - {fileID: 787612519916497057}
-  - {fileID: 191573366496269007}
-  - {fileID: 4757073091820401232}
 --- !u!1 &4894923771813183752
 GameObject:
   m_ObjectHideFlags: 0

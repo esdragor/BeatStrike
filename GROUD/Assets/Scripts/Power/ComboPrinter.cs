@@ -7,14 +7,9 @@ public class ComboPrinter : MonoBehaviour
 {
     private static ComboPrinter instance;
 
-    [SerializeField] private GameObject ArrowUpPrefab;
-    [SerializeField] private GameObject ArrowDownPrefab;
-    [SerializeField] private GameObject ArrowLeftPrefab;
-    [SerializeField] private GameObject ArrowRightPrefab;
-
     [SerializeField] private Transform[] ArrowSpawnPoint;
     
-    private List<GameObject> arrows = new List<GameObject>();
+    private List<ArrowInfo> arrows = new List<ArrowInfo>();
 
     private void Awake()
     {
@@ -28,11 +23,11 @@ public class ComboPrinter : MonoBehaviour
 
     public static void UpdateCombo()
     {
-        Destroy(instance.arrows[0]);
+        PoolArrowPrinter.AddArrowOnPool(instance.arrows[0].arrow, instance.arrows[0].direction);
         instance.arrows.RemoveAt(0);
         for (int i = 0; i < instance.arrows.Count; i++)
         {
-            instance.arrows[i].transform.position = instance.ArrowSpawnPoint[i].position;
+            instance.arrows[i].arrow.transform.position = instance.ArrowSpawnPoint[i].position;
         }
     }
 
@@ -40,30 +35,49 @@ public class ComboPrinter : MonoBehaviour
     {
         foreach (var arrow in instance.arrows)
         {
-            Destroy(arrow);
+            PoolArrowPrinter.AddArrowOnPool(arrow.arrow, arrow.direction);
         }
         instance.arrows.Clear();
         
         for (int i = 0; i < combo.Length; i++)
         {
+            GameObject arrow = null;
+            ScreenListener.SwipeDirection direction = ScreenListener.SwipeDirection.UP;
             switch (combo[i])
             {
                 case ScreenListener.SwipeDirection.UP:
-                    instance.arrows.Add(Instantiate(instance.ArrowUpPrefab, instance.ArrowSpawnPoint[i].position, Quaternion.Euler(0f, -90f, 0f)));
+                    arrow = PoolArrowPrinter.GetArrowOnPool(ScreenListener.SwipeDirection.UP);
                     break;
                 case ScreenListener.SwipeDirection.DOWN:
-                    instance.arrows.Add(Instantiate(instance.ArrowDownPrefab, instance.ArrowSpawnPoint[i].position, Quaternion.Euler(0f, 90f, 0f)));
+                    arrow = PoolArrowPrinter.GetArrowOnPool(ScreenListener.SwipeDirection.DOWN);
+                    direction = ScreenListener.SwipeDirection.DOWN;
                     break;
                 case ScreenListener.SwipeDirection.LEFT:
-                    instance.arrows.Add(Instantiate(instance.ArrowLeftPrefab, instance.ArrowSpawnPoint[i].position, Quaternion.Euler(0f, -180f, 0f)));
+                    arrow = PoolArrowPrinter.GetArrowOnPool(ScreenListener.SwipeDirection.LEFT);
+                    direction = ScreenListener.SwipeDirection.LEFT;
                     break;
                 case ScreenListener.SwipeDirection.RIGHT:
-                    instance.arrows.Add(Instantiate(instance.ArrowRightPrefab, instance.ArrowSpawnPoint[i].position, Quaternion.identity));
+                    arrow = PoolArrowPrinter.GetArrowOnPool(ScreenListener.SwipeDirection.RIGHT);
+                    direction = ScreenListener.SwipeDirection.RIGHT;
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
-            //instance.arrows[i].transform.parent = instance.ArrowSpawnPoint[i];
+            
+            instance.arrows.Add(new ArrowInfo(arrow, direction));
+            arrow.transform.position = instance.ArrowSpawnPoint[i].position;
         }
+    }
+}
+
+public struct ArrowInfo
+{
+    public GameObject arrow;
+    public ScreenListener.SwipeDirection direction;
+
+    public ArrowInfo(GameObject arrow, ScreenListener.SwipeDirection direction)
+    {
+        this.arrow = arrow;
+        this.direction = direction;
     }
 }

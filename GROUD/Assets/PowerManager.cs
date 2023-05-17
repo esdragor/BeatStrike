@@ -25,6 +25,5 @@ public class PowerManager : MonoBehaviour
 
         newPower.power.OnSetBase();
         PlayerManager.instance.SetPower(newPower);
-        UIManager.instance.power.SetText(InteractionSuccess.Good);
     }
 }

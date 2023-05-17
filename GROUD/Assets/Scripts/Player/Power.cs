@@ -70,6 +70,7 @@ namespace Code.Player
         {
             if (currentSwipeDirection == combo[currentCombo])
             {
+                ComboPrinter.UpdateCombo();
                 currentCombo++;
                 if (currentCombo == nbCombo)
                 {
@@ -77,7 +78,6 @@ namespace Code.Player
                     currentCombo = 0;
                     return InteractionSuccess.Perfect;
                 }
-                ComboPrinter.UpdateCombo();
                 return InteractionSuccess.Ok;
             }
             OnUnsuccess();

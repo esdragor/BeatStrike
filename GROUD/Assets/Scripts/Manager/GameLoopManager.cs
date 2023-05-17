@@ -51,6 +51,7 @@ public class GameLoopManager : MonoBehaviour
     public void InitLevel()
     {
         combatManager.PreloadCombat(levelData.enemy);
+        PowerManager.AssignNewPower();
         GameManager.gameState.SwitchEngineState(Enums.EngineState.Game);
         GameManager.gameState.SwitchTimeState(Enums.TimeState.Play);
         PlayerManager.instance.SetPlayer();

@@ -13,7 +13,6 @@ public class UIManager : MonoBehaviour
     public UI_EndLevel endLevel;
     public UI_Score score;
     public UI_Streak streak;
-    public UI_Power power;
     public UI_Gear gear;
     public UI_Shop shop;
 
@@ -30,7 +29,6 @@ public class UIManager : MonoBehaviour
     private void Start()
     {
         GameManager.gameState.OnEngineStateChanged += OnEngineStateSetUI;
-        PlayerManager.onComboSuccess += power.SetText;
     }
 
     void OnEngineStateSetUI(Enums.EngineState engineState)
