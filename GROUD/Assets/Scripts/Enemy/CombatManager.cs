@@ -45,7 +45,7 @@ public class CombatManager
         
         isActive = true;
 
-        GameLoopManager.patternManager.StartPattern(enemy.patternSO);
+        GameLoopManager.instance.printDEFRoad(GameLoopManager.patternManager.StartPattern());
     }
     
     public void DealDamage(float amount)

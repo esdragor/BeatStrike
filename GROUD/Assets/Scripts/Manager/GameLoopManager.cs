@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
@@ -11,7 +12,6 @@ public class GameLoopManager : MonoBehaviour
     public static PatternManager patternManager;
     public static InteractionPool interactionPool;
     public static CombatManager combatManager;
-    public static ExplorationManager explorationManager;
 
     public GameObject[] chunks;
 
@@ -23,9 +23,15 @@ public class GameLoopManager : MonoBehaviour
     public InteractionDetector detector;
     public GameObject interactionPrefab;
 
-    [Header("EndLevel")] public int tickCount;
+    [Header("EndLevel")] public float tickCount;
     [SerializeField] private float speedRun = 10f;
     [SerializeField] private float nbMetersToRun = 10f;
+
+    [Header("Pattern")] [SerializeField] private List<Pattern> ATKPatterns;
+    [SerializeField] private List<Pattern> DEFPatterns;
+    [SerializeField] private int percentageDEF;
+    [SerializeField] private Material isDefPrinter;
+
 
     private GameObject currentChunck;
     private GameObject nextChunck;
@@ -36,17 +42,21 @@ public class GameLoopManager : MonoBehaviour
         if (instance == null) instance = this;
 
         interactionPool = new InteractionPool(interactionParent, interactionPrefab);
-        patternManager = new PatternManager();
+        patternManager = new PatternManager(ATKPatterns, DEFPatterns, percentageDEF);
         combatManager = new CombatManager();
-        explorationManager = new ExplorationManager();
 
         GameObject rndChunk = chunks[0];
         currentChunck = Instantiate(rndChunk);
 
-        GameManager.OnTick += (() => tickCount++);
+        //GameManager.OnTick += (() => tickCount++);
         // GameManager.OnTick += () => bpmVisual.Play();
     }
 
+    public void AddTickCount(float value)
+    {
+        tickCount += value;
+    }
+    
     public void InitLevel()
     {
         combatManager.PreloadCombat(levelData.enemy);
@@ -143,5 +153,10 @@ public class GameLoopManager : MonoBehaviour
         ScoreManager.ResetScore();
 
         InitLevel();
+    }
+
+    public void printDEFRoad(bool isDef)
+    {
+        isDefPrinter.SetInt("_isAttacking", isDef ? 0 : 1);
     }
 }

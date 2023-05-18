@@ -106,7 +106,9 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            tickTimer += Time.deltaTime * tickRate;
+            float value = Time.deltaTime * tickRate;
+            tickTimer += value;
+            GameLoopManager.instance.AddTickCount(value);
         }
     }
 
@@ -116,5 +118,8 @@ public class GameManager : MonoBehaviour
         CalculateTickRate();
     }
 
-    void CalculateTickRate() => tickRate = BPM / 60f;
+    void CalculateTickRate()
+    {
+       tickRate = BPM / 60f;
+    }
 }

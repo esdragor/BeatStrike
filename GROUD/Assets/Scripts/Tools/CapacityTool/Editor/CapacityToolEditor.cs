@@ -285,10 +285,7 @@ public class CapacityToolEditor : SimpleTimeArea
 
          switch ( selectedInteractionKey.interactionType)
          {
-            case Enums.InteractionType.Attack:
-               selectedInteractionKey.interactionColor = (InteractionKey.InteractionColor)EditorGUILayout.EnumPopup("Color", selectedInteractionKey.interactionColor);
-               break;
-            
+
             case Enums.InteractionType.Dodge:
              selectedInteractionKey.swipeDirection = (ScreenListener.SwipeDirection)EditorGUILayout.EnumPopup("Swipe Direction", selectedInteractionKey.swipeDirection);
                break;
@@ -478,9 +475,7 @@ public class CapacityToolEditor : SimpleTimeArea
          switch (iKey.interactionType)
          {
             case Enums.InteractionType.Attack:
-               interactionTexture = iKey.interactionColor == InteractionKey.InteractionColor.Blue
-                  ? interfaceData.blueTapTexture
-                  : interfaceData.redTapTexture;
+               interactionTexture =  interfaceData.redTapTexture;
                lineColor = interfaceData.tapLine;
                break;
             

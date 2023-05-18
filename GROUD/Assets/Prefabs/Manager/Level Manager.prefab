@@ -666,6 +666,16 @@ MonoBehaviour:
   tickCount: 0
   speedRun: 10
   nbMetersToRun: 50
+  ATKPatterns:
+  - {fileID: 11400000, guid: 355fbb8b091656e4b9dffbc8fb3ffcc2, type: 2}
+  - {fileID: 11400000, guid: bf20e0fd2675c1b4e887af5e6ed08d3f, type: 2}
+  - {fileID: 11400000, guid: 6868f9b6b8201554a810d4a0342bbae0, type: 2}
+  DEFPatterns:
+  - {fileID: 11400000, guid: eb70883de4bb4f144b0eeb59f28e002a, type: 2}
+  - {fileID: 11400000, guid: f2496f88f6384f740a7d5fb162ac4a66, type: 2}
+  - {fileID: 11400000, guid: 025709cca8f4382438585af5ec78233f, type: 2}
+  percentageDEF: 70
+  isDefPrinter: {fileID: 2100000, guid: f9348b4d88fdba14eb20439778ff22cf, type: 2}
 --- !u!114 &256895309846087106
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2192,6 +2202,31 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 0.69
+      objectReference: {fileID: 0}
+    - target: {fileID: 1706113167431839765, guid: 448be969d1df1c14eacf7538631c5300,
+        type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6074648948591768944, guid: 448be969d1df1c14eacf7538631c5300,
+        type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7167676640473848024, guid: 448be969d1df1c14eacf7538631c5300,
+        type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8440628200103241746, guid: 448be969d1df1c14eacf7538631c5300,
+        type: 3}
+      propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8440628200103241746, guid: 448be969d1df1c14eacf7538631c5300,
+        type: 3}
+      propertyPath: playOnAwake
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 448be969d1df1c14eacf7538631c5300, type: 3}
