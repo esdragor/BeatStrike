@@ -2,6 +2,7 @@ using System;
 using System.Globalization;
 using UnityEngine;
 using Utilities;
+using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,6 +12,9 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     public static Delegates.OnUpdated onUpdated;
     public static Action OnTick;
+    
+    [SerializeField] private int[] listOfBPM = {60, 120, 180, 240, 300};
+    
     private float tickRate;
     private float tickTimer;
     private float BPM = 60;
@@ -50,6 +54,7 @@ public class GameManager : MonoBehaviour
     {
         actualPalier += indexPalier;
         PlayerPrefs.SetInt("Palier", actualPalier);
+        BPM = listOfBPM[Random.Range(0, listOfBPM.Length)];
     }
 
     private void Awake()
