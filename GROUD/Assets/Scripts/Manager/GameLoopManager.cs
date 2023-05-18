@@ -7,30 +7,29 @@ using Utilities;
 public class GameLoopManager : MonoBehaviour
 {
     public static GameLoopManager instance;
-    
+
     public static PatternManager patternManager;
     public static InteractionPool interactionPool;
     public static CombatManager combatManager;
     public static ExplorationManager explorationManager;
 
     public GameObject[] chunks;
-    
+
     public LevelData levelData;
     public LevelHeader currentChunk;
-    
-    [Header("Interaction")]
-    public Transform midSpawnPoint;
+
+    [Header("Interaction")] public Transform midSpawnPoint;
     public Transform interactionParent;
     public InteractionDetector detector;
     public GameObject interactionPrefab;
-    
-    [Header("EndLevel")]
-    public int tickCount;
+
+    [Header("EndLevel")] public int tickCount;
     [SerializeField] private float speedRun = 10f;
     [SerializeField] private float nbMetersToRun = 10f;
-    
+
     private GameObject currentChunck;
     private GameObject nextChunck;
+    private int index = -1;
 
     private void Awake()
     {
@@ -41,13 +40,13 @@ public class GameLoopManager : MonoBehaviour
         combatManager = new CombatManager();
         explorationManager = new ExplorationManager();
 
-        GameObject rndChunk = chunks[Random.Range(0, chunks.Length-1)];
+        GameObject rndChunk = chunks[0];
         currentChunck = Instantiate(rndChunk);
-        
+
         GameManager.OnTick += (() => tickCount++);
-       // GameManager.OnTick += () => bpmVisual.Play();
+        // GameManager.OnTick += () => bpmVisual.Play();
     }
-    
+
     public void InitLevel()
     {
         combatManager.PreloadCombat(levelData.enemy);
@@ -61,7 +60,7 @@ public class GameLoopManager : MonoBehaviour
     private void PlayPattern()
     {
         tickCount = 0;
-        
+
         combatManager.InitCombat();
     }
 
@@ -70,29 +69,28 @@ public class GameLoopManager : MonoBehaviour
         GameManager.gameState.SwitchTimeState(Enums.TimeState.Pause);
         GameManager.gameState.SwitchEngineState(Enums.EngineState.Menu);
         UIManager.instance.endLevel.DrawPanel();
-        
+
         patternManager.EndPattern();
-        
     }
 
     public IEnumerator MoveChunck()
     {
         Transform chunckTr = currentChunck.transform;
         nextChunck.transform.position = chunckTr.position + Vector3.forward * nbMetersToRun;
-        
+
         Vector3 chunchPos = chunckTr.position - Vector3.forward * nbMetersToRun;
-        
+
         while ((chunckTr) && chunckTr.position.z > chunchPos.z)
         {
             currentChunck.transform.position -= Vector3.forward * Time.deltaTime * speedRun;
             nextChunck.transform.position -= Vector3.forward * Time.deltaTime * speedRun;
             yield return new WaitForEndOfFrame();
         }
-        
-        
+
+
         Destroy(currentChunck);
         currentChunck = nextChunck;
-        
+
         if (currentChunk != null)
         {
             levelData = currentChunk.data;
@@ -116,8 +114,18 @@ public class GameLoopManager : MonoBehaviour
 
         interactionPool.DisableAllInteractions();
 
-        nextChunck = Instantiate(chunks[Random.Range(0, chunks.Length-1)]);
-        
+        index++;
+        int indexrdn = (index + chunks.Length < combatManager.GetIndexPalier())
+            ? 0
+            : index + chunks.Length - combatManager.GetIndexPalier();
+        if (indexrdn >= chunks.Length)
+        {
+            indexrdn = 0;
+            index = -1;
+        }
+
+        nextChunck = Instantiate(chunks[indexrdn]);
+
         StartCoroutine(MoveChunck());
     }
 
@@ -133,7 +141,7 @@ public class GameLoopManager : MonoBehaviour
 
         StreakManager.ResetStreak();
         ScoreManager.ResetScore();
-        
+
         InitLevel();
     }
 }

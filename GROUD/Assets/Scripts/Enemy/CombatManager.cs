@@ -33,6 +33,11 @@ public class CombatManager
         currentEnemyObj.transform.position = GameLoopManager.instance.currentChunk.enemySpawnPoint.position;
     }
     
+    public int GetIndexPalier()
+    {
+        return indexPalier;
+    }
+
     public void InitCombat()
     {
         UIManager.instance.enemy.EnableEnemyHealth(true);
@@ -67,7 +72,6 @@ public class CombatManager
         
         GameLoopManager.instance.NextChunk();
         
-        //GameLoopManager.instance.EndLevel();
     }
 
     public float getAttackData()

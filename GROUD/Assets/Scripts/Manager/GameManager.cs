@@ -76,6 +76,11 @@ public class GameManager : MonoBehaviour
     {
         return (actualPalier > 0) ? actualPalier.ToString() : "1";
     }
+    
+    public int GetPalier()
+    {
+        return actualPalier;
+    }
 
     private void Start()
     {
