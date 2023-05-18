@@ -26,6 +26,7 @@ public class GameLoopManager : MonoBehaviour
     [Header("EndLevel")] public float tickCount;
     [SerializeField] private float speedRun = 10f;
     [SerializeField] private float nbMetersToRun = 10f;
+    [SerializeField] private InputManager inputManager;
 
     [Header("Pattern")] [SerializeField] private List<Pattern> ATKPatterns;
     [SerializeField] private List<Pattern> DEFPatterns;
@@ -153,6 +154,7 @@ public class GameLoopManager : MonoBehaviour
         ScoreManager.ResetScore();
 
         InitLevel();
+        inputManager.gameObject.SetActive(true);
     }
 
     public void printDEFRoad(bool isDef)

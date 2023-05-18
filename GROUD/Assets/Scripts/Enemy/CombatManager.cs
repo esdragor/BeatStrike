@@ -1,11 +1,12 @@
+using UnityEditor;
 using UnityEngine;
 
 public class CombatManager
 {
     public EnemyVFX enemyVFX;
-    
+
     [SerializeField] private int indexPalier = 10;
-    
+
     private float currentHealth;
     private float maxHealth;
     private float damage;
@@ -13,26 +14,27 @@ public class CombatManager
     private EnemySO enemy;
     private GameObject currentEnemyObj;
     private int index = -1;
-    
+
 
     public void PreloadCombat(EnemySO so)
     {
         index++;
-        
+
         if (index > 0 && index % indexPalier == 0) // new Palier
         {
             GameManager.instance.NewPalier(indexPalier);
         }
-        
+
         maxHealth = so.healthPoint * (1 + ((so.statModificatorValuePercentage / 100) * index));
         currentHealth = maxHealth;
         damage = so.damage * (1 + ((so.statModificatorValuePercentage / 100) * index));
         enemy = so;
+        if (currentEnemyObj) Object.Destroy(currentEnemyObj);
         currentEnemyObj = Object.Instantiate(so.visual);
         enemyVFX = currentEnemyObj.GetComponent<EnemyVFX>();
         currentEnemyObj.transform.position = GameLoopManager.instance.currentChunk.enemySpawnPoint.position;
     }
-    
+
     public int GetIndexPalier()
     {
         return indexPalier;
@@ -42,24 +44,24 @@ public class CombatManager
     {
         UIManager.instance.enemy.EnableEnemyHealth(true);
         UIManager.instance.enemy.enemyHealth.SetHealth(currentHealth, maxHealth);
-        
+
         isActive = true;
 
         GameLoopManager.instance.printDEFRoad(GameLoopManager.patternManager.StartPattern());
     }
-    
+
     public void DealDamage(float amount)
     {
         if (isActive)
         {
             currentHealth -= amount;
-            
+
             if (currentHealth <= 0)
             {
                 Death();
             }
         }
-        
+
         UIManager.instance.enemy.enemyHealth.SetHealth(currentHealth, maxHealth);
     }
 
@@ -67,11 +69,10 @@ public class CombatManager
     {
         UIManager.instance.enemy.EnableEnemyHealth(false);
         Object.Destroy(currentEnemyObj);
-        
+
         isActive = false;
-        
+
         GameLoopManager.instance.NextChunk();
-        
     }
 
     public float getAttackData()
