@@ -98,7 +98,7 @@ public class GameLoopManager : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
 
-
+        PlayerManager.instance.animator.SetBool("isRunning", false);
         Destroy(currentChunck);
         currentChunck = nextChunck;
 
@@ -119,6 +119,7 @@ public class GameLoopManager : MonoBehaviour
 
     public void NextChunk()
     {
+        PlayerManager.instance.animator.SetBool("isRunning", true);
         GameManager.gameState.SwitchTimeState(Enums.TimeState.Pause);
 
         patternManager.StopPattern();
