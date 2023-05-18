@@ -30,6 +30,7 @@ public class CombatManager
         enemy = so;
         currentEnemyObj = Object.Instantiate(so.visual);
         enemyVFX = currentEnemyObj.GetComponent<EnemyVFX>();
+        currentEnemyObj.transform.position = GameLoopManager.instance.currentChunk.enemySpawnPoint.position;
     }
     
     public void InitCombat()
