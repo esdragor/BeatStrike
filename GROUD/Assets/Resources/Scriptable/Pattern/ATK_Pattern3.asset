@@ -1,0 +1,90 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1123186ad1b5d0a459852f617a76093c, type: 3}
+  m_Name: ATK_Pattern3
+  m_EditorClassIdentifier: 
+  patternName: ATK_Pattern3
+  targetLevel: 0
+  difficultyIndex: 0
+  maxTime: 10
+  BPM: 160
+  interactions:
+  - time: 0
+    row: 1
+    timeCode: 0
+    frame: 0
+    interactionType: 0
+    swipeDirection: 0
+    interactionColor: 1
+  - time: 0.375
+    row: 1
+    timeCode: 0.375
+    frame: 0.375
+    interactionType: 0
+    swipeDirection: 0
+    interactionColor: 1
+  - time: 0.75
+    row: 1
+    timeCode: 0.75
+    frame: 0.75
+    interactionType: 0
+    swipeDirection: 0
+    interactionColor: 1
+  - time: 2.25
+    row: 1
+    timeCode: 2.25
+    frame: 2.25
+    interactionType: 0
+    swipeDirection: 0
+    interactionColor: 1
+  - time: 3
+    row: 1
+    timeCode: 3
+    frame: 3
+    interactionType: 0
+    swipeDirection: 0
+    interactionColor: 1
+  - time: 4.875
+    row: 1
+    timeCode: 4.875
+    frame: 4.875
+    interactionType: 0
+    swipeDirection: 0
+    interactionColor: 1
+  - time: 5.25
+    row: 1
+    timeCode: 5.25
+    frame: 5.25
+    interactionType: 0
+    swipeDirection: 0
+    interactionColor: 1
+  - time: 5.625
+    row: 1
+    timeCode: 5.625
+    frame: 5.625
+    interactionType: 0
+    swipeDirection: 0
+    interactionColor: 1
+  - time: 7.125
+    row: 1
+    timeCode: 7.125
+    frame: 7.125
+    interactionType: 0
+    swipeDirection: 0
+    interactionColor: 1
+  - time: 7.875
+    row: 1
+    timeCode: 7.875
+    frame: 7.875
+    interactionType: 0
+    swipeDirection: 0
+    interactionColor: 1
