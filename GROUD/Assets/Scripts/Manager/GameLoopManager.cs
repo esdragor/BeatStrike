@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Utilities;
 
 public class GameLoopManager : MonoBehaviour
@@ -15,8 +16,7 @@ public class GameLoopManager : MonoBehaviour
 
     public GameObject[] chunks;
 
-    public LevelData levelData;
-    public LevelHeader currentChunk;
+    [FormerlySerializedAs("currentChunk")] public LevelHeader currentChunkLevelHeader;
 
     [Header("Interaction")] public Transform midSpawnPoint;
     public Transform interactionParent;
@@ -49,7 +49,7 @@ public class GameLoopManager : MonoBehaviour
 
         GameObject rndChunk = chunks[0];
         currentChunck = Instantiate(rndChunk);
-
+        currentChunkLevelHeader = currentChunck.GetComponent<LevelHeader>();
         isMoving = false;
     }
 
@@ -60,16 +60,22 @@ public class GameLoopManager : MonoBehaviour
     
     public void InitLevel()
     {
-        combatManager.PreloadCombat(levelData.enemy);
+        combatManager.PreloadCombat();
         PowerManager.AssignNewPower();
         GameManager.gameState.SwitchEngineState(Enums.EngineState.Game);
         GameManager.gameState.SwitchTimeState(Enums.TimeState.Play);
         PlayerManager.instance.SetPlayer();
-        PlayPattern();
+       GameManager.instance.SetRandomBPM();
+       PlayPattern();
     }
 
-    private void PlayPattern()
+    private async void PlayPattern()
     {
+        while (GameManager.instance.bpmIsRandoming)
+        {
+            await Task.Delay(100);
+        }
+        
         tickCount = 0;
         Debug.Log("PlayPattern");
 
@@ -101,11 +107,11 @@ public class GameLoopManager : MonoBehaviour
         PlayerManager.instance.animator.SetBool("isRunning", false);
         Destroy(currentChunck);
         currentChunck = nextChunck;
+        currentChunkLevelHeader = currentChunck.GetComponent<LevelHeader>();
 
-        if (currentChunk != null)
+        if (currentChunkLevelHeader != null)
         {
-            levelData = currentChunk.data;
-            combatManager.PreloadCombat(levelData.enemy);
+            combatManager.PreloadCombat();
             GameManager.gameState.SwitchEngineState(Enums.EngineState.Game);
             GameManager.gameState.SwitchTimeState(Enums.TimeState.Play);
             //PlayerManager.instance.SetPlayer();
@@ -144,10 +150,9 @@ public class GameLoopManager : MonoBehaviour
     {
         interactionPool.DisableAllInteractions();
 
-        if (currentChunk != null)
+        if (currentChunkLevelHeader != null)
         {
-            levelData = currentChunk.data;
-            combatManager.PreloadCombat(levelData.enemy);
+            combatManager.PreloadCombat();
         }
 
         StreakManager.ResetStreak();

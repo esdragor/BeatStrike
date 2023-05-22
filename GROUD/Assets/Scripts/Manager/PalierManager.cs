@@ -4,6 +4,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
+public struct EnemyData
+{
+    public EnemySO enemy;
+    public Material mat;
+}
 
 public class PalierManager : MonoBehaviour
 {
@@ -39,8 +44,7 @@ public class PalierManager : MonoBehaviour
         instance.indexEnemy++;
         if (instance.indexEnemy >= instance.palierPrefabEnemies.Length)
             instance.indexEnemy = 0;
-        
-        UIManager.instance.announcer.Announce($"PALIER {instance.actualPalier}-{instance.indexEnemy + 1}", Color.white);
+        GameManager.instance.SetRandomBPM();
     }
     
     public static int GetIndexPalier()
@@ -48,12 +52,17 @@ public class PalierManager : MonoBehaviour
         return instance.indexPalier;
     }
     
-    public static GameObject GetEnemy()
+    public static int GetActualPalier()
     {
-        EnemySO enemy = instance.palierPrefabEnemies[instance.indexEnemy];
-        GameObject go = Instantiate(enemy.visual);
-        go.GetComponent<Renderer>().material = enemy.material[Random.Range(0, enemy.material.Length)];
+        return instance.actualPalier;
+    }
+    
+    public static EnemyData GetEnemy()
+    {
+        EnemyData data = new EnemyData();
+        data.enemy = instance.palierPrefabEnemies[instance.indexEnemy];
+        data.mat = data.enemy.material[Random.Range(0, data.enemy.material.Length)];
         
-        return go;
+        return data;
     }
 }

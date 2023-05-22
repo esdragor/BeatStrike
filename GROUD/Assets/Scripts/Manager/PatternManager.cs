@@ -26,7 +26,6 @@ public class PatternManager
     {
         if (isTimelineActive) return false;
 
-        Debug.Log("StartPattern");
         List<Pattern> pList = null;
 
         int rnd = UnityEngine.Random.Range(0, 100);
@@ -43,7 +42,7 @@ public class PatternManager
 
         Pattern p = pList[UnityEngine.Random.Range(0, pList.Count)];
 
-        GameManager.instance.SetBPM(p.BPM);
+        //GameManager.instance.SetBPM(p.BPM);
 
         InitializeQueue(p.interactions);
 
@@ -79,7 +78,6 @@ public class PatternManager
             if (abs < 0f) abs = 0f;
             if (abs < 0.1f)
             {
-                Debug.Log(timelineRunnerKeys.Peek().frame + " | " + GameLoopManager.instance.tickCount);
                 DrawInteractionOnScreen(timelineRunnerKeys.Dequeue());
             }
         }
@@ -91,7 +89,6 @@ public class PatternManager
 
     public void StopPattern()
     {
-        Debug.Log("StopPattern");
         GameLoopManager.interactionPool.DisableAllInteractions();
         EndPattern(false);
     }
@@ -99,7 +96,6 @@ public class PatternManager
 
     public async void EndPattern(bool EndPattern = true)
     {
-        Debug.Log("EndPattern");
         isTimelineActive = false;
         GameManager.onUpdated = null;
         await Task.Delay(1000);
