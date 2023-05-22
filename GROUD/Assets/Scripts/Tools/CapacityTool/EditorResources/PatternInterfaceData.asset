@@ -59,10 +59,13 @@ MonoBehaviour:
   lineThickness: 2
   interactionIconWidth: 30
   interactionIconHeight: 30
-  blueTapTexture: {fileID: 2800000, guid: 169aa1fc74bb3f34d9c9188597857462, type: 3}
-  redTapTexture: {fileID: 2800000, guid: a78d32301b6907d4cbe6583259d7e89d, type: 3}
+  attackIcon: {fileID: 2800000, guid: 42a555b1321f13545a707386b902f07a, type: 3}
+  leftIcon: {fileID: 2800000, guid: 71a9be4656caa024a870fddc88ff771b, type: 3}
+  rightIcon: {fileID: 2800000, guid: 4fb0d7af59563f74e8c77981b28ee65a, type: 3}
+  upIcon: {fileID: 2800000, guid: 7ca0253ab051a884ebb203febdddee30, type: 3}
+  downIcon: {fileID: 2800000, guid: e112d58d076726f48900386a6424a967, type: 3}
+  defaultIcon: {fileID: 2800000, guid: 32b82e16085879540b6360428c23cc33, type: 3}
   tapLine: {r: 0.22694907, g: 0.37108627, b: 0.9433962, a: 0.5686275}
-  swipeTexture: {fileID: 2800000, guid: 97e83192e6434444db4fbf8118f0b3a3, type: 3}
   swipeLine: {r: 0, g: 0, b: 0, a: 0}
   swipeLineThickness: 0
   buttonIconHeight: 32

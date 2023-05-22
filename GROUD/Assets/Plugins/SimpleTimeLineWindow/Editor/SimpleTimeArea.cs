@@ -412,7 +412,7 @@ namespace DMTimeArea
                 new Vector3(timeToPos - _rectTimeAreaRuler.x, this.position.height - timeRulerHeight - ARROW_WIDTH * 2 + 16));
 
             Rect cutOffRect = new Rect(-ARROW_WIDTH + timeToPos - _rectTimeAreaRuler.x, base.position.height - ARROW_WIDTH * 2 * 1.82f - toolbarHeight, ARROW_WIDTH * 2, ARROW_WIDTH * 2 * 1.82f);
-            GUI.DrawTexture(cutOffRect, ResManager.CutOffGuideLineTexture);
+//            GUI.DrawTexture(cutOffRect, ResManager.CutOffGuideLineTexture);
             GUI.color = cl01;
             GUILayout.EndArea();
 

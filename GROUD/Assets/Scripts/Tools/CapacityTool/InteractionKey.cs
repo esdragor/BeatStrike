@@ -11,12 +11,13 @@ using Utilities;
     public Enums.InteractionType interactionType;
     public ScreenListener.SwipeDirection swipeDirection;
 
-    public InteractionKey(int row, float time, string timeCode, Enums.InteractionType keyType)
+    public InteractionKey(int row, float time, string timeCode, Enums.InteractionType keyType, ScreenListener.SwipeDirection swipeDirection = ScreenListener.SwipeDirection.NULL)
     {
         this.row = row;
         interactionType = keyType;
         this.timeCode = timeCode;
         this.time = time;
+        this.swipeDirection = swipeDirection;
     }
 
     public enum InteractionColor

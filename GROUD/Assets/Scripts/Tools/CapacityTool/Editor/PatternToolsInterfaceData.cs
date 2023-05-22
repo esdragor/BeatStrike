@@ -22,10 +22,14 @@ public class PatternToolsInterfaceData : ScriptableObject
     public float lineThickness;
     public float interactionIconWidth = 30f;
     public float interactionIconHeight = 30f;
-    public Texture blueTapTexture;
-    public Texture redTapTexture;
+    public Texture attackIcon;
+    public Texture leftIcon;
+    public Texture rightIcon;
+    public Texture upIcon;
+    public Texture downIcon;
+    public Texture defaultIcon;
+
     public Color tapLine;
-    public Texture swipeTexture;
     public Color swipeLine;
     public float swipeLineThickness;
 

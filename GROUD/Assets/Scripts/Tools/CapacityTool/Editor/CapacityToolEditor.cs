@@ -90,8 +90,6 @@ public class CapacityToolEditor : SimpleTimeArea
    public static void InitWindow()
    {
       var window = GetWindow<CapacityToolEditor>(false, "Capacity Tool Editor");
-      window.minSize = new Vector2(1170f, 760f);
-      window.maxSize = new Vector2(1170f, 760f);
       window.Show();
    }
 
@@ -231,26 +229,31 @@ public class CapacityToolEditor : SimpleTimeArea
 
       GUILayout.BeginHorizontal();
       
-      if (GUILayout.Button("Add Tap On Top Timeline"))
+      if (GUILayout.Button("Add Attack Interaction"))
       {
          AddKeyOnTimeline(0, 0, Enums.InteractionType.Attack);
-      }
-      if (GUILayout.Button("Add Tap On Bot Timeline"))
-      {
-         AddKeyOnTimeline(1, 0, Enums.InteractionType.Attack);
       }
       
       GUILayout.EndHorizontal();
       
       GUILayout.BeginHorizontal();
       
-      if (GUILayout.Button("Add Slide On Top Timeline"))
+      if (GUILayout.Button("Add Up Dodge Interaction"))
       {
-         AddKeyOnTimeline(0, 0, Enums.InteractionType.Dodge);
+         AddKeyOnTimeline(0, 0, Enums.InteractionType.Dodge, ScreenListener.SwipeDirection.UP);
       }
-      if (GUILayout.Button("Add Slide On Bot Timeline"))
+      if (GUILayout.Button("Add Down Dodge Interaction"))
       {
-         AddKeyOnTimeline(1, 0, Enums.InteractionType.Dodge);
+         AddKeyOnTimeline(1, 0, Enums.InteractionType.Dodge, ScreenListener.SwipeDirection.DOWN);
+      }
+      
+      if (GUILayout.Button("Add Left Dodge Interaction"))
+      {
+         AddKeyOnTimeline(1, 0, Enums.InteractionType.Dodge, ScreenListener.SwipeDirection.LEFT);
+      }
+      if (GUILayout.Button("Add Right Dodge Interaction"))
+      {
+         AddKeyOnTimeline(1, 0, Enums.InteractionType.Dodge, ScreenListener.SwipeDirection.RIGHT);
       }
       
       GUILayout.EndHorizontal();
@@ -278,7 +281,7 @@ public class CapacityToolEditor : SimpleTimeArea
       if (selectedInteractionKey != null)
       {
          selectedInteractionKey.timeCode = TimeAsString(selectedInteractionKey.time);
-         EditorGUILayout.LabelField($"Time Code : {selectedInteractionKey.timeCode}");
+        // EditorGUILayout.LabelField($"Time Code : {selectedInteractionKey.timeCode}");
          selectedInteractionKey.frame = (float)Convert.ToDouble(selectedInteractionKey.timeCode);
          EditorGUILayout.LabelField($"Frame : {selectedInteractionKey.frame}");
          selectedInteractionKey.time = EditorGUILayout.Slider((float)selectedInteractionKey.time, 0f, (float)currentPattern.maxTime);
@@ -286,7 +289,6 @@ public class CapacityToolEditor : SimpleTimeArea
 
          switch ( selectedInteractionKey.interactionType)
          {
-
             case Enums.InteractionType.Dodge:
              selectedInteractionKey.swipeDirection = (ScreenListener.SwipeDirection)EditorGUILayout.EnumPopup("Swipe Direction", selectedInteractionKey.swipeDirection);
                break;
@@ -348,8 +350,12 @@ public class CapacityToolEditor : SimpleTimeArea
          GenericMenu menu = new GenericMenu();
       
          menu.AddDisabledItem(new GUIContent("Timeline Actions List")); 
-         menu.AddItem(new GUIContent("Add a red tap."), false, MenuAddKeyOnTimeline(1, (float)GetSnappedTimeAtMousePosition(mousePositionWhenClick), Enums.InteractionType.Attack));
-         menu.AddItem(new GUIContent("Add a slide."), false, MenuAddKeyOnTimeline(1, (float)GetSnappedTimeAtMousePosition(mousePositionWhenClick), Enums.InteractionType.Dodge));
+         menu.AddItem(new GUIContent("Add Attack."), false, MenuAddKeyOnTimeline(1, (float)GetSnappedTimeAtMousePosition(mousePositionWhenClick), Enums.InteractionType.Attack));
+         menu.AddItem(new GUIContent("Add Up Dodge."), false, MenuAddKeyOnTimeline(1, (float)GetSnappedTimeAtMousePosition(mousePositionWhenClick), Enums.InteractionType.Dodge, ScreenListener.SwipeDirection.UP));
+         menu.AddItem(new GUIContent("Add Down Dodge."), false, MenuAddKeyOnTimeline(1, (float)GetSnappedTimeAtMousePosition(mousePositionWhenClick), Enums.InteractionType.Dodge, ScreenListener.SwipeDirection.DOWN));
+         menu.AddItem(new GUIContent("Add Right Dodge."), false, MenuAddKeyOnTimeline(1, (float)GetSnappedTimeAtMousePosition(mousePositionWhenClick), Enums.InteractionType.Dodge, ScreenListener.SwipeDirection.RIGHT));
+         menu.AddItem(new GUIContent("Add Left Dodge."), false, MenuAddKeyOnTimeline(1, (float)GetSnappedTimeAtMousePosition(mousePositionWhenClick), Enums.InteractionType.Dodge, ScreenListener.SwipeDirection.LEFT));
+
          menu.ShowAsContext();
       
          eventListener.Use();
@@ -361,8 +367,12 @@ public class CapacityToolEditor : SimpleTimeArea
          GenericMenu menu = new GenericMenu();
       
          menu.AddDisabledItem(new GUIContent("Timeline Actions List")); 
-         menu.AddItem(new GUIContent("Add a blue tap."), false, MenuAddKeyOnTimeline(0, (float)GetSnappedTimeAtMousePosition(mousePositionWhenClick), Enums.InteractionType.Attack));
-         menu.AddItem(new GUIContent("Add a slide."), false, MenuAddKeyOnTimeline(0, (float)GetSnappedTimeAtMousePosition(mousePositionWhenClick), Enums.InteractionType.Dodge));
+         menu.AddItem(new GUIContent("Add Attack."), false, MenuAddKeyOnTimeline(1, (float)GetSnappedTimeAtMousePosition(mousePositionWhenClick), Enums.InteractionType.Attack));
+         menu.AddItem(new GUIContent("Add Up Dodge."), false, MenuAddKeyOnTimeline(1, (float)GetSnappedTimeAtMousePosition(mousePositionWhenClick), Enums.InteractionType.Dodge, ScreenListener.SwipeDirection.UP));
+         menu.AddItem(new GUIContent("Add Down Dodge."), false, MenuAddKeyOnTimeline(1, (float)GetSnappedTimeAtMousePosition(mousePositionWhenClick), Enums.InteractionType.Dodge, ScreenListener.SwipeDirection.DOWN));
+         menu.AddItem(new GUIContent("Add Right Dodge."), false, MenuAddKeyOnTimeline(1, (float)GetSnappedTimeAtMousePosition(mousePositionWhenClick), Enums.InteractionType.Dodge, ScreenListener.SwipeDirection.RIGHT));
+         menu.AddItem(new GUIContent("Add Left Dodge."), false, MenuAddKeyOnTimeline(1, (float)GetSnappedTimeAtMousePosition(mousePositionWhenClick), Enums.InteractionType.Dodge, ScreenListener.SwipeDirection.LEFT));
+
          menu.ShowAsContext();
       
          eventListener.Use();
@@ -471,12 +481,33 @@ public class CapacityToolEditor : SimpleTimeArea
          switch (iKey.interactionType)
          {
             case Enums.InteractionType.Attack:
-               interactionTexture =  interfaceData.redTapTexture;
+               interactionTexture =  interfaceData.attackIcon;
                lineColor = interfaceData.tapLine;
                break;
             
             case Enums.InteractionType.Dodge:
-               interactionTexture = interfaceData.swipeTexture;
+               switch (iKey.swipeDirection)
+               {
+                  case ScreenListener.SwipeDirection.UP:
+                     interactionTexture =  interfaceData.upIcon;
+                     break;
+                  
+                  case ScreenListener.SwipeDirection.DOWN:
+                     interactionTexture =  interfaceData.downIcon;
+                     break;
+                  
+                  case ScreenListener.SwipeDirection.LEFT:
+                     interactionTexture =  interfaceData.leftIcon;
+                     break;
+                  
+                  case ScreenListener.SwipeDirection.RIGHT:
+                     interactionTexture =  interfaceData.rightIcon;
+                     break;
+                  
+                  case ScreenListener.SwipeDirection.NULL:
+                     interactionTexture =  interfaceData.defaultIcon;
+                     break;
+               }
                lineColor = interfaceData.swipeLine;
                break;
          }
@@ -632,14 +663,14 @@ public class CapacityToolEditor : SimpleTimeArea
    
    #region Timeline Options
 
-   private GenericMenu.MenuFunction MenuAddKeyOnTimeline(int rowToAdd, float timeCode, Enums.InteractionType interactionType)
+   private GenericMenu.MenuFunction MenuAddKeyOnTimeline(int rowToAdd, float timeCode, Enums.InteractionType interactionType, ScreenListener.SwipeDirection swipeDirection = ScreenListener.SwipeDirection.NULL)
    {
-      return () => AddKeyOnTimeline(rowToAdd, timeCode, interactionType);
+      return () => AddKeyOnTimeline(rowToAdd, timeCode, interactionType, swipeDirection);
    }
 
-   private void AddKeyOnTimeline(int rowToAdd, float timeCode, Enums.InteractionType interactionType)
+   private void AddKeyOnTimeline(int rowToAdd, float timeCode, Enums.InteractionType interactionType, ScreenListener.SwipeDirection swipeDirection = ScreenListener.SwipeDirection.NULL)
    {
-      currentPattern.interactions.Add(new InteractionKey(rowToAdd, timeCode,TimeAsString(timeCode, "F2"), interactionType));
+      currentPattern.interactions.Add(new InteractionKey(rowToAdd, timeCode,TimeAsString(timeCode, "F2"), interactionType, swipeDirection));
       SavePattern();
    }
 
