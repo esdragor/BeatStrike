@@ -108,7 +108,7 @@ public class GameLoopManager : MonoBehaviour
             combatManager.PreloadCombat(levelData.enemy);
             GameManager.gameState.SwitchEngineState(Enums.EngineState.Game);
             GameManager.gameState.SwitchTimeState(Enums.TimeState.Play);
-            PlayerManager.instance.SetPlayer();
+            //PlayerManager.instance.SetPlayer();
             isMoving = false;
             PlayPattern();
         }
