@@ -26,6 +26,7 @@ public class PatternManager
     public bool StartPattern()
     {
         if (isTimelineActive) return false;
+        StopPattern(false);
 
         List<Pattern> pList = null;
 
