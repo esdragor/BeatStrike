@@ -695,7 +695,7 @@ PrefabInstance:
         type: 3}
       propertyPath: announcer
       value: 
-      objectReference: {fileID: 2135148698}
+      objectReference: {fileID: 1281537157}
     - target: {fileID: 7644764176504332825, guid: df8729ef23a6e534e8ae7fcd598e5d00,
         type: 3}
       propertyPath: m_Layer
@@ -814,6 +814,18 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 7984483343927096530, guid: df8729ef23a6e534e8ae7fcd598e5d00, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: df8729ef23a6e534e8ae7fcd598e5d00, type: 3}
+--- !u!114 &1281537157 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3119577120920837929, guid: df8729ef23a6e534e8ae7fcd598e5d00,
+    type: 3}
+  m_PrefabInstance: {fileID: 1045646032}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20ebc001a74b46646984eef7aa86ac8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1903983757
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -839,7 +851,7 @@ PrefabInstance:
     - target: {fileID: 256895309846087104, guid: 93042f802927c1e4db9ae495068681bb,
         type: 3}
       propertyPath: percentageDEF
-      value: 20
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 256895309846087105, guid: 93042f802927c1e4db9ae495068681bb,
         type: 3}
@@ -938,17 +950,5 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &2135148698 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2518999283415675695, guid: df8729ef23a6e534e8ae7fcd598e5d00,
-    type: 3}
-  m_PrefabInstance: {fileID: 1045646032}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20ebc001a74b46646984eef7aa86ac8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

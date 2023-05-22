@@ -1,4 +1,6 @@
+using UnityEngine;
+
 public class KeyClass
 {
-    public double time;
+    [HideInInspector] public double time;
 }
