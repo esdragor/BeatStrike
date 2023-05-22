@@ -1,8 +1,5 @@
-using System;
-using System.Threading.Tasks;
-using Code.Player;
-using UnityEngine;
 
+using System;
 [Serializable]
 /*public class JustPerfect : Power
 {

@@ -61,9 +61,9 @@ namespace Code.Player
             return remainingCombo;
         }
 
-        public void OnUnsuccess()
+        private void OnUnsuccess()
         {
-            Debug.Log("Combo failed");
+            // yes
         }
 
         public InteractionSuccess Execute(ScreenListener.SwipeDirection currentSwipeDirection)

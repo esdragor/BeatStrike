@@ -4,7 +4,7 @@ using UnityEngine;
 public class EnemySO : ScriptableObject
 {
     public GameObject visual;
-    public Pattern patternSO;
+    public Material[] material;
     [Header("Stats")]
     public float healthPoint;
     public float damage;

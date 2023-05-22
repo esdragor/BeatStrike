@@ -71,6 +71,7 @@ public class GameLoopManager : MonoBehaviour
     private void PlayPattern()
     {
         tickCount = 0;
+        Debug.Log("PlayPattern");
 
         combatManager.InitCombat();
     }
@@ -80,8 +81,7 @@ public class GameLoopManager : MonoBehaviour
         GameManager.gameState.SwitchTimeState(Enums.TimeState.Pause);
         GameManager.gameState.SwitchEngineState(Enums.EngineState.Menu);
         UIManager.instance.endLevel.DrawPanel();
-
-        patternManager.EndPattern();
+        patternManager.StopPattern();
     }
 
     public IEnumerator MoveChunck()
@@ -122,10 +122,7 @@ public class GameLoopManager : MonoBehaviour
         PlayerManager.instance.animator.SetBool("isRunning", true);
         GameManager.gameState.SwitchTimeState(Enums.TimeState.Pause);
 
-        patternManager.StopPattern();
-
-        interactionPool.DisableAllInteractions();
-
+        patternManager.StopPattern(false);
         index++;
         int indexrdn = (index + chunks.Length < combatManager.GetIndexPalier())
             ? 0

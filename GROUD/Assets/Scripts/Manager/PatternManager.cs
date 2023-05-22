@@ -81,18 +81,22 @@ public class PatternManager
         }
     }
 
-    public void StopPattern()
+    public void StopPattern(bool end = true)
     {
         isTimelineActive = false;
         GameManager.onUpdated -= TimelineEventListener;
+        GameLoopManager.interactionPool.DisableAllInteractions();
+        EndPattern(end);
     }
 
 
-    public async void EndPattern()
+    public async void EndPattern(bool EndPattern = true)
     {
-        StopPattern();
+        isTimelineActive = false;
+        GameManager.onUpdated -= TimelineEventListener;
         await Task.Delay(1000);
-        GameLoopManager.instance.printDEFRoad(StartPattern());
+        if (EndPattern)
+            GameLoopManager.instance.printDEFRoad(StartPattern());
     }
 
     public void DrawInteractionOnScreen(InteractionKey dataKey)

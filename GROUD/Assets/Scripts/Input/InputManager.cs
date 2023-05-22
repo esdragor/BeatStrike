@@ -44,8 +44,6 @@ public class InputManager : MonoBehaviour
         if (!playerManager) playerManager = PlayerManager.instance;
         if (!playerManager) return;
         
-        Debug.Log(dir);
-        
         switch (dir)
         {
             case ScreenListener.SwipeDirection.UP:
