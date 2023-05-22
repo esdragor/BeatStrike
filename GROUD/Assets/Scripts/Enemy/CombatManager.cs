@@ -5,7 +5,6 @@ public class CombatManager
 {
     public EnemyVFX enemyVFX;
 
-   
 
     private float currentHealth;
     private float maxHealth;
@@ -16,23 +15,40 @@ public class CombatManager
     private int index = -1;
 
 
-    public void PreloadCombat(EnemySO so)
+    public void PreloadCombat()
     {
         index++;
 
-        if (index > 0 && index % PalierManager.GetIndexPalier() == 0) // new Palier
+        if (index > 0 && index % (PalierManager.GetIndexPalier() + 1) == 0) // new Palier
         {
             PalierManager.NewPalier(PalierManager.GetIndexPalier());
         }
 
-        maxHealth = so.healthPoint * (1 + ((so.statModificatorValuePercentage / 100) * index));
+        EnemyData data = PalierManager.GetEnemy();
+
+
+        float newMaxHealth = data.enemy.healthPoint;
+        float newDamage = data.enemy.damage;
+        float indexPalier = PalierManager.GetActualPalier() + index;
+
+        for (int i = 1; i < indexPalier; i++)
+        {
+            newMaxHealth *= (1 + ((data.enemy.statModificatorValuePercentage / 100) * index));
+            newDamage *= (1 + ((data.enemy.statModificatorValuePercentage / 100) * index));
+        }
+        maxHealth = newMaxHealth;
         currentHealth = maxHealth;
-        damage = so.damage * (1 + ((so.statModificatorValuePercentage / 100) * index));
-        enemy = so;
+        damage = newDamage;
+        enemy = data.enemy;
         if (currentEnemyObj) Object.Destroy(currentEnemyObj);
-        currentEnemyObj = Object.Instantiate(so.visual);
+        currentEnemyObj = Object.Instantiate(enemy.visual);
         enemyVFX = currentEnemyObj.GetComponent<EnemyVFX>();
-        currentEnemyObj.transform.position = GameLoopManager.instance.currentChunk.enemySpawnPoint.position;
+        currentEnemyObj.transform.position = GameLoopManager.instance.currentChunkLevelHeader.enemySpawnPoint.position;
+        SkinnedMeshRenderer sk = currentEnemyObj.GetComponent<EnemyPrefab>().SkinnedMeshRenderer;
+        for (int i = 0; i < sk.materials.Length; i++)
+        {
+            sk.materials[i] = data.mat;
+        }
     }
 
     public void InitCombat()

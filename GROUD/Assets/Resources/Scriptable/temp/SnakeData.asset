@@ -10,10 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8a2cd3be39344484885bf5bbac5557e3, type: 3}
-  m_Name: EnemyData
+  m_Name: SnakeData
   m_EditorClassIdentifier: 
   visual: {fileID: 7459506100429359784, guid: 67a98f5a23916504caa204078380fd9e, type: 3}
-  patternSO: {fileID: 11400000, guid: c37c115526a2add4786c61f4494fa09e, type: 2}
+  material:
+  - {fileID: 8748892135801146194, guid: 0ffdf806a359fe54cbe3225fcebbc86c, type: 3}
   healthPoint: 100
   damage: 100
-  statModificatorValuePercentage: 10
+  statModificatorValuePercentage: 1

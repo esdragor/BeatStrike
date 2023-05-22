@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using Utilities;
 
@@ -19,7 +20,7 @@ public class UIManager : MonoBehaviour
     public MainMenuManager mainMenu;
 
     [Header("Objets")] 
-    public GameObject debugPanel;
+    public TMP_Text debugBanditBPM;
     
     private void Awake()
     {

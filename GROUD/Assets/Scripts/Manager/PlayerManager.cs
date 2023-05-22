@@ -83,7 +83,7 @@ public class PlayerManager : MonoBehaviour
         UIManager.instance.score.SetScore((int)distanceReached);
         UIManager.instance.hud.playerHealth.SetHealth(currentHP, MaxHP);
 
-        MovePlayerTo(GameLoopManager.instance.currentChunk.combatPos.position);
+        MovePlayerTo(GameLoopManager.instance.currentChunkLevelHeader.combatPos.position);
     }
 
     private void SetInputComponent(Enums.InteractionType interactionType,

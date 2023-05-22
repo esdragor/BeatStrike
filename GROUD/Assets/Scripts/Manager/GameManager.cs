@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Globalization;
 using UnityEngine;
 using Utilities;
@@ -23,6 +24,7 @@ public class GameManager : MonoBehaviour
     
     public CharacterInfos CharacterInfosPrefab;
     public CharacterInfos currentCharacterInfos;
+    public bool bpmIsRandoming = false;
 
     public float timeToShopReset = 5;
     private string lastDateKey = "LastOperationDate";
@@ -58,7 +60,7 @@ public class GameManager : MonoBehaviour
         databaseManager = new DatabaseManager();
 
         gameState.SwitchEngineState(Enums.EngineState.Menu);
-        CalculateTickRate();
+        SetRandomBPM();
     }
 
     private void Start()
@@ -96,6 +98,36 @@ public class GameManager : MonoBehaviour
     {
         this.BPM = BPM;
         CalculateTickRate();
+    }
+
+    private IEnumerator AnimationBPM()
+    {
+        float nbSecond = 2f;
+        int index = -1;
+        while (nbSecond > 0f)
+        {
+            nbSecond -= Time.deltaTime;
+            
+            index++;
+            if (index >= listOfBPM.Length)
+            {
+                index = 0;
+            }
+            UIManager.instance.debugBanditBPM.text = "BPM : " + listOfBPM[index];
+            yield return new WaitForEndOfFrame();
+        }
+        UIManager.instance.debugBanditBPM.text = "BPM : " + BPM;
+        yield return new WaitForSeconds(2f);
+        UIManager.instance.debugBanditBPM.text = "";
+        bpmIsRandoming = false;
+    }
+
+    public void SetRandomBPM()
+    {
+        bpmIsRandoming = true;
+        int index = Random.Range(0, listOfBPM.Length);
+        StartCoroutine(AnimationBPM());
+        SetBPM(listOfBPM[index]);
     }
 
     void CalculateTickRate()
