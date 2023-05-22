@@ -19,19 +19,30 @@ public class UI_Shop : MonoBehaviour
     [SerializeField] private float mainMenuFadeOutDuration = 1f;
     [SerializeField] private Button exitBtn;
     [SerializeField] private Button openBtn;
+    
     [Header("Currency")] [SerializeField] private TMP_Text textGold;
     [SerializeField] private TMP_Text textKey;
     [SerializeField] private TMP_Text timeToReload;
+    
     [Header("Gear Gold")] [SerializeField] private Transform ParentGoldGear;
     [SerializeField] private GameObject gearPrefabShop;
+    
     [Header("Gear Key")] [SerializeField] private Button commonChest;
     [SerializeField] private Button epicChest;
     [SerializeField] private Transform parentLootGearChest;
     [SerializeField] private int ticketPriceCommon = 1;
     [SerializeField] private int ticketPriceEpic = 5;
+    
+    [Header("PopUp")] [SerializeField] private GameObject PopUp;
+    [SerializeField] private TMP_Text PopUpText1;
+    [SerializeField] private TMP_Text PopUpText2;
+    [SerializeField] private Image PopUpImage;
+    [SerializeField] private Button PopUpButton;
 
     private float decal = 5000f;
     private float timeToReloadValue = -99f;
+    
+    private GearDescription currentGearDescription;
 
     private void Awake()
     {
@@ -50,6 +61,7 @@ public class UI_Shop : MonoBehaviour
 
         commonChest.onClick.AddListener(OpenCommonChest);
         epicChest.onClick.AddListener(OpenEpicChest);
+        currentGearDescription = null;
     }
 
     public void PrintChest(int ID)
@@ -105,6 +117,32 @@ public class UI_Shop : MonoBehaviour
     private void UpdateGoldText(int gold)
     {
         textGold.text = gold.ToString();
+    }
+
+    public static void ShowPopUpBuyItem(GearDescription gd)
+    {
+        instance.currentGearDescription = gd;
+        instance.PopUp.SetActive(true);
+        instance.PopUpText1.text = gd.gear.getStatType(gd.gear.statsType1) + " : " + gd.gear.statsValue1;
+        instance.PopUpText2.text = gd.gear.getStatType(gd.gear.statsType2) + " : " + gd.gear.statsValue2;
+        instance.PopUpImage.sprite = gd.gear.gearSprite;
+        instance.PopUpButton.onClick.RemoveAllListeners();
+        instance.PopUpButton.onClick.AddListener(() => instance.BuyItem());
+    }
+
+    private void BuyItem()
+    {
+        if (currentGearDescription != null)
+        {
+            if (CurrencyManager.GetGold() >= currentGearDescription.gear.priceToBuy)
+            {
+                CurrencyManager.RemoveGold(currentGearDescription.gear.priceToBuy);
+                Inventory.AddItemOnInventory(currentGearDescription.gear.ID);
+                Destroy(currentGearDescription.gameObject);
+                currentGearDescription = null;
+                PopUp.SetActive(false);
+            }
+        }
     }
 
     private void PrintGoldGear()
