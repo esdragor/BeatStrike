@@ -26,7 +26,6 @@ public class GameManager : MonoBehaviour
     public float timeToShopReset = 5;
     private string lastDateKey = "LastOperationDate";
     private DateTime lastDate;
-    private int actualPalier = 0;
 
     public double GetLastShopReload()
     {
@@ -50,13 +49,6 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.Save();
     }
 
-    public void NewPalier(int indexPalier)
-    {
-        actualPalier += indexPalier;
-        PlayerPrefs.SetInt("Palier", actualPalier);
-        BPM = listOfBPM[Random.Range(0, listOfBPM.Length)];
-    }
-
     private void Awake()
     {
         if (instance == null) instance = this;
@@ -65,21 +57,7 @@ public class GameManager : MonoBehaviour
         databaseManager = new DatabaseManager();
 
         gameState.SwitchEngineState(Enums.EngineState.Menu);
-        if (PlayerPrefs.HasKey("Palier"))
-            actualPalier = PlayerPrefs.GetInt("Palier");
-        else
-            actualPalier = 0;
         CalculateTickRate();
-    }
-    
-    public string GetPalierText()
-    {
-        return (actualPalier > 0) ? actualPalier.ToString() : "1";
-    }
-    
-    public int GetPalier()
-    {
-        return actualPalier;
     }
 
     private void Start()

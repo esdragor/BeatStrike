@@ -124,9 +124,9 @@ public class GameLoopManager : MonoBehaviour
 
         patternManager.StopPattern(false);
         index++;
-        int indexrdn = (index + chunks.Length < combatManager.GetIndexPalier())
+        int indexrdn = (index + chunks.Length < PalierManager.GetIndexPalier())
             ? 0
-            : index + chunks.Length - combatManager.GetIndexPalier();
+            : index + chunks.Length - PalierManager.GetIndexPalier();
         if (indexrdn >= chunks.Length)
         {
             indexrdn = 0;

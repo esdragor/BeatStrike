@@ -56,7 +56,7 @@ public class MainMenuManager : MonoBehaviour
     private void UpdatePalierText()
     {
         if (textPalier && GameManager.instance)
-            textPalier.text = "Palier " + GameManager.instance.GetPalierText();
+            textPalier.text = "Palier " + PalierManager.GetPalierText();
     }
 
     public void HideMainMenuPanel()

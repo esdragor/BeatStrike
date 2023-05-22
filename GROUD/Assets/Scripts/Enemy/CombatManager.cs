@@ -5,7 +5,7 @@ public class CombatManager
 {
     public EnemyVFX enemyVFX;
 
-    [SerializeField] private int indexPalier = 10;
+   
 
     private float currentHealth;
     private float maxHealth;
@@ -20,9 +20,9 @@ public class CombatManager
     {
         index++;
 
-        if (index > 0 && index % indexPalier == 0) // new Palier
+        if (index > 0 && index % PalierManager.GetIndexPalier() == 0) // new Palier
         {
-            GameManager.instance.NewPalier(indexPalier);
+            PalierManager.NewPalier(PalierManager.GetIndexPalier());
         }
 
         maxHealth = so.healthPoint * (1 + ((so.statModificatorValuePercentage / 100) * index));
@@ -33,11 +33,6 @@ public class CombatManager
         currentEnemyObj = Object.Instantiate(so.visual);
         enemyVFX = currentEnemyObj.GetComponent<EnemyVFX>();
         currentEnemyObj.transform.position = GameLoopManager.instance.currentChunk.enemySpawnPoint.position;
-    }
-
-    public int GetIndexPalier()
-    {
-        return indexPalier;
     }
 
     public void InitCombat()
