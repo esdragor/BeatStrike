@@ -11,7 +11,6 @@ public class PatternManager
     private bool isTimelineActive;
     private float timer;
     private bool isDebugMultiChannel;
-    private GameObject interaction;
     private List<Pattern> ATKPatterns;
     private List<Pattern> DEFPatterns;
     private int percentageDEF;
@@ -26,8 +25,8 @@ public class PatternManager
     public bool StartPattern()
     {
         if (isTimelineActive) return false;
-        StopPattern(false);
 
+        Debug.Log("StartPattern");
         List<Pattern> pList = null;
 
         int rnd = UnityEngine.Random.Range(0, 100);
@@ -46,7 +45,7 @@ public class PatternManager
 
         timer = 0;
 
-        GameManager.onUpdated += TimelineEventListener;
+        GameManager.onUpdatedFrame = TimelineEventListener;
 
         isTimelineActive = true;
 
@@ -67,42 +66,44 @@ public class PatternManager
 
     private void TimelineEventListener()
     {
+        if (!isTimelineActive) return;
         if (timelineRunnerKeys.Count > 0)
         {
             float abs = timelineRunnerKeys.Peek().frame - GameLoopManager.instance.tickCount;
             if (abs < 0f) abs = 0f;
             if (abs < 0.1f)
             {
+                Debug.Log(timelineRunnerKeys.Peek().frame + " | " + GameLoopManager.instance.tickCount);
                 DrawInteractionOnScreen(timelineRunnerKeys.Dequeue());
             }
         }
-        else
+        else if (!GameLoopManager.instance.IsMoving)
         {
             EndPattern();
         }
     }
 
-    public void StopPattern(bool end = true)
+    public void StopPattern()
     {
-        isTimelineActive = false;
-        GameManager.onUpdated -= TimelineEventListener;
+        Debug.Log("StopPattern");
         GameLoopManager.interactionPool.DisableAllInteractions();
-        EndPattern(end);
+        EndPattern(false);
     }
 
 
     public async void EndPattern(bool EndPattern = true)
     {
+        Debug.Log("EndPattern");
         isTimelineActive = false;
-        GameManager.onUpdated -= TimelineEventListener;
+        GameManager.onUpdated = null;
         await Task.Delay(1000);
-        if (EndPattern)
+        if (EndPattern && !GameLoopManager.instance.IsMoving)
             GameLoopManager.instance.printDEFRoad(StartPattern());
     }
 
     public void DrawInteractionOnScreen(InteractionKey dataKey)
     {
-        interaction = GameLoopManager.interactionPool.GetCircleFromPool();
+        GameObject interaction = GameLoopManager.interactionPool.GetCircleFromPool();
         interaction.GetComponent<InteractionComponent>().SetData(dataKey);
 
         interaction.transform.position = GameLoopManager.instance.midSpawnPoint.position;

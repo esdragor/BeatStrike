@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
 
     public static GameManager instance;
     public static Delegates.OnUpdated onUpdated;
+    public static Delegates.OnUpdated onUpdatedFrame;
     public static Action OnTick;
     
     [SerializeField] private int[] listOfBPM = {60, 120, 180, 240, 300};
@@ -76,6 +77,7 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         onUpdated?.Invoke();
+        onUpdatedFrame?.Invoke();
 
         if (tickTimer >= 1)
         {

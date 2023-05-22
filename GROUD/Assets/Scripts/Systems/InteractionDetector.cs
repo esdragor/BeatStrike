@@ -8,8 +8,6 @@ using UnityEngine;
 public class InteractionDetector : MonoBehaviour
 {
     public bool showDebug;
-    public Action<InteractionComponent> OnInteractionAdded;
-    public Action<InteractionComponent> OnInteractionRemoved;
     public InteractionComponent InteractionCanTrigger = null;
     public BoxCollider collider;
     public DetectionZoneData[] detectionZoneData;

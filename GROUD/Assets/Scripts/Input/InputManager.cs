@@ -7,7 +7,6 @@ using Utilities;
 public class InputManager : MonoBehaviour
 {
     public ScreenListener screenListener;
-    private InteractionComponent selectedSwipeIt;
     private PlayerManager playerManager = null;
 
     void OnEnable()
