@@ -96,7 +96,7 @@ public class UI_Gear : MonoBehaviour
                 PlayerPrefs.SetInt("Head", instance.currentGear.gear.ID);
                 break;
         }
-
+        instance.currentGear.GetComponent<RectTransform>().localScale = Vector3.one;
         instance.currentGear = null;
     }
     

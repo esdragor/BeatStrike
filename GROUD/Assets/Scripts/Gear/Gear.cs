@@ -36,6 +36,21 @@ public class Gear : ScriptableObject
         return true;
     }
 
+    public string getStatType(StatsType type)
+    {
+        switch (type)
+        {
+            case StatsType.Hp:
+                return "HP";
+            case StatsType.Intelligence:
+                return "Intelligence";
+            case StatsType.Strength:
+                return "Strength";
+            default:
+                return "";
+        }
+    }
+
     public bool UnequipOnPlayer(GearDescription gearDescription)
     {
         CharacterInfos ch = GameManager.instance.currentCharacterInfos;

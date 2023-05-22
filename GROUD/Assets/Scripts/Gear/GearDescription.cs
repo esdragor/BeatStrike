@@ -17,15 +17,14 @@ public class GearDescription : MonoBehaviour
 
     public void OnClick()
     {
-        if(!clickable) return;
+        if (!clickable) return;
         if (OnSell)
         {
             if (gear.priceToBuy > CurrencyManager.GetGold()) return;
-            Inventory.AddItemOnInventory(gear.ID);
-            CurrencyManager.RemoveGold(gear.priceToBuy);
-            Destroy(gameObject);
+            UI_Shop.ShowPopUpBuyItem(this);
             return;
         }
+
         if (!OnEquip)
         {
             UIManager.instance.gear.currentGear = this;
@@ -37,7 +36,7 @@ public class GearDescription : MonoBehaviour
             if (gear.statsType2 == StatsType.Hp) stats.hp = gear.statsValue2;
             if (gear.statsType2 == StatsType.Intelligence) stats.intelligence = gear.statsValue2;
             if (gear.statsType2 == StatsType.Strength) stats.strength = gear.statsValue2;
-            
+
             UIManager.instance.gear.PrintCharacterInfos(stats);
         }
         else
