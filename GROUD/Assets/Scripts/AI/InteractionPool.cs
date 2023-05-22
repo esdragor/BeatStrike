@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Code.Interface;
 using UnityEngine;
 
 public class InteractionPool
@@ -36,8 +35,12 @@ public class InteractionPool
         foreach (GameObject it in activeInteractions)
         {
             it.SetActive(false);
-            it.transform.parent.SetParent(interactionParent);
-            interactionPool.Add(it);
+            //activeInteractions.Remove(it);
+            it.transform.parent = interactionParent;
+            if (!interactionPool.Contains(it))
+            {
+                interactionPool.Add(it);
+            }
         }
         
         activeInteractions.Clear();
@@ -49,7 +52,11 @@ public class InteractionPool
         
         activeInteractions.Remove(it);
         it.transform.parent = interactionParent;
-        interactionPool.Add(it);
+        
+        if (!interactionPool.Contains(it))
+        {
+            interactionPool.Add(it);
+        }
     }
 
     public List<GameObject> GetInteractionPool()
@@ -63,16 +70,20 @@ public class InteractionPool
         {
             var interaction = interactionPool[0];
             interactionPool.RemoveAt(0);
+            
             interaction.SetActive(true);
             activeInteractions.Add(interaction);
+            
             return interaction;
         }
         else
         {
             var interaction = Object.Instantiate(interactionPrefab, interactionParent);
+            
             interaction.SetActive(true);
             interaction.transform.SetParent(interactionParent);
             activeInteractions.Add(interaction);
+            
             return interaction;
         }
     }

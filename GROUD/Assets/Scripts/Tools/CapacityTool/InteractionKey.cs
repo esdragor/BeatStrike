@@ -4,9 +4,9 @@ using Utilities;
 
 [Serializable] public class InteractionKey : KeyClass
 {
-    public int row;
-    public string timeCode;
-    public float frame;
+    [HideInInspector] public int row;
+    [HideInInspector] public string timeCode;
+    [HideInInspector] public float frame;
 
     public Enums.InteractionType interactionType;
     public ScreenListener.SwipeDirection swipeDirection;

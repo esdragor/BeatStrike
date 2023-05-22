@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using DMTimeArea;
 using UnityEditor;
@@ -278,7 +279,7 @@ public class CapacityToolEditor : SimpleTimeArea
       {
          selectedInteractionKey.timeCode = TimeAsString(selectedInteractionKey.time);
          EditorGUILayout.LabelField($"Time Code : {selectedInteractionKey.timeCode}");
-         selectedInteractionKey.frame = ToFrame( selectedInteractionKey.time);
+         selectedInteractionKey.frame = (float)Convert.ToDouble(selectedInteractionKey.timeCode);
          EditorGUILayout.LabelField($"Frame : {selectedInteractionKey.frame}");
          selectedInteractionKey.time = EditorGUILayout.Slider((float)selectedInteractionKey.time, 0f, (float)currentPattern.maxTime);
          selectedInteractionKey.interactionType = (Enums.InteractionType) EditorGUILayout.EnumPopup("Type", selectedInteractionKey.interactionType);
@@ -405,11 +406,6 @@ public class CapacityToolEditor : SimpleTimeArea
          currentPattern.patternName);
       currentPattern.patternName = currentPattern.name;
 
-      foreach (var it in currentPattern.interactions)
-      {
-         it.frame = ToFrame(it.time);
-      }
-      
       EditorUtility.SetDirty(currentPattern);
       AssetDatabase.SaveAssets();
       AssetDatabase.Refresh();
@@ -460,15 +456,15 @@ public class CapacityToolEditor : SimpleTimeArea
          switch (iKey.interactionType)
          {
             case Enums.InteractionType.Attack:
-               positionY = iKey.row == 1 ? botContent.y + (botContent.height * 0.5f) : topContent.y + (topContent.height * 0.5f);
+               positionY =  contentSeparator.y;
                break;
             case Enums.InteractionType.Dodge:
                positionY = contentSeparator.y;
                break;
             
          }
-         Rect interactionIconRect = new Rect((float)timeToPos - (interfaceData.interactionIconWidth * 0.5f), positionY - 15f, interfaceData.interactionIconWidth, interfaceData.interactionIconHeight);
          Rect verticalLine = new Rect((float)timeToPos - (interfaceData.lineThickness * 0.5f),  rectContent.y, interfaceData.lineThickness, rectContent.height);
+         Rect interactionIconRect = new Rect((float)timeToPos - (interfaceData.interactionIconWidth * 0.5f), positionY - 15f, interfaceData.interactionIconWidth, interfaceData.interactionIconHeight);
          Texture interactionTexture = null;
          Color lineColor = Color.black;
          
