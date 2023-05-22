@@ -49,6 +49,7 @@ namespace Code.Player
                 combo[i] = rdnSlide;
             }
             ComboPrinter.PrintNewCombo(combo);
+            ComboPrinter.UpdateMeter(currentCombo);
         }
 
         public List<ScreenListener.SwipeDirection> RemainingCombo()
@@ -72,6 +73,8 @@ namespace Code.Player
             {
                 ComboPrinter.UpdateCombo();
                 currentCombo++;
+                float cb = currentCombo;
+                ComboPrinter.UpdateMeter(currentCombo);
                 if (currentCombo == nbCombo)
                 {
                     OnSuccessAction?.Invoke();

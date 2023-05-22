@@ -79,7 +79,6 @@ public class PatternManager
             if (abs < 0f) abs = 0f;
             if (abs < 0.1f)
             {
-                Debug.Log(timelineRunnerKeys.Peek().frame + " | " + GameLoopManager.instance.tickCount);
                 DrawInteractionOnScreen(timelineRunnerKeys.Dequeue());
             }
         }

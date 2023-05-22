@@ -8,7 +8,7 @@ public class ComboPrinter : MonoBehaviour
     private static ComboPrinter instance;
 
     [SerializeField] private Transform[] ArrowSpawnPoint;
-    
+    [SerializeField] private MeshRenderer meterRenderer;
     private List<ArrowInfo> arrows = new List<ArrowInfo>();
 
     private void Awake()
@@ -30,6 +30,11 @@ public class ComboPrinter : MonoBehaviour
             instance.arrows[i].arrow.transform.position = instance.ArrowSpawnPoint[i].position;
         }
         PlayerManager.instance.vfxManager.PlaySFX("GCombo");
+    }
+
+    public static void UpdateMeter(float currentCombo)
+    {
+        instance.meterRenderer.material.SetFloat("_AbilityMeter", currentCombo / (instance.arrows.Capacity - 1));
     }
 
     public static void PrintNewCombo(ScreenListener.SwipeDirection[] combo)
