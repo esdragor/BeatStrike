@@ -341,6 +341,11 @@ PrefabInstance:
       propertyPath: m_RaycastTarget
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2518999283415675695, guid: df8729ef23a6e534e8ae7fcd598e5d00,
+        type: 3}
+      propertyPath: fadeOut
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2675517441864596756, guid: df8729ef23a6e534e8ae7fcd598e5d00,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -686,6 +691,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 7603017113386485792, guid: df8729ef23a6e534e8ae7fcd598e5d00,
+        type: 3}
+      propertyPath: announcer
+      value: 
+      objectReference: {fileID: 2135148698}
     - target: {fileID: 7644764176504332825, guid: df8729ef23a6e534e8ae7fcd598e5d00,
         type: 3}
       propertyPath: m_Layer
@@ -928,5 +938,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2135148698 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2518999283415675695, guid: df8729ef23a6e534e8ae7fcd598e5d00,
+    type: 3}
+  m_PrefabInstance: {fileID: 1045646032}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20ebc001a74b46646984eef7aa86ac8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

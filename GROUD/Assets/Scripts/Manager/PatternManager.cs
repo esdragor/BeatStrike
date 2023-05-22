@@ -31,9 +31,15 @@ public class PatternManager
 
         int rnd = UnityEngine.Random.Range(0, 100);
         if (rnd < percentageDEF)
+        {
             pList = DEFPatterns;
+            UIManager.instance.announcer.Announce("DEFENSE", Color.white);
+        }
         else
+        {
             pList = ATKPatterns;
+            UIManager.instance.announcer.Announce("ATTACK", Color.white);
+        }
 
         Pattern p = pList[UnityEngine.Random.Range(0, pList.Count)];
 

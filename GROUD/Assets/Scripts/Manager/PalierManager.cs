@@ -39,6 +39,8 @@ public class PalierManager : MonoBehaviour
         instance.indexEnemy++;
         if (instance.indexEnemy >= instance.palierPrefabEnemies.Length)
             instance.indexEnemy = 0;
+        
+        UIManager.instance.announcer.Announce($"PALIER {instance.actualPalier}-{instance.indexEnemy + 1}", Color.white);
     }
     
     public static int GetIndexPalier()

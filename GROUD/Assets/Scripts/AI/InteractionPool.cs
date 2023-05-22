@@ -66,7 +66,7 @@ public class InteractionPool
 
     public GameObject GetCircleFromPool()
     {
-        /*if (interactionPool.Count > 0)
+        if (interactionPool.Count > 0)
         {
             var interaction = interactionPool[0];
             interactionPool.RemoveAt(0);
@@ -77,7 +77,7 @@ public class InteractionPool
             return interaction;
         }
         else
-        {*/
+        {
             var interaction = Object.Instantiate(interactionPrefab, interactionParent);
             
             interaction.SetActive(true);
@@ -85,6 +85,6 @@ public class InteractionPool
             activeInteractions.Add(interaction);
             
             return interaction;
-        //}
+        }
     }
 }

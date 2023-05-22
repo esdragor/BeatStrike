@@ -6,7 +6,6 @@ using DMTimeArea;
 using UnityEditor;
 using UnityEngine;
 using Utilities;
-using Object = UnityEngine.Object;
 
 public class CapacityToolEditor : SimpleTimeArea
 {
