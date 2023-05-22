@@ -36,6 +36,7 @@ public class GameLoopManager : MonoBehaviour
 
     private GameObject currentChunck;
     private GameObject nextChunck;
+    private bool isMoving = false;
     private int index = -1;
 
     private void Awake()
@@ -49,8 +50,7 @@ public class GameLoopManager : MonoBehaviour
         GameObject rndChunk = chunks[0];
         currentChunck = Instantiate(rndChunk);
 
-        //GameManager.OnTick += (() => tickCount++);
-        // GameManager.OnTick += () => bpmVisual.Play();
+        isMoving = false;
     }
 
     public void AddTickCount(float value)
@@ -109,6 +109,7 @@ public class GameLoopManager : MonoBehaviour
             GameManager.gameState.SwitchEngineState(Enums.EngineState.Game);
             GameManager.gameState.SwitchTimeState(Enums.TimeState.Play);
             PlayerManager.instance.SetPlayer();
+            isMoving = false;
             PlayPattern();
         }
         else
@@ -119,10 +120,11 @@ public class GameLoopManager : MonoBehaviour
 
     public void NextChunk()
     {
+        isMoving = true;
         PlayerManager.instance.animator.SetBool("isRunning", true);
         GameManager.gameState.SwitchTimeState(Enums.TimeState.Pause);
 
-        patternManager.StopPattern(false);
+        patternManager.StopPattern();
         index++;
         int indexrdn = (index + chunks.Length < PalierManager.GetIndexPalier())
             ? 0
@@ -159,4 +161,7 @@ public class GameLoopManager : MonoBehaviour
     {
         isDefPrinter.SetInt("_isAttacking", isDef ? 0 : 1);
     }
+    
+    public bool IsMoving => isMoving;
+
 }

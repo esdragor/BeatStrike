@@ -6,7 +6,6 @@ namespace Code.Interface
     public class InteractionComponent : MonoBehaviour
     {
         public InteractionKey data;
-        public float speed = 3f;
         public InteractionSuccess successGroup;
 
         private float speedMultiplierOffset = 1.5f;
@@ -17,6 +16,7 @@ namespace Code.Interface
         public GameObject right;
         public GameObject up;
         
+        private float speed = 6f;
         private void Update()
         {
             if (GameManager.gameState.IsTimePlay())

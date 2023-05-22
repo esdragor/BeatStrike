@@ -10,7 +10,7 @@ public class PlayerTriggerEvent : MonoBehaviour
 
         if (it)
         {
-            if (it.data.interactionType != Enums.InteractionType.Fake)
+            if (it.data.interactionType != Enums.InteractionType.Attack)
             {
                 PlayerManager.instance.HurtPlayer(GameLoopManager.combatManager.getAttackData());
             }
