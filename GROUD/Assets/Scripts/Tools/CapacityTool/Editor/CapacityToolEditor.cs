@@ -312,7 +312,7 @@ public class CapacityToolEditor : SimpleTimeArea
       if (currentPattern != null && currentPattern.BPM > 0)
       {
          _frameRate = currentPattern.BPM / 60f;
-         _frameSnap = true;
+         _frameSnap = false;
          _timeInFrames = true;
       }
       
