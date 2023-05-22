@@ -99,7 +99,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _AbilityMeter: 0.985
+    - _AbilityMeter: 0.658
     - _Amount: 0.002
     - _ArrowStrength: 0
     - _BUILTIN_QueueControl: 0
@@ -125,17 +125,19 @@ Material:
     - _OpMin: 0.847
     - _Parallax: 0.02
     - _Roughness: 0.85
+    - _SepLineOffset: 0.0172
+    - _SepLineStr: 2
     - _ShakeStr: 0.054
     - _Sharpness: 2
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
-    - _Strength: 0.439
+    - _Strength: 1
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - _AbMColor: {r: 0, g: 0, b: 0, a: 0}
-    - _AbMColor2: {r: 1, g: 0.92549026, b: 0.2784314, a: 0}
+    - _AbMColor: {r: 0, g: 0.4070797, b: 1, a: 0}
+    - _AbMColor2: {r: 1, g: 0.27843142, b: 0.47349748, a: 0}
     - _Base_Color: {r: 0, g: 0, b: 0, a: 0}
     - _Color: {r: 0, g: 0, b: 0, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
