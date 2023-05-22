@@ -20,7 +20,6 @@ public class GearDescription : MonoBehaviour
         if (!clickable) return;
         if (OnSell)
         {
-            if (gear.priceToBuy > CurrencyManager.GetGold()) return;
             UI_Shop.ShowPopUpBuyItem(this);
             return;
         }

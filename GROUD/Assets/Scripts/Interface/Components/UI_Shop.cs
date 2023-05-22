@@ -33,7 +33,7 @@ public class UI_Shop : MonoBehaviour
     [SerializeField] private int ticketPriceCommon = 1;
     [SerializeField] private int ticketPriceEpic = 5;
     
-    [Header("PopUp")] [SerializeField] private GameObject PopUp;
+    [Header("PopUp")] [SerializeField] private UI_PopUp PopUp;
     [SerializeField] private TMP_Text PopUpText1;
     [SerializeField] private TMP_Text PopUpText2;
     [SerializeField] private Image PopUpImage;
@@ -57,6 +57,7 @@ public class UI_Shop : MonoBehaviour
         CurrencyManager.OnKeysUpdated += UpdateKeyText;
 
         openBtn.onClick.AddListener(() => GameManager.onUpdated += CheckTime);
+        exitBtn.onClick.AddListener(() => GameManager.onUpdated -= CheckTime);
         exitBtn.onClick.AddListener(() => GameManager.onUpdated -= CheckTime);
 
         commonChest.onClick.AddListener(OpenCommonChest);
@@ -122,7 +123,7 @@ public class UI_Shop : MonoBehaviour
     public static void ShowPopUpBuyItem(GearDescription gd)
     {
         instance.currentGearDescription = gd;
-        instance.PopUp.SetActive(true);
+        instance.PopUp.TogglePopUp(true);
         instance.PopUpText1.text = gd.gear.getStatType(gd.gear.statsType1) + " : " + gd.gear.statsValue1;
         instance.PopUpText2.text = gd.gear.getStatType(gd.gear.statsType2) + " : " + gd.gear.statsValue2;
         instance.PopUpImage.sprite = gd.gear.gearSprite;
@@ -140,7 +141,7 @@ public class UI_Shop : MonoBehaviour
                 Inventory.AddItemOnInventory(currentGearDescription.gear.ID);
                 Destroy(currentGearDescription.gameObject);
                 currentGearDescription = null;
-                PopUp.SetActive(false);
+                instance.PopUp.TogglePopUp(false);
             }
         }
     }

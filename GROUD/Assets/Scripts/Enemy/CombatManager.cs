@@ -21,7 +21,7 @@ public class CombatManager
 
         if (index > 0 && index % (PalierManager.GetIndexPalier() + 1) == 0) // new Palier
         {
-            PalierManager.NewPalier(PalierManager.GetIndexPalier());
+            PalierManager.NewPalier();
         }
 
         EnemyData data = PalierManager.GetEnemy();

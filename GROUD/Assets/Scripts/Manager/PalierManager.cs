@@ -37,9 +37,9 @@ public class PalierManager : MonoBehaviour
         return (instance.actualPalier > 0) ? instance.actualPalier.ToString() : "1";
     }
 
-    public static void NewPalier(int indexPalier)
+    public static void NewPalier()
     {
-        instance.actualPalier += indexPalier;
+        instance.actualPalier++;
         PlayerPrefs.SetInt("Palier", instance.actualPalier);
         instance.indexEnemy++;
         if (instance.indexEnemy >= instance.palierPrefabEnemies.Length)
