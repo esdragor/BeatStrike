@@ -616,6 +616,7 @@ GameObject:
   - component: {fileID: 256895309846087104}
   - component: {fileID: 256895309846087106}
   - component: {fileID: 256895309846087107}
+  - component: {fileID: 7945152621949587953}
   m_Layer: 0
   m_Name: Level Manager
   m_TagString: Untagged
@@ -705,6 +706,21 @@ MonoBehaviour:
   scoreOk: 5
   scoreGood: 10
   scorePerfect: 20
+--- !u!114 &7945152621949587953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 256895309846087116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c1071289cd12cd418f5bc3c7e8c0331, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  indexPalier: 10
+  actualPalier: 0
+  palierPrefabEnemies: []
 --- !u!1 &256895309878835896
 GameObject:
   m_ObjectHideFlags: 0
