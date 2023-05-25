@@ -12,7 +12,7 @@ public class CombatManager
     private bool isActive;
     private EnemySO enemy;
     private GameObject currentEnemyObj;
-    private int index = -1;
+    private int index = 0;
 
 
     public void PreloadCombat()

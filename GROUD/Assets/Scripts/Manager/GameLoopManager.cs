@@ -38,7 +38,7 @@ public class GameLoopManager : MonoBehaviour
     private GameObject currentChunck;
     private GameObject nextChunck;
     private bool isMoving = false;
-    private int index = -1;
+    private int index = 0;
 
     private void Awake()
     {
@@ -52,6 +52,7 @@ public class GameLoopManager : MonoBehaviour
         currentChunck = Instantiate(rndChunk);
         currentChunkLevelHeader = currentChunck.GetComponent<LevelHeader>();
         isMoving = false;
+        SpawnNextChunck();
     }
 
     public void AddTickCount(float value)
@@ -93,7 +94,6 @@ public class GameLoopManager : MonoBehaviour
     public IEnumerator MoveChunck()
     {
         Transform chunckTr = currentChunck.transform;
-        nextChunck.transform.position = chunckTr.position + Vector3.forward * sizeOfChuncks;
         Transform playerTr = PlayerManager.instance.gameObject.transform;
         Transform chunchPos = nextChunck.GetComponent<LevelHeader>().combatPos;
 
@@ -108,6 +108,8 @@ public class GameLoopManager : MonoBehaviour
         Destroy(currentChunck);
         currentChunck = nextChunck;
         currentChunkLevelHeader = currentChunck.GetComponent<LevelHeader>();
+        
+        SpawnNextChunck();
 
         if (currentChunkLevelHeader != null)
         {
@@ -124,13 +126,8 @@ public class GameLoopManager : MonoBehaviour
         }
     }
 
-    public void NextChunk()
+    public void SpawnNextChunck()
     {
-        isMoving = true;
-        PlayerManager.instance.animator.SetBool("isRunning", true);
-        GameManager.gameState.SwitchTimeState(Enums.TimeState.Pause);
-
-        patternManager.StopPattern();
         index++;
         int indexrdn = (index + chunks.Length < PalierManager.GetIndexPalier())
             ? 0
@@ -142,6 +139,17 @@ public class GameLoopManager : MonoBehaviour
         }
 
         nextChunck = Instantiate(chunks[indexrdn]);
+        nextChunck.transform.position = currentChunck.transform.position + Vector3.forward * sizeOfChuncks;
+    }
+
+    public void NextChunk()
+    {
+        isMoving = true;
+        PlayerManager.instance.animator.SetBool("isRunning", true);
+        GameManager.gameState.SwitchTimeState(Enums.TimeState.Pause);
+
+        patternManager.StopPattern();
+
 
         StartCoroutine(MoveChunck());
     }
