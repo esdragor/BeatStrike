@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using NaughtyAttributes;
 using UnityEngine;
 using UnityEngine.Serialization;
 using Utilities;
@@ -25,7 +26,7 @@ public class GameLoopManager : MonoBehaviour
 
     [Header("EndLevel")] public float tickCount;
     [SerializeField] private float speedRun = 10f;
-    [SerializeField] private float nbMetersToRun = 10f;
+    [SerializeField, ReadOnly] private float sizeOfChuncks = 35f;
     [SerializeField] private InputManager inputManager;
 
     [Header("Pattern")] [SerializeField] private List<Pattern> ATKPatterns;
@@ -77,7 +78,6 @@ public class GameLoopManager : MonoBehaviour
         }
         
         tickCount = 0;
-        Debug.Log("PlayPattern");
 
         combatManager.InitCombat();
     }
@@ -93,11 +93,11 @@ public class GameLoopManager : MonoBehaviour
     public IEnumerator MoveChunck()
     {
         Transform chunckTr = currentChunck.transform;
-        nextChunck.transform.position = chunckTr.position + Vector3.forward * nbMetersToRun;
+        nextChunck.transform.position = chunckTr.position + Vector3.forward * sizeOfChuncks;
+        Transform playerTr = PlayerManager.instance.gameObject.transform;
+        Transform chunchPos = nextChunck.GetComponent<LevelHeader>().combatPos;
 
-        Vector3 chunchPos = chunckTr.position - Vector3.forward * nbMetersToRun;
-
-        while ((chunckTr) && chunckTr.position.z > chunchPos.z)
+        while ((chunckTr) && playerTr.position.z < chunchPos.position.z)
         {
             currentChunck.transform.position -= Vector3.forward * Time.deltaTime * speedRun;
             nextChunck.transform.position -= Vector3.forward * Time.deltaTime * speedRun;

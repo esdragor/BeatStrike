@@ -60,7 +60,7 @@ public class GameManager : MonoBehaviour
         databaseManager = new DatabaseManager();
 
         gameState.SwitchEngineState(Enums.EngineState.Menu);
-        SetRandomBPM();
+        //SetRandomBPM();
     }
 
     private void Start()
