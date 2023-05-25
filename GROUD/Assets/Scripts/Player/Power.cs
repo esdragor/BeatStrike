@@ -73,7 +73,6 @@ namespace Code.Player
             {
                 ComboPrinter.UpdateCombo();
                 currentCombo++;
-                float cb = currentCombo;
                 ComboPrinter.UpdateMeter(currentCombo);
                 if (currentCombo == nbCombo)
                 {

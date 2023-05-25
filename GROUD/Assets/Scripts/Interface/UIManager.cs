@@ -21,6 +21,7 @@ public class UIManager : MonoBehaviour
 
     [Header("Objets")] 
     public TMP_Text debugBanditBPM;
+    public TMP_Text AnnouncementPatternText;
     
     private void Awake()
     {

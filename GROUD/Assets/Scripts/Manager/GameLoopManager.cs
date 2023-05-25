@@ -39,6 +39,7 @@ public class GameLoopManager : MonoBehaviour
     private GameObject nextChunck;
     private bool isMoving = false;
     private int index = 0;
+    private byte patternType = 2;
 
     private void Awake()
     {
@@ -52,6 +53,11 @@ public class GameLoopManager : MonoBehaviour
         currentChunck = Instantiate(rndChunk);
         currentChunkLevelHeader = currentChunck.GetComponent<LevelHeader>();
         isMoving = false;
+
+    }
+
+    private void Start()
+    {
         SpawnNextChunck();
     }
 
@@ -59,7 +65,7 @@ public class GameLoopManager : MonoBehaviour
     {
         tickCount += value;
     }
-    
+
     public void InitLevel()
     {
         combatManager.PreloadCombat();
@@ -67,8 +73,8 @@ public class GameLoopManager : MonoBehaviour
         GameManager.gameState.SwitchEngineState(Enums.EngineState.Game);
         GameManager.gameState.SwitchTimeState(Enums.TimeState.Play);
         PlayerManager.instance.SetPlayer();
-       GameManager.instance.SetRandomBPM();
-       PlayPattern();
+        GameManager.instance.SetRandomBPM();
+        PlayPattern();
     }
 
     private async void PlayPattern()
@@ -77,7 +83,7 @@ public class GameLoopManager : MonoBehaviour
         {
             await Task.Delay(100);
         }
-        
+
         tickCount = 0;
 
         combatManager.InitCombat();
@@ -108,7 +114,7 @@ public class GameLoopManager : MonoBehaviour
         Destroy(currentChunck);
         currentChunck = nextChunck;
         currentChunkLevelHeader = currentChunck.GetComponent<LevelHeader>();
-        
+
         SpawnNextChunck();
 
         if (currentChunkLevelHeader != null)
@@ -138,6 +144,8 @@ public class GameLoopManager : MonoBehaviour
             index = -1;
         }
 
+        Debug.Log("Spawn next chunck");
+        Debug.Log("chunck length : " + chunks.Length);
         nextChunck = Instantiate(chunks[indexrdn]);
         nextChunck.transform.position = currentChunck.transform.position + Vector3.forward * sizeOfChuncks;
     }
@@ -170,11 +178,39 @@ public class GameLoopManager : MonoBehaviour
         inputManager.gameObject.SetActive(true);
     }
 
-    public void printDEFRoad(bool isDef)
+    private IEnumerator printPattern(bool isDef)
     {
-        isDefPrinter.SetInt("_isAttacking", isDef ? 0 : 1);
+        if (patternType != (isDef ? 1 : 0))
+        {
+            patternType = (byte) (isDef ? 1 : 0);
+            UIManager.instance.AnnouncementPatternText.text =(isDef ? "Defense Phase" : "Attack Phase");
+        }
+        yield return new WaitForSeconds(1f);
+        UIManager.instance.AnnouncementPatternText.text = "";
+        patternManager.isTimelineActive = true;
+
     }
     
-    public bool IsMoving => isMoving;
+    public void printDEFRoad(bool isDef)
+    {
+        patternManager.isTimelineActive = false;
+        UIManager.instance.StartCoroutine(printPattern(isDef));
+        isDefPrinter.SetInt("_isAttacking", isDef ? 0 : 1);
+        if (isDef)
+        {
+            if (PlayerManager.instance.GetCurrentPower() != null)
+            {
+                PlayerManager.instance.SetPower(null);
+                ComboPrinter.PrintNewCombo(Array.Empty<ScreenListener.SwipeDirection>());
+                ComboPrinter.UpdateMeter(0);
+            }
+        }
+        else
+        {
+            if (PlayerManager.instance.GetCurrentPower() == null)
+                PowerManager.AssignNewPower();
+        }
+    }
 
+    public bool IsMoving => isMoving;
 }

@@ -119,6 +119,7 @@ public class GameManager : MonoBehaviour
         UIManager.instance.debugBanditBPM.text = "BPM : " + BPM;
         yield return new WaitForSeconds(2f);
         UIManager.instance.debugBanditBPM.text = "";
+        SoundManager.PlayRandomBackground((int)BPM);
         bpmIsRandoming = false;
     }
 

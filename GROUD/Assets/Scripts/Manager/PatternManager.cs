@@ -7,8 +7,8 @@ using UnityEngine;
 
 public class PatternManager
 {
+    public bool isTimelineActive;
     private Queue<InteractionKey> timelineRunnerKeys;
-    private bool isTimelineActive;
     private float timer;
     private bool isDebugMultiChannel;
     private List<Pattern> ATKPatterns;

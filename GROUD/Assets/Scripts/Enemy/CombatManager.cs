@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEditor;
 using UnityEngine;
 
@@ -13,7 +14,6 @@ public class CombatManager
     private EnemySO enemy;
     private GameObject currentEnemyObj;
     private int index = 0;
-
 
     public void PreloadCombat()
     {
@@ -51,14 +51,14 @@ public class CombatManager
         }
     }
 
+
+    
     public void InitCombat()
     {
         UIManager.instance.enemy.EnableEnemyHealth(true);
         UIManager.instance.enemy.enemyHealth.SetHealth(currentHealth, maxHealth);
-
-        isActive = true;
-
         GameLoopManager.instance.printDEFRoad(GameLoopManager.patternManager.StartPattern());
+        isActive = true;
     }
 
     public void DealDamage(float amount)
