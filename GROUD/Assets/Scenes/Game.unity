@@ -1042,6 +1042,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 256895309846087104, guid: 93042f802927c1e4db9ae495068681bb,
         type: 3}
+      propertyPath: speedRun
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 256895309846087104, guid: 93042f802927c1e4db9ae495068681bb,
+        type: 3}
       propertyPath: inputManager
       value: 
       objectReference: {fileID: 179565491}
@@ -1055,6 +1060,33 @@ PrefabInstance:
       propertyPath: percentageDEF
       value: 50
       objectReference: {fileID: 0}
+    - target: {fileID: 256895309846087104, guid: 93042f802927c1e4db9ae495068681bb,
+        type: 3}
+      propertyPath: patternByBpms.Array.data[4].bpm
+      value: 240
+      objectReference: {fileID: 0}
+    - target: {fileID: 256895309846087104, guid: 93042f802927c1e4db9ae495068681bb,
+        type: 3}
+      propertyPath: patternByBpms.Array.data[4].ATKPatterns.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 256895309846087104, guid: 93042f802927c1e4db9ae495068681bb,
+        type: 3}
+      propertyPath: patternByBpms.Array.data[4].DEFPatterns.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 256895309846087104, guid: 93042f802927c1e4db9ae495068681bb,
+        type: 3}
+      propertyPath: patternByBpms.Array.data[4].ATKPatterns.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 355fbb8b091656e4b9dffbc8fb3ffcc2,
+        type: 2}
+    - target: {fileID: 256895309846087104, guid: 93042f802927c1e4db9ae495068681bb,
+        type: 3}
+      propertyPath: patternByBpms.Array.data[4].DEFPatterns.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: eb70883de4bb4f144b0eeb59f28e002a,
+        type: 2}
     - target: {fileID: 256895309846087105, guid: 93042f802927c1e4db9ae495068681bb,
         type: 3}
       propertyPath: m_RootOrder
