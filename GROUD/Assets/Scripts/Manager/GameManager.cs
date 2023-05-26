@@ -30,6 +30,8 @@ public class GameManager : MonoBehaviour
     private string lastDateKey = "LastOperationDate";
     private DateTime lastDate;
 
+    public float Bpm => BPM;
+
     public double GetLastShopReload()
     {
         // calcule le temps restant en secondes
@@ -116,10 +118,10 @@ public class GameManager : MonoBehaviour
             UIManager.instance.debugBanditBPM.text = "BPM : " + listOfBPM[index];
             yield return new WaitForEndOfFrame();
         }
-        UIManager.instance.debugBanditBPM.text = "BPM : " + BPM;
+        UIManager.instance.debugBanditBPM.text = "BPM : " + Bpm;
         yield return new WaitForSeconds(2f);
         UIManager.instance.debugBanditBPM.text = "";
-        SoundManager.PlayRandomBackground((int)BPM);
+        SoundManager.PlayRandomBackground((int)Bpm);
         bpmIsRandoming = false;
     }
 
@@ -133,6 +135,6 @@ public class GameManager : MonoBehaviour
 
     void CalculateTickRate()
     {
-       tickRate = BPM / 60f;
+       tickRate = Bpm / 60f;
     }
 }

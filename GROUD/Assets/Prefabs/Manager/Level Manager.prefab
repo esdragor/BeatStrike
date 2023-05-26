@@ -667,14 +667,27 @@ MonoBehaviour:
   speedRun: 10
   sizeOfChuncks: 35
   inputManager: {fileID: 0}
-  ATKPatterns:
-  - {fileID: 11400000, guid: 355fbb8b091656e4b9dffbc8fb3ffcc2, type: 2}
-  - {fileID: 11400000, guid: bf20e0fd2675c1b4e887af5e6ed08d3f, type: 2}
-  - {fileID: 11400000, guid: 6868f9b6b8201554a810d4a0342bbae0, type: 2}
-  DEFPatterns:
-  - {fileID: 11400000, guid: eb70883de4bb4f144b0eeb59f28e002a, type: 2}
-  - {fileID: 11400000, guid: f2496f88f6384f740a7d5fb162ac4a66, type: 2}
-  - {fileID: 11400000, guid: 025709cca8f4382438585af5ec78233f, type: 2}
+  patternByBpms:
+  - bpm: 60
+    ATKPatterns:
+    - {fileID: 11400000, guid: 4401ab5254ca1b94fb0a464c4b4bf294, type: 2}
+    DEFPatterns:
+    - {fileID: 11400000, guid: 6238f3905817dc24c98cccddc63e1644, type: 2}
+  - bpm: 90
+    ATKPatterns:
+    - {fileID: 11400000, guid: 70b8e320f47d0d741be326bf388b9264, type: 2}
+    DEFPatterns:
+    - {fileID: 11400000, guid: 43c161072f440144fb9650040ca2b7f9, type: 2}
+  - bpm: 120
+    ATKPatterns:
+    - {fileID: 11400000, guid: 48fd3c64e6615e54c85abd304b74ac20, type: 2}
+    DEFPatterns:
+    - {fileID: 11400000, guid: 3d9915826c9029e4d873531d71517e61, type: 2}
+  - bpm: 150
+    ATKPatterns:
+    - {fileID: 11400000, guid: 924674da25e9ccc4283e804e2d91b974, type: 2}
+    DEFPatterns:
+    - {fileID: 11400000, guid: f91f35219a457c24ab13f7c235677039, type: 2}
   percentageDEF: 70
   isDefPrinter: {fileID: 2100000, guid: f9348b4d88fdba14eb20439778ff22cf, type: 2}
 --- !u!114 &256895309846087106

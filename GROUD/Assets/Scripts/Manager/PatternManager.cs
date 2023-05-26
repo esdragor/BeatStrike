@@ -9,47 +9,60 @@ public class PatternManager
 {
     public bool isTimelineActive;
     private Queue<InteractionKey> timelineRunnerKeys;
-    private float timer;
     private bool isDebugMultiChannel;
-    private List<Pattern> ATKPatterns;
-    private List<Pattern> DEFPatterns;
+    private PatternByBPM[] patternByBpms;
     private int percentageDEF;
 
-    public PatternManager(List<Pattern> _ATKPatterns, List<Pattern> _DEFPatterns, int _percentageDEF)
+    public PatternManager(PatternByBPM[] _patternByBpms, int _percentageDef)
     {
-        ATKPatterns = _ATKPatterns;
-        DEFPatterns = _DEFPatterns;
-        percentageDEF = _percentageDEF;
+        patternByBpms = _patternByBpms;
+        percentageDEF = _percentageDef;
     }
 
-    public bool StartPattern()
+    public bool StartPattern(float _remainingPulse = 0f)
     {
         if (isTimelineActive) return false;
 
-        List<Pattern> pList = null;
+        Pattern[] pList = null;
+
+        float BPM = GameManager.instance.Bpm;
+        
+        PatternByBPM? PatternBPM = null;
+
+        foreach (var pat in patternByBpms)
+        {
+            if (pat.bpm == BPM)
+            {
+                PatternBPM = pat;
+                break;
+            }
+        }
+        
+        if (PatternBPM == null)
+        {
+            throw new Exception("No pattern found for this BPM");
+        }
 
         int rnd = UnityEngine.Random.Range(0, 100);
         if (rnd < percentageDEF)
         {
-            pList = DEFPatterns;
+            pList = PatternBPM.Value.DEFPatterns;
             UIManager.instance.announcer.Announce("DEFENSE", Color.white);
         }
         else
         {
-            pList = ATKPatterns;
+            pList = PatternBPM.Value.ATKPatterns;
             UIManager.instance.announcer.Announce("ATTACK", Color.white);
         }
 
-        Pattern p = pList[UnityEngine.Random.Range(0, pList.Count)];
+        Pattern p = pList[UnityEngine.Random.Range(0, pList.Length)];
 
         //GameManager.instance.SetBPM(p.BPM);
 
         InitializeQueue(p.interactions);
 
-        GameLoopManager.instance.tickCount = 0;
-
-        timer = 0;
-
+        GameLoopManager.instance.tickCount = _remainingPulse;
+        
         GameManager.onUpdatedFrame = TimelineEventListener;
 
         isTimelineActive = true;
@@ -96,11 +109,18 @@ public class PatternManager
 
     public async void EndPattern(bool EndPattern = true)
     {
+        float timer = 1f;
+        
+        Debug.Log(GameLoopManager.instance.tickCount);
         isTimelineActive = false;
         GameManager.onUpdated = null;
-        await Task.Delay(1000);
+        while (timer > 0)
+        {
+            timer -= GameLoopManager.instance.currentPulse;
+            await Task.Yield();
+        }
         if (EndPattern && !GameLoopManager.instance.IsMoving)
-            GameLoopManager.instance.printDEFRoad(StartPattern());
+            GameLoopManager.instance.printDEFRoad(StartPattern(-timer));
     }
 
     public void DrawInteractionOnScreen(InteractionKey dataKey)

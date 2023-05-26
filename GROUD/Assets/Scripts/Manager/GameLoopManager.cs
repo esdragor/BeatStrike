@@ -7,6 +7,14 @@ using UnityEngine;
 using UnityEngine.Serialization;
 using Utilities;
 
+[Serializable]
+public struct PatternByBPM
+{
+    public int bpm;
+    public Pattern[] ATKPatterns;
+    public Pattern[] DEFPatterns;
+}
+
 public class GameLoopManager : MonoBehaviour
 {
     public static GameLoopManager instance;
@@ -25,12 +33,13 @@ public class GameLoopManager : MonoBehaviour
     public GameObject interactionPrefab;
 
     [Header("EndLevel")] public float tickCount;
+    [HideInInspector] public float currentPulse;
     [SerializeField] private float speedRun = 10f;
     [SerializeField, ReadOnly] private float sizeOfChuncks = 35f;
     [SerializeField] private InputManager inputManager;
 
-    [Header("Pattern")] [SerializeField] private List<Pattern> ATKPatterns;
-    [SerializeField] private List<Pattern> DEFPatterns;
+    [Header("Pattern")]
+    [SerializeField] private PatternByBPM[] patternByBpms;
     [SerializeField] private int percentageDEF;
     [SerializeField] private Material isDefPrinter;
 
@@ -46,7 +55,7 @@ public class GameLoopManager : MonoBehaviour
         if (instance == null) instance = this;
 
         interactionPool = new InteractionPool(interactionParent, interactionPrefab);
-        patternManager = new PatternManager(ATKPatterns, DEFPatterns, percentageDEF);
+        patternManager = new PatternManager(patternByBpms, percentageDEF);
         combatManager = new CombatManager();
 
         GameObject rndChunk = chunks[0];
@@ -64,6 +73,7 @@ public class GameLoopManager : MonoBehaviour
     public void AddTickCount(float value)
     {
         tickCount += value;
+        currentPulse = value;
     }
 
     public void InitLevel()
