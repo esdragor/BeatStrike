@@ -92,11 +92,15 @@ public class PlayerManager : MonoBehaviour
         switch (interactionType)
         {
             case Enums.InteractionType.Attack:
-                InteractionSuccess success = currentPower.power.Execute(dataSwipeDirection);
-                if (success == InteractionSuccess.Ok)
-                    onComboSuccess?.Invoke(InteractionSuccess.Ok);
-                else
-                    PowerManager.AssignNewPower();
+                if (currentPower != null)
+                {
+                    InteractionSuccess success = currentPower.power.Execute(dataSwipeDirection);
+                    if (success == InteractionSuccess.Ok)
+                        onComboSuccess?.Invoke(InteractionSuccess.Ok);
+                    else
+                        PowerManager.AssignNewPower();
+                }
+
 
                 HurtEnemy((int)GameManager.instance.currentCharacterInfos.playerStats.strength);
                 break;

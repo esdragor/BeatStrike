@@ -121,6 +121,7 @@ public class GameManager : MonoBehaviour
         UIManager.instance.debugBanditBPM.text = "";
         SoundManager.PlayRandomBackground((int)BPM);
         bpmIsRandoming = false;
+        GameLoopManager.instance.tickCount = 0;
     }
 
     public void SetRandomBPM()

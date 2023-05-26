@@ -64,7 +64,7 @@ namespace Code.Player
 
         private void OnUnsuccess()
         {
-            // yes
+            PlayerManager.instance.vfxManager.PlaySFX("FailCombo");
         }
 
         public InteractionSuccess Execute(ScreenListener.SwipeDirection currentSwipeDirection)
@@ -79,6 +79,10 @@ namespace Code.Player
                     OnSuccessAction?.Invoke();
                     currentCombo = 0;
                     return InteractionSuccess.Perfect;
+                }
+                if (currentCombo == nbCombo - 1)
+                {
+                    PlayerManager.instance.vfxManager.PlaySFX("LastCombo");
                 }
                 return InteractionSuccess.Ok;
             }

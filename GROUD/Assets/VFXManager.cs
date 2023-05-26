@@ -12,6 +12,8 @@ public class VFXManager : MonoBehaviour
     [SerializeField] private ParticleSystem rDodgeFX;
     [SerializeField] private ParticleSystem rAttackFX;
     [SerializeField] private ParticleSystem GoodComboFX;
+    [SerializeField] private ParticleSystem FailComboFX;
+    [SerializeField] private ParticleSystem ReadyComboFX;
 
     [Header("Player")] 
     [SerializeField] private ParticleSystem attackFX;
@@ -81,7 +83,16 @@ public class VFXManager : MonoBehaviour
                 ability.Play();
                 break;
             case "GCombo":
+                ReadyComboFX.gameObject.SetActive(false);
                 GoodComboFX.Play();
+                break;
+            case "FailCombo":
+                ReadyComboFX.gameObject.SetActive(false);
+                FailComboFX.Play();
+                break;
+            case "LastCombo":
+                ReadyComboFX.gameObject.SetActive(true);
+                ReadyComboFX.Play();
                 break;
         }
     }
