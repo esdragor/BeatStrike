@@ -83,11 +83,11 @@ public class VFXManager : MonoBehaviour
                 ability.Play();
                 break;
             case "GCombo":
-                ReadyComboFX.gameObject.SetActive(false);
+                NotReadyCombo();
                 GoodComboFX.Play();
                 break;
             case "FailCombo":
-                ReadyComboFX.gameObject.SetActive(false);
+                NotReadyCombo();
                 FailComboFX.Play();
                 break;
             case "LastCombo":
@@ -95,5 +95,10 @@ public class VFXManager : MonoBehaviour
                 ReadyComboFX.Play();
                 break;
         }
+    }
+    
+    public void NotReadyCombo()
+    {
+        ReadyComboFX.gameObject.SetActive(false);
     }
 }

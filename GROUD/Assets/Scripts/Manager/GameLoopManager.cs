@@ -184,11 +184,12 @@ public class GameLoopManager : MonoBehaviour
         {
             patternType = (byte) (isDef ? 1 : 0);
             UIManager.instance.AnnouncementPatternText.text =(isDef ? "Defense Phase" : "Attack Phase");
+            PlayerManager.instance.vfxManager.NotReadyCombo();
         }
         yield return new WaitForSeconds(1f);
         UIManager.instance.AnnouncementPatternText.text = "";
         patternManager.isTimelineActive = true;
-
+        tickCount = 0;
     }
     
     public void printDEFRoad(bool isDef)
