@@ -30,6 +30,7 @@ public class UI_Shop : MonoBehaviour
     [Header("Gear Key")] [SerializeField] private Button commonChest;
     [SerializeField] private Button epicChest;
     [SerializeField] private Transform parentLootGearChest;
+    [SerializeField] private Transform parentLootGearChestEpic;
     [SerializeField] private int ticketPriceCommon = 1;
     [SerializeField] private int ticketPriceEpic = 5;
     
@@ -65,14 +66,14 @@ public class UI_Shop : MonoBehaviour
         currentGearDescription = null;
     }
 
-    public void PrintChest(int ID)
+    public void PrintChest(int ID, bool isEpic)
     {
         Inventory.AddItemOnInventory(ID);
 
-        if (parentLootGearChest.childCount > 0)
-            Destroy(parentLootGearChest.GetChild(0).gameObject);
+        if (((isEpic) ? parentLootGearChestEpic : parentLootGearChest).childCount > 0)
+            Destroy(((isEpic) ? parentLootGearChestEpic : parentLootGearChest).GetChild(0).gameObject);
 
-        Transform tr = Instantiate(gearPrefabShop, parentLootGearChest).transform;
+        Transform tr = Instantiate(gearPrefabShop, (isEpic) ? parentLootGearChestEpic : parentLootGearChest).transform;
         GearDescription gd = tr.GetChild(0).GetComponent<GearDescription>();
         gd.clickable = false;
         Gear gear = Inventory.GetGearsData().First(g => g.ID == ID);
@@ -93,7 +94,7 @@ public class UI_Shop : MonoBehaviour
             Gear[] gears = Inventory.GetGearsData().Where(gear => gear.rarity == Rarity.Common).ToArray();
 
             int ID = gears[Random.Range(0, gears.Length)].ID;
-            PrintChest(ID);
+            PrintChest(ID, false);
         }
     }
 
@@ -106,7 +107,7 @@ public class UI_Shop : MonoBehaviour
 
             int ID = gears[Random.Range(0, gears.Length)].ID;
 
-            PrintChest(ID);
+            PrintChest(ID, true);
         }
     }
 

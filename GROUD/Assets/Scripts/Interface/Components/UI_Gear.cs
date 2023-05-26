@@ -189,10 +189,10 @@ public class UI_Gear : MonoBehaviour
     {
         string hp = AddColor("HP: " + currentCharacterInfos.playerStats.hp, changerStats.hp);
 
-        string intelligence = AddColor("Power Duration: " + currentCharacterInfos.playerStats.intelligence,
+        string intelligence = AddColor("Intelligence: " + currentCharacterInfos.playerStats.intelligence,
             changerStats.intelligence);
 
-        string strength = AddColor("strength: " + currentCharacterInfos.playerStats.strength, changerStats.strength);
+        string strength = AddColor("Strength: " + currentCharacterInfos.playerStats.strength, changerStats.strength);
 
         playerInfoText.text = hp +
                               intelligence +
