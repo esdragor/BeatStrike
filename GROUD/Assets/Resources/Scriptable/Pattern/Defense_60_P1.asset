@@ -1,0 +1,56 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1123186ad1b5d0a459852f617a76093c, type: 3}
+  m_Name: Defense_60_P1
+  m_EditorClassIdentifier: 
+  patternName: Defense_60_P1
+  targetLevel: 0
+  difficultyIndex: 0
+  maxTime: 10
+  BPM: 60
+  interactions:
+  - time: 1
+    row: 1
+    timeCode: 1
+    frame: 1
+    interactionType: 1
+    swipeDirection: 3
+  - time: 2
+    row: 1
+    timeCode: 2
+    frame: 2
+    interactionType: 1
+    swipeDirection: 4
+  - time: 4
+    row: 1
+    timeCode: 4
+    frame: 4
+    interactionType: 1
+    swipeDirection: 3
+  - time: 5
+    row: 1
+    timeCode: 5
+    frame: 5
+    interactionType: 1
+    swipeDirection: 3
+  - time: 6
+    row: 1
+    timeCode: 6
+    frame: 6
+    interactionType: 1
+    swipeDirection: 4
+  - time: 8
+    row: 1
+    timeCode: 8
+    frame: 8
+    interactionType: 1
+    swipeDirection: 2
