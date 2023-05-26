@@ -53,11 +53,11 @@ public class CombatManager
 
 
     
-    public void InitCombat()
+    public void InitCombat(float timer)
     {
         UIManager.instance.enemy.EnableEnemyHealth(true);
         UIManager.instance.enemy.enemyHealth.SetHealth(currentHealth, maxHealth);
-        GameLoopManager.instance.printDEFRoad(GameLoopManager.patternManager.StartPattern());
+        GameLoopManager.instance.printDEFRoad(GameLoopManager.patternManager.StartPattern(timer));
         isActive = true;
     }
 

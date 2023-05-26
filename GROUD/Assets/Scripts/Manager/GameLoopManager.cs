@@ -89,14 +89,19 @@ public class GameLoopManager : MonoBehaviour
 
     private async void PlayPattern()
     {
+        float timer = 1f;
         while (GameManager.instance.bpmIsRandoming)
         {
+            tickCount = 0;
             await Task.Delay(100);
         }
+        while (timer > 0)
+        {
+            timer -= currentPulse;
+            await Task.Yield();
+        }
 
-        tickCount = 0;
-
-        combatManager.InitCombat();
+        combatManager.InitCombat(-timer);
     }
 
     public void EndLevel()

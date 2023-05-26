@@ -111,7 +111,6 @@ public class PatternManager
     {
         float timer = 1f;
         
-        Debug.Log(GameLoopManager.instance.tickCount);
         isTimelineActive = false;
         GameManager.onUpdated = null;
         while (timer > 0)
