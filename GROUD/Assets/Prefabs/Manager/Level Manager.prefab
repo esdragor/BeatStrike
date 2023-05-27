@@ -664,6 +664,7 @@ MonoBehaviour:
   interactionPrefab: {fileID: 3615221734236934782, guid: eca9474de71659d4b92bff4db4690524,
     type: 3}
   tickCount: 0
+  currentPulse: 0
   speedRun: 10
   sizeOfChuncks: 35
   inputManager: {fileID: 0}
@@ -730,7 +731,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c1071289cd12cd418f5bc3c7e8c0331, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  indexPalier: 10
+  indexPalier: 5
   actualPalier: 0
   palierPrefabEnemies:
   - {fileID: 11400000, guid: d391b78341d5c774fa40ac4ee881238e, type: 2}

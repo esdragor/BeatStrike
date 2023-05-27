@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Globalization;
 using UnityEngine;
 using Utilities;
@@ -15,7 +16,9 @@ public class GameManager : MonoBehaviour
     public static Delegates.OnUpdated onUpdatedFrame;
     public static Action OnTick;
     
-    [SerializeField] private int[] listOfBPM = {60, 120, 180, 240, 300};
+    [SerializeField] private int[] listOfBPMEasy = {60, 120, 180, 240, 300};
+    [SerializeField] private int[] listOfBPMMedium = {60, 120, 180, 240, 300};
+    [SerializeField] private int[] listOfBPMHard = {60, 120, 180, 240, 300};
     
     private float tickRate;
     private float tickTimer;
@@ -44,6 +47,20 @@ public class GameManager : MonoBehaviour
         }
 
         return timeRemaining;
+    }
+
+    public int[] GetBPMList(byte typeOf)
+    {
+        switch (typeOf)
+        {
+            case 0:
+                return listOfBPMEasy;
+            case 1:
+                return listOfBPMMedium;
+            case 2:
+                return listOfBPMHard;
+        }
+        return listOfBPMHard;
     }
 
     void SaveReloadTime()
@@ -102,7 +119,7 @@ public class GameManager : MonoBehaviour
         CalculateTickRate();
     }
 
-    private IEnumerator AnimationBPM()
+    private IEnumerator AnimationBPM(int[] listOfBPM)
     {
         float nbSecond = 2f;
         int index = -1;
@@ -125,11 +142,11 @@ public class GameManager : MonoBehaviour
         bpmIsRandoming = false;
     }
 
-    public void SetRandomBPM()
+    public void SetRandomBPM(int[] listOfBPM)
     {
         bpmIsRandoming = true;
         int index = Random.Range(0, listOfBPM.Length);
-        StartCoroutine(AnimationBPM());
+        StartCoroutine(AnimationBPM(listOfBPM));
         SetBPM(listOfBPM[index]);
     }
 

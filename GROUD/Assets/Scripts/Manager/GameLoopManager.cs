@@ -38,8 +38,7 @@ public class GameLoopManager : MonoBehaviour
     [SerializeField, ReadOnly] private float sizeOfChuncks = 35f;
     [SerializeField] private InputManager inputManager;
 
-    [Header("Pattern")]
-    [SerializeField] private PatternByBPM[] patternByBpms;
+    [Header("Pattern")] [SerializeField] private PatternByBPM[] patternByBpms;
     [SerializeField] private int percentageDEF;
     [SerializeField] private Material isDefPrinter;
 
@@ -62,12 +61,19 @@ public class GameLoopManager : MonoBehaviour
         currentChunck = Instantiate(rndChunk);
         currentChunkLevelHeader = currentChunck.GetComponent<LevelHeader>();
         isMoving = false;
-
     }
 
     private void Start()
     {
         SpawnNextChunck();
+    }
+
+    public float GetVelocityTimerNewChunck()
+    {
+        //float nbFrames = Time.deltaTime * speedRun;
+
+
+        return sizeOfChuncks * (Time.deltaTime * speedRun);
     }
 
     public void AddTickCount(float value)
@@ -83,7 +89,7 @@ public class GameLoopManager : MonoBehaviour
         GameManager.gameState.SwitchEngineState(Enums.EngineState.Game);
         GameManager.gameState.SwitchTimeState(Enums.TimeState.Play);
         PlayerManager.instance.SetPlayer();
-        GameManager.instance.SetRandomBPM();
+        UIManager.instance.randomBPMSelector.ShowButtons();
         PlayPattern();
     }
 
@@ -95,6 +101,7 @@ public class GameLoopManager : MonoBehaviour
             tickCount = 0;
             await Task.Delay(100);
         }
+
         while (timer > 0)
         {
             timer -= currentPulse;
@@ -172,6 +179,7 @@ public class GameLoopManager : MonoBehaviour
         GameManager.gameState.SwitchTimeState(Enums.TimeState.Pause);
 
         patternManager.StopPattern();
+        UIManager.instance.hud.UpdateTimeLine(index);
 
 
         StartCoroutine(MoveChunck());
@@ -197,16 +205,17 @@ public class GameLoopManager : MonoBehaviour
     {
         if (patternType != (isDef ? 1 : 0))
         {
-            patternType = (byte) (isDef ? 1 : 0);
-            UIManager.instance.AnnouncementPatternText.text =(isDef ? "Defense Phase" : "Attack Phase");
+            patternType = (byte)(isDef ? 1 : 0);
+            UIManager.instance.AnnouncementPatternText.text = (isDef ? "Defense Phase" : "Attack Phase");
             PlayerManager.instance.vfxManager.NotReadyCombo();
         }
+
         yield return new WaitForSeconds(1f);
         UIManager.instance.AnnouncementPatternText.text = "";
         patternManager.isTimelineActive = true;
         tickCount = 0;
     }
-    
+
     public void printDEFRoad(bool isDef)
     {
         patternManager.isTimelineActive = false;

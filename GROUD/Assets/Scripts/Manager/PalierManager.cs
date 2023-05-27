@@ -44,7 +44,10 @@ public class PalierManager : MonoBehaviour
         instance.indexEnemy++;
         if (instance.indexEnemy >= instance.palierPrefabEnemies.Length)
             instance.indexEnemy = 0;
-        GameManager.instance.SetRandomBPM();
+        
+        UIManager.instance.hud.textPalierInGame.text = GetPalierText();
+        
+        UIManager.instance.randomBPMSelector.ShowButtons();
     }
     
     public static int GetIndexPalier()

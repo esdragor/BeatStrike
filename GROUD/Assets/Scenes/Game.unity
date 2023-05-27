@@ -417,6 +417,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 2370981531442874057, guid: df8729ef23a6e534e8ae7fcd598e5d00,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2476797174409950479, guid: df8729ef23a6e534e8ae7fcd598e5d00,
         type: 3}
       propertyPath: m_Layer
@@ -857,6 +862,11 @@ PrefabInstance:
       propertyPath: m_RaycastTarget
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6946934502894841373, guid: df8729ef23a6e534e8ae7fcd598e5d00,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6953278504350031717, guid: df8729ef23a6e534e8ae7fcd598e5d00,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -1058,7 +1068,7 @@ PrefabInstance:
     - target: {fileID: 256895309846087104, guid: 93042f802927c1e4db9ae495068681bb,
         type: 3}
       propertyPath: percentageDEF
-      value: 50
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 256895309846087104, guid: 93042f802927c1e4db9ae495068681bb,
         type: 3}
@@ -2006,11 +2016,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 15.507677
-      objectReference: {fileID: 0}
-    - target: {fileID: 7945152621949587953, guid: 93042f802927c1e4db9ae495068681bb,
-        type: 3}
-      propertyPath: indexPalier
-      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7956578339889819751, guid: 93042f802927c1e4db9ae495068681bb,
         type: 3}

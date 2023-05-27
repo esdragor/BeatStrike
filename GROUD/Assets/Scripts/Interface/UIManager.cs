@@ -16,6 +16,7 @@ public class UIManager : MonoBehaviour
     public UI_Streak streak;
     public UI_Gear gear;
     public UI_Shop shop;
+    public UI_RandomBPMSelector randomBPMSelector;
 
     public MainMenuManager mainMenu;
 
@@ -31,6 +32,7 @@ public class UIManager : MonoBehaviour
     private void Start()
     {
         GameManager.gameState.OnEngineStateChanged += OnEngineStateSetUI;
+        hud.textPalierInGame.text = "Palier " + PalierManager.GetPalierText();
     }
 
     void OnEngineStateSetUI(Enums.EngineState engineState)
