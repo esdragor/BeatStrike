@@ -15,7 +15,7 @@ MonoBehaviour:
   patternName: Attack_120_P1
   targetLevel: 0
   difficultyIndex: 0
-  maxTime: 10
+  maxTime: 5
   BPM: 120
   interactions:
   - time: 1
@@ -36,24 +36,6 @@ MonoBehaviour:
     frame: 8
     interactionType: 0
     swipeDirection: 0
-  - time: 6
-    row: 0
-    timeCode: 12
-    frame: 12
-    interactionType: 0
-    swipeDirection: 0
-  - time: 8
-    row: 0
-    timeCode: 16
-    frame: 16
-    interactionType: 0
-    swipeDirection: 0
-  - time: 9
-    row: 0
-    timeCode: 22,50
-    frame: 22.5
-    interactionType: 0
-    swipeDirection: 0
   - time: 2
     row: 1
     timeCode: 4
@@ -66,21 +48,9 @@ MonoBehaviour:
     frame: 7
     interactionType: 0
     swipeDirection: 0
-  - time: 6.5
+  - time: 0
     row: 1
-    timeCode: 13
-    frame: 13
-    interactionType: 0
-    swipeDirection: 0
-  - time: 5
-    row: 1
-    timeCode: 10
-    frame: 10
-    interactionType: 0
-    swipeDirection: 0
-  - time: 8.5
-    row: 1
-    timeCode: 17
-    frame: 17
+    timeCode: 0
+    frame: 0
     interactionType: 0
     swipeDirection: 0
