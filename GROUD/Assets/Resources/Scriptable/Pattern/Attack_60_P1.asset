@@ -15,13 +15,19 @@ MonoBehaviour:
   patternName: Attack_60_P1
   targetLevel: 0
   difficultyIndex: 0
-  maxTime: 10
+  maxTime: 5
   BPM: 60
   interactions:
-  - time: 1
+  - time: 0
     row: 0
-    timeCode: 1
-    frame: 1
+    timeCode: 0
+    frame: 0
+    interactionType: 0
+    swipeDirection: 0
+  - time: 2
+    row: 0
+    timeCode: 2
+    frame: 2
     interactionType: 0
     swipeDirection: 0
   - time: 3
@@ -30,27 +36,9 @@ MonoBehaviour:
     frame: 3
     interactionType: 0
     swipeDirection: 0
-  - time: 4
-    row: 0
-    timeCode: 4
-    frame: 4
-    interactionType: 0
-    swipeDirection: 0
-  - time: 6
-    row: 0
-    timeCode: 6
-    frame: 6
-    interactionType: 0
-    swipeDirection: 0
-  - time: 8
-    row: 0
-    timeCode: 8
-    frame: 8
-    interactionType: 0
-    swipeDirection: 0
-  - time: 9
-    row: 0
-    timeCode: 9
-    frame: 9
+  - time: 5
+    row: 1
+    timeCode: 5
+    frame: 5
     interactionType: 0
     swipeDirection: 0

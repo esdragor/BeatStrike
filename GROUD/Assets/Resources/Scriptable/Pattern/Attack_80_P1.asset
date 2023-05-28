@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1123186ad1b5d0a459852f617a76093c, type: 3}
-  m_Name: Attack_90_P1
+  m_Name: Attack_80_P1
   m_EditorClassIdentifier: 
-  patternName: Attack_90_P1
+  patternName: Attack_80_P1
   targetLevel: 0
   difficultyIndex: 0
   maxTime: 5
-  BPM: 90
+  BPM: 80
   interactions:
   - time: 0
     row: 0
@@ -24,27 +24,27 @@ MonoBehaviour:
     frame: 0
     interactionType: 0
     swipeDirection: 0
-  - time: 2
+  - time: 3
     row: 0
     timeCode: 3
     frame: 3
     interactionType: 0
     swipeDirection: 0
-  - time: 1.3333333730697632
+  - time: 4.5
     row: 0
-    timeCode: 2,00
-    frame: 2
-    interactionType: 0
-    swipeDirection: 0
-  - time: 3.3333332538604736
-    row: 1
-    timeCode: 5,00
-    frame: 5
-    interactionType: 0
-    swipeDirection: 0
-  - time: 4
-    row: 1
-    timeCode: 6
+    timeCode: 6,00
     frame: 6
+    interactionType: 0
+    swipeDirection: 0
+  - time: 0.75
+    row: 1
+    timeCode: 1,00
+    frame: 1
+    interactionType: 0
+    swipeDirection: 0
+  - time: 2.25
+    row: 1
+    timeCode: 3,00
+    frame: 3
     interactionType: 0
     swipeDirection: 0
