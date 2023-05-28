@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.35751492, g: 0.56789905, b: 0.6158502, a: 1}
+  m_IndirectSpecularColor: {r: 0.35841316, g: 0.5687059, b: 0.61626136, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1157,6 +1157,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Level Manager
       objectReference: {fileID: 0}
+    - target: {fileID: 256895310227866477, guid: 93042f802927c1e4db9ae495068681bb,
+        type: 3}
+      propertyPath: matRune
+      value: 
+      objectReference: {fileID: 2100000, guid: 1f6cb1a44d266264aba5d55d5dbe81d3, type: 2}
     - target: {fileID: 256895310227866477, guid: 93042f802927c1e4db9ae495068681bb,
         type: 3}
       propertyPath: healthTxt

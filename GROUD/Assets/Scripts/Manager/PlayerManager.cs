@@ -15,7 +15,7 @@ public class PlayerManager : MonoBehaviour
     public int MaxHP => (int)GameManager.instance.currentCharacterInfos.playerStats.hp;
     public Animator animator;
 
-    public Image CDPowerImage;
+    public Material matRune;
 
     public VFXManager vfxManager;
 
@@ -37,6 +37,7 @@ public class PlayerManager : MonoBehaviour
     private void Start()
     {
         SetPlayer();
+        matRune.SetFloat("_OvalSize", 0.5f);
         //PowerManager.AssignNewPower();
     }
 

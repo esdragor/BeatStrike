@@ -50,6 +50,7 @@ namespace Code.Player
             }
             ComboPrinter.PrintNewCombo(combo);
             ComboPrinter.UpdateMeter(currentCombo);
+            PlayerManager.instance.matRune.SetFloat("_OvalSize", ((float)currentCombo / nbCombo) * 0.5f + 0.5f);
         }
 
         public List<ScreenListener.SwipeDirection> RemainingCombo()
@@ -73,6 +74,7 @@ namespace Code.Player
             {
                 ComboPrinter.UpdateCombo();
                 currentCombo++;
+                PlayerManager.instance.matRune.SetFloat("_OvalSize", ((float)currentCombo / nbCombo) * 0.5f + 0.5f);
                 ComboPrinter.UpdateMeter(currentCombo);
                 if (currentCombo == nbCombo)
                 {
