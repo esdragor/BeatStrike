@@ -115,7 +115,7 @@ public class PatternManager
         GameManager.onUpdated = null;
         while (timer > 0)
         {
-            timer -= GameLoopManager.instance.currentPulse;
+            timer -= (1f /60f) * GameManager.instance.Bpm;
             await Task.Yield();
         }
         if (EndPattern && !GameLoopManager.instance.IsMoving)
