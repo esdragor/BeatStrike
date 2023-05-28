@@ -1,0 +1,122 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1123186ad1b5d0a459852f617a76093c, type: 3}
+  m_Name: Defense_140_P1
+  m_EditorClassIdentifier: 
+  patternName: Defense_140_P1
+  targetLevel: 0
+  difficultyIndex: 0
+  maxTime: 10
+  BPM: 140
+  interactions:
+  - time: 0.4285714328289032
+    row: 1
+    timeCode: 1,00
+    frame: 1
+    interactionType: 1
+    swipeDirection: 3
+  - time: 1.7142857313156128
+    row: 1
+    timeCode: 4,00
+    frame: 4
+    interactionType: 1
+    swipeDirection: 4
+  - time: 4.285714149475098
+    row: 1
+    timeCode: 10,00
+    frame: 10
+    interactionType: 1
+    swipeDirection: 3
+  - time: 6
+    row: 1
+    timeCode: 14,00
+    frame: 14
+    interactionType: 1
+    swipeDirection: 4
+  - time: 7.285714149475098
+    row: 1
+    timeCode: 17,00
+    frame: 17
+    interactionType: 1
+    swipeDirection: 2
+  - time: 0
+    row: 1
+    timeCode: 0
+    frame: 0
+    interactionType: 1
+    swipeDirection: 3
+  - time: 5.5714287757873535
+    row: 1
+    timeCode: 13,00
+    frame: 13
+    interactionType: 1
+    swipeDirection: 1
+  - time: 6.857142925262451
+    row: 1
+    timeCode: 16,00
+    frame: 16
+    interactionType: 1
+    swipeDirection: 2
+  - time: 8.571428298950195
+    row: 1
+    timeCode: 20,00
+    frame: 20
+    interactionType: 1
+    swipeDirection: 4
+  - time: 2.142857074737549
+    row: 1
+    timeCode: 5,00
+    frame: 5
+    interactionType: 1
+    swipeDirection: 4
+  - time: 3.857142925262451
+    row: 1
+    timeCode: 9,00
+    frame: 9
+    interactionType: 1
+    swipeDirection: 4
+  - time: 9
+    row: 1
+    timeCode: 21,00
+    frame: 21
+    interactionType: 1
+    swipeDirection: 1
+  - time: 0.8571428656578064
+    row: 1
+    timeCode: 2,00
+    frame: 2
+    interactionType: 1
+    swipeDirection: 3
+  - time: 3
+    row: 1
+    timeCode: 7,00
+    frame: 7
+    interactionType: 1
+    swipeDirection: 1
+  - time: 5.142857074737549
+    row: 1
+    timeCode: 12,00
+    frame: 12
+    interactionType: 1
+    swipeDirection: 1
+  - time: 8.142857551574707
+    row: 1
+    timeCode: 19,00
+    frame: 19
+    interactionType: 1
+    swipeDirection: 4
+  - time: 9.857142448425293
+    row: 1
+    timeCode: 23,00
+    frame: 23
+    interactionType: 1
+    swipeDirection: 2

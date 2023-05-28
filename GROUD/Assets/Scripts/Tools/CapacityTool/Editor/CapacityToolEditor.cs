@@ -272,6 +272,8 @@ public class CapacityToolEditor : SimpleTimeArea
       GUILayout.EndArea();
 
    }
+
+   private int targetFrame;
    
    private void DrawSelectedKeyData()
    {
@@ -282,10 +284,18 @@ public class CapacityToolEditor : SimpleTimeArea
          selectedInteractionKey.timeCode = TimeAsString(selectedInteractionKey.time);
         // EditorGUILayout.LabelField($"Time Code : {selectedInteractionKey.timeCode}");
          selectedInteractionKey.frame = (float)Convert.ToDouble(selectedInteractionKey.timeCode);
+         targetFrame = (int)selectedInteractionKey.frame;
          EditorGUILayout.LabelField($"Frame : {selectedInteractionKey.frame}");
          selectedInteractionKey.time = EditorGUILayout.Slider((float)selectedInteractionKey.time, 0f, (float)currentPattern.maxTime);
          selectedInteractionKey.interactionType = (Enums.InteractionType) EditorGUILayout.EnumPopup("Type", selectedInteractionKey.interactionType);
-
+         
+         EditorGUI.BeginChangeCheck();
+         targetFrame = (int)EditorGUILayout.Slider("Target Frame", targetFrame, 0, (float)((currentPattern.BPM / 60f) * currentPattern.maxTime));
+         if (EditorGUI.EndChangeCheck())
+         {
+            if (currentPattern != null) selectedInteractionKey.time = targetFrame / (currentPattern.BPM / 60f);
+         }
+         
          switch ( selectedInteractionKey.interactionType)
          {
             case Enums.InteractionType.Dodge:
@@ -522,6 +532,7 @@ public class CapacityToolEditor : SimpleTimeArea
          if (eventListener.type == EventType.MouseUp)
          {
             dragKey = false;
+            
          }
          
          if (interactionIconRect.Contains(eventListener.mousePosition))

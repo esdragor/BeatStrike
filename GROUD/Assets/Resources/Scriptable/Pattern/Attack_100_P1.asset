@@ -10,59 +10,47 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1123186ad1b5d0a459852f617a76093c, type: 3}
-  m_Name: ATK_Pattern2
+  m_Name: Attack_100_P1
   m_EditorClassIdentifier: 
-  patternName: ATK_Pattern2
+  patternName: Attack_100_P1
   targetLevel: 0
   difficultyIndex: 0
-  maxTime: 10
-  BPM: 90
+  maxTime: 5
+  BPM: 100
   interactions:
-  - time: 0.289700984954834
-    row: 1
-    timeCode: 0,43
-    frame: 0.43
+  - time: 0
+    row: 0
+    timeCode: 0
+    frame: 0
     interactionType: 0
     swipeDirection: 0
-  - time: 1.5514947175979614
-    row: 1
-    timeCode: 2,33
-    frame: 2.33
+  - time: 1.2000000476837158
+    row: 0
+    timeCode: 2,00
+    frame: 2
     interactionType: 0
     swipeDirection: 0
-  - time: 3.1506528854370117
-    row: 1
-    timeCode: 4,73
-    frame: 4.73
+  - time: 4.199999809265137
+    row: 0
+    timeCode: 7,00
+    frame: 7
     interactionType: 0
     swipeDirection: 0
-  - time: 3.8453216552734375
+  - time: 2.4000000953674316
     row: 1
-    timeCode: 5,77
-    frame: 5.77
+    timeCode: 4,00
+    frame: 4
     interactionType: 0
     swipeDirection: 0
-  - time: 5.4000563621521
+  - time: 3.5999999046325684
     row: 1
-    timeCode: 8,10
-    frame: 8.1
+    timeCode: 6,00
+    frame: 6
     interactionType: 0
     swipeDirection: 0
-  - time: 6.102994918823242
+  - time: 4.800000190734863
     row: 1
-    timeCode: 9,15
-    frame: 9.15
-    interactionType: 0
-    swipeDirection: 0
-  - time: 8.038130760192871
-    row: 1
-    timeCode: 12,06
-    frame: 12.06
-    interactionType: 0
-    swipeDirection: 0
-  - time: 9.094806671142578
-    row: 1
-    timeCode: 13,64
-    frame: 13.64
+    timeCode: 8,00
+    frame: 8
     interactionType: 0
     swipeDirection: 0
