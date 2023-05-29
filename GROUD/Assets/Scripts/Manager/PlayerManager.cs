@@ -16,10 +16,6 @@ public class PlayerManager : MonoBehaviour
     public Animator animator;
 
     public Material matRune;
-    public float minRuneSize = 0.5f;
-    public float interRuneSize1 = 0.675f;
-    public float interRuneSize2 = 0.85f;
-    public float maxRuneSize = 1f;
 
     public VFXManager vfxManager;
 
@@ -41,7 +37,7 @@ public class PlayerManager : MonoBehaviour
     private void Start()
     {
         SetPlayer();
-        matRune.SetFloat("_OvalSize", minRuneSize);
+        matRune.SetFloat("_OvalSize", 0);
         //PowerManager.AssignNewPower();
     }
 

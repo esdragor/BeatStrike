@@ -50,8 +50,7 @@ namespace Code.Player
             }
             ComboPrinter.PrintNewCombo(combo);
             ComboPrinter.UpdateMeter(currentCombo);
-            PlayerManager.instance.matRune.SetFloat("_OvalSize", 
-                ((float)currentCombo / nbCombo) * 0.5f + PlayerManager.instance.minRuneSize);
+            PlayerManager.instance.matRune.SetFloat("_OvalSize", 0);
         }
 
         public List<ScreenListener.SwipeDirection> RemainingCombo()
@@ -68,25 +67,7 @@ namespace Code.Player
         {
             PlayerManager.instance.vfxManager.PlaySFX("FailCombo");
         }
-
-        private void RuneSet()
-        {
-            switch(currentCombo)
-            {
-                case 0:
-                    PlayerManager.instance.matRune.SetFloat("_OvalSize", PlayerManager.instance.minRuneSize);
-                    break;
-                case 1:
-                    PlayerManager.instance.matRune.SetFloat("_OvalSize", PlayerManager.instance.interRuneSize1);
-                    break;
-                case 2:
-                    PlayerManager.instance.matRune.SetFloat("_OvalSize", PlayerManager.instance.interRuneSize2);
-                    break;
-                case 3:
-                    PlayerManager.instance.matRune.SetFloat("_OvalSize", PlayerManager.instance.maxRuneSize);
-                    break;
-            }
-        }
+        
 
         public InteractionSuccess Execute(ScreenListener.SwipeDirection currentSwipeDirection)
         {
@@ -95,7 +76,7 @@ namespace Code.Player
                 ComboPrinter.UpdateCombo();
                 currentCombo++;
                 ComboPrinter.UpdateMeter(currentCombo);
-                RuneSet();
+                PlayerManager.instance.matRune.SetFloat("_OvalSize", currentCombo);
                 if (currentCombo == nbCombo)
                 {
                     OnSuccessAction?.Invoke();

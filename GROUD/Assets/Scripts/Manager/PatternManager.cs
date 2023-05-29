@@ -102,8 +102,13 @@ public class PatternManager
 
     public void StopPattern()
     {
+        timelineRunnerKeys.Clear();
         GameLoopManager.interactionPool.DisableAllInteractions();
-        EndPattern(false);
+        
+        isTimelineActive = false;
+        GameManager.onUpdated = null;
+        
+        //EndPattern(false);
     }
 
 

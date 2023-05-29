@@ -206,7 +206,7 @@ public class GameLoopManager : MonoBehaviour
         if (patternType != (isDef ? 1 : 0))
         {
             patternType = (byte)(isDef ? 1 : 0);
-            if (isDef) PlayerManager.instance.matRune.SetFloat("_OvalSize", PlayerManager.instance.minRuneSize);
+            if (isDef) PlayerManager.instance.matRune.SetFloat("_OvalSize", 0);
             UIManager.instance.AnnouncementPatternText.text = (isDef ? "Defense Phase" : "Attack Phase");
             PlayerManager.instance.vfxManager.NotReadyCombo();
         }
