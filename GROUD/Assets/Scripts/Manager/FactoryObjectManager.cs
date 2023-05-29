@@ -4,7 +4,8 @@ public class FactoryObjectManager : MonoBehaviour
 {
     private static FactoryObjectManager instance;
     
-    [SerializeField] private FactoryObject[] factoryObjectReference; // 0 = common, 1 = epic
+    [SerializeField] private FactoryObject factoryObjectReferenceCommon; // 0 = common, 1 = epic
+    [SerializeField] private FactoryObject factoryObjectReferenceEpic; // 0 = common, 1 = epic
     
     private void Awake()
     {
@@ -13,7 +14,8 @@ public class FactoryObjectManager : MonoBehaviour
     
     public static Gear CreateGear(int rarity)
     {
-        FactoryObject factoryObject = instance.factoryObjectReference[rarity];
+        FactoryObject factoryObject = 
+            rarity == 0 ? instance.factoryObjectReferenceCommon : instance.factoryObjectReferenceEpic;
         Gear gear = ScriptableObject.CreateInstance<Gear>();
         
         float min = 0;

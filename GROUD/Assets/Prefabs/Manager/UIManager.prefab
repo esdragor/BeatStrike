@@ -4158,10 +4158,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 17831cdf78fc1cf4c8cd2e90fbf8b25a, type: 2}
   - {fileID: 11400000, guid: 86be6718d7131bc4ea54e9e40e3436e8, type: 2}
   - {fileID: 11400000, guid: a3aaef3ab7ddb8a4c8e725899fabbbf6, type: 2}
-  gearsSprites:
-  - {fileID: 21300000, guid: 1465a18aad9c802469fb08a7ec87de51, type: 3}
-  - {fileID: 21300000, guid: c72040f4aabb1f24bbd859c56fdb3905, type: 3}
-  - {fileID: 21300000, guid: 33815352e72451a4491088309e84a08c, type: 3}
+  spriteWeapon: {fileID: 21300000, guid: 1465a18aad9c802469fb08a7ec87de51, type: 3}
+  spriteChest: {fileID: 21300000, guid: c72040f4aabb1f24bbd859c56fdb3905, type: 3}
+  spriteHead: {fileID: 21300000, guid: 33815352e72451a4491088309e84a08c, type: 3}
 --- !u!114 &2445022264166151038
 MonoBehaviour:
   m_ObjectHideFlags: 0
