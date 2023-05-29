@@ -58,6 +58,10 @@ Material:
         m_Texture: {fileID: 2800000, guid: d61a0c48ddc1c4a498c9d981bc0da9ff, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _MaskRGBA:
+        m_Texture: {fileID: 2800000, guid: 6fa34732130979e40adeefafe1bb8cfa, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -88,6 +92,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _AbilityProgress: 0
     - _BUILTIN_QueueControl: 0
     - _BUILTIN_QueueOffset: 0
     - _BumpScale: 1
