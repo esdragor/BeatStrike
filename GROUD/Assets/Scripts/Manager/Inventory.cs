@@ -6,11 +6,11 @@ using UnityEngine;
 public class Inventory : MonoBehaviour
 {
     private static Inventory instance;
-    
+
 
     [SerializeField] private Gear[] gearsDatas;
 
-    private List<int> inventoryIDs = new List<int>();
+    private List<Gear> inventoryIDs = new List<Gear>();
     private Dictionary<int, Gear> dicoGear = new Dictionary<int, Gear>();
     private bool OnReset = false;
 
@@ -28,24 +28,22 @@ public class Inventory : MonoBehaviour
 
         instance.LoadEquipment(instance.LoadInventory());
     }
-    
+
     public static Gear[] GetGearsData()
     {
         return instance.gearsDatas;
     }
 
-    public static GearDescription AddItemOnInventory(int ID)
+    public static GearDescription AddItemOnInventory(Gear gear)
     {
-        instance.dicoGear.TryGetValue(ID, out Gear gear);
-        instance.inventoryIDs.Add(ID);
+        instance.inventoryIDs.Add(gear);
         return UI_Gear.AddItemUIInventory(gear);
     }
 
-    public static void RemoveItemOnInventory(int ID)
+    public static void RemoveItemOnInventory(Gear gear)
     {
-        instance.inventoryIDs.Remove(ID);
-
-        UI_Gear.RemoveItemUIInventory(instance.dicoGear[ID]);
+        instance.inventoryIDs.Remove(gear);
+        UI_Gear.RemoveItemUIInventory(gear);
     }
 
     public static void OnResetValue()
@@ -56,88 +54,54 @@ public class Inventory : MonoBehaviour
     private async void LoadEquipment(List<GearDescription> gears)
     {
         await Task.Delay(200);
-        if (PlayerPrefs.HasKey("Weapon"))
+        Gear newGear = null;
+        GearDescription gd = null;
+        if (DataSerializer.instance.CheckFileExists("Weapon"))
         {
-            int weaponID = PlayerPrefs.GetInt("Weapon");
-            foreach (var gear in gears.Where(gear => gear.gear.ID == weaponID))
-            {
-                gear.OnClick();
-                UI_Gear.Equip();
-                break;
-            }
-        }
-
-        if (PlayerPrefs.HasKey("Chest"))
-        {
-            int chestID = PlayerPrefs.GetInt("Chest");
-            foreach (var gear in gears.Where(gear => gear.gear.ID == chestID))
-            {
-                gear.OnClick();
-                UI_Gear.Equip();
-                break;
-            }
-        }
-
-        if (!PlayerPrefs.HasKey("Head")) return;
-
-        int legsID = PlayerPrefs.GetInt("Head");
-
-        foreach (var gear in gears.Where(gear => gear.gear.ID == legsID))
-        {
-            gear.OnClick();
+            newGear = DataSerializer.instance.LoadDataFromDirectory<Gear>("Weapon");
+            instance.inventoryIDs.Add(DataSerializer.instance.LoadDataFromDirectory<Gear>("Weapon"));
+            gd = UI_Gear.AddItemUIInventory(newGear);
+            gd.OnClick();
             UI_Gear.Equip();
-            break;
         }
-    }
 
-    private List<GearDescription> GetDefaultInventory()
-    {
-        List<GearDescription> gears = new List<GearDescription>();
-
-        for (int i = 0; i < 4; i++)
+        if (DataSerializer.instance.CheckFileExists("Chest"))
         {
-            gears.Add(AddItemOnInventory(i));
+            newGear = DataSerializer.instance.LoadDataFromDirectory<Gear>("Chest");
+            instance.inventoryIDs.Add(DataSerializer.instance.LoadDataFromDirectory<Gear>("Chest"));
+            gd = UI_Gear.AddItemUIInventory(newGear);
+            gd.OnClick();
+            UI_Gear.Equip();
         }
 
-        return gears;
+        if (!DataSerializer.instance.CheckFileExists("Head")) return;
+
+
+        newGear = DataSerializer.instance.LoadDataFromDirectory<Gear>("Head");
+        instance.inventoryIDs.Add(DataSerializer.instance.LoadDataFromDirectory<Gear>("Head"));
+        gd = UI_Gear.AddItemUIInventory(newGear);
+        gd.OnClick();
+        UI_Gear.Equip();
     }
 
     private List<GearDescription> LoadInventory()
     {
         List<GearDescription> gears = new List<GearDescription>();
 
-        if (PlayerPrefs.HasKey("Inventory"))
+        if (DataSerializer.instance.CheckFileExists("Inventory"))
         {
-            string inventory = PlayerPrefs.GetString("Inventory");
-            string[] inventorySplit = inventory.Split(';');
+            Gear[] inventory = DataSerializer.instance.LoadDataFromDirectory<Gear[]>("Inventory");
 
-            if (inventory.Length > 0)
-                foreach (var t in inventorySplit)
-                {
-                    var ID = int.Parse(t);
-                    gears.Add(AddItemOnInventory(ID));
-                }
-            else
-                return GetDefaultInventory();
+            Gear newGear = null;
+            GearDescription gd = null;
+            for (int i = 0; i < inventory.Length; i++)
+            {
+                gears.Add(UI_Gear.AddItemUIInventory(inventory[i]));
+                instance.inventoryIDs.Add(inventory[i]);
+            }
         }
-        else
-            return GetDefaultInventory();
 
         return gears;
-    }
-
-    public static GameObject DropInventory(Rarity rarity)
-    {
-        List<Gear> gears = new List<Gear>();
-        foreach (var gear in instance.gearsDatas)
-        {
-            if (gear.rarity == rarity)
-                gears.Add(gear);
-        }
-        
-        int random = UnityEngine.Random.Range(0, gears.Count);
-        AddItemOnInventory(gears[random].ID);
-        return UI_Gear.DropItem(gears[random]);
     }
 
     private void OnDestroy()
@@ -145,13 +109,13 @@ public class Inventory : MonoBehaviour
         if (OnReset) return;
         string inventory = "";
 
-        for (var i = 0; i < inventoryIDs.Count; i++)
+        if (inventoryIDs.Count > 0)
         {
-            inventory += inventoryIDs[i];
-            if (i + 1 < inventoryIDs.Count)
-                inventory += ";";
+            DataSerializer.instance.SaveDataOnMainDirectory(inventoryIDs.ToArray(), "Inventory");
         }
-
-        PlayerPrefs.SetString("Inventory", inventory);
+        else if (DataSerializer.instance.CheckFileExists("Inventory"))
+        {
+            DataSerializer.instance.DeleteFile("Inventory");
+        }
     }
 }

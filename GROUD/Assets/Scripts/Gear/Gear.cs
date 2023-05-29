@@ -61,13 +61,13 @@ public class Gear : ScriptableObject
         switch (ch.equipment[(int)slot].slot)
         {
             case GearSlot.Weapon:
-                PlayerPrefs.SetInt("Weapon", -1);
+                PlayerPrefs.DeleteKey("Weapon");
                 break;
             case GearSlot.Chest:
-                PlayerPrefs.SetInt("Chest", -1);
+                PlayerPrefs.DeleteKey("Chest");
                 break;
             case GearSlot.Head:
-                PlayerPrefs.SetInt("Head", -1);
+                PlayerPrefs.DeleteKey("Head");
                 break;
         }
         ch.equipment[(int)slot] = null;

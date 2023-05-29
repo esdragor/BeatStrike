@@ -66,9 +66,9 @@ public class UI_Shop : MonoBehaviour
         currentGearDescription = null;
     }
 
-    public void PrintChest(int ID, bool isEpic)
+    public void PrintChest(Gear _gear, bool isEpic)
     {
-        Inventory.AddItemOnInventory(ID);
+        Inventory.AddItemOnInventory(_gear);
 
         if (((isEpic) ? parentLootGearChestEpic : parentLootGearChest).childCount > 0)
             Destroy(((isEpic) ? parentLootGearChestEpic : parentLootGearChest).GetChild(0).gameObject);
@@ -76,13 +76,12 @@ public class UI_Shop : MonoBehaviour
         Transform tr = Instantiate(gearPrefabShop, (isEpic) ? parentLootGearChestEpic : parentLootGearChest).transform;
         GearDescription gd = tr.GetChild(0).GetComponent<GearDescription>();
         gd.clickable = false;
-        Gear gear = Inventory.GetGearsData().First(g => g.ID == ID);
-        gd.GetComponent<Image>().sprite = gear.gearSprite;
+        gd.GetComponent<Image>().sprite = _gear.gearSprite;
         gd.gear = ScriptableObject.CreateInstance<Gear>();
-        gd.gear.CopyGear(gear);
+        gd.gear.CopyGear(_gear);
         Destroy(gd.transform.parent.gameObject, 5f);
         
-        tr.GetChild(1).GetComponent<TMP_Text>().text = gear.priceToBuy.ToString();
+        tr.GetChild(1).GetComponent<TMP_Text>().text = _gear.priceToBuy.ToString();
     }
 
     private void OpenCommonChest()
@@ -90,11 +89,8 @@ public class UI_Shop : MonoBehaviour
         if (CurrencyManager.GetKeys() >= ticketPriceCommon)
         {
             CurrencyManager.RemoveKeys(ticketPriceCommon);
-
-            Gear[] gears = Inventory.GetGearsData().Where(gear => gear.rarity == Rarity.Common).ToArray();
-
-            int ID = gears[Random.Range(0, gears.Length)].ID;
-            PrintChest(ID, false);
+            
+            PrintChest(FactoryObjectManager.CreateGear(0), false);
         }
     }
 
@@ -107,7 +103,7 @@ public class UI_Shop : MonoBehaviour
 
             int ID = gears[Random.Range(0, gears.Length)].ID;
 
-            PrintChest(ID, true);
+            PrintChest(FactoryObjectManager.CreateGear(1), true);
         }
     }
 
@@ -139,7 +135,7 @@ public class UI_Shop : MonoBehaviour
             if (CurrencyManager.GetGold() >= currentGearDescription.gear.priceToBuy)
             {
                 CurrencyManager.RemoveGold(currentGearDescription.gear.priceToBuy);
-                Inventory.AddItemOnInventory(currentGearDescription.gear.ID);
+                Inventory.AddItemOnInventory(currentGearDescription.gear);
                 Destroy(currentGearDescription.gameObject);
                 currentGearDescription = null;
                 instance.PopUp.TogglePopUp(false);

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -87,13 +88,13 @@ public class UI_Gear : MonoBehaviour
         switch (instance.currentGear.gear.slot)
         {
             case GearSlot.Weapon:
-                PlayerPrefs.SetInt("Weapon", instance.currentGear.gear.ID);
+                DataSerializer.instance.SaveDataOnMainDirectory(instance.currentGear.gear, "Weapon");
                 break;
             case GearSlot.Chest:
-                PlayerPrefs.SetInt("Chest", instance.currentGear.gear.ID);
+                DataSerializer.instance.SaveDataOnMainDirectory(instance.currentGear.gear, "Chest");
                 break;
             case GearSlot.Head:
-                PlayerPrefs.SetInt("Head", instance.currentGear.gear.ID);
+                DataSerializer.instance.SaveDataOnMainDirectory(instance.currentGear.gear, "Head");
                 break;
         }
         instance.currentGear.GetComponent<RectTransform>().localScale = Vector3.one;
@@ -104,7 +105,7 @@ public class UI_Gear : MonoBehaviour
     {
         if (!instance.currentGear) return;
         CurrencyManager.AddGold(instance.currentGear.gear.priceToSell);
-        Inventory.RemoveItemOnInventory(instance.currentGear.gear.ID);
+        Inventory.RemoveItemOnInventory(instance.currentGear.gear);
     }
 
     public void SetEquipmentImage(int index, GearDescription gearDescription)
@@ -219,5 +220,10 @@ public class UI_Gear : MonoBehaviour
         newGear.GetComponent<Image>().sprite = gear.gearSprite;
        newGear.GetComponent<GearDescription>().clickable = false;
         return newGear;
+    }
+
+    private void OnDestroy()
+    {
+        throw new NotImplementedException();
     }
 }
