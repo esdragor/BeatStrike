@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[CreateAssetMenu(fileName = "FactoryObject", menuName = "FactoryObject", order = 0)]
 public class FactoryObject : ScriptableObject
 {
     // le minimum que tu peux avoir

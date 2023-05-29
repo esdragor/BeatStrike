@@ -50,7 +50,7 @@ namespace Code.Player
             }
             ComboPrinter.PrintNewCombo(combo);
             ComboPrinter.UpdateMeter(currentCombo);
-            PlayerManager.instance.matRune.SetFloat("_OvalSize", 0);
+            PlayerManager.instance.matRune.SetFloat("_AbilityProgress", 0);
         }
 
         public List<ScreenListener.SwipeDirection> RemainingCombo()
@@ -76,7 +76,7 @@ namespace Code.Player
                 ComboPrinter.UpdateCombo();
                 currentCombo++;
                 ComboPrinter.UpdateMeter(currentCombo);
-                PlayerManager.instance.matRune.SetFloat("_OvalSize", currentCombo);
+                PlayerManager.instance.matRune.SetFloat("_AbilityProgress", currentCombo);
                 if (currentCombo == nbCombo)
                 {
                     OnSuccessAction?.Invoke();

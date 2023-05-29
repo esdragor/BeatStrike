@@ -16,6 +16,11 @@ public class PowerManager : MonoBehaviour
         if (instance == null) instance = this;
     }
 
+    private void Start()
+    {
+        PlayerManager.instance.matRune.SetFloat("_AbilityProgress", 0);
+    }
+
     public static void AssignNewPower()
     {
         int rdnPower = UnityEngine.Random.Range(0, instance.powers.Count);

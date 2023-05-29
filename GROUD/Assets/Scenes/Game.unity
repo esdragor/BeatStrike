@@ -1015,6 +1015,67 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 7984483343927096530, guid: df8729ef23a6e534e8ae7fcd598e5d00, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: df8729ef23a6e534e8ae7fcd598e5d00, type: 3}
+--- !u!1 &1250781608
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1250781611}
+  - component: {fileID: 1250781610}
+  - component: {fileID: 1250781612}
+  m_Layer: 0
+  m_Name: DataSerializer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1250781610
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1250781608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ea3a5135f155fa449eabe27def94703, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  path: 
+--- !u!4 &1250781611
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1250781608}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -6.088408, y: 1.2448995, z: 3.389308}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1250781612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1250781608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebbfba1e07e2e814d99b6c16e97498f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  factoryObjectReference:
+  - {fileID: 11400000, guid: 2ac5cd3d976236649939aa475cc5c060, type: 2}
+  - {fileID: 11400000, guid: 647e6916c7f68ea43bb8d2acea6776b4, type: 2}
 --- !u!114 &1281537157 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3119577120920837929, guid: df8729ef23a6e534e8ae7fcd598e5d00,
@@ -1068,7 +1129,7 @@ PrefabInstance:
     - target: {fileID: 256895309846087104, guid: 93042f802927c1e4db9ae495068681bb,
         type: 3}
       propertyPath: percentageDEF
-      value: 100
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 256895309846087104, guid: 93042f802927c1e4db9ae495068681bb,
         type: 3}

@@ -98,6 +98,7 @@ public class UI_Gear : MonoBehaviour
                 break;
         }
         instance.currentGear.GetComponent<RectTransform>().localScale = Vector3.one;
+        Inventory.RemoveFromInventory(instance.currentGear.gear);
         instance.currentGear = null;
     }
     
@@ -105,7 +106,8 @@ public class UI_Gear : MonoBehaviour
     {
         if (!instance.currentGear) return;
         CurrencyManager.AddGold(instance.currentGear.gear.priceToSell);
-        Inventory.RemoveItemOnInventory(instance.currentGear.gear);
+        Inventory.RemoveFromInventory(instance.currentGear.gear);
+        RemoveItemUIInventory(instance.currentGear.gear);
     }
 
     public void SetEquipmentImage(int index, GearDescription gearDescription)
@@ -204,7 +206,7 @@ public class UI_Gear : MonoBehaviour
     {
         foreach (var gearDescription in instance.allItems)
         {
-            if (gearDescription.gear == gear)
+            if (gearDescription.gear.ID == gear.ID)
             {
                 instance.allItems.Remove(gearDescription);
                 Destroy(gearDescription.gameObject);
@@ -212,18 +214,5 @@ public class UI_Gear : MonoBehaviour
                 return;
             }
         }
-    }
-
-    public static GameObject DropItem(Gear gear)
-    {
-        var newGear = Instantiate(instance.GearPrefab, instance.gearSelectionParent);
-        newGear.GetComponent<Image>().sprite = gear.gearSprite;
-       newGear.GetComponent<GearDescription>().clickable = false;
-        return newGear;
-    }
-
-    private void OnDestroy()
-    {
-        throw new NotImplementedException();
     }
 }

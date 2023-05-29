@@ -75,6 +75,8 @@ public class Gear : ScriptableObject
         if (MainMenuManager.instance == null) return false;
         UIManager.instance.gear.SetUnEquipmentImage((int)slot, gearDescription);
         UIManager.instance.gear.PrintCharacterInfos(new PlayerStats());
+        
+        Inventory.AddToInventory(gearDescription.gear);
         return false;
     }
 
