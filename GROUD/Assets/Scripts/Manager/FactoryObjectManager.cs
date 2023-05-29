@@ -83,6 +83,7 @@ public class FactoryObjectManager : MonoBehaviour
         gear.priceToSell = gear.priceToBuy / 2;
         gear.slot = (GearSlot)Random.Range(0, 3);
         gear.ID = Inventory.GetNewIndexID();
+        gear.gearSprite = Inventory.GetSprite(gear.slot);
 
         return gear;
     }

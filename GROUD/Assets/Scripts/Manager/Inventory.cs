@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using UnityEngine;
 
@@ -9,6 +10,7 @@ public class Inventory : MonoBehaviour
 
 
     [SerializeField] private Gear[] gearsDatas;
+    [SerializeField] private Sprite[] gearsSprites; // 0 = Weapon | 1 = Chest | 2 = Head
 
     private List<Gear> inventoryIDs = new List<Gear>();
     private Dictionary<int, Gear> dicoGear = new Dictionary<int, Gear>();
@@ -48,6 +50,11 @@ public class Inventory : MonoBehaviour
         UI_Gear.RemoveItemUIInventory(gear);
     }
 
+    public static Sprite GetSprite(GearSlot gear)
+    {
+        return instance.gearsSprites[gear == GearSlot.Weapon ? 0 : gear == GearSlot.Chest ? 1 : 2];
+    } 
+    
     public static void OnResetValue()
     {
         instance.OnReset = true;
@@ -62,6 +69,7 @@ public class Inventory : MonoBehaviour
         {
             newGear = DataSerializer.instance.LoadDataFromDirectory<Gear>("Weapon");
             newGear.ID = GetNewIndexID();
+            newGear.gearSprite = GetSprite(newGear.slot);
             //instance.inventoryIDs.Add(DataSerializer.instance.LoadDataFromDirectory<Gear>("Weapon"));
             gd = UI_Gear.AddItemUIInventory(newGear);
             gd.OnClick();
@@ -72,6 +80,7 @@ public class Inventory : MonoBehaviour
         {
             newGear = DataSerializer.instance.LoadDataFromDirectory<Gear>("Chest");
             newGear.ID = GetNewIndexID();
+            newGear.gearSprite =GetSprite(newGear.slot);
             //instance.inventoryIDs.Add(DataSerializer.instance.LoadDataFromDirectory<Gear>("Chest"));
             gd = UI_Gear.AddItemUIInventory(newGear);
             gd.OnClick();
@@ -83,6 +92,7 @@ public class Inventory : MonoBehaviour
 
         newGear = DataSerializer.instance.LoadDataFromDirectory<Gear>("Head");
         newGear.ID = GetNewIndexID();
+        newGear.gearSprite =GetSprite(newGear.slot);
         //instance.inventoryIDs.Add(DataSerializer.instance.LoadDataFromDirectory<Gear>("Head"));
         gd = UI_Gear.AddItemUIInventory(newGear);
         gd.OnClick();
@@ -98,12 +108,7 @@ public class Inventory : MonoBehaviour
             for (int i = 0; i < inventory.Length; i++)
             {
                 inventory[i].ID = GetNewIndexID();
-            }
-
-            Gear newGear = null;
-            GearDescription gd = null;
-            for (int i = 0; i < inventory.Length; i++)
-            {
+                inventory[i].gearSprite = GetSprite(inventory[i].slot);
                 instance.inventoryIDs.Add(inventory[i]);
                 UI_Gear.AddItemUIInventory(inventory[i]);
             }
