@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
@@ -10,7 +11,9 @@ public class Inventory : MonoBehaviour
 
 
     [SerializeField] private Gear[] gearsDatas;
-    [SerializeField] private Sprite[] gearsSprites; // 0 = Weapon | 1 = Chest | 2 = Head
+    [SerializeField] private Sprite spriteWeapon; 
+    [SerializeField] private Sprite spriteChest; 
+    [SerializeField] private Sprite spriteHead;
 
     private List<Gear> inventoryIDs = new List<Gear>();
     private Dictionary<int, Gear> dicoGear = new Dictionary<int, Gear>();
@@ -52,7 +55,20 @@ public class Inventory : MonoBehaviour
 
     public static Sprite GetSprite(GearSlot gear)
     {
-        return instance.gearsSprites[gear == GearSlot.Weapon ? 0 : gear == GearSlot.Chest ? 1 : 2];
+        switch (gear)
+        {
+            case GearSlot.Head:
+                return instance.spriteHead;
+                break;
+            case GearSlot.Chest:
+                return instance.spriteChest;
+                break;
+            case GearSlot.Weapon:
+                return instance.spriteWeapon;
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(gear), gear, null);
+        }
     } 
     
     public static void OnResetValue()

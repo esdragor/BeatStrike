@@ -1073,9 +1073,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebbfba1e07e2e814d99b6c16e97498f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  factoryObjectReference:
-  - {fileID: 11400000, guid: 2ac5cd3d976236649939aa475cc5c060, type: 2}
-  - {fileID: 11400000, guid: 647e6916c7f68ea43bb8d2acea6776b4, type: 2}
+  factoryObjectReferenceCommon: {fileID: 11400000, guid: 2ac5cd3d976236649939aa475cc5c060,
+    type: 2}
+  factoryObjectReferenceEpic: {fileID: 11400000, guid: 647e6916c7f68ea43bb8d2acea6776b4,
+    type: 2}
 --- !u!114 &1281537157 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3119577120920837929, guid: df8729ef23a6e534e8ae7fcd598e5d00,
