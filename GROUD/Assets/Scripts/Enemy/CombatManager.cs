@@ -14,6 +14,8 @@ public class CombatManager
     private EnemySO enemy;
     private GameObject currentEnemyObj;
     private int index = 0;
+    
+    private Animator currentEnemyAnimator;
 
     public void PreloadCombat()
     {
@@ -44,7 +46,9 @@ public class CombatManager
         currentEnemyObj = Object.Instantiate(enemy.visual);
         enemyVFX = currentEnemyObj.GetComponent<EnemyVFX>();
         currentEnemyObj.transform.position = GameLoopManager.instance.currentChunkLevelHeader.enemySpawnPoint.position;
-        SkinnedMeshRenderer sk = currentEnemyObj.GetComponent<EnemyPrefab>().SkinnedMeshRenderer;
+        EnemyPrefab sc = currentEnemyObj.GetComponent<EnemyPrefab>();
+        currentEnemyAnimator = sc.animator;
+        SkinnedMeshRenderer sk = sc.SkinnedMeshRenderer;
         for (int i = 0; i < sk.materials.Length; i++)
         {
             sk.materials[i] = data.mat;
@@ -63,6 +67,7 @@ public class CombatManager
 
     public void DealDamage(float amount)
     {
+        currentEnemyAnimator.SetTrigger("TakeDamage");
         if (isActive)
         {
             currentHealth -= amount;
@@ -89,5 +94,10 @@ public class CombatManager
     public float getAttackData()
     {
         return damage;
+    }
+
+    public void EnemyAttack()
+    {
+        currentEnemyAnimator.SetTrigger("Attack");
     }
 }

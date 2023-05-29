@@ -5,4 +5,5 @@ using UnityEngine;
 public class EnemyPrefab : MonoBehaviour
 {
     public SkinnedMeshRenderer SkinnedMeshRenderer;
+    public Animator animator;
 }

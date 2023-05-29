@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using System.Linq;
 using Code.Interface;
 using UnityEngine;
+using Utilities;
 
 public class InteractionDetector : MonoBehaviour
 {
@@ -98,6 +99,10 @@ public class InteractionDetector : MonoBehaviour
         if (it)
         {
             InteractionCanTrigger = it;
+            if (it.data.interactionType == Enums.InteractionType.Dodge)
+            {
+                GameLoopManager.combatManager.EnemyAttack();
+            }
         }
     }
 
