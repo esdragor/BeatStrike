@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1123186ad1b5d0a459852f617a76093c, type: 3}
+  m_Name: Attack_140_P3
+  m_EditorClassIdentifier: 
+  patternName: Attack_140_P3
+  targetLevel: 0
+  difficultyIndex: 0
+  maxTime: 5
+  BPM: 140
+  interactions:
+  - time: 0
+    row: 0
+    timeCode: 0
+    frame: 0
+    interactionType: 0
+    swipeDirection: 0
+  - time: 1.284999966621399
+    row: 0
+    timeCode: 2,78
+    frame: 2.78
+    interactionType: 0
+    swipeDirection: 0
+  - time: 2.569999933242798
+    row: 0
+    timeCode: 6,00
+    frame: 6
+    interactionType: 0
+    swipeDirection: 0
+  - time: 3.4299709796905518
+    row: 0
+    timeCode: 8,00
+    frame: 8
+    interactionType: 0
+    swipeDirection: 0
+  - time: 0.4300000071525574
+    row: 1
+    timeCode: 1,00
+    frame: 1
+    interactionType: 0
+    swipeDirection: 0
+  - time: 4.284999847412109
+    row: 1
+    timeCode: 10,00
+    frame: 10
+    interactionType: 0
+    swipeDirection: 0
+  - time: 4.714285850524902
+    row: 1
+    timeCode: 11,00
+    frame: 11
+    interactionType: 0
+    swipeDirection: 0

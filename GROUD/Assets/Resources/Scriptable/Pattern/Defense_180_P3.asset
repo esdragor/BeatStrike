@@ -1,0 +1,146 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1123186ad1b5d0a459852f617a76093c, type: 3}
+  m_Name: Defense_180_P3
+  m_EditorClassIdentifier: 
+  patternName: Defense_180_P3
+  targetLevel: 0
+  difficultyIndex: 0
+  maxTime: 10
+  BPM: 180
+  interactions:
+  - time: 0
+    row: 1
+    timeCode: 0
+    frame: 0
+    interactionType: 1
+    swipeDirection: 3
+  - time: 0.6666666865348816
+    row: 1
+    timeCode: 2,00
+    frame: 2
+    interactionType: 1
+    swipeDirection: 2
+  - time: 1.3333333730697632
+    row: 1
+    timeCode: 4,00
+    frame: 4
+    interactionType: 1
+    swipeDirection: 1
+  - time: 1.6666666269302368
+    row: 1
+    timeCode: 5,00
+    frame: 5
+    interactionType: 1
+    swipeDirection: 2
+  - time: 2
+    row: 1
+    timeCode: 6
+    frame: 6
+    interactionType: 1
+    swipeDirection: 2
+  - time: 2.3333332538604736
+    row: 1
+    timeCode: 7,00
+    frame: 7
+    interactionType: 1
+    swipeDirection: 1
+  - time: 3
+    row: 1
+    timeCode: 9
+    frame: 9
+    interactionType: 1
+    swipeDirection: 4
+  - time: 3.3333332538604736
+    row: 1
+    timeCode: 10,00
+    frame: 10
+    interactionType: 1
+    swipeDirection: 1
+  - time: 3.6666667461395264
+    row: 1
+    timeCode: 11,00
+    frame: 11
+    interactionType: 1
+    swipeDirection: 1
+  - time: 4
+    row: 1
+    timeCode: 12
+    frame: 12
+    interactionType: 1
+    swipeDirection: 2
+  - time: 4.666666507720947
+    row: 1
+    timeCode: 14,00
+    frame: 14
+    interactionType: 1
+    swipeDirection: 3
+  - time: 5
+    row: 1
+    timeCode: 15
+    frame: 15
+    interactionType: 1
+    swipeDirection: 4
+  - time: 5.333333492279053
+    row: 1
+    timeCode: 16,00
+    frame: 16
+    interactionType: 1
+    swipeDirection: 2
+  - time: 5.993181228637695
+    row: 1
+    timeCode: 17,98
+    frame: 17.98
+    interactionType: 1
+    swipeDirection: 1
+  - time: 6.333333492279053
+    row: 1
+    timeCode: 19,00
+    frame: 19
+    interactionType: 1
+    swipeDirection: 1
+  - time: 6.666666507720947
+    row: 1
+    timeCode: 20,00
+    frame: 20
+    interactionType: 1
+    swipeDirection: 1
+  - time: 7.333333492279053
+    row: 1
+    timeCode: 22,00
+    frame: 22
+    interactionType: 1
+    swipeDirection: 2
+  - time: 7.666666507720947
+    row: 1
+    timeCode: 23,00
+    frame: 23
+    interactionType: 1
+    swipeDirection: 2
+  - time: 8.333333015441895
+    row: 1
+    timeCode: 25,00
+    frame: 25
+    interactionType: 1
+    swipeDirection: 4
+  - time: 9
+    row: 1
+    timeCode: 27
+    frame: 27
+    interactionType: 1
+    swipeDirection: 3
+  - time: 9.333333015441895
+    row: 1
+    timeCode: 28,00
+    frame: 28
+    interactionType: 1
+    swipeDirection: 1

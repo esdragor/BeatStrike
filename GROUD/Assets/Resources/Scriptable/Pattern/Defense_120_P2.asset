@@ -10,78 +10,60 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1123186ad1b5d0a459852f617a76093c, type: 3}
-  m_Name: Defense_120_P1
+  m_Name: Defense_120_P2
   m_EditorClassIdentifier: 
-  patternName: Defense_120_P1
+  patternName: Defense_120_P2
   targetLevel: 0
   difficultyIndex: 0
   maxTime: 10
   BPM: 120
   interactions:
-  - time: 0
-    row: 1
-    timeCode: 0
-    frame: 0
-    interactionType: 1
-    swipeDirection: 2
   - time: 1
     row: 1
     timeCode: 2
     frame: 2
     interactionType: 1
-    swipeDirection: 1
+    swipeDirection: 3
   - time: 1.5
     row: 1
     timeCode: 3
     frame: 3
     interactionType: 1
-    swipeDirection: 2
-  - time: 2
-    row: 1
-    timeCode: 4
-    frame: 4
-    interactionType: 1
-    swipeDirection: 3
-  - time: 2.5
-    row: 1
-    timeCode: 5
-    frame: 5
-    interactionType: 1
-    swipeDirection: 1
-  - time: 3.5
-    row: 1
-    timeCode: 7
-    frame: 7
-    interactionType: 1
-    swipeDirection: 1
+    swipeDirection: 4
   - time: 4
     row: 1
     timeCode: 8
     frame: 8
     interactionType: 1
-    swipeDirection: 1
+    swipeDirection: 3
   - time: 4.5
     row: 1
     timeCode: 9
     frame: 9
     interactionType: 1
-    swipeDirection: 2
-  - time: 5.5
-    row: 1
-    timeCode: 11
-    frame: 11
-    interactionType: 1
-    swipeDirection: 2
+    swipeDirection: 3
   - time: 6
     row: 1
     timeCode: 12
     frame: 12
     interactionType: 1
     swipeDirection: 4
-  - time: 6.5
+  - time: 7.5
     row: 1
-    timeCode: 13
-    frame: 13
+    timeCode: 15
+    frame: 15
+    interactionType: 1
+    swipeDirection: 2
+  - time: 0.5
+    row: 1
+    timeCode: 1
+    frame: 1
+    interactionType: 1
+    swipeDirection: 3
+  - time: 5.5
+    row: 1
+    timeCode: 11
+    frame: 11
     interactionType: 1
     swipeDirection: 1
   - time: 7
@@ -96,15 +78,21 @@ MonoBehaviour:
     frame: 17
     interactionType: 1
     swipeDirection: 4
+  - time: 2.5
+    row: 1
+    timeCode: 5
+    frame: 5
+    interactionType: 1
+    swipeDirection: 4
+  - time: 3.5
+    row: 1
+    timeCode: 7
+    frame: 7
+    interactionType: 1
+    swipeDirection: 4
   - time: 9
     row: 1
     timeCode: 18
     frame: 18
-    interactionType: 1
-    swipeDirection: 3
-  - time: 8
-    row: 1
-    timeCode: 16
-    frame: 16
     interactionType: 1
     swipeDirection: 1

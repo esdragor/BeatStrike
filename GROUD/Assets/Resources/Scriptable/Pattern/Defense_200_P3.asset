@@ -10,20 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1123186ad1b5d0a459852f617a76093c, type: 3}
-  m_Name: Defense_200_P1
+  m_Name: Defense_200_P3
   m_EditorClassIdentifier: 
-  patternName: Defense_200_P1
+  patternName: Defense_200_P3
   targetLevel: 0
   difficultyIndex: 0
   maxTime: 10
   BPM: 200
   interactions:
-  - time: 0.30000001192092896
-    row: 1
-    timeCode: 1,00
-    frame: 1
-    interactionType: 1
-    swipeDirection: 3
   - time: 1.2000000476837158
     row: 1
     timeCode: 4,00
@@ -41,7 +35,7 @@ MonoBehaviour:
     timeCode: 20,00
     frame: 20
     interactionType: 1
-    swipeDirection: 4
+    swipeDirection: 2
   - time: 6.900000095367432
     row: 1
     timeCode: 23,00
@@ -66,18 +60,12 @@ MonoBehaviour:
     frame: 22
     interactionType: 1
     swipeDirection: 2
-  - time: 8.399999618530273
-    row: 1
-    timeCode: 28,00
-    frame: 28
-    interactionType: 1
-    swipeDirection: 4
   - time: 1.5
     row: 1
     timeCode: 5,00
     frame: 5
     interactionType: 1
-    swipeDirection: 4
+    swipeDirection: 1
   - time: 3.5999999046325684
     row: 1
     timeCode: 12,00
@@ -90,12 +78,6 @@ MonoBehaviour:
     frame: 30
     interactionType: 1
     swipeDirection: 1
-  - time: 0.6000000238418579
-    row: 1
-    timeCode: 2,00
-    frame: 2
-    interactionType: 1
-    swipeDirection: 3
   - time: 2.0999999046325684
     row: 1
     timeCode: 7,00
@@ -137,7 +119,7 @@ MonoBehaviour:
     timeCode: 17,00
     frame: 17
     interactionType: 1
-    swipeDirection: 3
+    swipeDirection: 4
   - time: 7.5
     row: 1
     timeCode: 25,00
@@ -148,5 +130,41 @@ MonoBehaviour:
     row: 1
     timeCode: 32,00
     frame: 32
+    interactionType: 1
+    swipeDirection: 3
+  - time: 0.6000000238418579
+    row: 1
+    timeCode: 2,00
+    frame: 2
+    interactionType: 1
+    swipeDirection: 2
+  - time: 2.4000000953674316
+    row: 1
+    timeCode: 8,00
+    frame: 8
+    interactionType: 1
+    swipeDirection: 2
+  - time: 3.9000000953674316
+    row: 1
+    timeCode: 13,00
+    frame: 13
+    interactionType: 1
+    swipeDirection: 3
+  - time: 5.400000095367432
+    row: 1
+    timeCode: 18,00
+    frame: 18
+    interactionType: 1
+    swipeDirection: 2
+  - time: 7.199999809265137
+    row: 1
+    timeCode: 24,00
+    frame: 24
+    interactionType: 1
+    swipeDirection: 1
+  - time: 8.699999809265137
+    row: 1
+    timeCode: 29,00
+    frame: 29
     interactionType: 1
     swipeDirection: 3
