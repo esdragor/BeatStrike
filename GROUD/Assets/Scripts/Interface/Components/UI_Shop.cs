@@ -77,6 +77,7 @@ public class UI_Shop : MonoBehaviour
         GearDescription gd = tr.GetChild(0).GetComponent<GearDescription>();
         gd.clickable = false;
         gd.GetComponent<Image>().sprite = _gear.gearSprite;
+        gd.transform.GetChild(0).GetComponent<Image>().sprite = _gear.gearSprite;
         gd.gear = ScriptableObject.CreateInstance<Gear>();
         gd.gear.CopyGear(_gear);
         Destroy(gd.transform.parent.gameObject, 5f);
@@ -86,6 +87,7 @@ public class UI_Shop : MonoBehaviour
 
     private void OpenCommonChest()
     {
+        CurrencyManager.AddKeys(1);
         if (CurrencyManager.GetKeys() >= ticketPriceCommon)
         {
             CurrencyManager.RemoveKeys(ticketPriceCommon);
@@ -99,10 +101,7 @@ public class UI_Shop : MonoBehaviour
         if (CurrencyManager.GetKeys() >= ticketPriceEpic)
         {
             CurrencyManager.RemoveKeys(ticketPriceEpic);
-            Gear[] gears = Inventory.GetGearsData().Where(gear => gear.rarity <= Rarity.Epic).ToArray();
-
-            int ID = gears[Random.Range(0, gears.Length)].ID;
-
+            
             PrintChest(FactoryObjectManager.CreateGear(1), true);
         }
     }
@@ -136,6 +135,8 @@ public class UI_Shop : MonoBehaviour
             {
                 CurrencyManager.RemoveGold(currentGearDescription.gear.priceToBuy);
                 Inventory.AddItemOnInventory(currentGearDescription.gear);
+                Transform tr = currentGearDescription.transform.parent;
+                Destroy(tr.GetChild(1).gameObject);
                 Destroy(currentGearDescription.gameObject);
                 currentGearDescription = null;
                 instance.PopUp.TogglePopUp(false);
@@ -145,14 +146,13 @@ public class UI_Shop : MonoBehaviour
 
     private void PrintGoldGear()
     {
-        Gear[] gears = Inventory.GetGearsData();
         for (int i = 0; i < 3; i++)
         {
             Transform tr = Instantiate(gearPrefabShop, ParentGoldGear).transform;
             GearDescription gd = tr.GetChild(0).GetComponent<GearDescription>();
             gd.OnSell = true;
-            Gear gear = gears[Random.Range(0, gears.Length)];
-            gd.GetComponent<Image>().sprite = gear.gearSprite;
+            Gear gear = FactoryObjectManager.CreateGear(0);
+            gd.transform.GetChild(0).GetComponent<Image>().sprite = gear.gearSprite;
             gd.gear = ScriptableObject.CreateInstance<Gear>();
             gd.gear.CopyGear(gear);
         

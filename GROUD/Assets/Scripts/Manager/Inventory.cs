@@ -10,13 +10,11 @@ public class Inventory : MonoBehaviour
     private static Inventory instance;
 
 
-    [SerializeField] private Gear[] gearsDatas;
     [SerializeField] private Sprite spriteWeapon; 
     [SerializeField] private Sprite spriteChest; 
     [SerializeField] private Sprite spriteHead;
 
     private List<Gear> inventoryIDs = new List<Gear>();
-    private Dictionary<int, Gear> dicoGear = new Dictionary<int, Gear>();
     private bool OnReset = false;
     private int ID = -1;
 
@@ -27,18 +25,9 @@ public class Inventory : MonoBehaviour
 
     public static void Init()
     {
-        foreach (var gear in instance.gearsDatas)
-        {
-            instance.dicoGear.Add(gear.ID, gear);
-        }
 
         instance.LoadInventory();
         instance.LoadEquipment();
-    }
-
-    public static Gear[] GetGearsData()
-    {
-        return instance.gearsDatas;
     }
 
     public static GearDescription AddItemOnInventory(Gear gear)
