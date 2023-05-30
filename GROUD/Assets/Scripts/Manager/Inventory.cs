@@ -25,7 +25,6 @@ public class Inventory : MonoBehaviour
 
     public static void Init()
     {
-
         instance.LoadInventory();
         instance.LoadEquipment();
     }
