@@ -18,8 +18,8 @@ public class FactoryObjectManager : MonoBehaviour
             rarity == 0 ? instance.factoryObjectReferenceCommon : instance.factoryObjectReferenceEpic;
         Gear gear = ScriptableObject.CreateInstance<Gear>();
         
-        float min = 0;
-        float max = 0;
+        int min = 0;
+        int max = 0;
         int actualPalier = PalierManager.GetActualPalier();
         
         int statType = Random.Range(0, 3);
@@ -27,27 +27,27 @@ public class FactoryObjectManager : MonoBehaviour
         {
             case 0:
                 gear.statsType1 = StatsType.Hp;
-                min = factoryObject.minHealth + factoryObject.multiplierHealthPerPalier * (float)actualPalier;
+                min = (int)(factoryObject.minHealth + factoryObject.multiplierHealthPerPalier * (float)actualPalier);
                 if (min > factoryObject.maxHealth) min = factoryObject.maxHealth;
-                max = min + factoryObject.multiplierHealth * (float)actualPalier;
+                max = (int)(min + factoryObject.multiplierHealth * (float)actualPalier);
                 if (max > factoryObject.maxHealth) max = factoryObject.maxHealth;
-                gear.statsValue1 = Random.Range(factoryObject.minHealth, max);
+                gear.statsValue1 = Random.Range(min, max);
                 break;
             case 1:
                 gear.statsType1 = StatsType.Intelligence;
-                min = factoryObject.minIntelligence + factoryObject.multiplierIntelligencePerPalier * (float)actualPalier;
+                min = (int)(factoryObject.minIntelligence + factoryObject.multiplierIntelligencePerPalier * (float)actualPalier);
                 if (min > factoryObject.maxIntelligence) min = factoryObject.maxIntelligence;
-                max = min + factoryObject.multiplierIntelligence * (float)actualPalier;
+                max = (int)(min + factoryObject.multiplierIntelligence * (float)actualPalier);
                 if (max > factoryObject.maxIntelligence) max = factoryObject.maxIntelligence;
-                gear.statsValue1 = Random.Range(factoryObject.minIntelligence, max);
+                gear.statsValue1 = Random.Range(min, max);
                 break;
             case 2:
                 gear.statsType1 = StatsType.Strength;
-                min = factoryObject.minStrength + factoryObject.multiplierStrengthPerPalier * (float)actualPalier;
+                min = (int)(factoryObject.minStrength + factoryObject.multiplierStrengthPerPalier * (float)actualPalier);
                 if (min > factoryObject.maxStrength) min = factoryObject.maxStrength;
-                max = min + factoryObject.multiplierStrength * (float)actualPalier;
+                max = (int)(min + factoryObject.multiplierStrength * (float)actualPalier);
                 if (max > factoryObject.maxStrength) max = factoryObject.maxStrength;
-                gear.statsValue1 = Random.Range(factoryObject.minStrength, max);
+                gear.statsValue1 = Random.Range(min, max);
                 break;
         }
         
@@ -56,27 +56,28 @@ public class FactoryObjectManager : MonoBehaviour
         {
             case 0:
                 gear.statsType2 = StatsType.Hp;
-                min = factoryObject.minHealth + factoryObject.multiplierHealthPerPalier * (float)actualPalier;
+                min = (int)(factoryObject.minHealth + factoryObject.multiplierHealthPerPalier * (float)actualPalier);
                 if (min > factoryObject.maxHealth) min = factoryObject.maxHealth;
-                max = factoryObject.minHealth + factoryObject.multiplierHealth * (float)actualPalier;
+                max = (int)(factoryObject.minHealth + factoryObject.multiplierHealth * (float)actualPalier);
                 if (max > factoryObject.maxHealth) max = factoryObject.maxHealth;
-                gear.statsValue2 = Random.Range(factoryObject.minHealth, max);
+                gear.statsValue2 = Random.Range(min, max);
                 break;
             case 1:
                 gear.statsType2 = StatsType.Intelligence;
-                min = factoryObject.minIntelligence + factoryObject.multiplierIntelligencePerPalier * (float)actualPalier;
+                min = (int)(factoryObject.minIntelligence + factoryObject.multiplierIntelligencePerPalier * (float)actualPalier);
                 if (min > factoryObject.maxIntelligence) min = factoryObject.maxIntelligence;
-                max = factoryObject.minIntelligence + factoryObject.multiplierIntelligence * (float)actualPalier;
+                max = (int)(factoryObject.minIntelligence + factoryObject.multiplierIntelligence * (float)actualPalier);
                 if (max > factoryObject.maxIntelligence) max = factoryObject.maxIntelligence;
-                gear.statsValue2 = Random.Range(factoryObject.minIntelligence, max);
+                gear.statsValue2 = Random.Range(min, max);
                 break;
             case 2:
                 gear.statsType2 = StatsType.Strength;
-                min = factoryObject.minStrength + factoryObject.multiplierStrengthPerPalier * (float)actualPalier;
+                min = (int)(factoryObject.minStrength + factoryObject.multiplierStrengthPerPalier * (float)actualPalier);
                 if (min > factoryObject.maxStrength) min = factoryObject.maxStrength;
-                max = factoryObject.minStrength + factoryObject.multiplierStrength * (float)actualPalier;
+                max = (int)(factoryObject.minStrength + factoryObject.multiplierStrength * (float)actualPalier);
                 if (max > factoryObject.maxStrength) max = factoryObject.maxStrength;
-                gear.statsValue2 = Random.Range(factoryObject.minStrength, max);
+                
+                gear.statsValue2 = Random.Range(min, max);
                 break;
         }
         

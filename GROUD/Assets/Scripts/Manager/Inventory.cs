@@ -72,6 +72,10 @@ public class Inventory : MonoBehaviour
         GearDescription gd = null;
         if (DataSerializer.instance.CheckFileExists("Weapon"))
         {
+            // newGear = Ressources.Load
+            
+            
+            
             newGear = DataSerializer.instance.LoadDataFromDirectory<Gear>("Weapon");
             newGear.ID = GetNewIndexID();
             newGear.gearSprite = GetSprite(newGear.slot);
