@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using Utilities;
 
 public class UIManager : MonoBehaviour
@@ -27,6 +28,10 @@ public class UIManager : MonoBehaviour
 
     public TMP_Text patternDebugTxt;
     public GameObject pausePanel;
+
+    public Image muteIcon;
+    public Sprite muteSprite;
+    public Sprite unMuteSprite;
     
     private void Awake()
     {
@@ -51,6 +56,11 @@ public class UIManager : MonoBehaviour
         Application.OpenURL(url);
     }
 
+    public void Mute()
+    {
+        muteIcon.sprite = SoundManager.ToggleMute() ? muteSprite : unMuteSprite;
+    }
+    
     public void Pause(bool isPause)
     {
         pausePanel.SetActive(isPause);

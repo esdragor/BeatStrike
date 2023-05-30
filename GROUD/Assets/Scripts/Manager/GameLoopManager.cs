@@ -219,11 +219,12 @@ public class GameLoopManager : MonoBehaviour
         tickCount = 0;
     }
 
-    public void printDEFRoad(bool isDef)
+    public void PrintComboRoad(bool isDef)
     {
         patternManager.isTimelineActive = false;
         UIManager.instance.StartCoroutine(printPattern(isDef));
         isDefPrinter.SetInt("_isAttacking", isDef ? 0 : 1);
+        
         if (isDef)
         {
             if (PlayerManager.instance.GetCurrentPower() != null)

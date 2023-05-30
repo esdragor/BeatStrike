@@ -56,7 +56,7 @@ public class PatternManager
         }
 
         Pattern p = pList[UnityEngine.Random.Range(0, pList.Length)];
-        
+                
         UIManager.instance.DebugPattern(p.patternName);
         //GameManager.instance.SetBPM(p.BPM);
 
@@ -97,7 +97,7 @@ public class PatternManager
         }
         else if (!GameLoopManager.instance.IsMoving)
         {
-            EndPattern();
+            EndPattern();   
         }
     }
 
@@ -112,7 +112,6 @@ public class PatternManager
         //EndPattern(false);
     }
 
-
     public async void EndPattern(bool EndPattern = true)
     {
         float timer = 1f;
@@ -125,7 +124,9 @@ public class PatternManager
             await Task.Yield();
         }
         if (EndPattern && !GameLoopManager.instance.IsMoving)
-            GameLoopManager.instance.printDEFRoad(StartPattern(-timer));
+            GameLoopManager.instance.PrintComboRoad(StartPattern(-timer));
+        
+        timelineRunnerKeys.Clear();
     }
 
     public void DrawInteractionOnScreen(InteractionKey dataKey)

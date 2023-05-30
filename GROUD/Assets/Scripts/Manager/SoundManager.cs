@@ -80,6 +80,18 @@ public class SoundManager : MonoBehaviour
     {
         
     }
-    
-    
+
+    private static bool isMute;
+    public static bool ToggleMute()
+    {
+        isMute = !isMute;
+        
+        instance.audioSourceMusicalBackground.mute = isMute;
+        foreach (var s in instance.audioSourceNotePlayer)
+        {   
+            s.mute = isMute;
+        }
+
+        return isMute;
+    }
 }
