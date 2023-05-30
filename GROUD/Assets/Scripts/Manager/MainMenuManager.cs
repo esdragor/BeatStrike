@@ -50,6 +50,8 @@ public class MainMenuManager : MonoBehaviour
         PlayerPrefs.DeleteAll();
         Inventory.OnResetValue();
         CurrencyManager.OnResetValue();
+        
+        DataSerializer.instance.Reset();
 
        Application.Quit();
     }

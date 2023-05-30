@@ -71,4 +71,14 @@ public class DataSerializer : MonoBehaviour
         path = Application.persistentDataPath + "/" + pathExtension + ".xml";
         File.Delete(path);
     }
+
+    public void Reset()
+    {
+       DirectoryInfo di = new DirectoryInfo(Application.persistentDataPath);
+
+        foreach (FileInfo file in di.GetFiles())
+        {
+            file.Delete(); 
+        }
+    }
 }
