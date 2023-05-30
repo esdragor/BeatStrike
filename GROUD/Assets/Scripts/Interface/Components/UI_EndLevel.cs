@@ -7,7 +7,6 @@ using Utilities;
 public class UI_EndLevel : MonoBehaviour
 {
     [SerializeField] private TMP_Text textScore;
-    [SerializeField] private TMP_Text textKey;
     [SerializeField] private TMP_Text textGold;
     
     RectTransform tr;
@@ -18,13 +17,10 @@ public class UI_EndLevel : MonoBehaviour
         gameObject.transform.parent.gameObject.SetActive(true);
         textScore.text = $"Score: \n\n{ScoreManager.GetScore()}";
 
-        int nbKey = 1;
         int nbGold = (int)(ScoreManager.GetScore() * 0.1f);
         
-        CurrencyManager.AddKeys(nbKey);
         CurrencyManager.AddGold(nbGold);
         
-        textKey.text = $"Key: \n\n{nbKey}";
         textGold.text = $"Gold: \n\n{nbGold}";
     }
 

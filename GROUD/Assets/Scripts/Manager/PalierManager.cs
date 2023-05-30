@@ -48,6 +48,8 @@ public class PalierManager : MonoBehaviour
         UIManager.instance.hud.textPalierInGame.text = GetPalierText();
         
         UIManager.instance.randomBPMSelector.ShowButtons();
+        UIManager.instance.hud.PrintGainKey();
+        CurrencyManager.AddKeys(1);
     }
     
     public static int GetIndexPalier()
