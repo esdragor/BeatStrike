@@ -60,7 +60,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 256895309109999099}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.37600002, z: 4.38}
+  m_LocalPosition: {x: 0, y: 0.37600002, z: 5.44}
   m_LocalScale: {x: 1, y: 1, z: 4.0424776}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -334,7 +334,7 @@ MonoBehaviour:
   pSystem:
   - {fileID: 7062974559324395422}
   - {fileID: 8554525983690556368}
-  effID: 1
+  effID: 0
 --- !u!1 &256895309280268867
 GameObject:
   m_ObjectHideFlags: 0
@@ -666,31 +666,92 @@ MonoBehaviour:
     type: 3}
   tickCount: 0
   currentPulse: 0
-  speedRun: 10
+  speedRun: 15
   sizeOfChuncks: 35
   inputManager: {fileID: 0}
   patternByBpms:
   - bpm: 60
     ATKPatterns:
     - {fileID: 11400000, guid: 4401ab5254ca1b94fb0a464c4b4bf294, type: 2}
+    - {fileID: 11400000, guid: 5c20b9014368d1c44a9a38e21d5b2b12, type: 2}
+    - {fileID: 11400000, guid: 8e43ad5a36a72854c9fd90b0b3c284d3, type: 2}
     DEFPatterns:
     - {fileID: 11400000, guid: 6238f3905817dc24c98cccddc63e1644, type: 2}
+    - {fileID: 11400000, guid: 9661f42f87113bf4896a5a586a480aca, type: 2}
+    - {fileID: 11400000, guid: 7786a440f1a02ea43bbc33f5604b6875, type: 2}
+  - bpm: 80
+    ATKPatterns:
+    - {fileID: 11400000, guid: a99d65394b92a9a4d812e8bcbbe85c57, type: 2}
+    - {fileID: 11400000, guid: d487d546a231e0249bb8053ef5ed73e9, type: 2}
+    - {fileID: 11400000, guid: 7e174b86d23105b4ebf32da01fcd5078, type: 2}
+    DEFPatterns:
+    - {fileID: 11400000, guid: 6a4afae4e07a43f429e89d84e7d69866, type: 2}
+    - {fileID: 11400000, guid: 8149796c536fba54e825d458c00d5fee, type: 2}
+    - {fileID: 11400000, guid: 5b9b4550fb926cd49b63b52dc337ebc0, type: 2}
   - bpm: 90
     ATKPatterns:
     - {fileID: 11400000, guid: 70b8e320f47d0d741be326bf388b9264, type: 2}
+    - {fileID: 11400000, guid: 84c849db17dd3b244a20f4289b57d76b, type: 2}
+    - {fileID: 11400000, guid: 62e38dd9a89dad2499038710b4f0e894, type: 2}
     DEFPatterns:
+    - {fileID: 11400000, guid: f6f1905d095411d43bd47693e762a6df, type: 2}
     - {fileID: 11400000, guid: 43c161072f440144fb9650040ca2b7f9, type: 2}
+    - {fileID: 11400000, guid: 400ebbd423bb4594cbfe5456461eb6ab, type: 2}
+  - bpm: 100
+    ATKPatterns:
+    - {fileID: 11400000, guid: 40c17d9cebd1c8c4abb3dd2930788c2c, type: 2}
+    - {fileID: 11400000, guid: 4d2706de5911e2a428688e9dd5c811ea, type: 2}
+    - {fileID: 11400000, guid: 2205595857783714e9c5dfee3b852f81, type: 2}
+    DEFPatterns:
+    - {fileID: 11400000, guid: 56c7287e7f29ab5409978162f24a89a2, type: 2}
+    - {fileID: 11400000, guid: 0c3ad43198ec4b8488d6fbc07b7d321e, type: 2}
+    - {fileID: 11400000, guid: afd9e9df762f81141b46943d02ad59de, type: 2}
   - bpm: 120
     ATKPatterns:
     - {fileID: 11400000, guid: 48fd3c64e6615e54c85abd304b74ac20, type: 2}
+    - {fileID: 11400000, guid: 9f6b28ff555a14d4c872b0b4920578f2, type: 2}
+    - {fileID: 11400000, guid: d5c3b35c961cf4446bafbcb40236fdb6, type: 2}
     DEFPatterns:
     - {fileID: 11400000, guid: 3d9915826c9029e4d873531d71517e61, type: 2}
-  - bpm: 150
+    - {fileID: 11400000, guid: b3b9304debe740841abc01267b2360f3, type: 2}
+    - {fileID: 11400000, guid: 2b2e560d63e21ae468f1e586b4a78fe2, type: 2}
+  - bpm: 140
     ATKPatterns:
-    - {fileID: 11400000, guid: 924674da25e9ccc4283e804e2d91b974, type: 2}
+    - {fileID: 11400000, guid: 84de0239c12d0764f9c44c51cbc6d09e, type: 2}
+    - {fileID: 11400000, guid: 4a3e5e635ec3bc4498581706167a6280, type: 2}
+    - {fileID: 11400000, guid: 142f2508bccb1fb4db0dfd589bbb9234, type: 2}
     DEFPatterns:
     - {fileID: 11400000, guid: f91f35219a457c24ab13f7c235677039, type: 2}
-  percentageDEF: 70
+    - {fileID: 11400000, guid: 1ecd0c81caa9e3041967891aa72a694c, type: 2}
+    - {fileID: 11400000, guid: 4db37bd2e0d433042a40e3f9688151cc, type: 2}
+  - bpm: 160
+    ATKPatterns:
+    - {fileID: 11400000, guid: 924674da25e9ccc4283e804e2d91b974, type: 2}
+    - {fileID: 11400000, guid: 151bf4c84f897bb46beb47d5e4c8a247, type: 2}
+    - {fileID: 11400000, guid: afb66f0e909a9424992d7dc8d8ab43f5, type: 2}
+    DEFPatterns:
+    - {fileID: 11400000, guid: ec071f863cff2a44297e6877ca041cbb, type: 2}
+    - {fileID: 11400000, guid: 8c36a570a292c754b82777a343ea5586, type: 2}
+    - {fileID: 11400000, guid: 459fa8cf981bef24c9a7ba933007f5f7, type: 2}
+  - bpm: 180
+    ATKPatterns:
+    - {fileID: 11400000, guid: 933f9fbe22b401b4f8d4a60cb4305bfe, type: 2}
+    - {fileID: 11400000, guid: 9eee58a51cfb6644082e6bfa8bb0e340, type: 2}
+    - {fileID: 11400000, guid: 179e0803a4c52db40ab7032af8e49f1d, type: 2}
+    DEFPatterns:
+    - {fileID: 11400000, guid: 5693a0344991fa14f9c65cdabbcd0e1a, type: 2}
+    - {fileID: 11400000, guid: 9fd66a1cf38f67b42a56bd4957588d5b, type: 2}
+    - {fileID: 11400000, guid: 1b1048fcc18cbf84ea61e11fced6bf96, type: 2}
+  - bpm: 200
+    ATKPatterns:
+    - {fileID: 11400000, guid: a237b0293ddf25848b66f19a549b28b0, type: 2}
+    - {fileID: 11400000, guid: d4fad0a130e1c074494d839707b148cb, type: 2}
+    - {fileID: 11400000, guid: d27adcce5cf385a408868945b70ea61f, type: 2}
+    DEFPatterns:
+    - {fileID: 11400000, guid: 1feb07a121c78224582ae4d9f9a3fab6, type: 2}
+    - {fileID: 11400000, guid: ae9619095c66cfc4ca59fd986a9fbaf9, type: 2}
+    - {fileID: 11400000, guid: c8303527300e7ea4a986cf13c436e520, type: 2}
+  percentageDEF: 50
   isDefPrinter: {fileID: 2100000, guid: f9348b4d88fdba14eb20439778ff22cf, type: 2}
 --- !u!114 &256895309846087106
 MonoBehaviour:
@@ -739,7 +800,6 @@ MonoBehaviour:
   actualPalier: 0
   palierPrefabEnemies:
   - {fileID: 11400000, guid: 6919358025f1d5748b0559c26f354333, type: 2}
-  - {fileID: 11400000, guid: d391b78341d5c774fa40ac4ee881238e, type: 2}
 --- !u!1 &256895309878835896
 GameObject:
   m_ObjectHideFlags: 0
@@ -860,10 +920,6 @@ MonoBehaviour:
   distanceReached: 0
   animator: {fileID: 780045501785279664}
   matRune: {fileID: 2100000, guid: 1f6cb1a44d266264aba5d55d5dbe81d3, type: 2}
-  minRuneSize: 0.5
-  interRuneSize1: 0.675
-  interRuneSize2: 0.85
-  maxRuneSize: 1
   vfxManager: {fileID: 3580946469746164190}
 --- !u!114 &3580946469746164190
 MonoBehaviour:
@@ -1039,7 +1095,7 @@ MonoBehaviour:
   - {fileID: 787612519916497057}
   - {fileID: 191573366496269007}
   - {fileID: 4757073091820401232}
-  meterRenderer: {fileID: 0}
+  meterRenderer: {fileID: 896939785834918667}
 --- !u!114 &4115965701235167294
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2138,6 +2194,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cae453344a62a2140bc475ca7f77e7b3, type: 3}
+--- !u!23 &896939785834918667 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 2006029236093254104, guid: cae453344a62a2140bc475ca7f77e7b3,
+    type: 3}
+  m_PrefabInstance: {fileID: 1703566881886571219}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2033864682129131620 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 837093569511359159, guid: cae453344a62a2140bc475ca7f77e7b3,

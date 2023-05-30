@@ -44,6 +44,12 @@ public class UIManager : MonoBehaviour
         patternDebugTxt.text = patternName;
     }
 
+    public void OpenLink(string url)
+    {
+        Debug.Log(url);
+        Application.OpenURL(url);
+    }
+
     void OnEngineStateSetUI(Enums.EngineState engineState)
     {
         switch (engineState)
