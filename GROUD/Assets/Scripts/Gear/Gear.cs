@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 
 [Serializable]
-struct GearSaveData
+public struct GearSaveData
 {
     public GearSlot slot;
     public Rarity rarity;
@@ -12,6 +12,18 @@ struct GearSaveData
     public float statsValue2;
     public int priceToBuy;
     public int priceToSell;
+
+    public void CopyGear(Gear currentGearGear)
+    {
+        slot = currentGearGear.slot;
+        rarity = currentGearGear.rarity;
+        statsType1 = currentGearGear.statsType1;
+        statsValue1 = currentGearGear.statsValue1;
+        statsType2 = currentGearGear.statsType2;
+        statsValue2 = currentGearGear.statsValue2;
+        priceToBuy = currentGearGear.priceToBuy;
+        priceToSell = currentGearGear.priceToSell;
+    }
 }
 
 [Serializable]
@@ -107,6 +119,18 @@ public class Gear : ScriptableObject
         statsValue2 = _gear.statsValue2;
         priceToBuy = _gear.priceToBuy;
         priceToSell = _gear.priceToSell;
+    }
+
+    public void CopyGear(GearSaveData data)
+    {
+        slot = data.slot;
+        rarity = data.rarity;
+        statsType1 = data.statsType1;
+        statsValue1 = data.statsValue1;
+        statsType2 = data.statsType2;
+        statsValue2 = data.statsValue2;
+        priceToBuy = data.priceToBuy;
+        priceToSell = data.priceToSell;
     }
 }
 

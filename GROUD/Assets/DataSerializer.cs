@@ -30,7 +30,7 @@ public class DataSerializer : MonoBehaviour
     private void SaveData<T>(T data)
     {
         StreamWriter streamWriter = new(path, false, encoding);
-        XmlSerializer dataSerializer = new(typeof(T));
+        XmlSerializer dataSerializer = new XmlSerializer(typeof(T));
         
         dataSerializer.Serialize(streamWriter, data);
         streamWriter.Close();
@@ -49,7 +49,7 @@ public class DataSerializer : MonoBehaviour
         if (File.Exists(path))
         {
             FileStream fileStream = new(path, FileMode.Open);
-            XmlSerializer dataSerializer = new(typeof(T));
+            XmlSerializer dataSerializer = new XmlSerializer(typeof(T));
 
             T data = (T)dataSerializer.Deserialize(fileStream);
             fileStream.Close();
