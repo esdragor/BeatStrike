@@ -161,6 +161,7 @@ public enum InteractionSuccess
     Fail,
 }
 
+[Serializable]
 public enum StatsType
 {
     Hp,

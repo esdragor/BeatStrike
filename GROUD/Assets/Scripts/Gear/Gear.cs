@@ -2,6 +2,19 @@ using System;
 using UnityEngine;
 
 [Serializable]
+struct GearSaveData
+{
+    public GearSlot slot;
+    public Rarity rarity;
+    public StatsType statsType1;
+    public float statsValue1;
+    public StatsType statsType2;
+    public float statsValue2;
+    public int priceToBuy;
+    public int priceToSell;
+}
+
+[Serializable]
 [CreateAssetMenu(fileName = "Gear", menuName = "Gear", order = 0)]
 public class Gear : ScriptableObject
 {
@@ -97,6 +110,7 @@ public class Gear : ScriptableObject
     }
 }
 
+[Serializable]
 public enum GearSlot
 {
     Head,
@@ -104,6 +118,7 @@ public enum GearSlot
     Weapon,
 }
 
+[Serializable]
 public enum Rarity
 {
     Common,
