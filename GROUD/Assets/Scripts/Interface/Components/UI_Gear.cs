@@ -88,13 +88,19 @@ public class UI_Gear : MonoBehaviour
         switch (instance.currentGear.gear.slot)
         {
             case GearSlot.Weapon:
-                DataSerializer.instance.SaveDataOnMainDirectory(instance.currentGear.gear, "Weapon");
+                GearSaveData weaponData = new GearSaveData();
+                weaponData.CopyGear(instance.currentGear.gear);
+                DataSerializer.instance.SaveDataOnMainDirectory(weaponData, "Weapon");
                 break;
             case GearSlot.Chest:
-                DataSerializer.instance.SaveDataOnMainDirectory(instance.currentGear.gear, "Chest");
+                GearSaveData chestData = new GearSaveData();
+                chestData.CopyGear(instance.currentGear.gear);
+                DataSerializer.instance.SaveDataOnMainDirectory(chestData, "Chest");
                 break;
             case GearSlot.Head:
-                DataSerializer.instance.SaveDataOnMainDirectory(instance.currentGear.gear, "Head");
+                GearSaveData headData = new GearSaveData();
+                headData.CopyGear(instance.currentGear.gear);
+                DataSerializer.instance.SaveDataOnMainDirectory(headData, "Head");
                 break;
         }
         instance.currentGear.GetComponent<RectTransform>().localScale = Vector3.one;

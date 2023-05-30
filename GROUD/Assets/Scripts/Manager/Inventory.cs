@@ -70,13 +70,15 @@ public class Inventory : MonoBehaviour
         await Task.Delay(200);
         Gear newGear = null;
         GearDescription gd = null;
+        GearSaveData gearData;
         if (DataSerializer.instance.CheckFileExists("Weapon"))
         {
             // newGear = Ressources.Load
             
+            gearData = DataSerializer.instance.LoadDataFromDirectory<GearSaveData>("Weapon");
             
-            
-            newGear = DataSerializer.instance.LoadDataFromDirectory<Gear>("Weapon");
+            newGear = ScriptableObject.CreateInstance<Gear>();
+            newGear.CopyGear(gearData);
             newGear.ID = GetNewIndexID();
             newGear.gearSprite = GetSprite(newGear.slot);
             //instance.inventoryIDs.Add(DataSerializer.instance.LoadDataFromDirectory<Gear>("Weapon"));
@@ -87,7 +89,10 @@ public class Inventory : MonoBehaviour
 
         if (DataSerializer.instance.CheckFileExists("Chest"))
         {
-            newGear = DataSerializer.instance.LoadDataFromDirectory<Gear>("Chest");
+            gearData = DataSerializer.instance.LoadDataFromDirectory<GearSaveData>("Chest");
+            
+            newGear = ScriptableObject.CreateInstance<Gear>();
+            newGear.CopyGear(gearData);
             newGear.ID = GetNewIndexID();
             newGear.gearSprite =GetSprite(newGear.slot);
             //instance.inventoryIDs.Add(DataSerializer.instance.LoadDataFromDirectory<Gear>("Chest"));
@@ -99,7 +104,10 @@ public class Inventory : MonoBehaviour
         if (!DataSerializer.instance.CheckFileExists("Head")) return;
 
 
-        newGear = DataSerializer.instance.LoadDataFromDirectory<Gear>("Head");
+        gearData = DataSerializer.instance.LoadDataFromDirectory<GearSaveData>("Head");
+            
+        newGear = ScriptableObject.CreateInstance<Gear>();
+        newGear.CopyGear(gearData);
         newGear.ID = GetNewIndexID();
         newGear.gearSprite =GetSprite(newGear.slot);
         //instance.inventoryIDs.Add(DataSerializer.instance.LoadDataFromDirectory<Gear>("Head"));
@@ -112,14 +120,16 @@ public class Inventory : MonoBehaviour
     {
         if (DataSerializer.instance.CheckFileExists("Inventory"))
         {
-            Gear[] inventory = DataSerializer.instance.LoadDataFromDirectory<Gear[]>("Inventory");
+            GearSaveData[] inventory = DataSerializer.instance.LoadDataFromDirectory<GearSaveData[]>("Inventory");
 
             for (int i = 0; i < inventory.Length; i++)
             {
-                inventory[i].ID = GetNewIndexID();
-                inventory[i].gearSprite = GetSprite(inventory[i].slot);
-                instance.inventoryIDs.Add(inventory[i]);
-                UI_Gear.AddItemUIInventory(inventory[i]);
+                Gear newGear = ScriptableObject.CreateInstance<Gear>();
+                newGear.CopyGear(inventory[i]);
+                newGear.ID = GetNewIndexID();
+                newGear.gearSprite = GetSprite(inventory[i].slot);
+                instance.inventoryIDs.Add(newGear);
+                UI_Gear.AddItemUIInventory(newGear);
             }
         }
     }
@@ -143,9 +153,17 @@ public class Inventory : MonoBehaviour
     {
         if (OnReset) return;
 
+        List<GearSaveData> datas = new List<GearSaveData>();
+
         if (inventoryIDs.Count > 0)
         {
-            DataSerializer.instance.SaveDataOnMainDirectory(inventoryIDs.ToArray(), "Inventory");
+            for (int i = 0; i < inventoryIDs.Count; i++)
+            {
+                GearSaveData data = new GearSaveData();
+                data.CopyGear(inventoryIDs[i]);
+                datas.Add(data);
+            }
+            DataSerializer.instance.SaveDataOnMainDirectory(datas.ToArray(), "Inventory");
         }
         else if (DataSerializer.instance.CheckFileExists("Inventory"))
         {
