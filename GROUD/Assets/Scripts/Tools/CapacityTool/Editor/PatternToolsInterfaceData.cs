@@ -18,6 +18,8 @@ public class PatternToolsInterfaceData : ScriptableObject
     public Rect interactionListRect;
     public Color interactionListBackgroundDropdown;
 
+    public Rect createWindowRect;
+    public Color createWindowBackgroundColor;    
     [Header("Key")] 
     public float lineThickness;
     public float interactionIconWidth = 30f;
