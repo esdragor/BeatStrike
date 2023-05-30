@@ -517,7 +517,7 @@ public class CapacityToolEditor : SimpleTimeArea
                      interactionTexture =  interfaceData.defaultIcon;
                      break;
                }
-               lineColor = interfaceData.swipeLine;
+               lineColor = interfaceData.tapLine;
                break;
          }
          
