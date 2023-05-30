@@ -286,7 +286,7 @@ public class CapacityToolEditor : SimpleTimeArea
          selectedInteractionKey.frame = (float)Convert.ToDouble(selectedInteractionKey.timeCode);
          targetFrame = (int)selectedInteractionKey.frame;
          EditorGUILayout.LabelField($"Frame : {selectedInteractionKey.frame}");
-         selectedInteractionKey.time = EditorGUILayout.Slider((float)selectedInteractionKey.time, 0f, (float)currentPattern.maxTime);
+        // selectedInteractionKey.time = EditorGUILayout.Slider((float)selectedInteractionKey.time, 0f, (float)currentPattern.maxTime);
          selectedInteractionKey.interactionType = (Enums.InteractionType) EditorGUILayout.EnumPopup("Type", selectedInteractionKey.interactionType);
          
          EditorGUI.BeginChangeCheck();
@@ -324,7 +324,7 @@ public class CapacityToolEditor : SimpleTimeArea
       if (currentPattern != null && currentPattern.BPM > 0)
       {
          _frameRate = currentPattern.BPM / 60f;
-         _frameSnap = false;
+         _frameSnap = true;
          _timeInFrames = true;
       }
       
@@ -517,7 +517,7 @@ public class CapacityToolEditor : SimpleTimeArea
                      interactionTexture =  interfaceData.defaultIcon;
                      break;
                }
-               lineColor = interfaceData.swipeLine;
+               lineColor = interfaceData.tapLine;
                break;
          }
          
