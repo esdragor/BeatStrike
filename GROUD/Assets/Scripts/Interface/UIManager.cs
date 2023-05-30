@@ -17,6 +17,7 @@ public class UIManager : MonoBehaviour
     public UI_Gear gear;
     public UI_Shop shop;
     public UI_RandomBPMSelector randomBPMSelector;
+    public UI_Tutorial tutorial;
 
     public MainMenuManager mainMenu;
 
@@ -27,6 +28,7 @@ public class UIManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
+        tutorial.DrawNext();
     }
 
     private void Start()
