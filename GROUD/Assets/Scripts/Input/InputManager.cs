@@ -71,6 +71,11 @@ public class InputManager : MonoBehaviour
 
     private void SwipeBehaviour(ScreenListener.SwipeDirection dir)
     {
+        if (GameManager.gameState.IsEngineMenu() && !UIManager.instance.tutorial.ended && dir == ScreenListener.SwipeDirection.LEFT)
+        {
+            UIManager.instance.tutorial.DrawNext();
+        }
+        
         InteractionComponent it = GameLoopManager.instance.detector.InteractionCanTrigger;
         if (!it) return;
 
