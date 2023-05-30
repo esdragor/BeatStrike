@@ -149,6 +149,7 @@ public class CapacityToolEditor : SimpleTimeArea
       DrawPatternDataArea(); 
       DrawInteractionListArea(); 
       DrawTimeline();
+      DrawCreatePopup();
    }
    
 
@@ -180,7 +181,10 @@ public class CapacityToolEditor : SimpleTimeArea
 
       if (GUILayout.Button("Create New..."))
       {
-         CreatePattern();
+         isCreateWindowVisible = true;
+         tmpBPM = 80;
+         tmpMaxTime = 10;
+         tmpPatternName = "";
       }
       
       GUILayout.EndArea();
@@ -197,9 +201,9 @@ public class CapacityToolEditor : SimpleTimeArea
       GUILayout.Space(20);
       
       currentPattern.patternName = EditorGUILayout.TextField("Pattern Name", currentPattern.patternName);
-      currentPattern.targetLevel = EditorGUILayout.Popup("Target Level", currentPattern.targetLevel, levelOptions); 
-      currentPattern.difficultyIndex = EditorGUILayout.Popup("Difficulty", currentPattern.difficultyIndex, difficultyOptions);
-      currentPattern.maxTime = EditorGUILayout.FloatField("Max Time", (float) currentPattern.maxTime);
+    //  currentPattern.targetLevel = EditorGUILayout.Popup("Target Level", currentPattern.targetLevel, levelOptions); 
+    //  currentPattern.difficultyIndex = EditorGUILayout.Popup("Difficulty", currentPattern.difficultyIndex, difficultyOptions);
+      currentPattern.maxTime = EditorGUILayout.FloatField("Duration", (float) currentPattern.maxTime);
       currentPattern.BPM = EditorGUILayout.IntField("BPM", currentPattern.BPM);
       GUILayout.BeginHorizontal();
       GUILayout.FlexibleSpace();
@@ -409,12 +413,43 @@ public class CapacityToolEditor : SimpleTimeArea
       }
    }
 
+   private bool isCreateWindowVisible;
+   private string tmpPatternName;
+   private int tmpMaxTime;
+   private int tmpBPM;
+   void DrawCreatePopup()
+   {
+      if(!isCreateWindowVisible) return;
+
+      Rect createWindow = new Rect(position.width * 0.5f - interfaceData.createWindowRect.width * 0.5f, position.height * 0.5f - interfaceData.createWindowRect.height * 0.5f, interfaceData.createWindowRect.width, interfaceData.createWindowRect.height);
+      EditorGUI.DrawRect(createWindow, interfaceData.createWindowBackgroundColor);
+      GUILayout.BeginArea(createWindow);
+      
+      tmpPatternName = EditorGUILayout.TextField("Name",tmpPatternName);
+      tmpMaxTime = EditorGUILayout.IntField("Duration",tmpMaxTime);
+      tmpBPM = EditorGUILayout.IntField("BPM", tmpBPM);
+      
+      if (GUILayout.Button("Create"))
+      {
+         if (tmpPatternName != "")
+         {
+            CreatePattern();
+            isCreateWindowVisible = false;
+         }
+      }
+      GUILayout.EndArea();
+   }
+   
    void CreatePattern()
    {
-      currentPattern = ScriptableObject.CreateInstance<Pattern>();
-      currentPattern.patternName = "New Pattern";
+      currentPattern = CreateInstance<Pattern>();
+      currentPattern.patternName = tmpPatternName;
+      currentPattern.maxTime = tmpMaxTime;
+      currentPattern.BPM = tmpBPM;
+      currentPattern.interactions = new List<InteractionKey>();
       directoryPath = $"Assets/Resources/Scriptable/Pattern/{currentPattern.patternName}.asset";
       AssetDatabase.CreateAsset(currentPattern, directoryPath);
+      SavePattern();
    }
    
    void SavePattern()
@@ -443,7 +478,6 @@ public class CapacityToolEditor : SimpleTimeArea
    {
       directoryPath = $"Assets/Resources/Scriptable/Pattern/{currentPattern.patternName}.asset";
       AssetDatabase.DeleteAsset(directoryPath);
-
    }
 
    #endregion
