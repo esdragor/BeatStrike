@@ -33,7 +33,7 @@ public class InputManager : MonoBehaviour
                 break;
             
             case Enums.EngineState.Menu:
-                gameObject.SetActive(false);
+             //   gameObject.SetActive(false);
                 break;
         }
     }

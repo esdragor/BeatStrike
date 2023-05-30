@@ -56,7 +56,8 @@ public class PatternManager
         }
 
         Pattern p = pList[UnityEngine.Random.Range(0, pList.Length)];
-
+        
+        UIManager.instance.DebugPattern(p.patternName);
         //GameManager.instance.SetBPM(p.BPM);
 
         InitializeQueue(p.interactions);

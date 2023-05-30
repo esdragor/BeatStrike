@@ -24,6 +24,8 @@ public class UIManager : MonoBehaviour
     [Header("Objets")] 
     public TMP_Text debugBanditBPM;
     public TMP_Text AnnouncementPatternText;
+
+    public TMP_Text patternDebugTxt;
     
     private void Awake()
     {
@@ -35,6 +37,11 @@ public class UIManager : MonoBehaviour
     {
         GameManager.gameState.OnEngineStateChanged += OnEngineStateSetUI;
         hud.textPalierInGame.text = "Palier " + PalierManager.GetPalierText();
+    }
+
+    public void DebugPattern(string patternName)
+    {
+        patternDebugTxt.text = patternName;
     }
 
     void OnEngineStateSetUI(Enums.EngineState engineState)

@@ -15,7 +15,7 @@ MonoBehaviour:
   patternName: Defense_160_P2
   targetLevel: 0
   difficultyIndex: 0
-  maxTime: 10
+  maxTime: 10.125
   BPM: 160
   interactions:
   - time: 1.125
@@ -60,9 +60,9 @@ MonoBehaviour:
     frame: 18
     interactionType: 1
     swipeDirection: 2
-  - time: 8.625
+  - time: 8.624999742954977
     row: 1
-    timeCode: 23,00
+    timeCode: 23
     frame: 23
     interactionType: 1
     swipeDirection: 4
@@ -102,9 +102,9 @@ MonoBehaviour:
     frame: 13
     interactionType: 1
     swipeDirection: 1
-  - time: 9.75
+  - time: 9.749999709427366
     row: 1
-    timeCode: 26,00
+    timeCode: 26
     frame: 26
     interactionType: 1
     swipeDirection: 2
