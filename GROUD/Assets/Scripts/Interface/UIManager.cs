@@ -26,6 +26,7 @@ public class UIManager : MonoBehaviour
     public TMP_Text AnnouncementPatternText;
 
     public TMP_Text patternDebugTxt;
+    public GameObject pausePanel;
     
     private void Awake()
     {
@@ -48,6 +49,28 @@ public class UIManager : MonoBehaviour
     {
         Debug.Log(url);
         Application.OpenURL(url);
+    }
+
+    public void Pause(bool isPause)
+    {
+        pausePanel.SetActive(isPause);
+        
+        if (isPause)
+        {
+            GameManager.gameState.SwitchTimeState(Enums.TimeState.Pause);
+        }
+        else
+        {
+            GameManager.gameState.SwitchTimeState(Enums.TimeState.Play);
+        }
+    }
+
+    public void GoToMainMenu()
+    {
+        pausePanel.SetActive(false);
+        mainMenu.PrintMainMenuPanel();
+        hud.DisableHUD();
+        GameLoopManager.patternManager.StopPattern();
     }
 
     void OnEngineStateSetUI(Enums.EngineState engineState)
