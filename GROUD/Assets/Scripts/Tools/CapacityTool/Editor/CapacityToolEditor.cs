@@ -286,7 +286,7 @@ public class CapacityToolEditor : SimpleTimeArea
          selectedInteractionKey.frame = (float)Convert.ToDouble(selectedInteractionKey.timeCode);
          targetFrame = (int)selectedInteractionKey.frame;
          EditorGUILayout.LabelField($"Frame : {selectedInteractionKey.frame}");
-         selectedInteractionKey.time = EditorGUILayout.Slider((float)selectedInteractionKey.time, 0f, (float)currentPattern.maxTime);
+        // selectedInteractionKey.time = EditorGUILayout.Slider((float)selectedInteractionKey.time, 0f, (float)currentPattern.maxTime);
          selectedInteractionKey.interactionType = (Enums.InteractionType) EditorGUILayout.EnumPopup("Type", selectedInteractionKey.interactionType);
          
          EditorGUI.BeginChangeCheck();
