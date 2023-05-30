@@ -1,3 +1,4 @@
+using System.Collections;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
@@ -9,6 +10,7 @@ public class UI_HUD : MonoBehaviour
 
     [SerializeField] private RectTransform[] enemyTimeline;
     [SerializeField] private RectTransform playerTimeline;
+    [SerializeField] private RectTransform TextKey;
 
     public void EnableHUD()
     {
@@ -29,5 +31,18 @@ public class UI_HUD : MonoBehaviour
                 GameLoopManager.instance.GetVelocityTimerNewChunck());
         else
             playerTimeline.position = enemyTimeline[0].position;
+    }
+
+    
+   private IEnumerator printKey()
+    {
+        TextKey.gameObject.SetActive(true);
+        yield return new WaitForSeconds(1f);
+        TextKey.gameObject.SetActive(false);
+    }
+    
+    public void PrintGainKey()
+    {
+        StartCoroutine(printKey());
     }
 }

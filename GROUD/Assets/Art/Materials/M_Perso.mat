@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-445606299247889923
+--- !u!114 &-7941007746435136474
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
@@ -20,8 +20,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Runes
-  m_Shader: {fileID: -6465566751694194690, guid: d2830110e2a78224fa6f5a58dfeb4c66,
+  m_Name: M_Perso
+  m_Shader: {fileID: -6465566751694194690, guid: 2c5b97c0453bfa5448a716e8060b7af9,
     type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -34,6 +34,10 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _BaseColor:
+        m_Texture: {fileID: 2800000, guid: 596961fda657dc94791dfe67fc8e0cf2, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _BumpMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -55,15 +59,15 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: d61a0c48ddc1c4a498c9d981bc0da9ff, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MaskRGBA:
-        m_Texture: {fileID: 2800000, guid: 74d4093d397749749a6aeda9ce38547d, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
         m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Normal:
+        m_Texture: {fileID: 2800000, guid: 171d8ffe1a9730b41a87cb97910a5b19, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
@@ -74,63 +78,33 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _SampleTexture2D_254d91f757c946289c0dc184759296ea_Texture_1:
-        m_Texture: {fileID: 2800000, guid: 3e3cded7b677d7440a8190d7ac232ae3, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _SampleTexture2D_43ab379f62624dc18ead7d8b30be206a_Texture_1:
-        m_Texture: {fileID: 2800000, guid: 6fa34732130979e40adeefafe1bb8cfa, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _SampleTexture2D_6961c2e84dd2402782cffcdd3adc8ae3_Texture_1:
-        m_Texture: {fileID: 2800000, guid: d61a0c48ddc1c4a498c9d981bc0da9ff, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _UVDeform:
-        m_Texture: {fileID: 2800000, guid: e933af51525366f45aee2eed6476c9ec, type: 3}
+    - _RME:
+        m_Texture: {fileID: 2800000, guid: 24eb1db84bcb9af47ab9aaf566450fbf, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _AbilityProgress: 0
     - _BUILTIN_QueueControl: 0
     - _BUILTIN_QueueOffset: 0
     - _BumpScale: 1
-    - _ColorMult: 2
-    - _Contrast: 2
     - _Cutoff: 0.5
-    - _DeformStr: 0.02
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
-    - _Float: 0.01
-    - _Float_1: 0.96
-    - _Float_2: 2.01
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _LerpValue: 0
+    - _Intensity: 2
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
-    - _OvalSize: 0
-    - _OvalThickness: 1.2
     - _Parallax: 0.02
-    - _RunesTiling: 0.004
+    - _Roughness: 1
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
-    - _Speed: 0.1
     - _SrcBlend: 1
-    - _Strength: 1
-    - _Thresh: 0.85
-    - _ThresholdValue: 0.72
     - _UVSec: 0
     - _ZWrite: 1
-    - _distStr: -0.02
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _ColorMult: {r: 0, g: 0, b: 0, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _RunesColor: {r: 0, g: 0.8117647, b: 1, a: 0}
-    - _Runes_Offset: {r: 0, g: 0, b: 0, a: 0}
-    - _Thresh: {r: 0.5294118, g: 0.23529413, b: 0.18823531, a: 1}
   m_BuildTextureStacks: []
