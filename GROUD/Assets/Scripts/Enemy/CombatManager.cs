@@ -56,6 +56,7 @@ public class CombatManager
         {
             sk.materials[i] = data.mat;
         }
+        sk.GetComponent<Renderer>().material = data.mat;
     }
 
 
