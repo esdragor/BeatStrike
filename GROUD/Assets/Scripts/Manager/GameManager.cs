@@ -15,25 +15,27 @@ public class GameManager : MonoBehaviour
     public static Delegates.OnUpdated onUpdated;
     public static Delegates.OnUpdated onUpdatedFrame;
     public static Action OnTick;
-    
-    [SerializeField] private int[] listOfBPMEasy = {60, 120, 180, 240, 300};
-    [SerializeField] private int[] listOfBPMMedium = {60, 120, 180, 240, 300};
-    [SerializeField] private int[] listOfBPMHard = {60, 120, 180, 240, 300};
-    
+
+    [SerializeField] private int[] listOfBPMEasy = { 60, 120, 180, 240, 300 };
+    [SerializeField] private int[] listOfBPMMedium = { 60, 120, 180, 240, 300 };
+    [SerializeField] private int[] listOfBPMHard = { 60, 120, 180, 240, 300 };
+
     private float tickRate;
     private float tickTimer;
     private float BPM = 60;
 
-    
+
     public CharacterInfos CharacterInfosPrefab;
     public CharacterInfos currentCharacterInfos;
     [HideInInspector] public bool bpmIsRandoming = false;
+    [HideInInspector] public float savedTick = 0f;
 
     public float timeToShopReset = 5;
     private string lastDateKey = "LastOperationDate";
     private DateTime lastDate;
 
     public float Bpm => BPM;
+    
 
     public double GetLastShopReload()
     {
@@ -60,6 +62,7 @@ public class GameManager : MonoBehaviour
             case 2:
                 return listOfBPMHard;
         }
+
         return listOfBPMHard;
     }
 
@@ -70,7 +73,7 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetString(lastDateKey, lastDate.ToString());
         PlayerPrefs.Save();
     }
-    
+
     public void RecheckEquipment()
     {
         for (int i = 0; i < currentCharacterInfos.equipment.Length; i++)
@@ -86,7 +89,7 @@ public class GameManager : MonoBehaviour
     {
         if (instance == null) instance = this;
         else Destroy(gameObject);
-        
+
         databaseManager = new DatabaseManager();
 
         gameState.SwitchEngineState(Enums.EngineState.Menu);
@@ -100,6 +103,7 @@ public class GameManager : MonoBehaviour
         {
             lastDate = DateTime.MinValue;
         }
+
         currentCharacterInfos = ScriptableObject.CreateInstance<CharacterInfos>();
         currentCharacterInfos.SetPlayerStats(CharacterInfosPrefab);
         Inventory.Init();
@@ -109,7 +113,8 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         onUpdated?.Invoke();
-        onUpdatedFrame?.Invoke();
+        if (!gameState.IsTimePause())
+            onUpdatedFrame?.Invoke();
 
         if (tickTimer >= 1)
         {
@@ -137,15 +142,17 @@ public class GameManager : MonoBehaviour
         while (nbSecond > 0f)
         {
             nbSecond -= Time.deltaTime;
-            
+
             index++;
             if (index >= listOfBPM.Length)
             {
                 index = 0;
             }
+
             UIManager.instance.debugBanditBPM.text = "BPM : " + listOfBPM[index];
             yield return new WaitForEndOfFrame();
         }
+
         UIManager.instance.debugBanditBPM.text = "BPM : " + Bpm;
         yield return new WaitForSeconds(2f);
         UIManager.instance.debugBanditBPM.text = "";
@@ -163,6 +170,6 @@ public class GameManager : MonoBehaviour
 
     void CalculateTickRate()
     {
-       tickRate = Bpm / 60f;
+        tickRate = Bpm / 60f;
     }
 }

@@ -67,10 +67,12 @@ public class UIManager : MonoBehaviour
         
         if (isPause)
         {
+            GameManager.instance.savedTick = GameLoopManager.instance.tickCount;
             GameManager.gameState.SwitchTimeState(Enums.TimeState.Pause);
         }
         else
         {
+            GameLoopManager.instance.tickCount = GameManager.instance.savedTick;
             GameManager.gameState.SwitchTimeState(Enums.TimeState.Play);
         }
     }
