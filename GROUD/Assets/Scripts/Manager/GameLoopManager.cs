@@ -24,6 +24,7 @@ public class GameLoopManager : MonoBehaviour
     public static CombatManager combatManager;
 
     public GameObject[] chunks;
+    [HideInInspector] public bool isDefPhase = false;
 
     [FormerlySerializedAs("currentChunk")] public LevelHeader currentChunkLevelHeader;
 
@@ -210,6 +211,7 @@ public class GameLoopManager : MonoBehaviour
             patternType = (byte)(isDef ? 1 : 0);
             if (isDef) PlayerManager.instance.matRune.SetFloat("_AbilityProgress", 0);
             UIManager.instance.AnnouncementPatternText.text = (isDef ? "Defense Phase" : "Attack Phase");
+            PlayerManager.instance.animator.SetBool("IsDefPhase", isDef);
             PlayerManager.instance.vfxManager.NotReadyCombo();
         }
 
@@ -224,7 +226,7 @@ public class GameLoopManager : MonoBehaviour
         patternManager.isTimelineActive = false;
         UIManager.instance.StartCoroutine(printPattern(isDef));
         isDefPrinter.SetInt("_isAttacking", isDef ? 0 : 1);
-        
+        isDefPhase = isDef;
         if (isDef)
         {
             if (PlayerManager.instance.GetCurrentPower() != null)
