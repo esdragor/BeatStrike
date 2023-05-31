@@ -50,6 +50,7 @@ public class PalierManager : MonoBehaviour
         UIManager.instance.randomBPMSelector.ShowButtons();
         UIManager.instance.hud.PrintGainKey();
         CurrencyManager.AddKeys(1);
+        ModifySkySphere.ChangeSky();
     }
     
     public static int GetIndexPalier()

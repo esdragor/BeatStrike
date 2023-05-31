@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class ModifySkySphere : MonoBehaviour
 {
+    private static ModifySkySphere instance;
+    
     [SerializeField] private Transform skysphereTransform;
     [SerializeField] private Light[] lightsPrefab;
     [SerializeField] private Light light;
@@ -12,6 +14,14 @@ public class ModifySkySphere : MonoBehaviour
     [SerializeField] private float speedSkyLight = 15f;
     int index = 0;
 
+    private void Awake()
+    {
+        if (instance == null)
+            instance = this;
+        else
+            Destroy(this);
+    }
+    
     private IEnumerator ModifySky()
     {
         index++;
@@ -27,9 +37,6 @@ public class ModifySkySphere : MonoBehaviour
             skysphereTransform.Rotate(Vector3.back * rotation);
             yield return null;
         }
-        yield return new WaitForSeconds(1);
-
-        StartCoroutine(ModifySky());
     }
     private IEnumerator ModifyLight()
     {
@@ -73,13 +80,10 @@ public class ModifySkySphere : MonoBehaviour
             }
             yield return null;
         }
-        
-        //light.transform.rotation = lightsPrefab[index].transform.rotation;
     }
 
-    void Start()
+    public static void ChangeSky()
     {
-        //StartCoroutine(ModifySky());
-        
+        instance.StartCoroutine(instance.ModifySky());
     }
 }
