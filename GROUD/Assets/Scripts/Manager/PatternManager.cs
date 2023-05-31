@@ -118,6 +118,7 @@ public class PatternManager
         
         isTimelineActive = false;
         GameManager.onUpdated = null;
+        timelineRunnerKeys.Clear();
         while (timer > 0)
         {
             timer -= (1f /60f) * GameManager.instance.Bpm;
@@ -126,7 +127,6 @@ public class PatternManager
         if (EndPattern && !GameLoopManager.instance.IsMoving)
             GameLoopManager.instance.PrintComboRoad(StartPattern(-timer));
         
-        timelineRunnerKeys.Clear();
     }
 
     public void DrawInteractionOnScreen(InteractionKey dataKey)

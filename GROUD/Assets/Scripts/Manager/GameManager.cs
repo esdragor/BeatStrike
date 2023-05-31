@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
     
     public CharacterInfos CharacterInfosPrefab;
     public CharacterInfos currentCharacterInfos;
-    public bool bpmIsRandoming = false;
+    [HideInInspector] public bool bpmIsRandoming = false;
 
     public float timeToShopReset = 5;
     private string lastDateKey = "LastOperationDate";
