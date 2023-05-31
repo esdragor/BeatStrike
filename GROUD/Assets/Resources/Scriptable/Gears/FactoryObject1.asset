@@ -12,15 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0983b744bae771b4ca313e70f8e71385, type: 3}
   m_Name: FactoryObject1
   m_EditorClassIdentifier: 
-  minHealth: 100
-  minIntelligence: 10
-  minStrength: 10
+  minHealth: 20
+  minIntelligence: 5
+  minStrength: 5
   maxHealth: 100000
-  maxIntelligence: 1000
-  maxStrength: 1000
-  multiplierHealthPerPalier: 1
-  multiplierIntelligencePerPalier: 1
-  multiplierStrengthPerPalier: 1
-  multiplierHealth: 1
-  multiplierIntelligence: 1
-  multiplierStrength: 1
+  maxIntelligence: 100000
+  maxStrength: 100000
+  multiplierHealthPerPalier: 5
+  multiplierIntelligencePerPalier: 5
+  multiplierStrengthPerPalier: 5
+  multiplierHealth: 10
+  multiplierIntelligence: 8
+  multiplierStrength: 12
