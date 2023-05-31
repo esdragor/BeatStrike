@@ -632,6 +632,11 @@ PrefabInstance:
       propertyPath: inputManager
       value: 
       objectReference: {fileID: 179565491}
+    - target: {fileID: 256895309846087104, guid: 93042f802927c1e4db9ae495068681bb,
+        type: 3}
+      propertyPath: percentageDEF
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 256895309846087105, guid: 93042f802927c1e4db9ae495068681bb,
         type: 3}
       propertyPath: m_RootOrder
@@ -692,16 +697,5 @@ PrefabInstance:
       propertyPath: m_Name
       value: Level Manager
       objectReference: {fileID: 0}
-    - target: {fileID: 7945152621949587953, guid: 93042f802927c1e4db9ae495068681bb,
-        type: 3}
-      propertyPath: palierPrefabEnemies.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7945152621949587953, guid: 93042f802927c1e4db9ae495068681bb,
-        type: 3}
-      propertyPath: palierPrefabEnemies.Array.data[0]
-      value: 
-      objectReference: {fileID: 11400000, guid: 873aee8caa60b184298013d623608ba4,
-        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 93042f802927c1e4db9ae495068681bb, type: 3}

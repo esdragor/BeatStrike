@@ -135,7 +135,7 @@ public class GameLoopManager : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
 
-        PlayerManager.instance.animator.SetBool("isRunning", false);
+        PlayerManager.instance.animator.SetTrigger("stopRunning");
         Destroy(currentChunck);
         currentChunck = nextChunck;
         currentChunkLevelHeader = currentChunck.GetComponent<LevelHeader>();
@@ -178,7 +178,7 @@ public class GameLoopManager : MonoBehaviour
     public void NextChunk()
     {
         isMoving = true;
-        PlayerManager.instance.animator.SetBool("isRunning", true);
+        PlayerManager.instance.animator.SetTrigger("isRunning");
         GameManager.gameState.SwitchTimeState(Enums.TimeState.Pause);
 
         patternManager.StopPattern();
