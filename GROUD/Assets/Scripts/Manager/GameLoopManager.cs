@@ -119,6 +119,7 @@ public class GameLoopManager : MonoBehaviour
         GameManager.gameState.SwitchTimeState(Enums.TimeState.Pause);
         GameManager.gameState.SwitchEngineState(Enums.EngineState.Menu);
         UIManager.instance.endLevel.DrawPanel();
+        UIManager.instance.enemy.EnableEnemyHealth(false);
         patternManager.StopPattern();
     }
 
