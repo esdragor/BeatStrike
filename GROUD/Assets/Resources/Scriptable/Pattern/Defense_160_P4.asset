@@ -1,0 +1,110 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1123186ad1b5d0a459852f617a76093c, type: 3}
+  m_Name: Defense_160_P4
+  m_EditorClassIdentifier: 
+  patternName: Defense_160_P4
+  targetLevel: 0
+  difficultyIndex: 0
+  maxTime: 8
+  BPM: 160
+  interactions:
+  - time: 7.499999776482588
+    row: 1
+    timeCode: 20
+    frame: 20
+    interactionType: 1
+    swipeDirection: 1
+  - time: 0.375
+    row: 1
+    timeCode: 1,00
+    frame: 0
+    interactionType: 1
+    swipeDirection: 4
+  - time: 0.75
+    row: 1
+    timeCode: 2,00
+    frame: 0
+    interactionType: 1
+    swipeDirection: 4
+  - time: 1.4999999552965178
+    row: 1
+    timeCode: 4
+    frame: 4
+    interactionType: 1
+    swipeDirection: 4
+  - time: 1.875
+    row: 1
+    timeCode: 5,00
+    frame: 0
+    interactionType: 1
+    swipeDirection: 4
+  - time: 2.2499999329447764
+    row: 1
+    timeCode: 6
+    frame: 6
+    interactionType: 1
+    swipeDirection: 3
+  - time: 2.625
+    row: 1
+    timeCode: 7,00
+    frame: 0
+    interactionType: 1
+    swipeDirection: 1
+  - time: 3.75
+    row: 1
+    timeCode: 10,00
+    frame: 0
+    interactionType: 1
+    swipeDirection: 2
+  - time: 4.125
+    row: 1
+    timeCode: 11,00
+    frame: 0
+    interactionType: 1
+    swipeDirection: 1
+  - time: 4.499999865889553
+    row: 1
+    timeCode: 12
+    frame: 12
+    interactionType: 1
+    swipeDirection: 2
+  - time: 4.875
+    row: 1
+    timeCode: 13,00
+    frame: 0
+    interactionType: 1
+    swipeDirection: 2
+  - time: 5.625
+    row: 1
+    timeCode: 15,00
+    frame: 0
+    interactionType: 1
+    swipeDirection: 4
+  - time: 5.999999821186071
+    row: 1
+    timeCode: 16
+    frame: 16
+    interactionType: 1
+    swipeDirection: 2
+  - time: 6.75
+    row: 1
+    timeCode: 18,00
+    frame: 0
+    interactionType: 1
+    swipeDirection: 1
+  - time: 7.125
+    row: 1
+    timeCode: 19,00
+    frame: 0
+    interactionType: 1
+    swipeDirection: 3
