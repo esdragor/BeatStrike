@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.36027232, g: 0.5592088, b: 0.59963375, a: 1}
+  m_IndirectSpecularColor: {r: 0.35932106, g: 0.5583168, b: 0.59913266, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -476,8 +476,7 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 6990688389897412335, guid: df8729ef23a6e534e8ae7fcd598e5d00, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: df8729ef23a6e534e8ae7fcd598e5d00, type: 3}
 --- !u!1001 &1208928064
 PrefabInstance:
@@ -633,6 +632,11 @@ PrefabInstance:
       propertyPath: inputManager
       value: 
       objectReference: {fileID: 179565491}
+    - target: {fileID: 256895309846087104, guid: 93042f802927c1e4db9ae495068681bb,
+        type: 3}
+      propertyPath: percentageDEF
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 256895309846087105, guid: 93042f802927c1e4db9ae495068681bb,
         type: 3}
       propertyPath: m_RootOrder
@@ -693,28 +697,5 @@ PrefabInstance:
       propertyPath: m_Name
       value: Level Manager
       objectReference: {fileID: 0}
-    - target: {fileID: 7945152621949587953, guid: 93042f802927c1e4db9ae495068681bb,
-        type: 3}
-      propertyPath: palierPrefabEnemies.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 7945152621949587953, guid: 93042f802927c1e4db9ae495068681bb,
-        type: 3}
-      propertyPath: palierPrefabEnemies.Array.data[0]
-      value: 
-      objectReference: {fileID: 11400000, guid: 873aee8caa60b184298013d623608ba4,
-        type: 2}
-    - target: {fileID: 7945152621949587953, guid: 93042f802927c1e4db9ae495068681bb,
-        type: 3}
-      propertyPath: palierPrefabEnemies.Array.data[1]
-      value: 
-      objectReference: {fileID: 11400000, guid: d391b78341d5c774fa40ac4ee881238e,
-        type: 2}
-    - target: {fileID: 7945152621949587953, guid: 93042f802927c1e4db9ae495068681bb,
-        type: 3}
-      propertyPath: palierPrefabEnemies.Array.data[2]
-      value: 
-      objectReference: {fileID: 11400000, guid: 6919358025f1d5748b0559c26f354333,
-        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 93042f802927c1e4db9ae495068681bb, type: 3}
