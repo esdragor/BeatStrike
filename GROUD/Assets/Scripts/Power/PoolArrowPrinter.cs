@@ -12,6 +12,7 @@ public class PoolArrowPrinter : MonoBehaviour
     [SerializeField] private GameObject ArrowDownPrefab;
     [SerializeField] private GameObject ArrowLeftPrefab;
     [SerializeField] private GameObject ArrowRightPrefab;
+    [SerializeField] private int zRotationForArrow;
 
     private List<GameObject> arrowsUpList = new List<GameObject>();
     private List<GameObject> arrowsDownList = new List<GameObject>();
@@ -32,10 +33,10 @@ public class PoolArrowPrinter : MonoBehaviour
     {
         for (int i = 0; i < nbArrowOnPool; i++)
         {
-            arrowsUpList.Add(Instantiate(ArrowUpPrefab, transform.position, Quaternion.Euler(0f, -90f, 0f), transform));
-            arrowsDownList.Add(Instantiate(ArrowDownPrefab, transform.position, Quaternion.Euler(0f, 90f, 0f), transform));
-            arrowsLeftList.Add(Instantiate(ArrowLeftPrefab, transform.position, Quaternion.Euler(0f, -180f, 0f), transform));
-            arrowsRightList.Add(Instantiate(ArrowRightPrefab, transform.position, Quaternion.identity, transform));
+            arrowsUpList.Add(Instantiate(ArrowUpPrefab, transform.position, Quaternion.Euler(0f, -90f+5.9f, zRotationForArrow), transform));
+            arrowsDownList.Add(Instantiate(ArrowDownPrefab, transform.position, Quaternion.Euler(0f, 90f+5.9f, -zRotationForArrow), transform));
+            arrowsLeftList.Add(Instantiate(ArrowLeftPrefab, transform.position, Quaternion.Euler(zRotationForArrow, -180f+5.9f, 0f), transform));
+            arrowsRightList.Add(Instantiate(ArrowRightPrefab, transform.position, Quaternion.Euler(-zRotationForArrow, Quaternion.identity.y+5.9f, Quaternion.identity.z), transform));
         }
     }
 

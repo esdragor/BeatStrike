@@ -41,6 +41,7 @@ public class GameLoopManager : MonoBehaviour
 
     [Header("Pattern")] [SerializeField] private PatternByBPM[] patternByBpms;
     [SerializeField] private int percentageDEF;
+    [SerializeField] private int randomMultiplicator;
     [SerializeField] private Material isDefPrinter;
 
 
@@ -55,7 +56,7 @@ public class GameLoopManager : MonoBehaviour
         if (instance == null) instance = this;
 
         interactionPool = new InteractionPool(interactionParent, interactionPrefab);
-        patternManager = new PatternManager(patternByBpms, percentageDEF);
+        patternManager = new PatternManager(patternByBpms, percentageDEF, randomMultiplicator);
         combatManager = new CombatManager();
 
         GameObject rndChunk = chunks[0];
