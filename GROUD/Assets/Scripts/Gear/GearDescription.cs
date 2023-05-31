@@ -32,10 +32,6 @@ public class GearDescription : MonoBehaviour
             if (gear.statsType1 == StatsType.Intelligence) stats.intelligence = gear.statsValue1;
             if (gear.statsType1 == StatsType.Strength) stats.strength = gear.statsValue1;
 
-            if (gear.statsType2 == StatsType.Hp) stats.hp = gear.statsValue2;
-            if (gear.statsType2 == StatsType.Intelligence) stats.intelligence = gear.statsValue2;
-            if (gear.statsType2 == StatsType.Strength) stats.strength = gear.statsValue2;
-
             UIManager.instance.gear.PrintCharacterInfos(stats);
         }
         else

@@ -121,7 +121,6 @@ public class UI_Shop : MonoBehaviour
         instance.currentGearDescription = gd;
         instance.PopUp.TogglePopUp(true);
         instance.PopUpText1.text = gd.gear.getStatType(gd.gear.statsType1) + " : " + gd.gear.statsValue1;
-        instance.PopUpText2.text = gd.gear.getStatType(gd.gear.statsType2) + " : " + gd.gear.statsValue2;
         instance.PopUpImage.sprite = gd.gear.gearSprite;
         instance.PopUpButton.onClick.RemoveAllListeners();
         instance.PopUpButton.onClick.AddListener(() => instance.BuyItem());
