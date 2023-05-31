@@ -14,7 +14,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 1
   m_IsActive: 1
 --- !u!4 &4589570337733766493
 Transform:
@@ -99,7 +99,7 @@ MeshRenderer:
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
+  m_ScaleInLightmap: 0.1
   m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
@@ -199,7 +199,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 1
   m_IsActive: 1
 --- !u!4 &6322977845903201714
 Transform:
@@ -325,7 +325,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6322977846623469164}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_ConstrainProportionsScale: 0
@@ -353,35 +353,38 @@ MonoBehaviour:
   m_RendererInfo:
   - renderer: {fileID: 4647204059494663865}
     lightmapIndex: 0
-    lightmapOffsetScale: {x: 0.04651044, y: 0.04651044, z: 0.28681073, w: 0.60788405}
+    lightmapOffsetScale: {x: 0.032007184, y: 0.032007184, z: 0.2767244, w: 0.968396}
   - renderer: {fileID: 4074509504104684224}
     lightmapIndex: 0
-    lightmapOffsetScale: {x: 0.2952756, y: 0.2952756, z: -0.0011534203, w: 0.4046083}
+    lightmapOffsetScale: {x: 0.08267716, y: 0.08267716, z: 0.08335057, w: 0.9098333}
   - renderer: {fileID: 4647204058872925173}
     lightmapIndex: 0
-    lightmapOffsetScale: {x: 0.102022894, y: 0.102022894, z: 0.1156191, w: 0.69857866}
+    lightmapOffsetScale: {x: 0.07001571, y: 0.07001571, z: 0.21915226, w: 0.90938187}
   - renderer: {fileID: 4647204058204527536}
     lightmapIndex: 0
-    lightmapOffsetScale: {x: 0.107524134, y: 0.107524134, z: -0.00015231712, w: 0.81472874}
+    lightmapOffsetScale: {x: 0.030006735, y: 0.030006735, z: 0.3235231, w: 0.95242614}
   - renderer: {fileID: 4647204059685090998}
     lightmapIndex: 0
-    lightmapOffsetScale: {x: 0.06601482, y: 0.06601482, z: 0.23525804, w: 0.6076683}
+    lightmapOffsetScale: {x: 0.018004041, y: 0.018004041, z: 0.15317927, w: 0.9802696}
   - renderer: {fileID: 4647204058823010590}
     lightmapIndex: 0
-    lightmapOffsetScale: {x: 0.20654635, y: 0.20654635, z: 0.23505898, w: 0.40347728}
+    lightmapOffsetScale: {x: 0.05601257, y: 0.05601257, z: 0.2766904, w: 0.9095367}
   - renderer: {fileID: 4647204058258913286}
     lightmapIndex: 0
-    lightmapOffsetScale: {x: 0.40797246, y: 0.40797246, z: -0.0015936424, w: -0.0015936424}
+    lightmapOffsetScale: {x: 0.9133858, y: 0.9133858, z: -0.0035679133, w: -0.0035679133}
   - renderer: {fileID: 8292417267030579746}
     lightmapIndex: 0
-    lightmapOffsetScale: {x: 0.11614173, y: 0.11614173, z: -0.00045367863, w: 0.6992534}
+    lightmapOffsetScale: {x: 0.08070866, y: 0.08070866, z: -0.0003152682, w: 0.909841}
+  - renderer: {fileID: 4647204059905689390}
+    lightmapIndex: 0
+    lightmapOffsetScale: {x: 0.049212597, y: 0.049212597, z: 0.32337338, w: 0.909964}
   - renderer: {fileID: 6322977846176773885}
     lightmapIndex: 0
-    lightmapOffsetScale: {x: 0.023622047, y: 0.023622047, z: 0.2352593, w: 0.67373586}
+    lightmapOffsetScale: {x: 0.06692913, y: 0.06692913, z: 0.15294334, w: 0.9098948}
   m_Lightmaps:
-  - {fileID: 2800000, guid: f59f3b8291e8a96409991dbef50cd8a3, type: 3}
+  - {fileID: 2800000, guid: 31762340c0b7d2741b377a65530837b6, type: 3}
   m_LightmapsDir:
-  - {fileID: 2800000, guid: bc10bf61b456626479a545b453ffb8bc, type: 3}
+  - {fileID: 2800000, guid: e0ddab010c63ed844bf9c9f0352712a2, type: 3}
   m_ShadowMasks:
   - {fileID: 0}
   m_LightInfo: []
@@ -413,7 +416,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 1
   m_IsActive: 1
 --- !u!4 &860040094547915721
 Transform:
@@ -507,6 +510,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 699d796cff973ca409d9f5650b0ea32e,
+        type: 3}
+      propertyPath: m_ScaleInLightmap
+      value: 0.25
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 699d796cff973ca409d9f5650b0ea32e,
         type: 3}
       propertyPath: m_Name
@@ -598,8 +606,19 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_ArchBridge02
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a4abaa8c595344543b655adef054d0d9,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a4abaa8c595344543b655adef054d0d9, type: 3}
+--- !u!23 &4647204059905689390 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: a4abaa8c595344543b655adef054d0d9,
+    type: 3}
+  m_PrefabInstance: {fileID: 6322977845837306794}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5779529703357512769 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a4abaa8c595344543b655adef054d0d9,
@@ -613,6 +632,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6322977845279775653}
     m_Modifications:
+    - target: {fileID: 2642257592817948703, guid: ecb626ff74d2f1a4f8fad4ad77c95458,
+        type: 3}
+      propertyPath: m_ScaleInLightmap
+      value: 0.25
+      objectReference: {fileID: 0}
     - target: {fileID: 3810049221711750000, guid: ecb626ff74d2f1a4f8fad4ad77c95458,
         type: 3}
       propertyPath: m_RootOrder
@@ -687,6 +711,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SM_ArchPillar01
+      objectReference: {fileID: 0}
+    - target: {fileID: 4587992883924154826, guid: ecb626ff74d2f1a4f8fad4ad77c95458,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ecb626ff74d2f1a4f8fad4ad77c95458, type: 3}
@@ -779,6 +808,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 699d796cff973ca409d9f5650b0ea32e,
+        type: 3}
+      propertyPath: m_ScaleInLightmap
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 699d796cff973ca409d9f5650b0ea32e,
         type: 3}
       propertyPath: m_Name
@@ -864,6 +898,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: b6d0346ef118cb74bad45c3869152a53,
+        type: 3}
+      propertyPath: m_ScaleInLightmap
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: b6d0346ef118cb74bad45c3869152a53,
         type: 3}
@@ -971,6 +1010,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 699d796cff973ca409d9f5650b0ea32e,
+        type: 3}
+      propertyPath: m_ScaleInLightmap
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 699d796cff973ca409d9f5650b0ea32e,
         type: 3}
       propertyPath: m_Name
@@ -1072,6 +1116,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 699d796cff973ca409d9f5650b0ea32e,
+        type: 3}
+      propertyPath: m_ScaleInLightmap
+      value: 0.25
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 699d796cff973ca409d9f5650b0ea32e,
         type: 3}
       propertyPath: m_Name
@@ -1172,6 +1221,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 699d796cff973ca409d9f5650b0ea32e,
+        type: 3}
+      propertyPath: m_ScaleInLightmap
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 699d796cff973ca409d9f5650b0ea32e,
         type: 3}
