@@ -37,7 +37,7 @@ public class PlayerManager : MonoBehaviour
     private void Start()
     {
         SetPlayer();
-        matRune.SetFloat("_OvalSize", 0);
+        matRune.SetFloat("_AbilityProgress", 0);
         //PowerManager.AssignNewPower();
     }
 

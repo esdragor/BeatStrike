@@ -4,8 +4,7 @@ public class VFXManager : MonoBehaviour
 {
     [SerializeField] private ImageEffect cam;
 
-    [Header("Road")]
-    [SerializeField] private ParticleSystem missFX;
+    [Header("Road")] [SerializeField] private ParticleSystem missFX;
     [SerializeField] private ParticleSystem okFX;
     [SerializeField] private ParticleSystem greatFX;
     [SerializeField] private ParticleSystem perfectFX;
@@ -15,18 +14,17 @@ public class VFXManager : MonoBehaviour
     [SerializeField] private ParticleSystem FailComboFX;
     [SerializeField] private ParticleSystem ReadyComboFX;
 
-    [Header("Player")] 
-    [SerializeField] private ParticleSystem attackFX;
+    [Header("Player")] [SerializeField] private ParticleSystem attackFX;
     [SerializeField] private ParticleSystem dodgeFX;
     [SerializeField] private ParticleSystem hurtFX;
-    [Header("Enemy")] 
-    [SerializeField] private ParticleSystem hurtEnemyFX;
+    [Header("Enemy")] [SerializeField] private ParticleSystem hurtEnemyFX;
 
     private ParticleSystem punchD => GameLoopManager.combatManager.enemyVFX.punchD;
     private ParticleSystem punchL => GameLoopManager.combatManager.enemyVFX.punchL;
     private ParticleSystem punchR => GameLoopManager.combatManager.enemyVFX.punchR;
     private ParticleSystem punchU => GameLoopManager.combatManager.enemyVFX.punchU;
     private ParticleSystem ability => GameLoopManager.combatManager.enemyVFX.ability;
+    private ParticleSystem attackEnemy => GameLoopManager.combatManager.enemyVFX.attack;
 
     public void PlaySFX(string sName, ScreenListener.SwipeDirection dir = ScreenListener.SwipeDirection.NULL)
     {
@@ -56,19 +54,20 @@ public class VFXManager : MonoBehaviour
                     case ScreenListener.SwipeDirection.UP:
                         punchU.Play();
                         break;
-                    
+
                     case ScreenListener.SwipeDirection.DOWN:
                         punchD.Play();
                         break;
-                    
+
                     case ScreenListener.SwipeDirection.LEFT:
                         punchL.Play();
                         break;
-                    
+
                     case ScreenListener.SwipeDirection.RIGHT:
                         punchR.Play();
                         break;
                 }
+
                 break;
             case "Hurt":
                 cam.effID = 1;
@@ -78,9 +77,13 @@ public class VFXManager : MonoBehaviour
                 cam.effID = 0;
                 hurtEnemyFX.Play();
                 break;
-            
+
             case "Ability":
                 ability.Play();
+                break;
+            case "EnemyAttack":
+                if (attackEnemy)
+                    attackEnemy.Play();
                 break;
             case "GCombo":
                 NotReadyCombo();
@@ -96,7 +99,7 @@ public class VFXManager : MonoBehaviour
                 break;
         }
     }
-    
+
     public void NotReadyCombo()
     {
         ReadyComboFX.gameObject.SetActive(false);

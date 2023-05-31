@@ -10,4 +10,5 @@ public class EnemyVFX : MonoBehaviour
     public ParticleSystem punchR;
     public ParticleSystem punchU;
     public ParticleSystem ability;
+    public ParticleSystem attack;
 }
