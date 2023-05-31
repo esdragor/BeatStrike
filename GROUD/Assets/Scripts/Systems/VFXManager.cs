@@ -13,6 +13,7 @@ public class VFXManager : MonoBehaviour
     [SerializeField] private ParticleSystem GoodComboFX;
     [SerializeField] private ParticleSystem FailComboFX;
     [SerializeField] private ParticleSystem ReadyComboFX;
+    [SerializeField] private ParticleSystem DeathEnemyFX;
 
     [Header("Player")] [SerializeField] private ParticleSystem attackFX;
     [SerializeField] private ParticleSystem dodgeFX;
@@ -25,6 +26,7 @@ public class VFXManager : MonoBehaviour
     private ParticleSystem punchU => GameLoopManager.combatManager.enemyVFX.punchU;
     private ParticleSystem ability => GameLoopManager.combatManager.enemyVFX.ability;
     private ParticleSystem attackEnemy => GameLoopManager.combatManager.enemyVFX.attack;
+    private ParticleSystem hitEnemy => GameLoopManager.combatManager.enemyVFX.hit;
 
     public void PlaySFX(string sName, ScreenListener.SwipeDirection dir = ScreenListener.SwipeDirection.NULL)
     {
@@ -48,7 +50,7 @@ public class VFXManager : MonoBehaviour
                 break;
             case "Attack":
                 rAttackFX.Play();
-
+                hitEnemy.Play();
                 switch (dir)
                 {
                     case ScreenListener.SwipeDirection.UP:
@@ -96,6 +98,11 @@ public class VFXManager : MonoBehaviour
             case "LastCombo":
                 ReadyComboFX.gameObject.SetActive(true);
                 ReadyComboFX.Play();
+                break;
+            case "DeathEnemy":
+                DeathEnemyFX.transform.position =
+                    GameLoopManager.combatManager.enemyVFX.gameObject.transform.GetChild(1).position;
+                DeathEnemyFX.Play();
                 break;
         }
     }

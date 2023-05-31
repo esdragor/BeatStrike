@@ -946,6 +946,7 @@ MonoBehaviour:
   GoodComboFX: {fileID: 2068763961752780675}
   FailComboFX: {fileID: 4805606119467116227}
   ReadyComboFX: {fileID: 5227889061318168318}
+  DeathEnemyFX: {fileID: 3760851577615566647}
   attackFX: {fileID: 5019317291499497009}
   dodgeFX: {fileID: 6174879184656993778}
   hurtFX: {fileID: 8554525983690556368}
@@ -2446,6 +2447,12 @@ Animator:
 --- !u!198 &2068763961752780675 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 4942078393596358267, guid: 2198c1beace191b428c178e2269f1c9b,
+    type: 3}
+  m_PrefabInstance: {fileID: 6350202749876359672}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &3760851577615566647 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 7787085856206526159, guid: 2198c1beace191b428c178e2269f1c9b,
     type: 3}
   m_PrefabInstance: {fileID: 6350202749876359672}
   m_PrefabAsset: {fileID: 0}

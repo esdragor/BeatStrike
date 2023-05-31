@@ -69,6 +69,7 @@ public class PlayerManager : MonoBehaviour
         StreakManager.RemoveStreak();
         
         vfxManager.PlaySFX("Hurt");
+        animator.SetTrigger("TakeDamage");
 
         if (currentHP <= 0)
         {
