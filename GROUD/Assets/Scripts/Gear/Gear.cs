@@ -38,6 +38,7 @@ public class Gear : ScriptableObject
     public float statsValue1;
     public int priceToBuy = 200;
     public int priceToSell = 10;
+    public bool OnEquip = false;
 
     public bool EquipOnPlayer(GearDescription gearDescription)
     {
@@ -52,6 +53,7 @@ public class Gear : ScriptableObject
         if (MainMenuManager.instance == null) return false;
         UIManager.instance.gear.SetEquipmentImage((int)slot, gearDescription);
         UIManager.instance.gear.PrintCharacterInfos(new PlayerStats());
+        gearDescription.gear.OnEquip = true;
         return true;
     }
 

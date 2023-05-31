@@ -152,6 +152,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: P_Sky
       objectReference: {fileID: 0}
+    - target: {fileID: 1971052812009084158, guid: 3ed5c660e8957b74583dbcca3cc43a6d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3219412553865210991, guid: 3ed5c660e8957b74583dbcca3cc43a6d,
         type: 3}
       propertyPath: m_RootOrder
@@ -492,6 +497,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2150209555326654146, guid: 37e173c9e0a96974d912db33b5805827,
         type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2150209555326654146, guid: 37e173c9e0a96974d912db33b5805827,
+        type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
@@ -632,11 +642,6 @@ PrefabInstance:
       propertyPath: inputManager
       value: 
       objectReference: {fileID: 179565491}
-    - target: {fileID: 256895309846087104, guid: 93042f802927c1e4db9ae495068681bb,
-        type: 3}
-      propertyPath: percentageDEF
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 256895309846087105, guid: 93042f802927c1e4db9ae495068681bb,
         type: 3}
       propertyPath: m_RootOrder

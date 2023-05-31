@@ -915,7 +915,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5490769174227019156}
   - component: {fileID: 5490769174227019159}
-  - component: {fileID: 6990688389897412335}
   m_Layer: 0
   m_Name: Game Manager
   m_TagString: Untagged
@@ -963,22 +962,6 @@ MonoBehaviour:
     type: 2}
   bpmIsRandoming: 0
   timeToShopReset: 2
---- !u!114 &6990688389897412335
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5490769174227019157}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c1071289cd12cd418f5bc3c7e8c0331, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  indexPalier: 5
-  actualPalier: 0
-  palierPrefabEnemies:
-  - {fileID: 11400000, guid: d391b78341d5c774fa40ac4ee881238e, type: 2}
 --- !u!1 &5809448248424889335
 GameObject:
   m_ObjectHideFlags: 0
