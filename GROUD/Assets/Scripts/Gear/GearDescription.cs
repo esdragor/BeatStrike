@@ -1,9 +1,9 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class GearDescription : MonoBehaviour
 {
-    public bool OnEquip = false;
     public bool clickable = true;
     public bool OnSell = false;
     [HideInInspector] public Gear gear;
@@ -12,7 +12,6 @@ public class GearDescription : MonoBehaviour
     private void Start()
     {
         GetComponent<Button>().onClick.AddListener(OnClick);
-        OnEquip = false;
     }
 
     public void OnClick()
@@ -24,7 +23,7 @@ public class GearDescription : MonoBehaviour
             return;
         }
 
-        if (!OnEquip)
+        if (!gear.OnEquip)
         {
             UIManager.instance.gear.currentGear = this;
             PlayerStats stats = new PlayerStats();
@@ -35,6 +34,6 @@ public class GearDescription : MonoBehaviour
             UIManager.instance.gear.PrintCharacterInfos(stats);
         }
         else
-            OnEquip = gear.UnequipOnPlayer(this);
+            gear.OnEquip = gear.UnequipOnPlayer(this);
     }
 }

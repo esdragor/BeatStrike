@@ -83,6 +83,7 @@ public class Inventory : MonoBehaviour
             //instance.inventoryIDs.Add(DataSerializer.instance.LoadDataFromDirectory<Gear>("Weapon"));
             gd = UI_Gear.AddItemUIInventory(newGear);
             gd.OnClick();
+            gd.gear.OnEquip = true;
             UI_Gear.Equip();
         }
 
@@ -113,6 +114,8 @@ public class Inventory : MonoBehaviour
         gd = UI_Gear.AddItemUIInventory(newGear);
         gd.OnClick();
         UI_Gear.Equip();
+        
+        GameManager.instance.RecheckEquipment();
     }
 
     private void LoadInventory()

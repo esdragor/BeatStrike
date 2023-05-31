@@ -70,6 +70,17 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetString(lastDateKey, lastDate.ToString());
         PlayerPrefs.Save();
     }
+    
+    public void RecheckEquipment()
+    {
+        for (int i = 0; i < currentCharacterInfos.equipment.Length; i++)
+        {
+            if (currentCharacterInfos.equipment[i] != null)
+            {
+                currentCharacterInfos.equipment[i].OnEquip = true;
+            }
+        }
+    }
 
     private void Awake()
     {

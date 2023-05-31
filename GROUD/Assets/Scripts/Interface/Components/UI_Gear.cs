@@ -83,8 +83,8 @@ public class UI_Gear : MonoBehaviour
     public static void Equip()
     {
         if (!instance.currentGear) return;
-        instance.currentGear.OnEquip = instance.currentGear.gear.EquipOnPlayer(instance.currentGear);
-
+        instance.currentGear.gear.OnEquip = instance.currentGear.gear.EquipOnPlayer(instance.currentGear);
+        instance.currentGear.gear.OnEquip = true;
         switch (instance.currentGear.gear.slot)
         {
             case GearSlot.Weapon:
@@ -105,6 +105,7 @@ public class UI_Gear : MonoBehaviour
         }
         instance.currentGear.GetComponent<RectTransform>().localScale = Vector3.one;
         Inventory.RemoveFromInventory(instance.currentGear.gear);
+        instance.currentGear.gear.OnEquip = true;
         instance.currentGear = null;
     }
     
