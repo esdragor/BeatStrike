@@ -35,8 +35,8 @@ public class CombatManager
 
         for (int i = 1; i < indexPalier; i++)
         {
-            newMaxHealth *= ((1 +data.enemy.statModificatorValuePercentage / 100) * index);
-            newDamage *= (1 + ((data.enemy.statModificatorValuePercentage / 100) * index));
+            newMaxHealth += (data.enemy.statModificatorValuePercentage * newMaxHealth);
+            newDamage += (data.enemy.statModificatorValuePercentage * newDamage);
         }
         maxHealth = newMaxHealth;
         currentHealth = maxHealth;
