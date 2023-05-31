@@ -114,6 +114,8 @@ public class Inventory : MonoBehaviour
         gd = UI_Gear.AddItemUIInventory(newGear);
         gd.OnClick();
         UI_Gear.Equip();
+        
+        GameManager.instance.RecheckEquipment();
     }
 
     private void LoadInventory()
