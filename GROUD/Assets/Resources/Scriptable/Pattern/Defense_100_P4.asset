@@ -1,0 +1,68 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1123186ad1b5d0a459852f617a76093c, type: 3}
+  m_Name: Defense_100_P4
+  m_EditorClassIdentifier: 
+  patternName: Defense_100_P4
+  targetLevel: 0
+  difficultyIndex: 0
+  maxTime: 7
+  BPM: 100
+  interactions:
+  - time: 0.6000000143051151
+    row: 1
+    timeCode: 1
+    frame: 1
+    interactionType: 1
+    swipeDirection: 1
+  - time: 1.2000000476837158
+    row: 1
+    timeCode: 2,00
+    frame: 0
+    interactionType: 1
+    swipeDirection: 4
+  - time: 2.4000000953674316
+    row: 1
+    timeCode: 4,00
+    frame: 0
+    interactionType: 1
+    swipeDirection: 2
+  - time: 3
+    row: 1
+    timeCode: 5,00
+    frame: 0
+    interactionType: 1
+    swipeDirection: 3
+  - time: 3.6000000858306906
+    row: 1
+    timeCode: 6
+    frame: 6
+    interactionType: 1
+    swipeDirection: 1
+  - time: 4.800000114440921
+    row: 1
+    timeCode: 8
+    frame: 8
+    interactionType: 1
+    swipeDirection: 3
+  - time: 5.400000095367432
+    row: 1
+    timeCode: 9,00
+    frame: 0
+    interactionType: 1
+    swipeDirection: 2
+  - time: 6.0000001430511505
+    row: 1
+    timeCode: 10
+    frame: 10
+    interactionType: 1
+    swipeDirection: 4
