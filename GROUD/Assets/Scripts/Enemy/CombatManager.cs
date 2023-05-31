@@ -29,14 +29,17 @@ public class CombatManager
         EnemyData data = PalierManager.GetEnemy();
 
 
+        float oldMaxHealth = data.enemy.healthPoint;
+        float oldDamage = data.enemy.damage;
+
         float newMaxHealth = data.enemy.healthPoint;
         float newDamage = data.enemy.damage;
         float indexPalier = PalierManager.GetActualPalier() + index;
 
         for (int i = 1; i < indexPalier; i++)
         {
-            newMaxHealth += (data.enemy.statModificatorValuePercentage * newMaxHealth);
-            newDamage += (data.enemy.statModificatorValuePercentage * newDamage);
+            newMaxHealth += ((data.enemy.statModificatorValuePercentage / 100) * oldMaxHealth);
+            newDamage += ((data.enemy.statModificatorValuePercentage / 100) * oldDamage);
         }
         maxHealth = newMaxHealth;
         currentHealth = maxHealth;
