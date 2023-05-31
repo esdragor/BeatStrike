@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-2273709501291839800
+--- !u!114 &-4040452760733795742
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: M_Snake
+  m_Name: M_SnakeB
   m_Shader: {fileID: -6465566751694194690, guid: 2c5b97c0453bfa5448a716e8060b7af9,
     type: 3}
   m_ValidKeywords: []
@@ -35,11 +35,11 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BaseColor:
-        m_Texture: {fileID: 2800000, guid: 71a55c4efbbc3b844ba68ffa1cc67dfc, type: 3}
+        m_Texture: {fileID: 2800000, guid: c97e631b6569d2549bb9332905e44c93, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
-        m_Texture: {fileID: 2800000, guid: f6746d59a3b5e764bbb95e51f3d3f212, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
@@ -59,15 +59,15 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 71a55c4efbbc3b844ba68ffa1cc67dfc, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
-        m_Texture: {fileID: 2800000, guid: 0ea9624e6b37abb4c904d11aea07055e, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Normal:
-        m_Texture: {fileID: 2800000, guid: f6746d59a3b5e764bbb95e51f3d3f212, type: 3}
+        m_Texture: {fileID: 2800000, guid: e5de72a3a7c5d6a4795c2378511fa3d0, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
@@ -79,26 +79,28 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _RME:
-        m_Texture: {fileID: 2800000, guid: be486d6354534b7488edb1ff49d5e7b9, type: 3}
+        m_Texture: {fileID: 2800000, guid: 1a83dbd69c4dd6647b5265edc9bf4222, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
     - _BUILTIN_QueueControl: 0
     - _BUILTIN_QueueOffset: 0
+    - _Base_Color_Hue: 0.49
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
+    - _Emission_Hue: 0.5
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _Intensity: 1
+    - _Intensity: 0.7
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _Roughness: 1
+    - _Roughness: 0.8
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
