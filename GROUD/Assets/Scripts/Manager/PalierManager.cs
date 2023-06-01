@@ -22,7 +22,7 @@ public class PalierManager : MonoBehaviour
     private void Awake()
     {
         if (!instance) instance = this;
-        else Destroy(this);
+        else if (instance != this) Destroy(this);
         if (PlayerPrefs.HasKey("Palier"))
             instance.actualPalier = PlayerPrefs.GetInt("Palier");
         else
@@ -34,6 +34,8 @@ public class PalierManager : MonoBehaviour
 
     public static string GetPalierText()
     {
+        if (instance == null)
+            return "";
         return (instance.actualPalier > 0) ? instance.actualPalier.ToString() : "1";
     }
 

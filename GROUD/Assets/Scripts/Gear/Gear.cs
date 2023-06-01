@@ -40,6 +40,14 @@ public class Gear : ScriptableObject
     public int priceToSell = 10;
     public bool OnEquip = false;
 
+
+    Gear()
+    {
+        OnEquip = false;
+        rarity = Rarity.Common;
+        ID = -1;
+    }
+    
     public bool EquipOnPlayer(GearDescription gearDescription)
     {
         CharacterInfos ch = GameManager.instance.currentCharacterInfos;
@@ -91,6 +99,8 @@ public class Gear : ScriptableObject
                 break;
         }
         ch.equipment[(int)slot] = null;
+        
+        gearDescription.gear.OnEquip = false;
 
         if (MainMenuManager.instance == null) return false;
         UIManager.instance.gear.SetUnEquipmentImage((int)slot, gearDescription);
@@ -112,6 +122,7 @@ public class Gear : ScriptableObject
         statsValue1 = _gear.statsValue1;
         priceToBuy = _gear.priceToBuy;
         priceToSell = _gear.priceToSell;
+        OnEquip = _gear.OnEquip;
     }
 
     public void CopyGear(GearSaveData data)

@@ -177,33 +177,57 @@ MonoBehaviour:
   struct60BPM:
     clipBackground: {fileID: 8300000, guid: d7b072e9453f6894eb596efb50e56356, type: 3}
     clipNotePlayerGood:
-    - {fileID: 0}
+    - {fileID: 8300000, guid: d141f560f3568a447a2b49411d2fe707, type: 3}
     clipNotePlayerBad:
-    - {fileID: 0}
+    - {fileID: 8300000, guid: d141f560f3568a447a2b49411d2fe707, type: 3}
+  struct80BPM:
+    clipBackground: {fileID: 8300000, guid: 8f930a04832523642a04740edeace532, type: 3}
+    clipNotePlayerGood:
+    - {fileID: 8300000, guid: d141f560f3568a447a2b49411d2fe707, type: 3}
+    clipNotePlayerBad:
+    - {fileID: 8300000, guid: d141f560f3568a447a2b49411d2fe707, type: 3}
   struct90BPM:
     clipBackground: {fileID: 8300000, guid: 8f930a04832523642a04740edeace532, type: 3}
     clipNotePlayerGood:
-    - {fileID: 0}
+    - {fileID: 8300000, guid: d141f560f3568a447a2b49411d2fe707, type: 3}
     clipNotePlayerBad:
-    - {fileID: 0}
+    - {fileID: 8300000, guid: d141f560f3568a447a2b49411d2fe707, type: 3}
+  struct100BPM:
+    clipBackground: {fileID: 8300000, guid: 3b53f1fe167d43545924d643c5249cb8, type: 3}
+    clipNotePlayerGood:
+    - {fileID: 8300000, guid: d141f560f3568a447a2b49411d2fe707, type: 3}
+    clipNotePlayerBad:
+    - {fileID: 8300000, guid: d141f560f3568a447a2b49411d2fe707, type: 3}
   struct120BPM:
     clipBackground: {fileID: 8300000, guid: bd4a19afe4bd01246894c135955e0c30, type: 3}
     clipNotePlayerGood:
-    - {fileID: 0}
+    - {fileID: 8300000, guid: d141f560f3568a447a2b49411d2fe707, type: 3}
     clipNotePlayerBad:
-    - {fileID: 0}
+    - {fileID: 8300000, guid: d141f560f3568a447a2b49411d2fe707, type: 3}
+  struct140BPM:
+    clipBackground: {fileID: 8300000, guid: e50048e31259e054e9d4b0f1ffde7345, type: 3}
+    clipNotePlayerGood:
+    - {fileID: 8300000, guid: d141f560f3568a447a2b49411d2fe707, type: 3}
+    clipNotePlayerBad:
+    - {fileID: 8300000, guid: d141f560f3568a447a2b49411d2fe707, type: 3}
+  struct160BPM:
+    clipBackground: {fileID: 8300000, guid: 7ff577edbee3b66419b067017ef3cc66, type: 3}
+    clipNotePlayerGood:
+    - {fileID: 8300000, guid: d141f560f3568a447a2b49411d2fe707, type: 3}
+    clipNotePlayerBad:
+    - {fileID: 8300000, guid: d141f560f3568a447a2b49411d2fe707, type: 3}
   struct180BPM:
     clipBackground: {fileID: 8300000, guid: 7ff577edbee3b66419b067017ef3cc66, type: 3}
     clipNotePlayerGood:
-    - {fileID: 0}
+    - {fileID: 8300000, guid: d141f560f3568a447a2b49411d2fe707, type: 3}
     clipNotePlayerBad:
-    - {fileID: 0}
-  struct240BPM:
+    - {fileID: 8300000, guid: d141f560f3568a447a2b49411d2fe707, type: 3}
+  struct200BPM:
     clipBackground: {fileID: 8300000, guid: e50048e31259e054e9d4b0f1ffde7345, type: 3}
     clipNotePlayerGood:
-    - {fileID: 0}
+    - {fileID: 8300000, guid: d141f560f3568a447a2b49411d2fe707, type: 3}
     clipNotePlayerBad:
-    - {fileID: 0}
+    - {fileID: 8300000, guid: d141f560f3568a447a2b49411d2fe707, type: 3}
   audioSourceMusicalBackground: {fileID: 8320449545509933988}
   audioSourceNotePlayer:
   - {fileID: 5427127240286082787}
@@ -961,6 +985,7 @@ MonoBehaviour:
   currentCharacterInfos: {fileID: 11400000, guid: cff7cb37c4f6d794fa47b9d16110e49d,
     type: 2}
   bpmIsRandoming: 0
+  savedTick: 0
   timeToShopReset: 2
 --- !u!1 &5809448248424889335
 GameObject:
