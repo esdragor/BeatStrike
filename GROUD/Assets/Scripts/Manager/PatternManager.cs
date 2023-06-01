@@ -128,14 +128,14 @@ public class PatternManager
 
     public async void EndPattern(bool EndPattern = true)
     {
-        float timer = 1f;
+        float timer = 3f;
         
         isTimelineActive = false;
         GameManager.onUpdated = null;
         timelineRunnerKeys.Clear();
         while (timer > 0)
         {
-            timer -= (1f /60f) * GameManager.instance.Bpm;
+            timer -= Time.deltaTime * GameManager.instance.GetTickRate();
             await Task.Yield();
         }
         if (EndPattern && !GameLoopManager.instance.IsMoving)
