@@ -16,6 +16,8 @@ public class VFXManager : MonoBehaviour
     [SerializeField] private ParticleSystem ReadyComboFX;
     [SerializeField] private ParticleSystem DeathEnemyFX;
 
+    [SerializeField] private ParticleSystem PhaseAnnouncerVFX;
+    
     [Header("Player")] [SerializeField] private ParticleSystem attackFX;
     [SerializeField] private ParticleSystem dodgeFX;
     [SerializeField] private ParticleSystem hurtFX;
@@ -109,6 +111,12 @@ public class VFXManager : MonoBehaviour
                 DeathEnemyFX.Play();
                 break;
         }
+    }
+
+    public void AnnouncerPhaseVFX(bool isDef)
+    {
+        PhaseAnnouncerVFX.GetComponent<Renderer>().material.SetInt("_isDef", isDef ? 1 : 0);
+        PhaseAnnouncerVFX.Play();
     }
 
     IEnumerator launchWithDeadTime(ParticleSystem ps, float time)

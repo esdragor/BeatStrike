@@ -55,7 +55,6 @@ public class PatternManager
         if (rnd < newPercentage)
         {
             pList = PatternBPM.Value.DEFPatterns;
-            UIManager.instance.announcer.Announce("DEFENSE", Color.white);
             if (attackPatternCount > 0) attackPatternCount = 0;
             isDef = true;
             
@@ -64,11 +63,10 @@ public class PatternManager
         else
         {
             pList = PatternBPM.Value.ATKPatterns;
-            UIManager.instance.announcer.Announce("ATTACK", Color.white);
             if (defensePatternCount > 0) defensePatternCount = 0;
             attackPatternCount++;
         }
-
+        
         Pattern p = pList[UnityEngine.Random.Range(0, pList.Length)];
                 
         UIManager.instance.DebugPattern(p.patternName);
@@ -81,7 +79,9 @@ public class PatternManager
         GameManager.onUpdatedFrame = TimelineEventListener;
 
         isTimelineActive = true;
-
+        
+        PlayerManager.instance.vfxManager.AnnouncerPhaseVFX(isDef);
+        
         return (isDef);
     }
 

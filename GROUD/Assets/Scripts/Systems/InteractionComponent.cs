@@ -36,8 +36,6 @@ namespace Code.Interface
         public void SetSuccess(InteractionSuccess itSuccess)
         {
             successGroup = itSuccess;
-            
-            Debug.Log($"Set success group by {successGroup}");
         }
 
         private void SetVisualAndColor()

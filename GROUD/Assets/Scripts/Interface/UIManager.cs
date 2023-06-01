@@ -45,9 +45,14 @@ public class UIManager : MonoBehaviour
         hud.textPalierInGame.text = "Palier " + PalierManager.GetPalierText();
     }
 
+    private string[] lastPatterns = new string[3];
     public void DebugPattern(string patternName)
     {
-        patternDebugTxt.text = patternName;
+        lastPatterns[2] = lastPatterns[1];
+        lastPatterns[1] = lastPatterns[0];
+        lastPatterns[0] = patternName;
+        
+        patternDebugTxt.text = $"{lastPatterns[0]} <br>{lastPatterns[1]} <br>{lastPatterns[2]}";
     }
 
     public void OpenLink(string url)

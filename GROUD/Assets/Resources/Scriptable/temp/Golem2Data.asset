@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a2cd3be39344484885bf5bbac5557e3, type: 3}
+  m_Name: Golem2Data
+  m_EditorClassIdentifier: 
+  visual: {fileID: 1588718126058408478, guid: 87627d4f208aeaa45b8f1f3199d5dfd5, type: 3}
+  material:
+  - {fileID: 2100000, guid: d27711851ad1080408028646eb1cb8e6, type: 2}
+  - {fileID: 2100000, guid: 3e0594fb030c0ad47a27349a2f2efc99, type: 2}
+  healthPoint: 1000
+  damage: 100
+  statModificatorValuePercentage: 1.5
