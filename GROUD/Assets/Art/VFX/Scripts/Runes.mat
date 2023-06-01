@@ -59,7 +59,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MaskRGBA:
-        m_Texture: {fileID: 2800000, guid: 74d4093d397749749a6aeda9ce38547d, type: 3}
+        m_Texture: {fileID: 2800000, guid: 2e577ab8c155a694880628d7c67590e4, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -82,6 +82,10 @@ Material:
         m_Texture: {fileID: 2800000, guid: 6fa34732130979e40adeefafe1bb8cfa, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_474e4ceb8cfc403fa1293fea3dd163c5_Texture_1:
+        m_Texture: {fileID: 2800000, guid: 2e577ab8c155a694880628d7c67590e4, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _SampleTexture2D_6961c2e84dd2402782cffcdd3adc8ae3_Texture_1:
         m_Texture: {fileID: 2800000, guid: d61a0c48ddc1c4a498c9d981bc0da9ff, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -92,7 +96,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _AbilityProgress: 0
+    - _AbilityProgress: 2.91
     - _BUILTIN_QueueControl: 0
     - _BUILTIN_QueueOffset: 0
     - _BumpScale: 1
@@ -112,8 +116,8 @@ Material:
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
-    - _OvalSize: 0.75
-    - _OvalThickness: 1.2
+    - _OvalSize: 0.9
+    - _OvalThickness: 1
     - _Parallax: 0.02
     - _RunesTiling: 0.004
     - _SmoothnessTextureChannel: 0
