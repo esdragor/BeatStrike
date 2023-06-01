@@ -95,7 +95,6 @@ public class UI_Shop : MonoBehaviour
     {
         chestPopUp.TogglePopUp(true);
         
-        Debug.Log(gear.gearName);
         nameTxt.text = gear.gearName;
         descriptionTxt.text = gear.gearDescription;
         chestPopIllustration.sprite = gear.gearSprite;
