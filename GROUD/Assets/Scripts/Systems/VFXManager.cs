@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class VFXManager : MonoBehaviour
@@ -50,7 +51,7 @@ public class VFXManager : MonoBehaviour
                 break;
             case "Attack":
                 rAttackFX.Play();
-                hitEnemy.Play();
+                StartCoroutine(launchWithDeadTime(hitEnemy, 0.8f));
                 switch (dir)
                 {
                     case ScreenListener.SwipeDirection.UP:
@@ -85,7 +86,10 @@ public class VFXManager : MonoBehaviour
                 break;
             case "EnemyAttack":
                 if (attackEnemy)
+                {
+                    attackEnemy.Stop();
                     attackEnemy.Play();
+                }
                 break;
             case "GCombo":
                 NotReadyCombo();
@@ -107,6 +111,13 @@ public class VFXManager : MonoBehaviour
         }
     }
 
+    IEnumerator launchWithDeadTime(ParticleSystem ps, float time)
+    {
+        ps.Play();
+        yield return new WaitForSeconds(time);
+        ps.Stop();
+    }
+    
     public void NotReadyCombo()
     {
         ReadyComboFX.gameObject.SetActive(false);
