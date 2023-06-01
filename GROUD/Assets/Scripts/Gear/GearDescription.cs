@@ -6,7 +6,7 @@ public class GearDescription : MonoBehaviour
 {
     public bool clickable = true;
     public bool OnSell = false;
-    [HideInInspector] public Gear gear;
+    public Gear gear;
 
 
     private void Start()

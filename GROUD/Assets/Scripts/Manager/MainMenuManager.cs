@@ -58,7 +58,7 @@ public class MainMenuManager : MonoBehaviour
 
     private void UpdatePalierText()
     {
-        if (textPalier && GameManager.instance)
+        if (textPalier && GameManager.instance && PalierManager.GetPalierText() != "")
             textPalier.text = "Palier " + PalierManager.GetPalierText();
        
     }

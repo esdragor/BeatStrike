@@ -27,12 +27,13 @@ public class Inventory : MonoBehaviour
     {
         instance.LoadInventory();
         instance.LoadEquipment();
+        UI_Gear.DebugOnEquip();
     }
 
-    public static GearDescription AddItemOnInventory(Gear gear)
+    public static void AddItemOnInventory(Gear gear)
     {
         instance.inventoryIDs.Add(gear);
-        return UI_Gear.AddItemUIInventory(gear);
+        UI_Gear.AddItemUIInventory(gear);
     }
 
     public static void RemoveItemOnInventory(Gear gear)
@@ -72,7 +73,6 @@ public class Inventory : MonoBehaviour
         GearSaveData gearData;
         if (DataSerializer.instance.CheckFileExists("Weapon"))
         {
-            // newGear = Ressources.Load
             
             gearData = DataSerializer.instance.LoadDataFromDirectory<GearSaveData>("Weapon");
             
@@ -80,10 +80,8 @@ public class Inventory : MonoBehaviour
             newGear.CopyGear(gearData);
             newGear.ID = GetNewIndexID();
             newGear.gearSprite = GetSprite(newGear.slot);
-            //instance.inventoryIDs.Add(DataSerializer.instance.LoadDataFromDirectory<Gear>("Weapon"));
             gd = UI_Gear.AddItemUIInventory(newGear);
             gd.OnClick();
-            gd.gear.OnEquip = true;
             UI_Gear.Equip();
         }
 
@@ -95,7 +93,6 @@ public class Inventory : MonoBehaviour
             newGear.CopyGear(gearData);
             newGear.ID = GetNewIndexID();
             newGear.gearSprite =GetSprite(newGear.slot);
-            //instance.inventoryIDs.Add(DataSerializer.instance.LoadDataFromDirectory<Gear>("Chest"));
             gd = UI_Gear.AddItemUIInventory(newGear);
             gd.OnClick();
             UI_Gear.Equip();
@@ -110,7 +107,6 @@ public class Inventory : MonoBehaviour
         newGear.CopyGear(gearData);
         newGear.ID = GetNewIndexID();
         newGear.gearSprite =GetSprite(newGear.slot);
-        //instance.inventoryIDs.Add(DataSerializer.instance.LoadDataFromDirectory<Gear>("Head"));
         gd = UI_Gear.AddItemUIInventory(newGear);
         gd.OnClick();
         UI_Gear.Equip();
