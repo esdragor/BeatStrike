@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1123186ad1b5d0a459852f617a76093c, type: 3}
+  m_Name: Attack_80_P5
+  m_EditorClassIdentifier: 
+  patternName: Attack_80_P5
+  targetLevel: 0
+  difficultyIndex: 0
+  maxTime: 3
+  BPM: 80
+  interactions:
+  - time: 0.75
+    row: 1
+    timeCode: 1,00
+    frame: 0
+    interactionType: 0
+    swipeDirection: 0
+  - time: 2.25
+    row: 1
+    timeCode: 3,00
+    frame: 0
+    interactionType: 0
+    swipeDirection: 0
+  - time: 0
+    row: 1
+    timeCode: 0
+    frame: 0
+    interactionType: 0
+    swipeDirection: 0
