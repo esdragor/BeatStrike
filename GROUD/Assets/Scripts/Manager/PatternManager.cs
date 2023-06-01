@@ -24,6 +24,8 @@ public class PatternManager
         randomMultiplicator = _randomMultiplicator;
     }
 
+    private bool lastWasDef;
+    
     public bool StartPattern(float _remainingPulse = 0f)
     {
         bool isDef = false;
@@ -58,12 +60,22 @@ public class PatternManager
             if (attackPatternCount > 0) attackPatternCount = 0;
             isDef = true;
             
+            if (!lastWasDef)
+            {
+              PlayerManager.instance.vfxManager.AnnouncerPhaseVFX(isDef);
+            }
+            
             defensePatternCount++;
         }
         else
         {
             pList = PatternBPM.Value.ATKPatterns;
             if (defensePatternCount > 0) defensePatternCount = 0;
+
+            if (lastWasDef)
+            {
+                PlayerManager.instance.vfxManager.AnnouncerPhaseVFX(isDef);
+            }
             attackPatternCount++;
         }
         
@@ -79,9 +91,8 @@ public class PatternManager
         GameManager.onUpdatedFrame = TimelineEventListener;
 
         isTimelineActive = true;
-        
-        PlayerManager.instance.vfxManager.AnnouncerPhaseVFX(isDef);
-        
+
+        lastWasDef = isDef;
         return (isDef);
     }
 

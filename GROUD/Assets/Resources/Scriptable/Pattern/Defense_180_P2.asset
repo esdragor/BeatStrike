@@ -13,8 +13,6 @@ MonoBehaviour:
   m_Name: Defense_180_P2
   m_EditorClassIdentifier: 
   patternName: Defense_180_P2
-  targetLevel: 0
-  difficultyIndex: 0
   maxTime: 10
   BPM: 180
   interactions:
@@ -24,6 +22,48 @@ MonoBehaviour:
     frame: 0
     interactionType: 1
     swipeDirection: 2
+  - time: 0.6666666865348816
+    row: 1
+    timeCode: 2,00
+    frame: 2
+    interactionType: 1
+    swipeDirection: 1
+  - time: 1
+    row: 1
+    timeCode: 3
+    frame: 3
+    interactionType: 1
+    swipeDirection: 2
+  - time: 1.3333333730697632
+    row: 1
+    timeCode: 4,00
+    frame: 4
+    interactionType: 1
+    swipeDirection: 3
+  - time: 1.6666666269302368
+    row: 1
+    timeCode: 5,00
+    frame: 5
+    interactionType: 1
+    swipeDirection: 3
+  - time: 2
+    row: 1
+    timeCode: 6
+    frame: 6
+    interactionType: 1
+    swipeDirection: 1
+  - time: 2.6666667461395264
+    row: 1
+    timeCode: 8,00
+    frame: 8
+    interactionType: 1
+    swipeDirection: 4
+  - time: 3
+    row: 1
+    timeCode: 9
+    frame: 9
+    interactionType: 1
+    swipeDirection: 1
   - time: 3.6666667461395264
     row: 1
     timeCode: 11,00
@@ -66,12 +106,6 @@ MonoBehaviour:
     frame: 18
     interactionType: 1
     swipeDirection: 4
-  - time: 0.6666666865348816
-    row: 1
-    timeCode: 2,00
-    frame: 2
-    interactionType: 1
-    swipeDirection: 1
   - time: 6.666666507720947
     row: 1
     timeCode: 20,00
@@ -114,39 +148,3 @@ MonoBehaviour:
     frame: 29
     interactionType: 1
     swipeDirection: 2
-  - time: 1
-    row: 1
-    timeCode: 3
-    frame: 3
-    interactionType: 1
-    swipeDirection: 2
-  - time: 1.3333333730697632
-    row: 1
-    timeCode: 4,00
-    frame: 4
-    interactionType: 1
-    swipeDirection: 3
-  - time: 1.6666666269302368
-    row: 1
-    timeCode: 5,00
-    frame: 5
-    interactionType: 1
-    swipeDirection: 3
-  - time: 2
-    row: 1
-    timeCode: 6
-    frame: 6
-    interactionType: 1
-    swipeDirection: 1
-  - time: 2.6666667461395264
-    row: 1
-    timeCode: 8,00
-    frame: 8
-    interactionType: 1
-    swipeDirection: 4
-  - time: 3
-    row: 1
-    timeCode: 9
-    frame: 9
-    interactionType: 1
-    swipeDirection: 1
