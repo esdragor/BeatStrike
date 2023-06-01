@@ -26,6 +26,7 @@ public class PatternManager
 
     public bool StartPattern(float _remainingPulse = 0f)
     {
+        bool isDef = false;
         if (isTimelineActive) return false;
 
         Pattern[] pList = null;
@@ -56,6 +57,7 @@ public class PatternManager
             pList = PatternBPM.Value.DEFPatterns;
             UIManager.instance.announcer.Announce("DEFENSE", Color.white);
             if (attackPatternCount > 0) attackPatternCount = 0;
+            isDef = true;
             
             defensePatternCount++;
         }
@@ -64,7 +66,6 @@ public class PatternManager
             pList = PatternBPM.Value.ATKPatterns;
             UIManager.instance.announcer.Announce("ATTACK", Color.white);
             if (defensePatternCount > 0) defensePatternCount = 0;
-            
             attackPatternCount++;
         }
 
@@ -81,7 +82,7 @@ public class PatternManager
 
         isTimelineActive = true;
 
-        return (rnd < percentageDEF);
+        return (isDef);
     }
 
     private void InitializeQueue(List<InteractionKey> interactionKeys)

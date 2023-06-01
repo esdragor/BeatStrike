@@ -40,6 +40,19 @@ public class PlayerManager : MonoBehaviour
         matRune.SetFloat("_AbilityProgress", 0);
         //PowerManager.AssignNewPower();
     }
+    
+    public void HealingPlayer(float amount)
+    {
+        currentHP += amount;
+        if (currentHP > MaxHP) currentHP = MaxHP;
+        UIManager.instance.hud.playerHealth.SetHealth(currentHP, MaxHP);
+    }
+    
+    public void FullHealingPlayer()
+    {
+        currentHP = MaxHP;
+        UIManager.instance.hud.playerHealth.SetHealth(currentHP, MaxHP);
+    }
 
     public void MovePlayerTo(Vector3 position)
     {

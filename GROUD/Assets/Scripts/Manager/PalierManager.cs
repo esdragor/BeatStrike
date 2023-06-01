@@ -44,6 +44,7 @@ public class PalierManager : MonoBehaviour
         instance.indexEnemy++;
         if (instance.indexEnemy >= instance.palierPrefabEnemies.Length)
             instance.indexEnemy = 0;
+        PlayerManager.instance.FullHealingPlayer();
         
         UIManager.instance.hud.textPalierInGame.text = GetPalierText();
         

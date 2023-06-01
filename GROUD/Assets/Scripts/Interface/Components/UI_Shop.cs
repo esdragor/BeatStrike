@@ -87,7 +87,6 @@ public class UI_Shop : MonoBehaviour
 
     private void OpenCommonChest()
     {
-        CurrencyManager.AddKeys(1);
         if (CurrencyManager.GetKeys() >= ticketPriceCommon)
         {
             CurrencyManager.RemoveKeys(ticketPriceCommon);
