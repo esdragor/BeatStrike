@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class VFXManager : MonoBehaviour
@@ -114,10 +115,17 @@ public class VFXManager : MonoBehaviour
         }
     }
 
-    public void AnnouncerPhaseVFX(bool isDef)
+    public async void AnnouncerPhaseVFX(bool isDef)
     {
         PhaseAnnouncerVFX.GetComponent<Renderer>().material.SetInt("_isDef", isDef ? 1 : 0);
         PhaseAnnouncerVFX.Play();
+        UIManager.instance.hud.DisableHUD();
+
+        while (PhaseAnnouncerVFX.isPlaying)
+        {
+            await Task.Yield();
+        }
+        UIManager.instance.hud.EnableHUD();
     }
 
     IEnumerator launchWithDeadTime(ParticleSystem ps, float time)

@@ -2,8 +2,8 @@ using System;
 using Code.Interface;
 using UnityEngine;
 using Utilities;
-
-public class InteractionDetector : MonoBehaviour
+        
+public class InteractionDetector : MonoBehaviour        
 {
     public InteractionComponent currentInteraction = null;
     public BoxCollider collider;

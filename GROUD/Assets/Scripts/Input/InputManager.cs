@@ -48,32 +48,40 @@ public class InputManager : MonoBehaviour
                 if (GameLoopManager.instance.isDefPhase)
                     playerManager.animator.SetTrigger("DefUp");
                 else
+                {
                     playerManager.animator.SetTrigger("AttackUp");
-                playerManager.vfxManager.PlaySFX("Attack", dir);
+                    playerManager.vfxManager.PlaySFX("Attack", dir);
+                }
+                   
                 break;
             case ScreenListener.SwipeDirection.DOWN:
                 if (GameLoopManager.instance.isDefPhase)
                     playerManager.animator.SetTrigger("DefDown");
                 else
+                {
                     playerManager.animator.SetTrigger("AttackDown");
-                playerManager.vfxManager.PlaySFX("Attack", dir);
+                    playerManager.vfxManager.PlaySFX("Attack", dir);
+                }
 
                 break;
             case ScreenListener.SwipeDirection.LEFT:
                 if (GameLoopManager.instance.isDefPhase)
                     playerManager.animator.SetTrigger("DefLeft");
                 else
+                {
                     playerManager.animator.SetTrigger("AttackLeft");
-                playerManager.vfxManager.PlaySFX("Attack", dir);
+                    playerManager.vfxManager.PlaySFX("Attack", dir);
+                }
 
                 break;
             case ScreenListener.SwipeDirection.RIGHT:
                 if (GameLoopManager.instance.isDefPhase)
                     playerManager.animator.SetTrigger("DefRight");
                 else
+                {
                     playerManager.animator.SetTrigger("AttackRight");
-                playerManager.vfxManager.PlaySFX("Attack", dir);
-
+                    playerManager.vfxManager.PlaySFX("Attack", dir);
+                }
                 break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(dir), dir, null);

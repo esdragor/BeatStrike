@@ -1,5 +1,6 @@
 using Code.Interface;
 using UnityEngine;
+using Utilities;
 
 public class DetectorManager : MonoBehaviour
 {
@@ -10,6 +11,12 @@ public class DetectorManager : MonoBehaviour
         if (!Equals(currentInteraction, it))
         {
             currentInteraction = it;
+            
+            if (it.data.interactionType == Enums.InteractionType.Dodge)
+            {
+                GameLoopManager.combatManager.EnemyAttack();
+            }
+            
         }
     }
 }

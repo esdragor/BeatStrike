@@ -13,23 +13,9 @@ MonoBehaviour:
   m_Name: Defense_200_P4
   m_EditorClassIdentifier: 
   patternName: Defense_200_P4
-  targetLevel: 0
-  difficultyIndex: 0
   maxTime: 6
   BPM: 200
   interactions:
-  - time: 4.500000107288363
-    row: 1
-    timeCode: 15
-    frame: 15
-    interactionType: 1
-    swipeDirection: 1
-  - time: 2.100000050067903
-    row: 1
-    timeCode: 7
-    frame: 7
-    interactionType: 1
-    swipeDirection: 2
   - time: 0.30000000715255754
     row: 1
     timeCode: 1
@@ -39,7 +25,7 @@ MonoBehaviour:
   - time: 0.6000000238418579
     row: 1
     timeCode: 2,00
-    frame: 0
+    frame: 2
     interactionType: 1
     swipeDirection: 3
   - time: 0.9000000214576727
@@ -54,6 +40,12 @@ MonoBehaviour:
     frame: 4
     interactionType: 1
     swipeDirection: 4
+  - time: 2.100000050067903
+    row: 1
+    timeCode: 7
+    frame: 7
+    interactionType: 1
+    swipeDirection: 2
   - time: 2.7000000643730178
     row: 1
     timeCode: 9
@@ -66,18 +58,24 @@ MonoBehaviour:
     frame: 11
     interactionType: 1
     swipeDirection: 4
+  - time: 3.6000001430511475
+    row: 1
+    timeCode: 12,00
+    frame: 12
+    interactionType: 1
+    swipeDirection: 4
+  - time: 4.500000107288363
+    row: 1
+    timeCode: 15
+    frame: 15
+    interactionType: 1
+    swipeDirection: 1
   - time: 4.800000114440921
     row: 1
     timeCode: 16
     frame: 16
     interactionType: 1
     swipeDirection: 3
-  - time: 3.6000001430511475
-    row: 1
-    timeCode: 12,00
-    frame: 0
-    interactionType: 1
-    swipeDirection: 4
   - time: 5.4000001287460355
     row: 1
     timeCode: 18
