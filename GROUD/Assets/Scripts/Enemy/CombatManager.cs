@@ -89,6 +89,8 @@ public class CombatManager
     {
         UIManager.instance.enemy.EnableEnemyHealth(false);
         Object.Destroy(currentEnemyObj);
+        PlayerManager.instance.vfxManager.PlaySFX("DeathEnemy");
+        
 
         isActive = false;
 
