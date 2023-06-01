@@ -9,7 +9,6 @@ public class Inventory : MonoBehaviour
 {
     private static Inventory instance;
 
-
     [SerializeField] private Sprite spriteWeapon; 
     [SerializeField] private Sprite spriteChest; 
     [SerializeField] private Sprite spriteHead;

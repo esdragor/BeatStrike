@@ -14,7 +14,6 @@ public class UI_Shop : MonoBehaviour
     private static UI_Shop instance;
 
     [Header("Main Menu")] [SerializeField] private RectTransform panel;
-    [SerializeField] private RectTransform mainMenuButtonsPanel;
     [SerializeField] private float mainMenuFadeInDuration = 1f;
     [SerializeField] private float mainMenuFadeOutDuration = 1f;
     [SerializeField] private Button exitBtn;
@@ -39,6 +38,12 @@ public class UI_Shop : MonoBehaviour
     [SerializeField] private TMP_Text PopUpText2;
     [SerializeField] private Image PopUpImage;
     [SerializeField] private Button PopUpButton;
+
+    [Header("Chest PopUp")] 
+    [SerializeField] private UI_PopUp chestPopUp;
+    [SerializeField] private TMP_Text nameTxt;
+    [SerializeField] private TMP_Text descriptionTxt;
+    [SerializeField] private Image chestPopIllustration;
 
     private float decal = 5000f;
     private float timeToReloadValue = -99f;
@@ -81,8 +86,19 @@ public class UI_Shop : MonoBehaviour
         gd.gear = ScriptableObject.CreateInstance<Gear>();
         gd.gear.CopyGear(_gear);
         Destroy(gd.transform.parent.gameObject, 5f);
-        
         tr.GetChild(1).GetComponent<TMP_Text>().text = _gear.priceToBuy.ToString();
+
+        DrawChestPopUp(_gear);
+    }
+
+    public void DrawChestPopUp(Gear gear)
+    {
+        chestPopUp.TogglePopUp(true);
+        
+        Debug.Log(gear.gearName);
+        nameTxt.text = gear.gearName;
+        descriptionTxt.text = gear.gearDescription;
+        chestPopIllustration.sprite = gear.gearSprite;
     }
 
     private void OpenCommonChest()

@@ -39,6 +39,7 @@ public class UI_Tutorial : MonoBehaviour
             {
                 ended = true;
                 gameObject.SetActive(false);
+                MainMenuManager.instance.playButton.interactable = true;
             }
         }
     }

@@ -13,7 +13,6 @@ public class UI_Gear : MonoBehaviour
 
     [HideInInspector] public GearDescription currentGear;
 
-    [Header("Main Menu")] [SerializeField] private RectTransform mainMenuButtonsPanel;
     [SerializeField] private Button GearButton;
     [SerializeField] private float mainMenuFadeInDuration = 1f;
     [SerializeField] private float mainMenuFadeOutDuration = 1f;
@@ -138,31 +137,6 @@ public class UI_Gear : MonoBehaviour
         slot.transform.parent = slotsEquipementParent;
         slot.SetSiblingIndex(index);
         gearDescription.transform.parent = gearSelectionParent;
-    }
-
-    public void HideMainMenuPanel()
-    {
-        if (transitionDirectionMainMenu is TransitionDirection.Down or TransitionDirection.Up)
-        {
-            mainMenuButtonsPanel.transform.DOMoveY(((int)transitionDirectionMainMenu - 3) * decal,
-                mainMenuFadeOutDuration);
-        }
-        else
-        {
-            mainMenuButtonsPanel.transform.DOMoveX((int)transitionDirectionMainMenu * decal, mainMenuFadeOutDuration);
-        }
-    }
-
-    public void PrintMainMenuPanel()
-    {
-        if (transitionDirectionMainMenu is TransitionDirection.Down or TransitionDirection.Up)
-        {
-            mainMenuButtonsPanel.transform.DOMoveY(Screen.height / 2f, mainMenuFadeInDuration);
-        }
-        else
-        {
-            mainMenuButtonsPanel.transform.DOMoveX(Screen.width / 2f, mainMenuFadeInDuration);
-        }
     }
 
     public void PrintSelectionGearPanel()

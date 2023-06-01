@@ -21,6 +21,7 @@ public class MainMenuManager : MonoBehaviour
 
     [SerializeField] private TMP_Text textPalier;
     [SerializeField] private Button ResetButton;
+    public Button playButton;
 
     private void Awake()
     {

@@ -50,8 +50,13 @@ public class FactoryObjectManager : MonoBehaviour
                 gear.statsValue1 = Random.Range(min, max);
                 break;
         }
-
+        
+        
         gear.rarity = (rarity == 0) ? Rarity.Common : Rarity.Epic;
+        
+        gear.gearName = gear.slot.ToString();
+        gear.gearDescription = $"{gear.rarity} | {gear.statsType1} : {gear.statsValue1}";
+        
         gear.priceToBuy = 230 * (rarity + 1) + actualPalier * 10;
         gear.priceToSell = gear.priceToBuy / 2;
         gear.ID = Inventory.GetNewIndexID();

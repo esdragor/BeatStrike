@@ -81,6 +81,10 @@ Material:
         m_Texture: {fileID: 2800000, guid: 1c85db41b9811f14c8b4f289973b10f5, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_6b06a8caf7484f4c8cdc105fe21f81cf_Texture_1:
+        m_Texture: {fileID: 2800000, guid: d61a0c48ddc1c4a498c9d981bc0da9ff, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _SampleTexture2D_9a703c4b55234ea29784f9b573d4f734_Texture_1:
         m_Texture: {fileID: 2800000, guid: 1c85db41b9811f14c8b4f289973b10f5, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -125,6 +129,7 @@ Material:
     - _OpMin: 0.847
     - _Parallax: 0.02
     - _Roughness: 0.85
+    - _RunesIntensity: 0
     - _SepLineOffset: 0.0172
     - _SepLineStr: 2
     - _ShakeStr: 0.054
