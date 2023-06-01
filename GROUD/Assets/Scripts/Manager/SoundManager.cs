@@ -55,7 +55,7 @@ public class SoundManager : MonoBehaviour
         AudioSource source = null;
         for (int i = 0; i < sizeAudioSource; i++)
         {
-            if (instance.audioSourceNotePlayer[i].isPlaying) continue;
+            if (!instance.audioSourceNotePlayer[i] || instance.audioSourceNotePlayer[i].isPlaying) continue;
             source = instance.audioSourceNotePlayer[i];
             break;
         }
@@ -78,7 +78,29 @@ public class SoundManager : MonoBehaviour
 
     public static void PlayRandomBadNotePlayer(int BPM)
     {
-        
+        int sizeAudioSource = instance.audioSourceNotePlayer.Length;
+        AudioSource source = null;
+        for (int i = 0; i < sizeAudioSource; i++)
+        {
+            if (!instance.audioSourceNotePlayer[i] || instance.audioSourceNotePlayer[i].isPlaying) continue;
+            source = instance.audioSourceNotePlayer[i];
+            break;
+        }
+        if (source == null) return;
+        source.clip = BPM switch
+        {
+            60 => instance.struct60BPM.clipNotePlayerBad[
+                Random.Range(0, instance.struct60BPM.clipNotePlayerBad.Length)],
+            90 => instance.struct90BPM.clipNotePlayerBad[
+                Random.Range(0, instance.struct90BPM.clipNotePlayerBad.Length)],
+            120 => instance.struct120BPM.clipNotePlayerBad[
+                Random.Range(0, instance.struct120BPM.clipNotePlayerBad.Length)],
+            180 => instance.struct180BPM.clipNotePlayerBad[
+                Random.Range(0, instance.struct180BPM.clipNotePlayerBad.Length)],
+            240 => instance.struct240BPM.clipNotePlayerBad[
+                Random.Range(0, instance.struct240BPM.clipNotePlayerBad.Length)],
+            _ => source.clip
+        };
     }
 
     private static bool isMute;
