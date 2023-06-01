@@ -14,6 +14,8 @@ public class PlayerTriggerEvent : MonoBehaviour
             {
                 PlayerManager.instance.HurtPlayer(GameLoopManager.combatManager.getAttackData());
             }
+            
+            GameLoopManager.interactionPool.AddInteractionToPool(it.gameObject);
         }
     }
 }

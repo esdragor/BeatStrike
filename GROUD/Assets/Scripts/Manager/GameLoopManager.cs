@@ -30,7 +30,7 @@ public class GameLoopManager : MonoBehaviour
 
     [Header("Interaction")] public Transform midSpawnPoint;
     public Transform interactionParent;
-    public InteractionDetector detector;
+    public DetectorManager detector;
     public GameObject interactionPrefab;
 
     [Header("EndLevel")] public float tickCount;
