@@ -170,9 +170,6 @@ public class GameLoopManager : MonoBehaviour
             indexrdn = 0;
             index = -1;
         }
-
-        Debug.Log("Spawn next chunck");
-        Debug.Log("chunck length : " + chunks.Length);
         nextChunck = Instantiate(chunks[indexrdn]);
         nextChunck.transform.position = currentChunck.transform.position + Vector3.forward * sizeOfChuncks;
     }

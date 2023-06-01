@@ -167,6 +167,11 @@ public class GameManager : MonoBehaviour
         StartCoroutine(AnimationBPM(listOfBPM));
         SetBPM(listOfBPM[index]);
     }
+    
+    public float GetTickRate()
+    {
+        return tickRate;
+    }
 
     void CalculateTickRate()
     {

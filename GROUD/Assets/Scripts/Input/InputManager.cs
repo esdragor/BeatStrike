@@ -110,6 +110,7 @@ public class InputManager : MonoBehaviour
 
                 break;
         }
+        SoundManager.PlayRandomGoodNotePlayer((int)GameManager.instance.Bpm);
     }
 
     private void TapBehaviour(ScreenListener.TouchSide touchSide)

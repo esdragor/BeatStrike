@@ -13,7 +13,7 @@ public struct EnemyData
 public class PalierManager : MonoBehaviour
 {
     private static PalierManager instance;
-    
+
     [SerializeField] private int indexPalier = 10;
     public int actualPalier = 0;
     [SerializeField] private EnemySO[] palierPrefabEnemies;
@@ -45,31 +45,31 @@ public class PalierManager : MonoBehaviour
         if (instance.indexEnemy >= instance.palierPrefabEnemies.Length)
             instance.indexEnemy = 0;
         PlayerManager.instance.FullHealingPlayer();
-        
+
         UIManager.instance.hud.textPalierInGame.text = GetPalierText();
-        
+
         UIManager.instance.randomBPMSelector.ShowButtons();
         UIManager.instance.hud.PrintGainKey();
         CurrencyManager.AddKeys(1);
         ModifySkySphere.ChangeSky();
     }
-    
+
     public static int GetIndexPalier()
     {
         return instance.indexPalier;
     }
-    
+
     public static int GetActualPalier()
     {
         return instance.actualPalier;
     }
-    
+
     public static EnemyData GetEnemy()
     {
         EnemyData data = new EnemyData();
         data.enemy = instance.palierPrefabEnemies[instance.indexEnemy];
         data.mat = data.enemy.material[Random.Range(0, data.enemy.material.Length)];
-        
+
         return data;
     }
 }

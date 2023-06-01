@@ -92,6 +92,7 @@ public class VFXManager : MonoBehaviour
                     attackEnemy.Stop();
                     attackEnemy.Play();
                 }
+
                 break;
             case "GCombo":
                 NotReadyCombo();
@@ -121,11 +122,13 @@ public class VFXManager : MonoBehaviour
 
     IEnumerator launchWithDeadTime(ParticleSystem ps, float time)
     {
-        ps.Play();
+        if (ps)
+            ps.Play();
         yield return new WaitForSeconds(time);
-        ps.Stop();
+        if (ps)
+            ps.Stop();
     }
-    
+
     public void NotReadyCombo()
     {
         ReadyComboFX.gameObject.SetActive(false);

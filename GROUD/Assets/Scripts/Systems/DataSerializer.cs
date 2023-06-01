@@ -54,7 +54,6 @@ public class DataSerializer : MonoBehaviour
             T data = (T)dataSerializer.Deserialize(fileStream);
             fileStream.Close();
 
-            Debug.Log("Success Load " + typeof(T).Name + " from " + path);
             return data;
         }
         throw new NullReferenceException("Path not exists");
