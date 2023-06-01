@@ -36,6 +36,8 @@ namespace Code.Interface
         public void SetSuccess(InteractionSuccess itSuccess)
         {
             successGroup = itSuccess;
+            
+            Debug.Log($"Set success group by {successGroup}");
         }
 
         private void SetVisualAndColor()
@@ -80,14 +82,14 @@ namespace Code.Interface
             PlayerManager.onInteractionSuccess?.Invoke(successGroup);
             PlayerManager.instance.OnInteractionSuccess(successGroup, data.interactionType, dir);
 
-            GameLoopManager.instance.detector.InteractionCanTrigger = null;
+            GameLoopManager.instance.detector.currentInteraction = null;
             GameLoopManager.interactionPool.AddInteractionToPool(gameObject);
-            
-            Disable();
         }
 
         private void Disable()
         {
+            gameObject.SetActive(false);
+            
             left.SetActive(false);
             right.SetActive(false);
             up.SetActive(false);
@@ -97,7 +99,7 @@ namespace Code.Interface
 
         private void OnDisable()
         {
-            Disable();
+           Disable();
         }
     }
 }

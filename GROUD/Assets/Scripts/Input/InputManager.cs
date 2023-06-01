@@ -88,7 +88,7 @@ public class InputManager : MonoBehaviour
             UIManager.instance.tutorial.DrawNext();
         }
 
-        InteractionComponent it = GameLoopManager.instance.detector.InteractionCanTrigger;
+        InteractionComponent it = GameLoopManager.instance.detector.currentInteraction;
         if (!it) return;
 
         LaunchAnimationSwipe(dir);
