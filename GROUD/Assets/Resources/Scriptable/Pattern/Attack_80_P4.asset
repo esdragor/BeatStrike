@@ -13,11 +13,15 @@ MonoBehaviour:
   m_Name: Attack_80_P4
   m_EditorClassIdentifier: 
   patternName: Attack_80_P4
-  targetLevel: 0
-  difficultyIndex: 0
   maxTime: 5
   BPM: 80
   interactions:
+  - time: 3
+    row: 1
+    timeCode: 4,00
+    frame: 4
+    interactionType: 0
+    swipeDirection: 0
   - time: 0.7499999776482589
     row: 1
     timeCode: 1
@@ -36,15 +40,9 @@ MonoBehaviour:
     frame: 3
     interactionType: 0
     swipeDirection: 0
-  - time: 3
+  - time: 4.5
     row: 1
-    timeCode: 4,00
-    frame: 0
-    interactionType: 0
-    swipeDirection: 0
-  - time: 4.499999865889553
-    row: 1
-    timeCode: 6
+    timeCode: 6,00
     frame: 6
     interactionType: 0
     swipeDirection: 0

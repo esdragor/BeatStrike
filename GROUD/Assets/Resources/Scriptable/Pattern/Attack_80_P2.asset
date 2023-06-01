@@ -18,6 +18,12 @@ MonoBehaviour:
   maxTime: 7
   BPM: 80
   interactions:
+  - time: 0.75
+    row: 1
+    timeCode: 1,00
+    frame: 1
+    interactionType: 0
+    swipeDirection: 0
   - time: 2.252499580383301
     row: 0
     timeCode: 3,00
@@ -30,21 +36,15 @@ MonoBehaviour:
     frame: 4
     interactionType: 0
     swipeDirection: 0
-  - time: 6
-    row: 0
-    timeCode: 8,00
-    frame: 8
-    interactionType: 0
-    swipeDirection: 0
-  - time: 0.75
-    row: 1
-    timeCode: 1,00
-    frame: 1
-    interactionType: 0
-    swipeDirection: 0
   - time: 4.5
     row: 1
     timeCode: 6,00
     frame: 6
+    interactionType: 0
+    swipeDirection: 0
+  - time: 6
+    row: 0
+    timeCode: 8,00
+    frame: 8
     interactionType: 0
     swipeDirection: 0

@@ -13,11 +13,15 @@ MonoBehaviour:
   m_Name: Defense_100_P1
   m_EditorClassIdentifier: 
   patternName: Defense_100_P1
-  targetLevel: 0
-  difficultyIndex: 0
-  maxTime: 10
+  maxTime: 10.199999809265137
   BPM: 100
   interactions:
+  - time: 0
+    row: 1
+    timeCode: 0
+    frame: 0
+    interactionType: 1
+    swipeDirection: 3
   - time: 0.6000000238418579
     row: 1
     timeCode: 1,00
@@ -28,6 +32,18 @@ MonoBehaviour:
     row: 1
     timeCode: 2,00
     frame: 2
+    interactionType: 1
+    swipeDirection: 4
+  - time: 2.4000000953674316
+    row: 1
+    timeCode: 4,00
+    frame: 4
+    interactionType: 1
+    swipeDirection: 4
+  - time: 3
+    row: 1
+    timeCode: 5,00
+    frame: 5
     interactionType: 1
     swipeDirection: 4
   - time: 4.199999809265137
@@ -42,52 +58,34 @@ MonoBehaviour:
     frame: 8
     interactionType: 1
     swipeDirection: 3
-  - time: 6
-    row: 1
-    timeCode: 10,00
-    frame: 10
-    interactionType: 1
-    swipeDirection: 4
-  - time: 7.800000190734863
-    row: 1
-    timeCode: 13,00
-    frame: 13
-    interactionType: 1
-    swipeDirection: 2
-  - time: 0
-    row: 1
-    timeCode: 0
-    frame: 0
-    interactionType: 1
-    swipeDirection: 3
   - time: 5.400000095367432
     row: 1
     timeCode: 9,00
     frame: 9
     interactionType: 1
     swipeDirection: 1
+  - time: 6
+    row: 1
+    timeCode: 10,00
+    frame: 10
+    interactionType: 1
+    swipeDirection: 4
   - time: 7.199999809265137
     row: 1
     timeCode: 12,00
     frame: 12
     interactionType: 1
     swipeDirection: 2
+  - time: 7.800000190734863
+    row: 1
+    timeCode: 13,00
+    frame: 13
+    interactionType: 1
+    swipeDirection: 2
   - time: 9
     row: 1
     timeCode: 15,00
     frame: 15
-    interactionType: 1
-    swipeDirection: 4
-  - time: 2.4000000953674316
-    row: 1
-    timeCode: 4,00
-    frame: 4
-    interactionType: 1
-    swipeDirection: 4
-  - time: 3
-    row: 1
-    timeCode: 5,00
-    frame: 5
     interactionType: 1
     swipeDirection: 4
   - time: 9.600000381469727

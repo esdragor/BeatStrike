@@ -27,7 +27,13 @@ MonoBehaviour:
   - time: 0.5
     row: 1
     timeCode: 1
-    frame: 0
+    frame: 1
+    interactionType: 0
+    swipeDirection: 0
+  - time: 1.5
+    row: 1
+    timeCode: 3
+    frame: 3
     interactionType: 0
     swipeDirection: 0
   - time: 2.5
@@ -36,27 +42,21 @@ MonoBehaviour:
     frame: 5
     interactionType: 0
     swipeDirection: 0
-  - time: 1.5
-    row: 1
-    timeCode: 3
-    frame: 0
-    interactionType: 0
-    swipeDirection: 0
   - time: 3
     row: 1
     timeCode: 6
-    frame: 0
+    frame: 6
     interactionType: 0
     swipeDirection: 0
   - time: 3.5
     row: 1
-    timeCode: 8,17
-    frame: 8.17
+    timeCode: 7
+    frame: 7
     interactionType: 0
     swipeDirection: 0
   - time: 4.5
     row: 1
     timeCode: 9
-    frame: 0
+    frame: 9
     interactionType: 0
     swipeDirection: 0

@@ -13,17 +13,9 @@ MonoBehaviour:
   m_Name: Defense_100_P4
   m_EditorClassIdentifier: 
   patternName: Defense_100_P4
-  targetLevel: 0
-  difficultyIndex: 0
   maxTime: 7
   BPM: 100
   interactions:
-  - time: 0.6000000143051151
-    row: 1
-    timeCode: 1
-    frame: 1
-    interactionType: 1
-    swipeDirection: 1
   - time: 1.2000000476837158
     row: 1
     timeCode: 2,00
@@ -42,6 +34,18 @@ MonoBehaviour:
     frame: 0
     interactionType: 1
     swipeDirection: 3
+  - time: 5.400000095367432
+    row: 1
+    timeCode: 9,00
+    frame: 0
+    interactionType: 1
+    swipeDirection: 2
+  - time: 0.6000000143051151
+    row: 1
+    timeCode: 1
+    frame: 1
+    interactionType: 1
+    swipeDirection: 1
   - time: 3.6000000858306906
     row: 1
     timeCode: 6
@@ -54,12 +58,6 @@ MonoBehaviour:
     frame: 8
     interactionType: 1
     swipeDirection: 3
-  - time: 5.400000095367432
-    row: 1
-    timeCode: 9,00
-    frame: 0
-    interactionType: 1
-    swipeDirection: 2
   - time: 6.0000001430511505
     row: 1
     timeCode: 10

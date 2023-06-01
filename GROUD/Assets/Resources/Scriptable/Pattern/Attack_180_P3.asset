@@ -18,22 +18,22 @@ MonoBehaviour:
   maxTime: 5
   BPM: 180
   interactions:
-  - time: 1
-    row: 0
-    timeCode: 3
-    frame: 3
-    interactionType: 0
-    swipeDirection: 0
-  - time: 3.3329999446868896
-    row: 0
-    timeCode: 10,00
-    frame: 10
+  - time: 0
+    row: 1
+    timeCode: 0
+    frame: 0
     interactionType: 0
     swipeDirection: 0
   - time: 0.6666666865348816
     row: 0
     timeCode: 2,00
     frame: 2
+    interactionType: 0
+    swipeDirection: 0
+  - time: 1
+    row: 0
+    timeCode: 3
+    frame: 3
     interactionType: 0
     swipeDirection: 0
   - time: 1.3339999914169312
@@ -48,33 +48,33 @@ MonoBehaviour:
     frame: 6
     interactionType: 0
     swipeDirection: 0
-  - time: 3.6670000553131104
-    row: 1
-    timeCode: 11,00
-    frame: 11
-    interactionType: 0
-    swipeDirection: 0
-  - time: 4.667155742645264
-    row: 1
-    timeCode: 14,00
-    frame: 14
-    interactionType: 0
-    swipeDirection: 0
   - time: 2.6670000553131104
     row: 1
     timeCode: 8,00
     frame: 8
     interactionType: 0
     swipeDirection: 0
-  - time: 0
+  - time: 3.3329999446868896
+    row: 0
+    timeCode: 10,00
+    frame: 10
+    interactionType: 0
+    swipeDirection: 0
+  - time: 3.6670000553131104
     row: 1
-    timeCode: 0
-    frame: 0
+    timeCode: 11,00
+    frame: 11
     interactionType: 0
     swipeDirection: 0
   - time: 4
     row: 1
     timeCode: 12
     frame: 12
+    interactionType: 0
+    swipeDirection: 0
+  - time: 4.667155742645264
+    row: 1
+    timeCode: 14,00
+    frame: 14
     interactionType: 0
     swipeDirection: 0

@@ -298,6 +298,7 @@ public class CapacityToolEditor : SimpleTimeArea
          if (EditorGUI.EndChangeCheck())
          {
             if (currentPattern != null) selectedInteractionKey.time = targetFrame / (currentPattern.BPM / 60f);
+            SavePattern();
          }
          
          switch ( selectedInteractionKey.interactionType)

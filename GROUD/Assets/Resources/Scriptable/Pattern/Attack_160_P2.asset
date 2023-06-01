@@ -15,31 +15,13 @@ MonoBehaviour:
   patternName: Attack_160_P2
   targetLevel: 0
   difficultyIndex: 0
-  maxTime: 5
+  maxTime: 5.25
   BPM: 160
   interactions:
   - time: 0
     row: 0
     timeCode: 0
     frame: 0
-    interactionType: 0
-    swipeDirection: 0
-  - time: 1.5
-    row: 0
-    timeCode: 4,00
-    frame: 4
-    interactionType: 0
-    swipeDirection: 0
-  - time: 3
-    row: 0
-    timeCode: 8,00
-    frame: 8
-    interactionType: 0
-    swipeDirection: 0
-  - time: 3.75
-    row: 0
-    timeCode: 10,00
-    frame: 10
     interactionType: 0
     swipeDirection: 0
   - time: 0.75
@@ -54,10 +36,22 @@ MonoBehaviour:
     frame: 3
     interactionType: 0
     swipeDirection: 0
+  - time: 1.5
+    row: 0
+    timeCode: 4,00
+    frame: 4
+    interactionType: 0
+    swipeDirection: 0
   - time: 2.25
     row: 1
     timeCode: 6,00
     frame: 6
+    interactionType: 0
+    swipeDirection: 0
+  - time: 3
+    row: 0
+    timeCode: 8,00
+    frame: 8
     interactionType: 0
     swipeDirection: 0
   - time: 3.375
@@ -66,15 +60,21 @@ MonoBehaviour:
     frame: 9
     interactionType: 0
     swipeDirection: 0
+  - time: 3.75
+    row: 0
+    timeCode: 10,00
+    frame: 10
+    interactionType: 0
+    swipeDirection: 0
   - time: 4.125
     row: 1
     timeCode: 11,00
     frame: 11
     interactionType: 0
     swipeDirection: 0
-  - time: 4.7901835441589355
+  - time: 4.874999854713683
     row: 1
-    timeCode: 12,77
-    frame: 0
+    timeCode: 13
+    frame: 13
     interactionType: 0
     swipeDirection: 0

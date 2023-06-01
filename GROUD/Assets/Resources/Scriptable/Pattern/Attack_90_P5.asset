@@ -13,27 +13,25 @@ MonoBehaviour:
   m_Name: Attack_90_P5
   m_EditorClassIdentifier: 
   patternName: Attack_90_P5
-  targetLevel: 0
-  difficultyIndex: 0
-  maxTime: 3
+  maxTime: 3.3333332538604736
   BPM: 90
   interactions:
   - time: 0.6666666865348816
     row: 1
     timeCode: 1,00
-    frame: 0
+    frame: 1
     interactionType: 0
     swipeDirection: 0
   - time: 1.3333333730697632
     row: 1
     timeCode: 2,00
-    frame: 0
+    frame: 2
     interactionType: 0
     swipeDirection: 0
   - time: 2
     row: 1
     timeCode: 3
-    frame: 0
+    frame: 3
     interactionType: 0
     swipeDirection: 0
   - time: 2.6666666666666665

@@ -7,8 +7,6 @@ using UnityEngine;
 public class Pattern : ScriptableObject
 {
     public string patternName;
-    public int targetLevel;
-    public int difficultyIndex;
     public double maxTime = 10f;
     public int BPM = 60;
     public List<InteractionKey> interactions;
@@ -18,6 +16,6 @@ public class Pattern : ScriptableObject
     public void ReorderList()
     {
         if(interactions == null) return;
-        interactions = interactions.OrderBy(it => it.timeCode).ToList();
+        interactions = interactions.OrderBy(it => it.frame).ToList();
     }
 }

@@ -18,28 +18,28 @@ MonoBehaviour:
   maxTime: 4
   BPM: 120
   interactions:
-  - time: 1.5
-    row: 0
-    timeCode: 3
-    frame: 3
-    interactionType: 0
-    swipeDirection: 0
-  - time: 2.5
-    row: 0
-    timeCode: 5
-    frame: 5
-    interactionType: 0
-    swipeDirection: 0
   - time: 0.5
     row: 0
     timeCode: 1
     frame: 1
     interactionType: 0
     swipeDirection: 0
+  - time: 1.5
+    row: 0
+    timeCode: 3
+    frame: 3
+    interactionType: 0
+    swipeDirection: 0
   - time: 2
     row: 1
     timeCode: 4
     frame: 4
+    interactionType: 0
+    swipeDirection: 0
+  - time: 2.5
+    row: 0
+    timeCode: 5
+    frame: 5
     interactionType: 0
     swipeDirection: 0
   - time: 3
