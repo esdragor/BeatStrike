@@ -94,10 +94,10 @@ public class GameLoopManager : MonoBehaviour
         GameManager.gameState.SwitchTimeState(Enums.TimeState.Play);
         PlayerManager.instance.SetPlayer();
         UIManager.instance.randomBPMSelector.ShowButtons();
-        PlayPattern();
+        PlayPattern(true);
     }
 
-    private async void PlayPattern()
+    private async void PlayPattern(bool isStart = false)
     {
         float timer = 1f;
         while (GameManager.instance.bpmIsRandoming)
@@ -112,7 +112,7 @@ public class GameLoopManager : MonoBehaviour
             await Task.Yield();
         }
 
-        combatManager.InitCombat(-timer);
+        combatManager.InitCombat(-timer, isStart);
     }
 
     public void EndLevel()

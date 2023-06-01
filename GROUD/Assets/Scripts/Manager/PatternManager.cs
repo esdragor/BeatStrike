@@ -26,7 +26,7 @@ public class PatternManager
 
     private bool lastWasDef;
     
-    public bool StartPattern(float _remainingPulse = 0f)
+    public bool StartPattern(bool isStart, float _remainingPulse = 0f)
     {
         bool isDef = false;
         if (isTimelineActive) return false;
@@ -77,6 +77,11 @@ public class PatternManager
                 PlayerManager.instance.vfxManager.AnnouncerPhaseVFX(isDef);
             }
             attackPatternCount++;
+        }
+
+        if (isStart)
+        {
+            PlayerManager.instance.vfxManager.AnnouncerPhaseVFX(isDef);
         }
         
         Pattern p = pList[UnityEngine.Random.Range(0, pList.Length)];
@@ -150,7 +155,7 @@ public class PatternManager
             await Task.Yield();
         }
         if (EndPattern && !GameLoopManager.instance.IsMoving)
-            GameLoopManager.instance.PrintComboRoad(StartPattern(-timer));
+            GameLoopManager.instance.PrintComboRoad(StartPattern(false, -timer));
         
     }
 
