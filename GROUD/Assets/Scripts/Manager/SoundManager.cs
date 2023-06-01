@@ -72,8 +72,10 @@ public class SoundManager : MonoBehaviour
                 Random.Range(0, instance.struct180BPM.clipNotePlayerGood.Length)],
             240 => instance.struct240BPM.clipNotePlayerGood[
                 Random.Range(0, instance.struct240BPM.clipNotePlayerGood.Length)],
-            _ => source.clip
+            _ => null
         };
+        if (source.clip)
+            source.Play();
     }
 
     public static void PlayRandomBadNotePlayer(int BPM)
@@ -99,8 +101,10 @@ public class SoundManager : MonoBehaviour
                 Random.Range(0, instance.struct180BPM.clipNotePlayerBad.Length)],
             240 => instance.struct240BPM.clipNotePlayerBad[
                 Random.Range(0, instance.struct240BPM.clipNotePlayerBad.Length)],
-            _ => source.clip
+            _ => null
         };
+        if (source.clip)
+            source.Play();
     }
 
     private static bool isMute;
