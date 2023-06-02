@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using Utilities;
 
@@ -19,9 +20,12 @@ namespace Code.Interface
         public ParticleSystem popVFX;
         
         private float speed = 6f;
+        private bool isPooling = false;
+        
+        
         private void Update()
         {
-            if (!UIManager.instance.isPaused)
+            if (!UIManager.instance.isPaused && !isPooling)
             { 
                 transform.position += Vector3.back * (speed * Time.deltaTime);
             }
@@ -83,7 +87,7 @@ namespace Code.Interface
             PlayerManager.instance.OnInteractionSuccess(successGroup, data.interactionType, dir);
 
             GameLoopManager.instance.detector.currentInteraction = null;
-            GameLoopManager.interactionPool.AddInteractionToPool(gameObject);
+            Depop();
         }
 
         private void Disable()
@@ -97,9 +101,29 @@ namespace Code.Interface
             attack.SetActive(false);
         }
         
+        IEnumerator DepopCoroutine()
+        {
+            isPooling = true;
+            yield return new WaitForSeconds(1f);
+            isPooling = false;
+            GameLoopManager.interactionPool.AddInteractionToPool(gameObject);
+            gameObject.SetActive(false);
+        }
+        
+        public void Depop()
+        {
+            left.SetActive(false);
+            right.SetActive(false);
+            up.SetActive(false);
+            down.SetActive(false);
+            attack.SetActive(false);
+            popVFX.Play();
+            StartCoroutine(DepopCoroutine());
+        }
+        
         private void OnEnable()
         {
-            popVFX.Play();
+            
         }
 
         private void OnDisable()
