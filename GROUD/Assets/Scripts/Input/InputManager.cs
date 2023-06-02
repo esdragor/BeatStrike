@@ -121,32 +121,8 @@ public class InputManager : MonoBehaviour
         SoundManager.PlayRandomGoodNotePlayer((int)GameManager.instance.Bpm);
     }
 
-    private void TapBehaviour(ScreenListener.TouchSide touchSide)
+    private void TapBehaviour(ScreenListener.TouchSide touchSide, Vector2 pos)
     {
-        /*InteractionKey.InteractionColor color;
-    
-            switch (touchSide)
-            {
-                case ScreenListener.TouchSide.LEFT:
-                    color = InteractionKey.InteractionColor.Blue;
-                    break;
-    
-                case ScreenListener.TouchSide.RIGHT:
-                    color = InteractionKey.InteractionColor.Red;
-                    break;
-                default:
-                    return;
-            }
-    
-            List<InteractionComponent> itList = LevelManager.instance.detector.InteractionCanTrigger;
-    
-            for (int i = 0; i < itList.Count; i++)
-            {
-                if (itList[i].data.interactionColor == color &&
-                    itList[i].data.interactionType == Enums.InteractionType.Attack)
-                {
-                    itList[i].ValidateInteraction();
-                }
-            }*/
+        UIManager.instance.TapFX(pos);
     }
 }

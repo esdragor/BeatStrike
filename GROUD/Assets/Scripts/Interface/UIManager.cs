@@ -30,6 +30,10 @@ public class UIManager : MonoBehaviour
     public Image muteIcon;
     public Sprite muteSprite;
     public Sprite unMuteSprite;
+    
+    public ParticleSystem tapFX;
+    private RectTransform tapFXTr = null;
+    public RectTransform swipeFXTr = null;
 
     private void Awake()
     {
@@ -41,6 +45,21 @@ public class UIManager : MonoBehaviour
     {
         GameManager.gameState.OnEngineStateChanged += OnEngineStateSetUI;
     }
+
+    public void TapFX(Vector2 position)
+    {
+        if (tapFXTr == null)
+            tapFXTr = tapFX.GetComponent<RectTransform>();
+        tapFXTr.localPosition = new Vector3(-(Screen.width*0.5f) + position.x, -(Screen.height*0.5f) + position.y, 0);
+        tapFX.Play();
+    }
+    
+    public void SwipeFX(Vector2 position)
+    {
+        //swipeFXTr.localPosition = new Vector3(-(Screen.width*0.5f) + position.x, -(Screen.height*0.5f) + position.y, swipeFXTr.localPosition.z);
+    }
+    
+    
 
     public void UpdatePalier(string palier)
     {
