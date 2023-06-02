@@ -76,10 +76,11 @@ public class UIManager : MonoBehaviour
         muteIcon.sprite = SoundManager.ToggleMute() ? muteSprite : unMuteSprite;
     }
 
+    public bool isPaused;
     public void Pause(bool isPause)
     {
         pausePanel.SetActive(isPause);
-
+        isPaused = isPause;
         if (isPause)
         {
             GameManager.instance.savedTick = GameLoopManager.instance.tickCount;

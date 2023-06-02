@@ -1,9 +1,5 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using Code.Player;
 using UnityEngine;
-using Utilities;
 
 public class PowerManager : MonoBehaviour
 {

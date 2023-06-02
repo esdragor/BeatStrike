@@ -21,7 +21,7 @@ namespace Code.Interface
         private float speed = 6f;
         private void Update()
         {
-            if (GameManager.gameState.IsTimePlay())
+            if (!UIManager.instance.isPaused)
             { 
                 transform.position += Vector3.back * (speed * Time.deltaTime);
             }

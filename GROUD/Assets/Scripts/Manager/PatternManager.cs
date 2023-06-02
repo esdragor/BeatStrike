@@ -25,12 +25,11 @@ public class PatternManager
     }
 
     private bool lastWasDef;
-    
+
     public bool StartPattern(bool isStart, float _remainingPulse = 0f)
     {
         bool isDef = false;
         if (isTimelineActive) return false;
-
         Pattern[] pList = null;
 
         float BPM = GameManager.instance.Bpm;
@@ -115,7 +114,8 @@ public class PatternManager
 
     private void TimelineEventListener()
     {
-        if (!isTimelineActive) return;
+        if (!isTimelineActive || UIManager.instance.isPaused) return;
+        
         if (timelineRunnerKeys.Count > 0)
         {
             float abs = timelineRunnerKeys.Peek().frame - GameLoopManager.instance.tickCount;

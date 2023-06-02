@@ -50,6 +50,7 @@ public class GameLoopManager : MonoBehaviour
     private bool isMoving = false;
     private int index = 0;
     private byte patternType = 2;
+    public bool inCombat;
 
     private void Awake()
     {
@@ -82,6 +83,9 @@ public class GameLoopManager : MonoBehaviour
 
     public void AddTickCount(float value)
     {
+        if(UIManager.instance.isPaused || isMoving) return;
+        
+        Debug.Log("je vais me tuer ?");
         tickCount += value;
         currentPulse = value;
     }
@@ -177,6 +181,8 @@ public class GameLoopManager : MonoBehaviour
     public void NextChunk()
     {
         isMoving = true;
+        tickCount = 0;
+        
         PlayerManager.instance.animator.SetTrigger("isRunning");
         GameManager.gameState.SwitchTimeState(Enums.TimeState.Pause);
 
