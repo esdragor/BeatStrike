@@ -11,12 +11,6 @@ public class DetectorManager : MonoBehaviour
         if (!Equals(currentInteraction, it))
         {
             currentInteraction = it;
-            
-            if (it.data.interactionType == Enums.InteractionType.Dodge)
-            {
-                GameLoopManager.combatManager.EnemyAttack();
-            }
-            
         }
     }
 }

@@ -51,10 +51,7 @@ public class InteractionDetector : MonoBehaviour
         {
             currentInteraction = it;
             
-            if (it.data.interactionType == Enums.InteractionType.Dodge)
-            {
-                GameLoopManager.combatManager.EnemyAttack();
-            }
+
         }
     }
 

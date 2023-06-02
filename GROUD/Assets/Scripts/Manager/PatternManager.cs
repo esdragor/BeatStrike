@@ -133,6 +133,7 @@ public class PatternManager
 
     public void StopPattern()
     {
+        if (timelineRunnerKeys == null) return;
         timelineRunnerKeys.Clear();
         GameLoopManager.interactionPool.DisableAllInteractions();
         

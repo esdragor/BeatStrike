@@ -104,7 +104,7 @@ public class CombatManager
 
     public void EnemyAttack()
     {
-        currentEnemyAnimator.SetTrigger("Attack");
+        currentEnemyAnimator.SetTrigger("Attack");qqq
         PlayerManager.instance.vfxManager.PlaySFX("EnemyAttack");
     }
 }
