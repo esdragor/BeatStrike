@@ -7,8 +7,7 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager instance;
 
-    [Header("Interfaces")]
-    public UI_HUD hud;
+    [Header("Interfaces")] public UI_HUD hud;
 
     public UI_Enemy enemy;
     public UI_Announcer announcer;
@@ -22,8 +21,7 @@ public class UIManager : MonoBehaviour
 
     public MainMenuManager mainMenu;
 
-    [Header("Objets")] 
-    public TMP_Text debugBanditBPM;
+    [Header("Objets")] public TMP_Text debugBanditBPM;
     public TMP_Text AnnouncementPatternText;
 
     public TMP_Text patternDebugTxt;
@@ -32,7 +30,7 @@ public class UIManager : MonoBehaviour
     public Image muteIcon;
     public Sprite muteSprite;
     public Sprite unMuteSprite;
-    
+
     private void Awake()
     {
         instance = this;
@@ -43,7 +41,7 @@ public class UIManager : MonoBehaviour
     {
         GameManager.gameState.OnEngineStateChanged += OnEngineStateSetUI;
     }
-    
+
     public void UpdatePalier(string palier)
     {
         hud.textPalierInGame.text = "Palier " + palier;
@@ -51,13 +49,20 @@ public class UIManager : MonoBehaviour
     }
 
     private string[] lastPatterns = new string[3];
+
     public void DebugPattern(string patternName)
     {
         lastPatterns[2] = lastPatterns[1];
         lastPatterns[1] = lastPatterns[0];
         lastPatterns[0] = patternName;
-        
+
         patternDebugTxt.text = $"{lastPatterns[0]} <br>{lastPatterns[1]} <br>{lastPatterns[2]}";
+    }
+
+    public void ResetOnMainMenu()
+    {
+        PlayerManager.instance.matRune.SetFloat("_AbilityProgress", 0);
+        hud.UpdateTimeLine(0);
     }
 
     public void OpenLink(string url)
@@ -70,11 +75,11 @@ public class UIManager : MonoBehaviour
     {
         muteIcon.sprite = SoundManager.ToggleMute() ? muteSprite : unMuteSprite;
     }
-    
+
     public void Pause(bool isPause)
     {
         pausePanel.SetActive(isPause);
-        
+
         if (isPause)
         {
             GameManager.instance.savedTick = GameLoopManager.instance.tickCount;
@@ -93,7 +98,7 @@ public class UIManager : MonoBehaviour
         mainMenu.PrintMainMenuPanel();
         hud.DisableHUD();
         GameLoopManager.patternManager.StopPattern();
-        PlayerManager.instance.matRune.SetFloat("_AbilityProgress", 0);
+        ResetOnMainMenu();
     }
 
     void OnEngineStateSetUI(Enums.EngineState engineState)

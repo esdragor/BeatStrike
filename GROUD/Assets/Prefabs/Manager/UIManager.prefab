@@ -1171,8 +1171,8 @@ MonoBehaviour:
   patternDebugTxt: {fileID: 7042681611703035505}
   pausePanel: {fileID: 2151634354415240844}
   muteIcon: {fileID: 137918367127868085}
-  muteSprite: {fileID: 21300000, guid: 6bb1e282ea9e39e448f8f93a883aa348, type: 3}
-  unMuteSprite: {fileID: 21300000, guid: 4b6bd9b15a831714eb01010eaf239515, type: 3}
+  muteSprite: {fileID: 21300000, guid: 7d7af12dff64bd0459e1d10e26fb8294, type: 3}
+  unMuteSprite: {fileID: 21300000, guid: cb2ae11d62126f646a69b0e493cd8676, type: 3}
 --- !u!1 &675888501325995417
 GameObject:
   m_ObjectHideFlags: 0
@@ -4085,7 +4085,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 2c4d26508b52cf1478bb8bf11e7acd38, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 972e009355b8eee46870b5a8a57ada78, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -10169,10 +10169,10 @@ RectTransform:
   m_Father: {fileID: 4771319677340666128}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 1}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -25, y: -53}
-  m_SizeDelta: {x: 116, y: 112}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 115, y: -39}
+  m_SizeDelta: {x: 80, y: 80}
   m_Pivot: {x: 1, y: 1}
 --- !u!222 &3587842223680170290
 CanvasRenderer:
@@ -16028,7 +16028,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8920117166684088111}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 1746, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
