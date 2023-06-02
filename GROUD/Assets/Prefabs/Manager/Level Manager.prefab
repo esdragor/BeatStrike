@@ -748,6 +748,8 @@ MonoBehaviour:
   percentageDEF: 50
   randomMultiplicator: 8
   isDefPrinter: {fileID: 2100000, guid: f9348b4d88fdba14eb20439778ff22cf, type: 2}
+  delayBetweenPattern: 3
+  inCombat: 0
 --- !u!114 &256895309846087106
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2462,7 +2464,7 @@ PrefabInstance:
     - target: {fileID: 4211981733916893907, guid: 2198c1beace191b428c178e2269f1c9b,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.314
+      value: -0.4
       objectReference: {fileID: 0}
     - target: {fileID: 4211981733916893907, guid: 2198c1beace191b428c178e2269f1c9b,
         type: 3}
