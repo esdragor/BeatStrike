@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -46,6 +47,18 @@ namespace Code.Player
         {
             PlayerManager.instance.vfxManager.PlaySFX("FailCombo");
         }
+
+        IEnumerator sweetComboFx()
+        {
+            float time = currentCombo - 1f;
+            float speedSweetCombo = 15f;
+            while (time < currentCombo)
+            {
+                time += Time.deltaTime * speedSweetCombo;
+                PlayerManager.instance.matRune.SetFloat("_AbilityProgress", time);
+                yield return null;
+            }
+        }
         
 
         public InteractionSuccess Execute(ScreenListener.SwipeDirection currentSwipeDirection)
@@ -55,7 +68,10 @@ namespace Code.Player
                 ComboPrinter.UpdateCombo();
                 currentCombo++;
                 ComboPrinter.UpdateMeter(currentCombo);
-                PlayerManager.instance.matRune.SetFloat("_AbilityProgress", currentCombo);
+                if (currentCombo > 0)
+                    PlayerManager.instance.StartCoroutine(sweetComboFx());
+                else
+                    PlayerManager.instance.matRune.SetFloat("_AbilityProgress", currentCombo);
                 if (currentCombo == nbCombo)
                 {
                     OnSuccessAction?.Invoke();

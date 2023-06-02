@@ -43,6 +43,7 @@ public class GameLoopManager : MonoBehaviour
     [SerializeField] private int percentageDEF;
     [SerializeField] private int randomMultiplicator;
     [SerializeField] private Material isDefPrinter;
+    [SerializeField] private float delayBetweenPattern = 3f;
 
 
     private GameObject currentChunck;
@@ -71,6 +72,7 @@ public class GameLoopManager : MonoBehaviour
     {
         SpawnNextChunck();
         Debug.Log(nextChunck);
+        patternManager.delayBetweenPattern = delayBetweenPattern;
     }
 
     public float GetVelocityTimerNewChunck()
@@ -174,6 +176,7 @@ public class GameLoopManager : MonoBehaviour
             indexrdn = 0;
             index = 0;
         }
+
         nextChunck = Instantiate(chunks[indexrdn]);
         nextChunck.transform.position = currentChunck.transform.position + Vector3.forward * sizeOfChuncks;
     }
@@ -229,7 +232,8 @@ public class GameLoopManager : MonoBehaviour
     public void PrintComboRoad(bool isDef)
     {
         patternManager.isTimelineActive = false;
-        UIManager.instance.StartCoroutine(printPattern(isDef));
+        if (UIManager.instance)
+            UIManager.instance.StartCoroutine(printPattern(isDef));
         isDefPrinter.SetInt("_isAttacking", isDef ? 0 : 1);
         isDefPhase = isDef;
         if (isDef)

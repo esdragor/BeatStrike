@@ -12,4 +12,5 @@ public class EnemyVFX : MonoBehaviour
     public ParticleSystem ability;
     public ParticleSystem attack;
     public ParticleSystem hit;
+    public float attackDelay;
 }

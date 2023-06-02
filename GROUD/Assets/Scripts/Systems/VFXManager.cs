@@ -18,7 +18,7 @@ public class VFXManager : MonoBehaviour
     [SerializeField] private ParticleSystem DeathEnemyFX;
 
     [SerializeField] private ParticleSystem PhaseAnnouncerVFX;
-    
+
     [Header("Player")] [SerializeField] private ParticleSystem attackFX;
     [SerializeField] private ParticleSystem dodgeFX;
     [SerializeField] private ParticleSystem hurtFX;
@@ -30,6 +30,7 @@ public class VFXManager : MonoBehaviour
     private ParticleSystem punchU => GameLoopManager.combatManager.enemyVFX.punchU;
     private ParticleSystem ability => GameLoopManager.combatManager.enemyVFX.ability;
     private ParticleSystem attackEnemy => GameLoopManager.combatManager.enemyVFX.attack;
+    private float attackDelayEnemy => GameLoopManager.combatManager.enemyVFX.attackDelay;
     private ParticleSystem hitEnemy => GameLoopManager.combatManager.enemyVFX.hit;
 
     public void PlaySFX(string sName, ScreenListener.SwipeDirection dir = ScreenListener.SwipeDirection.NULL)
@@ -90,8 +91,7 @@ public class VFXManager : MonoBehaviour
             case "EnemyAttack":
                 if (attackEnemy)
                 {
-                    attackEnemy.Stop();
-                    attackEnemy.Play();
+                    LaunchFXWithDelay(attackEnemy, attackDelayEnemy);
                 }
 
                 break;
@@ -115,6 +115,15 @@ public class VFXManager : MonoBehaviour
         }
     }
 
+    public async void LaunchFXWithDelay(ParticleSystem fx, float delay)
+    {
+        await Task.Delay((int)(delay * 1000));
+        if (fx)
+            fx.Stop();
+        if (fx)
+            fx.Play();
+    }
+
     public async void AnnouncerPhaseVFX(bool isDef)
     {
         PhaseAnnouncerVFX.GetComponent<Renderer>().material.SetInt("_isDef", isDef ? 1 : 0);
@@ -125,6 +134,7 @@ public class VFXManager : MonoBehaviour
         {
             await Task.Yield();
         }
+
         UIManager.instance.hud.EnableHUD();
     }
 
