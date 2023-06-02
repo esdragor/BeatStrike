@@ -13,9 +13,7 @@ MonoBehaviour:
   m_Name: Defense_160_P3
   m_EditorClassIdentifier: 
   patternName: Defense_160_P3
-  targetLevel: 0
-  difficultyIndex: 0
-  maxTime: 10
+  maxTime: 9.75
   BPM: 160
   interactions:
   - time: 0
@@ -24,6 +22,42 @@ MonoBehaviour:
     frame: 0
     interactionType: 1
     swipeDirection: 3
+  - time: 0.75
+    row: 1
+    timeCode: 2,00
+    frame: 2
+    interactionType: 1
+    swipeDirection: 2
+  - time: 1.5
+    row: 1
+    timeCode: 4,00
+    frame: 4
+    interactionType: 1
+    swipeDirection: 1
+  - time: 1.875
+    row: 1
+    timeCode: 5,00
+    frame: 5
+    interactionType: 1
+    swipeDirection: 2
+  - time: 2.25
+    row: 1
+    timeCode: 6,00
+    frame: 6
+    interactionType: 1
+    swipeDirection: 2
+  - time: 2.625
+    row: 1
+    timeCode: 7,00
+    frame: 7
+    interactionType: 1
+    swipeDirection: 1
+  - time: 3.375
+    row: 1
+    timeCode: 9,00
+    frame: 9
+    interactionType: 1
+    swipeDirection: 4
   - time: 3.75
     row: 1
     timeCode: 10,00
@@ -72,12 +106,6 @@ MonoBehaviour:
     frame: 19
     interactionType: 1
     swipeDirection: 2
-  - time: 0.75
-    row: 1
-    timeCode: 2,00
-    frame: 2
-    interactionType: 1
-    swipeDirection: 2
   - time: 7.5
     row: 1
     timeCode: 20,00
@@ -106,35 +134,5 @@ MonoBehaviour:
     row: 1
     timeCode: 25,00
     frame: 25
-    interactionType: 1
-    swipeDirection: 4
-  - time: 1.5
-    row: 1
-    timeCode: 4,00
-    frame: 4
-    interactionType: 1
-    swipeDirection: 1
-  - time: 1.875
-    row: 1
-    timeCode: 5,00
-    frame: 5
-    interactionType: 1
-    swipeDirection: 2
-  - time: 2.25
-    row: 1
-    timeCode: 6,00
-    frame: 6
-    interactionType: 1
-    swipeDirection: 2
-  - time: 2.625
-    row: 1
-    timeCode: 7,00
-    frame: 7
-    interactionType: 1
-    swipeDirection: 1
-  - time: 3.375
-    row: 1
-    timeCode: 9,00
-    frame: 9
     interactionType: 1
     swipeDirection: 4

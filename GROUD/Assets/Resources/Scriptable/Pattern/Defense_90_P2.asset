@@ -13,8 +13,6 @@ MonoBehaviour:
   m_Name: Defense_90_P2
   m_EditorClassIdentifier: 
   patternName: Defense_90_P2
-  targetLevel: 0
-  difficultyIndex: 0
   maxTime: 10
   BPM: 90
   interactions:
@@ -54,18 +52,18 @@ MonoBehaviour:
     frame: 7
     interactionType: 1
     swipeDirection: 1
-  - time: 6
-    row: 1
-    timeCode: 9
-    frame: 9
-    interactionType: 1
-    swipeDirection: 2
   - time: 5.333333492279053
     row: 1
     timeCode: 8,00
     frame: 8
     interactionType: 1
     swipeDirection: 1
+  - time: 6
+    row: 1
+    timeCode: 9
+    frame: 9
+    interactionType: 1
+    swipeDirection: 2
   - time: 7.333333492279053
     row: 1
     timeCode: 11,00

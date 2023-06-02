@@ -13,8 +13,6 @@ MonoBehaviour:
   m_Name: Attack_120_P5
   m_EditorClassIdentifier: 
   patternName: Attack_120_P5
-  targetLevel: 0
-  difficultyIndex: 0
   maxTime: 3
   BPM: 120
   interactions:
@@ -38,7 +36,7 @@ MonoBehaviour:
     swipeDirection: 0
   - time: 2
     row: 1
-    timeCode: 4,67
-    frame: 4.67
+    timeCode: 4
+    frame: 4
     interactionType: 0
     swipeDirection: 0

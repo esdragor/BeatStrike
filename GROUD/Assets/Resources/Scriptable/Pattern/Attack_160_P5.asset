@@ -13,15 +13,13 @@ MonoBehaviour:
   m_Name: Attack_160_P5
   m_EditorClassIdentifier: 
   patternName: Attack_160_P5
-  targetLevel: 0
-  difficultyIndex: 0
   maxTime: 3
   BPM: 160
   interactions:
   - time: 0.375
     row: 1
-    timeCode: 1,13
-    frame: 1.13
+    timeCode: 1,00
+    frame: 1
     interactionType: 0
     swipeDirection: 0
   - time: 0.75

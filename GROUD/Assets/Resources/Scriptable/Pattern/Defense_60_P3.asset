@@ -13,9 +13,7 @@ MonoBehaviour:
   m_Name: Defense_60_P3
   m_EditorClassIdentifier: 
   patternName: Defense_60_P3
-  targetLevel: 0
-  difficultyIndex: 0
-  maxTime: 12
+  maxTime: 13
   BPM: 60
   interactions:
   - time: 1
@@ -24,6 +22,12 @@ MonoBehaviour:
     frame: 1
     interactionType: 1
     swipeDirection: 3
+  - time: 1
+    row: 1
+    timeCode: 1
+    frame: 1
+    interactionType: 1
+    swipeDirection: 4
   - time: 3
     row: 1
     timeCode: 3
@@ -48,12 +52,6 @@ MonoBehaviour:
     frame: 8
     interactionType: 1
     swipeDirection: 2
-  - time: 1
-    row: 1
-    timeCode: 1
-    frame: 1
-    interactionType: 1
-    swipeDirection: 4
   - time: 10
     row: 1
     timeCode: 10

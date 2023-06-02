@@ -13,14 +13,18 @@ MonoBehaviour:
   m_Name: Attack_200_P5
   m_EditorClassIdentifier: 
   patternName: Attack_200_P5
-  targetLevel: 0
-  difficultyIndex: 0
   maxTime: 3
   BPM: 200
   interactions:
   - time: 0
     row: 1
     timeCode: 0
+    frame: 0
+    interactionType: 0
+    swipeDirection: 0
+  - time: 1.8000000715255737
+    row: 1
+    timeCode: 6,00
     frame: 0
     interactionType: 0
     swipeDirection: 0
@@ -40,12 +44,6 @@ MonoBehaviour:
     row: 1
     timeCode: 4,00
     frame: 4
-    interactionType: 0
-    swipeDirection: 0
-  - time: 1.8000000715255737
-    row: 1
-    timeCode: 6,00
-    frame: 0
     interactionType: 0
     swipeDirection: 0
   - time: 2.1000001430511475

@@ -13,11 +13,15 @@ MonoBehaviour:
   m_Name: Attack_140_P4
   m_EditorClassIdentifier: 
   patternName: Attack_140_P4
-  targetLevel: 0
-  difficultyIndex: 0
-  maxTime: 5
+  maxTime: 4.714285850524902
   BPM: 140
   interactions:
+  - time: 4.285714626312256
+    row: 1
+    timeCode: 10,00
+    frame: 0
+    interactionType: 0
+    swipeDirection: 0
   - time: 0.42857144316848494
     row: 1
     timeCode: 1
@@ -52,11 +56,5 @@ MonoBehaviour:
     row: 1
     timeCode: 9,00
     frame: 9
-    interactionType: 0
-    swipeDirection: 0
-  - time: 4.285714626312256
-    row: 1
-    timeCode: 10,00
-    frame: 0
     interactionType: 0
     swipeDirection: 0

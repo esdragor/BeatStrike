@@ -13,8 +13,6 @@ MonoBehaviour:
   m_Name: Defense_120_P1
   m_EditorClassIdentifier: 
   patternName: Defense_120_P1
-  targetLevel: 0
-  difficultyIndex: 0
   maxTime: 10
   BPM: 120
   interactions:
@@ -90,6 +88,12 @@ MonoBehaviour:
     frame: 14
     interactionType: 1
     swipeDirection: 2
+  - time: 8
+    row: 1
+    timeCode: 16
+    frame: 16
+    interactionType: 1
+    swipeDirection: 1
   - time: 8.5
     row: 1
     timeCode: 17
@@ -102,9 +106,3 @@ MonoBehaviour:
     frame: 18
     interactionType: 1
     swipeDirection: 3
-  - time: 8
-    row: 1
-    timeCode: 16
-    frame: 16
-    interactionType: 1
-    swipeDirection: 1
