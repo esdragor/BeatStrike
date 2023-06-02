@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Threading.Tasks;
 using UnityEngine;
 using Utilities;
 
@@ -18,6 +19,7 @@ namespace Code.Interface
         public GameObject up;
         
         public ParticleSystem popVFX;
+        public ParticleSystem depopVFX;
         
         private float speed = 6f;
         private bool isPooling = false;
@@ -101,15 +103,6 @@ namespace Code.Interface
             attack.SetActive(false);
         }
         
-        IEnumerator DepopCoroutine()
-        {
-            isPooling = true;
-            yield return new WaitForSeconds(1f);
-            isPooling = false;
-            GameLoopManager.interactionPool.AddInteractionToPool(gameObject);
-            gameObject.SetActive(false);
-        }
-        
         public void Depop()
         {
             left.SetActive(false);
@@ -117,13 +110,31 @@ namespace Code.Interface
             up.SetActive(false);
             down.SetActive(false);
             attack.SetActive(false);
-            popVFX.Play();
-            StartCoroutine(DepopCoroutine());
+            
+            if (gameObject.activeSelf)
+            {
+                WaitForDisable();
+            }
         }
-        
+
+        public async void WaitForDisable()
+        {
+            depopVFX.Play();
+            isPooling = true;
+
+            while (depopVFX.isPlaying)
+            {
+                await Task.Yield();
+
+            }
+
+            GameLoopManager.interactionPool.AddInteractionToPool(gameObject);
+            isPooling = false;
+        }
+
         private void OnEnable()
         {
-            
+            popVFX.Play();
         }
 
         private void OnDisable()
