@@ -132,9 +132,9 @@ public class GameLoopManager : MonoBehaviour
     {
         Transform chunckTr = currentChunck.transform;
         Transform playerTr = PlayerManager.instance.gameObject.transform;
-        Transform chunchPos = nextChunck.GetComponent<LevelHeader>().combatPos;
+        Transform chunckPos = nextChunck.GetComponent<LevelHeader>().combatPos;
 
-        while ((chunckTr) && playerTr.position.z < chunchPos.position.z)
+        while ((chunckTr) && playerTr.position.z < chunckPos.position.z)
         {
             currentChunck.transform.position -= Vector3.forward * Time.deltaTime * speedRun;
             nextChunck.transform.position -= Vector3.forward * Time.deltaTime * speedRun;
@@ -153,7 +153,6 @@ public class GameLoopManager : MonoBehaviour
             combatManager.PreloadCombat();
             GameManager.gameState.SwitchEngineState(Enums.EngineState.Game);
             GameManager.gameState.SwitchTimeState(Enums.TimeState.Play);
-            //PlayerManager.instance.SetPlayer();
             isMoving = false;
             PlayPattern();
         }

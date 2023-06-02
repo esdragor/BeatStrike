@@ -15,10 +15,6 @@ public class Detector : MonoBehaviour
         {
             interaction.SetSuccess(success);
             detectorManager.SetInteraction(interaction);
-            // if (interaction.data.interactionType == Enums.InteractionType.Dodge && success == InteractionSuccess.Perfect)
-            // {
-            //     GameLoopManager.combatManager.EnemyAttack();
-            // }
         }
     }
 
