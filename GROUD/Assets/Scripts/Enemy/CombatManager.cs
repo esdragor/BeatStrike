@@ -62,7 +62,7 @@ public class CombatManager
         damage = newDamage;
         enemy = data.enemy;
 
-        Vector3 vfxOffset = new Vector3(0, 0, 1.5f);
+        Vector3 vfxOffset = new Vector3(0, 0, 2f);
         ParticleSystem enemyVfx = Object.Instantiate(GameLoopManager.instance.enemyApparitionVfx, GameLoopManager.instance.currentChunkLevelHeader.enemySpawnPoint.position + vfxOffset, Quaternion.identity)
                                   .GetComponent<ParticleSystem>();
         
