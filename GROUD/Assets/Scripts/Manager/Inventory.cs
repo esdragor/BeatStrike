@@ -47,13 +47,10 @@ public class Inventory : MonoBehaviour
         {
             case GearSlot.Head:
                 return instance.spriteHead;
-                break;
             case GearSlot.Chest:
                 return instance.spriteChest;
-                break;
             case GearSlot.Weapon:
                 return instance.spriteWeapon;
-                break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(gear), gear, null);
         }

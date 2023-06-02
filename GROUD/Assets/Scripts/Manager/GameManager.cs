@@ -125,9 +125,8 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            /*float value = fakeDeltaTime > 0f ? fakeDeltaTime : Time.deltaTime;
-            value *= tickRate;*/
-            float value = Time.deltaTime * tickRate;
+            float value = (fakeDeltaTime > 0f ? fakeDeltaTime : Time.deltaTime) * tickRate;
+            //float value = Time.deltaTime * tickRate;
             tickTimer += value;
             GameLoopManager.instance.AddTickCount(value);
         }
@@ -144,6 +143,7 @@ public class GameManager : MonoBehaviour
         }
         sum /= 10f;
         fakeDeltaTime = sum;
+        fakeDeltaTime *= 0.1f;
     }
 
     public void SetBPM(int BPM)

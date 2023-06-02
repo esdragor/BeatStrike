@@ -11,7 +11,7 @@ public class ScreenListener : MonoBehaviour,  IPointerDownHandler, IPointerUpHan
     
     [Tooltip("A partir de quel distance le swipe se déclenche.")] public float swipeTolerance = 0.2f;
     
-    public Action<TouchSide> onInputPressed;
+    public Action<TouchSide, Vector2> onInputPressed;
     public Action onInputReleased;
     public Action<SwipeDirection> onSwipeDetected;
 
@@ -25,7 +25,7 @@ public class ScreenListener : MonoBehaviour,  IPointerDownHandler, IPointerUpHan
     public void OnPointerDown(PointerEventData eventData)
     {
         onTouchPosition = eventData.position;
-        onInputPressed?.Invoke(CheckTouchSide());
+        onInputPressed?.Invoke(CheckTouchSide(), onTouchPosition);
         GameManager.onUpdated += TouchTime;
     }
 
@@ -61,6 +61,8 @@ public class ScreenListener : MonoBehaviour,  IPointerDownHandler, IPointerUpHan
     public void OnPointerMove(PointerEventData eventData)
     {
         currentTouchPosition = eventData.position;
+        UIManager.instance.SwipeFX(currentTouchPosition);
+
     }
     
     public void OnPointerUp(PointerEventData eventData)
