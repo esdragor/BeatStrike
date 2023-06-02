@@ -34,8 +34,6 @@ public class DataSerializer : MonoBehaviour
         
         dataSerializer.Serialize(streamWriter, data);
         streamWriter.Close();
-        
-        Debug.Log("Save " + typeof(T).Name);
     }
 
     public T LoadDataFromDirectory<T>(string pathExtension)

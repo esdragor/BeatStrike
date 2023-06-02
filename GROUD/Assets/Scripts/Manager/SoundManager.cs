@@ -57,6 +57,14 @@ public class SoundManager : MonoBehaviour
         if (instance.audioSourceMusicalBackground.clip)
             instance.audioSourceMusicalBackground.Play();
     }
+    
+    public static void PauseUnpauseBackground(bool pause)
+    {
+        if (pause)
+            instance.audioSourceMusicalBackground.Pause();
+        else
+            instance.audioSourceMusicalBackground.UnPause();
+    }
 
     public static void PlayRandomGoodNotePlayer(int BPM)
     {

@@ -101,10 +101,12 @@ public class UIManager : MonoBehaviour
     {
         pausePanel.SetActive(isPause);
         isPaused = isPause;
+        SoundManager.PauseUnpauseBackground(isPause);
         if (isPause)
         {
             GameManager.instance.savedTick = GameLoopManager.instance.tickCount;
             GameManager.gameState.SwitchTimeState(Enums.TimeState.Pause);
+            
         }
         else
         {
