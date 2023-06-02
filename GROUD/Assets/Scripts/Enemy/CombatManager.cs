@@ -17,6 +17,11 @@ public class CombatManager
     
     private Animator currentEnemyAnimator;
 
+    public void ResetIndexPalier()
+    {
+        index = 0;
+    }
+    
     public void PreloadCombat()
     {
         index++;
@@ -24,6 +29,7 @@ public class CombatManager
         if (index > 0 && index % (PalierManager.GetIndexPalier() + 1) == 0) // new Palier
         {
             PalierManager.NewPalier();
+            ResetIndexPalier();
         }
 
         EnemyData data = PalierManager.GetEnemy();

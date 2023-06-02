@@ -124,8 +124,8 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            float value = (fakeDeltaTime > 0f ? fakeDeltaTime : Time.deltaTime) * tickRate;
-            //float value = Time.deltaTime * tickRate;
+            //float value = (fakeDeltaTime > 0f ? fakeDeltaTime : Time.deltaTime) * tickRate;
+            float value = Time.deltaTime * tickRate;
             tickTimer += value;
             GameLoopManager.instance.AddTickCount(value);
         }

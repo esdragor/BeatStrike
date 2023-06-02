@@ -78,14 +78,14 @@ public class GameLoopManager : MonoBehaviour
     public float GetVelocityTimerNewChunck()
     {
         //float nbFrames = Time.deltaTime * speedRun;
-        
+
         return sizeOfChuncks * (Time.deltaTime * speedRun);
     }
 
     public void AddTickCount(float value)
     {
-        if(UIManager.instance.isPaused || isMoving) return;
-        
+        if (UIManager.instance.isPaused || isMoving) return;
+
         tickCount += value;
         currentPulse = value;
     }
@@ -183,7 +183,7 @@ public class GameLoopManager : MonoBehaviour
     {
         isMoving = true;
         tickCount = 0;
-        
+
         PlayerManager.instance.animator.SetTrigger("isRunning");
         GameManager.gameState.SwitchTimeState(Enums.TimeState.Pause);
 
@@ -203,10 +203,12 @@ public class GameLoopManager : MonoBehaviour
             combatManager.PreloadCombat();
         }
 
+        index = 0;
         StreakManager.ResetStreak();
         ScoreManager.ResetScore();
 
         InitLevel();
+        combatManager.ResetIndexPalier();
         inputManager.gameObject.SetActive(true);
     }
 

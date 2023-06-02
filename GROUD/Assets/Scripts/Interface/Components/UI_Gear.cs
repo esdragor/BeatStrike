@@ -71,14 +71,6 @@ public class UI_Gear : MonoBehaviour
         return gearDescription;
     }
 
-    public static void DebugOnEquip()
-    {
-        foreach (var item in instance.allItems)
-        {
-            Debug.Log(item.gear.OnEquip);
-        }
-    }
-
     public void UpdateGoldText(int gold)
     {
         nbGoldText.text = gold.ToString();

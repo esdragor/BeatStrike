@@ -31,7 +31,6 @@ public class Inventory : MonoBehaviour
     {
         instance.LoadInventory();
         instance.LoadEquipment();
-        UI_Gear.DebugOnEquip();
     }
 
     public static void AddItemOnInventory(Gear gear)
