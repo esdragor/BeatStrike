@@ -22,10 +22,13 @@ public class UI_HUD : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    public void UpdateTimeLine(int index)
+    public void UpdateTimeLine(int index, float duration = 1)
     {
-        
-        float duration = GameLoopManager.instance.GetVelocityTimerNewChunck();
+        if (duration == 1)
+        {
+            duration = GameLoopManager.instance.GetVelocityTimerNewChunck();
+        }
+         
         if (index < enemyTimeline.Length && index > 0)
             playerTimeline.DOMoveX(enemyTimeline[index].position.x,
                 GameLoopManager.instance.GetVelocityTimerNewChunck());

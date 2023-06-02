@@ -54,6 +54,7 @@ public class PalierManager : MonoBehaviour
         PlayerManager.instance.FullHealingPlayer();
 
         UIManager.instance.UpdatePalier(GetPalierText());
+        UIManager.instance.hud.UpdateTimeLine(0, 0);
 
         UIManager.instance.randomBPMSelector.ShowButtons();
         UIManager.instance.hud.PrintGainKey();
