@@ -78,8 +78,7 @@ public class GameLoopManager : MonoBehaviour
     public float GetVelocityTimerNewChunck()
     {
         //float nbFrames = Time.deltaTime * speedRun;
-
-
+        
         return sizeOfChuncks * (Time.deltaTime * speedRun);
     }
 
@@ -87,7 +86,6 @@ public class GameLoopManager : MonoBehaviour
     {
         if(UIManager.instance.isPaused || isMoving) return;
         
-        Debug.Log("je vais me tuer ?");
         tickCount += value;
         currentPulse = value;
     }
