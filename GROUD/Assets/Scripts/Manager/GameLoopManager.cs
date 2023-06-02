@@ -168,7 +168,7 @@ public class GameLoopManager : MonoBehaviour
         if (indexrdn >= chunks.Length)
         {
             indexrdn = 0;
-            index = -1;
+            index = 0;
         }
         nextChunck = Instantiate(chunks[indexrdn]);
         nextChunck.transform.position = currentChunck.transform.position + Vector3.forward * sizeOfChuncks;

@@ -33,9 +33,10 @@ public class GameManager : MonoBehaviour
     public float timeToShopReset = 5;
     private string lastDateKey = "LastOperationDate";
     private DateTime lastDate;
+    private float fakeDeltaTime = -1f;
 
     public float Bpm => BPM;
-    
+
 
     public double GetLastShopReload()
     {
@@ -107,6 +108,7 @@ public class GameManager : MonoBehaviour
         currentCharacterInfos = ScriptableObject.CreateInstance<CharacterInfos>();
         currentCharacterInfos.SetPlayerStats(CharacterInfosPrefab);
         Inventory.Init();
+        StartCoroutine(CalcAverageDeltaTime());
         //currentCharacterInfos.ResetCH();
     }
 
@@ -123,10 +125,25 @@ public class GameManager : MonoBehaviour
         }
         else
         {
+            /*float value = fakeDeltaTime > 0f ? fakeDeltaTime : Time.deltaTime;
+            value *= tickRate;*/
             float value = Time.deltaTime * tickRate;
             tickTimer += value;
             GameLoopManager.instance.AddTickCount(value);
         }
+    }
+
+    private IEnumerator CalcAverageDeltaTime()
+    {
+        float sum = 0f;
+
+        for (int i = 0; i < 10; i++)
+        {
+            sum += Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+        }
+        sum /= 10f;
+        fakeDeltaTime = sum;
     }
 
     public void SetBPM(int BPM)
@@ -167,7 +184,7 @@ public class GameManager : MonoBehaviour
         StartCoroutine(AnimationBPM(listOfBPM));
         SetBPM(listOfBPM[index]);
     }
-    
+
     public float GetTickRate()
     {
         return tickRate;

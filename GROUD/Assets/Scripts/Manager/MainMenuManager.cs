@@ -35,17 +35,6 @@ public class MainMenuManager : MonoBehaviour
         ResetButton.onClick.AddListener(ResetPlayerPrefs);
     }
 
-    private void OnEnable()
-    {
-        UpdatePalierText();
-        
-    }
-
-    private void Start()
-    {
-        UpdatePalierText();
-    }
-
     public void ResetPlayerPrefs()
     {
         PlayerPrefs.DeleteAll();
@@ -55,13 +44,6 @@ public class MainMenuManager : MonoBehaviour
         DataSerializer.instance.Reset();
 
        Application.Quit();
-    }
-
-    private void UpdatePalierText()
-    {
-        if (textPalier && GameManager.instance && PalierManager.GetPalierText() != "")
-            textPalier.text = "Palier " + PalierManager.GetPalierText();
-       
     }
 
     public void HideMainMenuPanel()
@@ -90,5 +72,10 @@ public class MainMenuManager : MonoBehaviour
     {
         GameLoopManager.instance.InitLevel();
         HideMainMenuPanel();
+    }
+    
+    public void UpdatePalierText(string palier)
+    {
+        textPalier.text = "Palier " + palier;
     }
 }

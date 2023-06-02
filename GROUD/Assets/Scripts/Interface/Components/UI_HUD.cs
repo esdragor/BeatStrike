@@ -26,7 +26,7 @@ public class UI_HUD : MonoBehaviour
     {
         
         float duration = GameLoopManager.instance.GetVelocityTimerNewChunck();
-        if (index < enemyTimeline.Length && index >= 0)
+        if (index < enemyTimeline.Length && index > 0)
             playerTimeline.DOMoveX(enemyTimeline[index].position.x,
                 GameLoopManager.instance.GetVelocityTimerNewChunck());
         else

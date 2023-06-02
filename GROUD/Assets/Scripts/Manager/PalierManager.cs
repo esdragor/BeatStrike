@@ -30,6 +30,7 @@ public class PalierManager : MonoBehaviour
         instance.indexEnemy = instance.actualPalier / instance.indexPalier;
         if (instance.indexEnemy >= instance.palierPrefabEnemies.Length)
             instance.indexEnemy = 0;
+        UIManager.instance.UpdatePalier(GetPalierText());
     }
 
     public static string GetPalierText()
@@ -48,7 +49,7 @@ public class PalierManager : MonoBehaviour
             instance.indexEnemy = 0;
         PlayerManager.instance.FullHealingPlayer();
 
-        UIManager.instance.hud.textPalierInGame.text = GetPalierText();
+        UIManager.instance.UpdatePalier(GetPalierText());
 
         UIManager.instance.randomBPMSelector.ShowButtons();
         UIManager.instance.hud.PrintGainKey();

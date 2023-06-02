@@ -42,7 +42,12 @@ public class UIManager : MonoBehaviour
     private void Start()
     {
         GameManager.gameState.OnEngineStateChanged += OnEngineStateSetUI;
-        hud.textPalierInGame.text = "Palier " + PalierManager.GetPalierText();
+    }
+    
+    public void UpdatePalier(string palier)
+    {
+        hud.textPalierInGame.text = "Palier " + palier;
+        MainMenuManager.instance.UpdatePalierText(palier);
     }
 
     private string[] lastPatterns = new string[3];
@@ -88,6 +93,7 @@ public class UIManager : MonoBehaviour
         mainMenu.PrintMainMenuPanel();
         hud.DisableHUD();
         GameLoopManager.patternManager.StopPattern();
+        PlayerManager.instance.matRune.SetFloat("_AbilityProgress", 0);
     }
 
     void OnEngineStateSetUI(Enums.EngineState engineState)
