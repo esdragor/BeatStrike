@@ -107,7 +107,6 @@ public class GameManager : MonoBehaviour
 
         currentCharacterInfos = ScriptableObject.CreateInstance<CharacterInfos>();
         currentCharacterInfos.SetPlayerStats(CharacterInfosPrefab);
-        Inventory.Init();
         StartCoroutine(CalcAverageDeltaTime());
         //currentCharacterInfos.ResetCH();
     }

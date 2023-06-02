@@ -22,6 +22,11 @@ public class Inventory : MonoBehaviour
         if (instance == null) instance = this;
     }
 
+    private void Start()
+    {
+        Init();
+    }
+
     public static void Init()
     {
         instance.LoadInventory();
