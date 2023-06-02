@@ -119,6 +119,7 @@ public class UI_Gear : MonoBehaviour
         if (!instance.currentGear) return;
         CurrencyManager.AddGold(instance.currentGear.gear.priceToSell);
         Inventory.RemoveFromInventory(instance.currentGear.gear);
+        PrintCharacterInfos(new PlayerStats());
         RemoveItemUIInventory(instance.currentGear.gear);
     }
 
