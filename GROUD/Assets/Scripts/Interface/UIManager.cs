@@ -23,6 +23,7 @@ public class UIManager : MonoBehaviour
 
     [Header("Objets")] public TMP_Text debugBanditBPM;
     public TMP_Text AnnouncementPatternText;
+    public GameObject banditManchot;
 
     public TMP_Text patternDebugTxt;
     public GameObject pausePanel;

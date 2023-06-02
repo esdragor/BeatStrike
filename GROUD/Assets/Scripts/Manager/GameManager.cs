@@ -156,6 +156,7 @@ public class GameManager : MonoBehaviour
     {
         float nbSecond = 2f;
         int index = -1;
+        UIManager.instance.banditManchot.SetActive(true);
         while (nbSecond > 0f)
         {
             nbSecond -= Time.deltaTime;
@@ -173,6 +174,7 @@ public class GameManager : MonoBehaviour
         UIManager.instance.debugBanditBPM.text = "BPM : " + Bpm;
         yield return new WaitForSeconds(2f);
         UIManager.instance.debugBanditBPM.text = "";
+        UIManager.instance.banditManchot.SetActive(false);
         SoundManager.PlayRandomBackground((int)Bpm);
         bpmIsRandoming = false;
     }
@@ -180,6 +182,7 @@ public class GameManager : MonoBehaviour
     public void SetRandomBPM(int[] listOfBPM)
     {
         bpmIsRandoming = true;
+        
         int index = Random.Range(0, listOfBPM.Length);
         StartCoroutine(AnimationBPM(listOfBPM));
         SetBPM(listOfBPM[index]);

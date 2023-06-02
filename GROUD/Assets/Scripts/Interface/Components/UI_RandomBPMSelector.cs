@@ -6,7 +6,7 @@ public class UI_RandomBPMSelector : MonoBehaviour
     [SerializeField] private Button easyButton;
     [SerializeField] private Button mediumButton;
     [SerializeField] private Button hardButton;
-
+    [SerializeField] private GameObject parentObj;
     public void ShowButtons()
     {
         GameManager.instance.bpmIsRandoming = true;
