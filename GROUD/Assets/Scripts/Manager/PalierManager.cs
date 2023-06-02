@@ -30,6 +30,10 @@ public class PalierManager : MonoBehaviour
         instance.indexEnemy = instance.actualPalier / instance.indexPalier;
         if (instance.indexEnemy >= instance.palierPrefabEnemies.Length)
             instance.indexEnemy = 0;
+    }
+
+    private void Start()
+    {
         UIManager.instance.UpdatePalier(GetPalierText());
     }
 

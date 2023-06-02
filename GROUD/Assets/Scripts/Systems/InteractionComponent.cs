@@ -16,6 +16,8 @@ namespace Code.Interface
         public GameObject right;
         public GameObject up;
         
+        public ParticleSystem popVFX;
+        
         private float speed = 6f;
         private void Update()
         {
@@ -93,6 +95,11 @@ namespace Code.Interface
             up.SetActive(false);
             down.SetActive(false);
             attack.SetActive(false);
+        }
+        
+        private void OnEnable()
+        {
+            popVFX.Play();
         }
 
         private void OnDisable()
