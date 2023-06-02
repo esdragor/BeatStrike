@@ -123,6 +123,14 @@ public class UIManager : MonoBehaviour
         hud.DisableHUD();
         GameLoopManager.patternManager.StopPattern();
         ResetOnMainMenu();
+
+        GameLoopManager.interactionPool.DisableAllInteractions();
+
+        GameLoopManager.instance.index = 0;
+        StreakManager.ResetStreak();
+        ScoreManager.ResetScore();
+        
+        GameLoopManager.combatManager.ResetIndexPalier();
     }
 
     void OnEngineStateSetUI(Enums.EngineState engineState)

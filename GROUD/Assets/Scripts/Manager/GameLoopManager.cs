@@ -49,7 +49,7 @@ public class GameLoopManager : MonoBehaviour
     private GameObject currentChunck;
     private GameObject nextChunck;
     private bool isMoving = false;
-    private int index = 0;
+    [HideInInspector] public int index = 0;
     private byte patternType = 2;
     public bool inCombat;
 

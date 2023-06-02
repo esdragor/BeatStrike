@@ -41,6 +41,7 @@ public class UI_EndLevel : MonoBehaviour
         DisablePanel();
         UIManager.instance.hud.DisableHUD();
         UIManager.instance.mainMenu.PrintMainMenuPanel();
+        GameLoopManager.instance.Restart();
         UIManager.instance.ResetOnMainMenu();
 
     }
