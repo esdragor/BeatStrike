@@ -48,6 +48,7 @@ public class UIManager : MonoBehaviour
 
     public void TapFX(Vector2 position)
     {
+        return;
         if (tapFXTr == null)
             tapFXTr = tapFX.GetComponent<RectTransform>();
         tapFXTr.localPosition = new Vector3(-(Screen.width*0.5f) + position.x, -(Screen.height*0.5f) + position.y, 0);
