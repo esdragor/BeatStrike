@@ -1,4 +1,6 @@
 using System.Collections;
+using System.Threading.Tasks;
+using DG.Tweening;
 using UnityEditor;
 using UnityEngine;
 
@@ -32,6 +34,14 @@ public class CombatManager
             ResetIndexPalier();
         }
 
+        CreateEnemy();
+        
+       
+        
+    }
+
+    public async void CreateEnemy()
+    {
         EnemyData data = PalierManager.GetEnemy();
 
 
@@ -51,17 +61,29 @@ public class CombatManager
         currentHealth = maxHealth;
         damage = newDamage;
         enemy = data.enemy;
+
+        Vector3 vfxOffset = new Vector3(0, 0, 1.5f);
+        ParticleSystem enemyVfx = Object.Instantiate(GameLoopManager.instance.enemyApparitionVfx, GameLoopManager.instance.currentChunkLevelHeader.enemySpawnPoint.position + vfxOffset, Quaternion.identity)
+                                  .GetComponent<ParticleSystem>();
+        
+        enemyVfx.Play();
+
         if (currentEnemyObj) Object.Destroy(currentEnemyObj);
+        
         currentEnemyObj = Object.Instantiate(enemy.visual);
         enemyVFX = currentEnemyObj.GetComponent<EnemyVFX>();
         currentEnemyObj.transform.position = GameLoopManager.instance.currentChunkLevelHeader.enemySpawnPoint.position;
+        
         EnemyPrefab sc = currentEnemyObj.GetComponent<EnemyPrefab>();
+        
         currentEnemyAnimator = sc.animator;
         SkinnedMeshRenderer sk = sc.SkinnedMeshRenderer;
+        
         for (int i = 0; i < sk.materials.Length; i++)
         {
             sk.materials[i] = data.mat;
         }
+        
         sk.GetComponent<Renderer>().material = data.mat;
     }
 

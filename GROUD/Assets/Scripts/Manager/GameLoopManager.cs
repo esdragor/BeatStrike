@@ -45,6 +45,7 @@ public class GameLoopManager : MonoBehaviour
     [SerializeField] private Material isDefPrinter;
     [SerializeField] private float delayBetweenPattern = 3f;
 
+    public GameObject enemyApparitionVfx;
 
     private GameObject currentChunck;
     private GameObject nextChunck;

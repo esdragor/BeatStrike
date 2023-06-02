@@ -124,12 +124,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!198 &31644028 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 8973856029978947181, guid: 93042f802927c1e4db9ae495068681bb,
-    type: 3}
-  m_PrefabInstance: {fileID: 1903983757}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &151483499
 GameObject:
   m_ObjectHideFlags: 0
@@ -1587,11 +1581,6 @@ PrefabInstance:
       propertyPath: inputManager
       value: 
       objectReference: {fileID: 179565491}
-    - target: {fileID: 256895309846087104, guid: 93042f802927c1e4db9ae495068681bb,
-        type: 3}
-      propertyPath: randomMultiplicator
-      value: 8
-      objectReference: {fileID: 0}
     - target: {fileID: 256895309846087105, guid: 93042f802927c1e4db9ae495068681bb,
         type: 3}
       propertyPath: m_RootOrder
@@ -1652,11 +1641,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Level Manager
       objectReference: {fileID: 0}
-    - target: {fileID: 3580946469746164190, guid: 93042f802927c1e4db9ae495068681bb,
-        type: 3}
-      propertyPath: PhaseAnnouncerVFX
-      value: 
-      objectReference: {fileID: 31644028}
     - target: {fileID: 8973856029978947180, guid: 93042f802927c1e4db9ae495068681bb,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
