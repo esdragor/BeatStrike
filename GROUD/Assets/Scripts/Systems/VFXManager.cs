@@ -118,8 +118,10 @@ public class VFXManager : MonoBehaviour
     public async void LaunchFXWithDelay(ParticleSystem fx, float delay)
     {
         await Task.Delay((int)(delay * 1000));
-        fx.Stop();
-        fx.Play();
+        if (fx)
+            fx.Stop();
+        if (fx)
+            fx.Play();
     }
 
     public async void AnnouncerPhaseVFX(bool isDef)

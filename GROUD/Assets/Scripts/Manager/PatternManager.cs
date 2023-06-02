@@ -8,6 +8,9 @@ using UnityEngine;
 public class PatternManager
 {
     public bool isTimelineActive;
+    
+    public float delayBetweenPattern = 3f;
+    
     private Queue<InteractionKey> timelineRunnerKeys;
     private bool isDebugMultiChannel;
     private PatternByBPM[] patternByBpms;
@@ -145,7 +148,7 @@ public class PatternManager
 
     public async void EndPattern(bool EndPattern = true)
     {
-        float timer = 3f;
+        float timer = delayBetweenPattern;
         
         isTimelineActive = false;
         GameManager.onUpdated = null;

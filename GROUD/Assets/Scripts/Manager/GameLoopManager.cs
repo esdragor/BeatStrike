@@ -43,6 +43,7 @@ public class GameLoopManager : MonoBehaviour
     [SerializeField] private int percentageDEF;
     [SerializeField] private int randomMultiplicator;
     [SerializeField] private Material isDefPrinter;
+    [SerializeField] private float delayBetweenPattern = 3f;
 
 
     private GameObject currentChunck;
@@ -70,6 +71,7 @@ public class GameLoopManager : MonoBehaviour
     {
         SpawnNextChunck();
         Debug.Log(nextChunck);
+        patternManager.delayBetweenPattern = delayBetweenPattern;
     }
 
     public float GetVelocityTimerNewChunck()
