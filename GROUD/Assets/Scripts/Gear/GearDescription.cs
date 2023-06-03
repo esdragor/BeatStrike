@@ -27,9 +27,15 @@ public class GearDescription : MonoBehaviour
         {
             UIManager.instance.gear.currentGear = this;
             PlayerStats stats = new PlayerStats();
-            if (gear.statsType1 == StatsType.Hp) stats.hp = gear.statsValue1;
-            if (gear.statsType1 == StatsType.Intelligence) stats.intelligence = gear.statsValue1;
-            if (gear.statsType1 == StatsType.Strength) stats.strength = gear.statsValue1;
+            if (gear.statsType1 == StatsType.Hp)
+                stats.hp = GameManager.instance.CharacterInfosPrefab.playerStats.hp - 
+                    GameManager.instance.currentCharacterInfos.playerStats.hp + gear.statsValue1;
+            if (gear.statsType1 == StatsType.Intelligence)
+                stats.intelligence = GameManager.instance.CharacterInfosPrefab.playerStats.intelligence - 
+                    GameManager.instance.currentCharacterInfos.playerStats.intelligence + gear.statsValue1;
+            if (gear.statsType1 == StatsType.Strength)
+                stats.strength = GameManager.instance.CharacterInfosPrefab.playerStats.strength - 
+                    GameManager.instance.currentCharacterInfos.playerStats.strength + gear.statsValue1;
 
             UIManager.instance.gear.PrintCharacterInfos(stats);
         }

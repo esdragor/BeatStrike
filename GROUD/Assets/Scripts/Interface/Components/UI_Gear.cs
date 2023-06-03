@@ -172,7 +172,7 @@ public class UI_Gear : MonoBehaviour
         }
     }
 
-    private string AddColor(string text, float value, bool doubleline = false)
+    private string AddColor(string text, float value)
     {
         if (value > 0)
             text += " <color=#00FF00>+" + value + "</color>";
