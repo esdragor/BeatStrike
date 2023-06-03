@@ -64,7 +64,6 @@ public class GameLoopManager : MonoBehaviour
 
         GameObject rndChunk = chunks[0];
         currentChunck = Instantiate(rndChunk);
-        Debug.Log(currentChunck);
         currentChunkLevelHeader = currentChunck.GetComponent<LevelHeader>();
         isMoving = false;
     }

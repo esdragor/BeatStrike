@@ -496,6 +496,11 @@ PrefabInstance:
       propertyPath: inputManager
       value: 
       objectReference: {fileID: 179565491}
+    - target: {fileID: 256895309846087104, guid: 93042f802927c1e4db9ae495068681bb,
+        type: 3}
+      propertyPath: percentageDEF
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 256895309846087105, guid: 93042f802927c1e4db9ae495068681bb,
         type: 3}
       propertyPath: m_RootOrder
@@ -560,17 +565,17 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 1969044158}
+      objectReference: {fileID: 1948648983}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 93042f802927c1e4db9ae495068681bb, type: 3}
---- !u!21 &1969044158
+--- !u!21 &1948648983
 Material:
   serializedVersion: 8
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: M_PhaseAnnouncer (Instance) (Instance)
+  m_Name: M_PhaseAnnouncer (Instance) (Instance) (Instance)
   m_Shader: {fileID: -6465566751694194690, guid: 14c746e62e648dd409c7cb83529fb1e6,
     type: 3}
   m_ValidKeywords: []
@@ -694,7 +699,7 @@ Material:
     - _Strength: 0
     - _UVSec: 0
     - _ZWrite: 1
-    - _isDef: 0
+    - _isDef: 1
     m_Colors:
     - _AttackBGColor: {r: 1, g: 0.66863483, b: 0.25, a: 0.25490198}
     - _Base_Color: {r: 0, g: 0, b: 0, a: 0}

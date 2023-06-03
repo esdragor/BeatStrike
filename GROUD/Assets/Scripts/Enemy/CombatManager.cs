@@ -21,7 +21,7 @@ public class CombatManager
 
     public void ResetIndexPalier()
     {
-        index = 0;
+        index = 1;
     }
 
     public void PreloadCombat()
@@ -47,13 +47,11 @@ public class CombatManager
 
         float newMaxHealth = data.enemy.healthPoint;
         float newDamage = data.enemy.damage;
-        float indexPalier = PalierManager.GetActualPalier() - 1 + index;
+        float indexPalier = (PalierManager.GetActualPalier() - 1) * PalierManager.GetIndexPalier() + index;
 
-        for (int i = 1; i < indexPalier; i++)
-        {
-            newMaxHealth += (indexPalier * (data.enemy.statModificatorValuePercentage / 100) * data.enemy.healthPoint);
-            newDamage += (indexPalier * (data.enemy.statModificatorValuePercentage / 100) * data.enemy.damage);
-        }
+        
+        newMaxHealth += (indexPalier * (data.enemy.statModificatorValuePercentage / 100) * data.enemy.healthPoint);
+        newDamage += (indexPalier * (data.enemy.statModificatorValuePercentage / 100) * data.enemy.damage);
 
         maxHealth = newMaxHealth;
         currentHealth = maxHealth;

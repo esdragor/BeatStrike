@@ -2849,7 +2849,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &334478145557197719
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3901,7 +3901,7 @@ RectTransform:
   m_Children:
   - {fileID: 2185373771886960203}
   m_Father: {fileID: 8782814721771879118}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
@@ -4917,8 +4917,8 @@ RectTransform:
   - {fileID: 1415441058}
   - {fileID: 3114377847926465296}
   - {fileID: 1124337836759233829}
-  - {fileID: 2506840575115869218}
   - {fileID: 6163186791105857261}
+  - {fileID: 2506840575115869218}
   - {fileID: 8217351717642803052}
   - {fileID: 1557482399977724517}
   - {fileID: 8620819257121788537}
@@ -5105,7 +5105,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'PALIER '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 234eb23b1da887c4da8e5f5bcb3504d2, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 4b68ca18ddb488948879d1886109fa18, type: 2}
   m_sharedMaterial: {fileID: 6344214534180090395, guid: 234eb23b1da887c4da8e5f5bcb3504d2,
     type: 2}
   m_fontSharedMaterials: []
@@ -5114,7 +5114,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+  m_fontColor: {r: 0.9811321, g: 0.9579922, b: 0.9579922, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -5137,7 +5137,7 @@ MonoBehaviour:
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 200.25
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -5154,7 +5154,7 @@ MonoBehaviour:
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
   m_enableExtraPadding: 0
-  checkPaddingRequired: 0
+  checkPaddingRequired: 1
   m_isRichText: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
@@ -5170,7 +5170,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &3355459975565488809
@@ -8299,7 +8299,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &3358049548888982036
 RectTransform:
   m_ObjectHideFlags: 0
@@ -16404,7 +16404,7 @@ RectTransform:
   - {fileID: 7224733841996143225}
   - {fileID: 6232602660075897142}
   m_Father: {fileID: 8782814721771879118}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}

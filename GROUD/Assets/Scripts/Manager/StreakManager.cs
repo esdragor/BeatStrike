@@ -45,7 +45,7 @@ public class StreakManager : MonoBehaviour
     
     public static void RemoveStreak()
     {
-        instance.streak--;
+        instance.streak -= instance.nbNeedToMultiply;
         if (instance.streak < 0) instance.streak = 0;
         UIManager.instance.streak.UpdateStreakAndMultiplier();
     }
