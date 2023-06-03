@@ -18,8 +18,8 @@ namespace Code.Interface
         public GameObject right;
         public GameObject up;
         
-        public ParticleSystem popVFX;
         public ParticleSystem depopVFX;
+        public ParticleSystem popVFX;
         
         private float speed = 6f;
         private bool isPooling = false;
@@ -120,22 +120,18 @@ namespace Code.Interface
         public async void WaitForDisable()
         {
             depopVFX.Play();
+            popVFX.Play();
             isPooling = true;
 
-            while (depopVFX.isPlaying)
+            while (depopVFX.isPlaying && popVFX.isPlaying)
             {
                 await Task.Yield();
-
             }
 
             GameLoopManager.interactionPool.AddInteractionToPool(gameObject);
             isPooling = false;
         }
-
-        private void OnEnable()
-        {
-            popVFX.Play();
-        }
+        
 
         private void OnDisable()
         {

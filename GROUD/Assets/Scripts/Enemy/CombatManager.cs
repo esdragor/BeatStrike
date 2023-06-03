@@ -16,14 +16,14 @@ public class CombatManager
     private EnemySO enemy;
     private GameObject currentEnemyObj;
     private int index = 0;
-    
+
     private Animator currentEnemyAnimator;
 
     public void ResetIndexPalier()
     {
         index = 0;
     }
-    
+
     public void PreloadCombat()
     {
         index++;
@@ -35,9 +35,6 @@ public class CombatManager
         }
 
         CreateEnemy();
-        
-       
-        
     }
 
     public async void CreateEnemy()
@@ -50,58 +47,63 @@ public class CombatManager
 
         float newMaxHealth = data.enemy.healthPoint;
         float newDamage = data.enemy.damage;
-        float indexPalier = PalierManager.GetActualPalier() + index;
+        float indexPalier = PalierManager.GetActualPalier() - 1 + index;
 
         for (int i = 1; i < indexPalier; i++)
         {
-            newMaxHealth += ((data.enemy.statModificatorValuePercentage / 100) * oldMaxHealth);
-            newDamage += ((data.enemy.statModificatorValuePercentage / 100) * oldDamage);
+            newMaxHealth += (indexPalier * (data.enemy.statModificatorValuePercentage / 100) * data.enemy.healthPoint);
+            newDamage += (indexPalier * (data.enemy.statModificatorValuePercentage / 100) * data.enemy.damage);
         }
+
         maxHealth = newMaxHealth;
         currentHealth = maxHealth;
         damage = newDamage;
         enemy = data.enemy;
 
         Vector3 vfxOffset = new Vector3(0, 0, 2f);
-        ParticleSystem enemyVfx = Object.Instantiate(GameLoopManager.instance.enemyApparitionVfx, GameLoopManager.instance.currentChunkLevelHeader.enemySpawnPoint.position + vfxOffset, Quaternion.identity)
-                                  .GetComponent<ParticleSystem>();
-        
-        
+        ParticleSystem enemyVfx = Object.Instantiate(GameLoopManager.instance.enemyApparitionVfx,
+                GameLoopManager.instance.currentChunkLevelHeader.enemySpawnPoint.position + vfxOffset,
+                Quaternion.identity)
+            .GetComponent<ParticleSystem>();
+
 
         if (currentEnemyObj) Object.Destroy(currentEnemyObj);
-        
+
         currentEnemyObj = Object.Instantiate(enemy.visual);
         enemyVFX = currentEnemyObj.GetComponent<EnemyVFX>();
         currentEnemyObj.transform.position = GameLoopManager.instance.currentChunkLevelHeader.enemySpawnPoint.position;
-        
+        currentEnemyObj.transform.rotation = GameLoopManager.instance.currentChunkLevelHeader.enemySpawnPoint.rotation;
+
         EnemyPrefab sc = currentEnemyObj.GetComponent<EnemyPrefab>();
-        
+
         currentEnemyAnimator = sc.animator;
         SkinnedMeshRenderer sk = sc.SkinnedMeshRenderer;
-        
+
         for (int i = 0; i < sk.materials.Length; i++)
         {
             sk.materials[i] = data.mat;
         }
-        
-        sk.GetComponent<Renderer>().material = data.mat;
-        sk.material.SetFloat("_Dissolve", 0);
+
+        if (sk)
+            sk.GetComponent<Renderer>().material = data.mat;
+        if (sk)
+            sk.material.SetFloat("_Dissolve", 0);
 
         enemyVfx.Play();
 
         float timer = 0;
         float timeToDissolve = enemyVfx.main.duration;
-        
+
         while (timer < timeToDissolve)
         {
             timer += Time.deltaTime * 0.5f;
-            sk.material.SetFloat("_Dissolve", timer);
+            if (sk)
+                sk.material.SetFloat("_Dissolve", timer);
             await Task.Yield();
         }
     }
 
 
-    
     public void InitCombat(float timer, bool isStart)
     {
         UIManager.instance.enemy.EnableEnemyHealth(true);
@@ -132,7 +134,7 @@ public class CombatManager
         Object.Destroy(currentEnemyObj);
         PlayerManager.instance.vfxManager.PlaySFX("DeathEnemy");
         GameLoopManager.instance.tickCount = 0;
-        
+
         isActive = false;
 
         GameLoopManager.instance.NextChunk();

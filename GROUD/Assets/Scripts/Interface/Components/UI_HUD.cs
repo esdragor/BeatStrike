@@ -19,19 +19,15 @@ public class UI_HUD : MonoBehaviour
 
     public void DisableHUD()
     {
+        if (gameObject && gameObject.activeSelf)
         gameObject.SetActive(false);
     }
 
-    public void UpdateTimeLine(int index, float duration = 1)
+    public void UpdateTimeLine(int index, float duration)
     {
-        if (duration == 1)
-        {
-            duration = GameLoopManager.instance.GetVelocityTimerNewChunck();
-        }
-         
         if (index < enemyTimeline.Length && index > 0)
             playerTimeline.DOMoveX(enemyTimeline[index].position.x,
-                GameLoopManager.instance.GetVelocityTimerNewChunck());
+                duration);
         else
             playerTimeline.position = enemyTimeline[0].position;
     }

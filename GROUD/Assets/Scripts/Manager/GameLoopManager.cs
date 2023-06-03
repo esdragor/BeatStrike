@@ -188,7 +188,7 @@ public class GameLoopManager : MonoBehaviour
         GameManager.gameState.SwitchTimeState(Enums.TimeState.Pause);
 
         patternManager.StopPattern();
-        UIManager.instance.hud.UpdateTimeLine(index);
+        UIManager.instance.hud.UpdateTimeLine(index, 3);
 
 
         StartCoroutine(MoveChunck());

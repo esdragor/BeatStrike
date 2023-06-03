@@ -83,7 +83,7 @@ public class UIManager : MonoBehaviour
     public void ResetOnMainMenu()
     {
         PlayerManager.instance.matRune.SetFloat("_AbilityProgress", 0);
-        hud.UpdateTimeLine(0);
+        hud.UpdateTimeLine(0, 0);
     }
 
     public void OpenLink(string url)

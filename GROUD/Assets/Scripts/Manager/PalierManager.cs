@@ -15,7 +15,7 @@ public class PalierManager : MonoBehaviour
     private static PalierManager instance;
 
     [SerializeField] private int indexPalier = 10;
-    public int actualPalier = 0;
+    public int actualPalier = 1;
     [SerializeField] private EnemySO[] palierPrefabEnemies;
     private int indexEnemy = 0;
 
@@ -26,7 +26,7 @@ public class PalierManager : MonoBehaviour
         if (PlayerPrefs.HasKey("Palier"))
             instance.actualPalier = PlayerPrefs.GetInt("Palier");
         else
-            instance.actualPalier = 0;
+            instance.actualPalier = 1;
         instance.indexEnemy = instance.actualPalier / instance.indexPalier;
         if (instance.indexEnemy >= instance.palierPrefabEnemies.Length)
             instance.indexEnemy = 0;
@@ -41,7 +41,7 @@ public class PalierManager : MonoBehaviour
     {
         if (instance == null)
             return "";
-        return (instance.actualPalier > 0) ? instance.actualPalier.ToString() : "1";
+        return  instance.actualPalier.ToString();
     }
 
     public static void NewPalier()

@@ -20,7 +20,7 @@ public class FactoryObjectManager : MonoBehaviour
         
         int min = 0;
         int max = 0;
-        int actualPalier = PalierManager.GetActualPalier();
+        int actualPalier = PalierManager.GetActualPalier() * PalierManager.GetIndexPalier();
         
         gear.slot = (GearSlot)Random.Range(0, 3);
         switch (gear.slot)
