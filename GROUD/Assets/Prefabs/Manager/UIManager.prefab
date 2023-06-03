@@ -3723,7 +3723,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 8d27cc3dea5203e4ea01df69194983df, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c93118a7272b7d04aa24429fe2e10f33, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4503,9 +4503,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 610560d2f5e02e24e8e23b3d907b9d9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spriteWeapon: {fileID: 21300000, guid: 1465a18aad9c802469fb08a7ec87de51, type: 3}
-  spriteChest: {fileID: 21300000, guid: c72040f4aabb1f24bbd859c56fdb3905, type: 3}
-  spriteHead: {fileID: 21300000, guid: 33815352e72451a4491088309e84a08c, type: 3}
+  spriteWeapon: {fileID: 21300000, guid: 1ab6c4f657d71d94ead0830beae55c4b, type: 3}
+  spriteChest: {fileID: 21300000, guid: 514b4cb55b9a6c54eb2ecff9c6dc5d1a, type: 3}
+  spriteHead: {fileID: 21300000, guid: 88e785c54bff4d04d9eede2d777a4d90, type: 3}
 --- !u!114 &2445022264166151038
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13149,7 +13149,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 8d27cc3dea5203e4ea01df69194983df, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6f323ed2b4cebf441bf7727281e306d6, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -14249,7 +14249,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7790941237699703764}
-  - component: {fileID: 9207533236348305251}
   m_Layer: 5
   m_Name: Slots
   m_TagString: Untagged
@@ -14280,32 +14279,6 @@ RectTransform:
   m_AnchoredPosition: {x: -132, y: 0}
   m_SizeDelta: {x: 100, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &9207533236348305251
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8277839829104624734}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59f8146938fff824cb5fd77236b75775, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Padding:
-    m_Left: 0
-    m_Right: 0
-    m_Top: 0
-    m_Bottom: 0
-  m_ChildAlignment: 4
-  m_Spacing: -35
-  m_ChildForceExpandWidth: 1
-  m_ChildForceExpandHeight: 1
-  m_ChildControlWidth: 0
-  m_ChildControlHeight: 0
-  m_ChildScaleWidth: 1
-  m_ChildScaleHeight: 1
-  m_ReverseArrangement: 0
 --- !u!1 &8322478041223274664
 GameObject:
   m_ObjectHideFlags: 0
@@ -15895,7 +15868,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 8d27cc3dea5203e4ea01df69194983df, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7f9e68868a6ea2f44bcbc6ee8bb1439a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -15940,7 +15913,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -52, y: -69}
+  m_AnchoredPosition: {x: -35, y: 0}
   m_SizeDelta: {x: 450, y: 600}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2915368932665978499
@@ -16018,7 +15991,7 @@ MonoBehaviour:
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
-  m_lineSpacing: 333.4
+  m_lineSpacing: 311
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0

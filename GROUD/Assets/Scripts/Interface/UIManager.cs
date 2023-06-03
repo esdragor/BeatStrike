@@ -119,6 +119,11 @@ public class UIManager : MonoBehaviour
     public void GoToMainMenu()
     {
         pausePanel.SetActive(false);
+        
+        int nbGold = (int)(ScoreManager.GetScore() * 0.1f);
+        
+        CurrencyManager.AddGold(nbGold);
+        
         mainMenu.PrintMainMenuPanel();
         hud.DisableHUD();
         GameLoopManager.patternManager.StopPattern();
