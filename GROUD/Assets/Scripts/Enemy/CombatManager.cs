@@ -66,7 +66,7 @@ public class CombatManager
         ParticleSystem enemyVfx = Object.Instantiate(GameLoopManager.instance.enemyApparitionVfx, GameLoopManager.instance.currentChunkLevelHeader.enemySpawnPoint.position + vfxOffset, Quaternion.identity)
                                   .GetComponent<ParticleSystem>();
         
-        enemyVfx.Play();
+        
 
         if (currentEnemyObj) Object.Destroy(currentEnemyObj);
         
@@ -85,6 +85,19 @@ public class CombatManager
         }
         
         sk.GetComponent<Renderer>().material = data.mat;
+        sk.material.SetFloat("_Dissolve", 0);
+
+        enemyVfx.Play();
+
+        float timer = 0;
+        float timeToDissolve = enemyVfx.main.duration;
+        
+        while (timer < timeToDissolve)
+        {
+            timer += Time.deltaTime * 0.5f;
+            sk.material.SetFloat("_Dissolve", timer);
+            await Task.Yield();
+        }
     }
 
 
