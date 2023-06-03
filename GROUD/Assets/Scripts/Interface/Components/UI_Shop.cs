@@ -82,7 +82,7 @@ public class UI_Shop : MonoBehaviour
         GearDescription gd = tr.GetChild(0).GetComponent<GearDescription>();
         gd.clickable = false;
         gd.GetComponent<Image>().sprite = _gear.gearSprite;
-        gd.transform.GetChild(0).GetComponent<Image>().sprite = _gear.gearSprite;
+        gd.transform.GetComponent<Image>().sprite = _gear.gearSprite;
         gd.gear = ScriptableObject.CreateInstance<Gear>();
         gd.gear.CopyGear(_gear);
         Destroy(gd.transform.parent.gameObject, 5f);
@@ -165,7 +165,7 @@ public class UI_Shop : MonoBehaviour
             GearDescription gd = tr.GetChild(0).GetComponent<GearDescription>();
             gd.OnSell = true;
             Gear gear = FactoryObjectManager.CreateGear(0);
-            gd.transform.GetChild(0).GetComponent<Image>().sprite = gear.gearSprite;
+            gd.transform.GetComponent<Image>().sprite = gear.gearSprite;
             gd.gear = ScriptableObject.CreateInstance<Gear>();
             gd.gear.CopyGear(gear);
         

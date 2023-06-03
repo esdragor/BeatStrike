@@ -6,6 +6,7 @@ using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Utilities;
 
 public class UI_Gear : MonoBehaviour
 {
@@ -19,7 +20,9 @@ public class UI_Gear : MonoBehaviour
     [SerializeField] private TransitionDirection transitionDirectionMainMenu = TransitionDirection.Right;
 
     [SerializeField] private GameObject GearPrefab;
-    [SerializeField] private Transform slotsVoidParent;
+    [SerializeField] private Transform slotsVoidHead;
+    [SerializeField] private Transform slotsVoidChest;
+    [SerializeField] private Transform slotsVoidBoot;
     [SerializeField] private Transform slotsEquipementParent;
 
     [SerializeField] private Transform gearSelectionParent;
@@ -62,7 +65,7 @@ public class UI_Gear : MonoBehaviour
     public static GearDescription AddItemUIInventory(Gear gear)
     {
         var newGear = Instantiate(instance.GearPrefab, instance.gearSelectionParent);
-        newGear.transform.GetChild(0).GetComponent<Image>().sprite = gear.gearSprite;
+        newGear.GetComponent<Image>().sprite = gear.gearSprite;
         GearDescription gearDescription = newGear.GetComponent<GearDescription>();
         gearDescription.gear = ScriptableObject.CreateInstance<Gear>();
         gearDescription.gear.CopyGear(gear);
@@ -117,18 +120,32 @@ public class UI_Gear : MonoBehaviour
 
     public void SetEquipmentImage(int index, GearDescription gearDescription)
     {
-        Transform slot = slotsEquipementParent.GetChild(index);
+        /*Transform slot = slotsEquipementParent.GetChild(index);
+        
         slot.transform.parent = slotsVoidParent;
         slot.SetSiblingIndex(index);
         gearDescription.transform.parent = slotsEquipementParent;
-        gearDescription.transform.SetSiblingIndex(index);
+        gearDescription.transform.SetSiblingIndex(index);*/
+        
+        Transform slot = slotsEquipementParent.GetChild(index);
+        gearDescription.transform.parent = slot;
+        RectTransform tr = gearDescription.GetComponent<RectTransform>();
+        tr.anchorMin = new Vector2(0.5f, 0.5f);
+        tr.anchorMax = new Vector2(0.5f, 0.5f);
+        tr.localPosition = Vector3.zero;
+        tr.SetWidth(100);
+        tr.SetHeight(100);
     }
 
     public void SetUnEquipmentImage(int index, GearDescription gearDescription)
     {
-        Transform slot = slotsVoidParent.GetChild(0);
+
+        /*Transform slot = slotsVoidParent.GetChild(0);
         slot.transform.parent = slotsEquipementParent;
         slot.SetSiblingIndex(index);
+        gearDescription.transform.parent = gearSelectionParent;*/
+        // Transform slot = slotsEquipementParent.GetChild(index);
+        
         gearDescription.transform.parent = gearSelectionParent;
     }
 
