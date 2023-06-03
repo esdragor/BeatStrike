@@ -83,21 +83,21 @@ public class SoundManager : MonoBehaviour
             60 => instance.struct60BPM.clipNotePlayerGood[
                 Random.Range(0, instance.struct60BPM.clipNotePlayerGood.Length)],
             80 => instance.struct80BPM.clipNotePlayerGood[
-                Random.Range(0, instance.struct60BPM.clipNotePlayerGood.Length)],
+                Random.Range(0, instance.struct80BPM.clipNotePlayerGood.Length)],
             90 => instance.struct90BPM.clipNotePlayerGood[
-                Random.Range(0, instance.struct60BPM.clipNotePlayerGood.Length)],
+                Random.Range(0, instance.struct90BPM.clipNotePlayerGood.Length)],
             100 => instance.struct100BPM.clipNotePlayerGood[
-                Random.Range(0, instance.struct60BPM.clipNotePlayerGood.Length)],
+                Random.Range(0, instance.struct100BPM.clipNotePlayerGood.Length)],
             120 => instance.struct120BPM.clipNotePlayerGood[
-                Random.Range(0, instance.struct60BPM.clipNotePlayerGood.Length)],
+                Random.Range(0, instance.struct120BPM.clipNotePlayerGood.Length)],
             140 => instance.struct140BPM.clipNotePlayerGood[
-                Random.Range(0, instance.struct60BPM.clipNotePlayerGood.Length)],
+                Random.Range(0, instance.struct140BPM.clipNotePlayerGood.Length)],
             160 => instance.struct60BPM.clipNotePlayerGood[
                 Random.Range(0, instance.struct160BPM.clipNotePlayerGood.Length)],
             180 => instance.struct180BPM.clipNotePlayerGood[
-                Random.Range(0, instance.struct60BPM.clipNotePlayerGood.Length)],
+                Random.Range(0, instance.struct180BPM.clipNotePlayerGood.Length)],
             200 => instance.struct200BPM.clipNotePlayerGood[
-                Random.Range(0, instance.struct60BPM.clipNotePlayerGood.Length)],
+                Random.Range(0, instance.struct200BPM.clipNotePlayerGood.Length)],
             _ => null
         };
         if (source.clip)
@@ -121,21 +121,21 @@ public class SoundManager : MonoBehaviour
             60 => instance.struct60BPM.clipNotePlayerBad[
                 Random.Range(0, instance.struct60BPM.clipNotePlayerBad.Length)],
             80 => instance.struct80BPM.clipNotePlayerBad[
-                Random.Range(0, instance.struct60BPM.clipNotePlayerBad.Length)],
+                Random.Range(0, instance.struct80BPM.clipNotePlayerBad.Length)],
             90 => instance.struct90BPM.clipNotePlayerBad[
-                Random.Range(0, instance.struct60BPM.clipNotePlayerBad.Length)],
+                Random.Range(0, instance.struct90BPM.clipNotePlayerBad.Length)],
             100 => instance.struct100BPM.clipNotePlayerBad[
-                Random.Range(0, instance.struct60BPM.clipNotePlayerBad.Length)],
+                Random.Range(0, instance.struct100BPM.clipNotePlayerBad.Length)],
             120 => instance.struct120BPM.clipNotePlayerBad[
-                Random.Range(0, instance.struct60BPM.clipNotePlayerBad.Length)],
+                Random.Range(0, instance.struct120BPM.clipNotePlayerBad.Length)],
             140 => instance.struct140BPM.clipNotePlayerBad[
-                Random.Range(0, instance.struct60BPM.clipNotePlayerBad.Length)],
-            160 => instance.struct60BPM.clipNotePlayerBad[
+                Random.Range(0, instance.struct140BPM.clipNotePlayerBad.Length)],
+            160 => instance.struct160BPM.clipNotePlayerBad[
                 Random.Range(0, instance.struct160BPM.clipNotePlayerBad.Length)],
             180 => instance.struct180BPM.clipNotePlayerBad[
-                Random.Range(0, instance.struct60BPM.clipNotePlayerBad.Length)],
+                Random.Range(0, instance.struct180BPM.clipNotePlayerBad.Length)],
             200 => instance.struct200BPM.clipNotePlayerBad[
-                Random.Range(0, instance.struct60BPM.clipNotePlayerBad.Length)],
+                Random.Range(0, instance.struct200BPM.clipNotePlayerBad.Length)],
             _ => null
         };
         if (source.clip)
