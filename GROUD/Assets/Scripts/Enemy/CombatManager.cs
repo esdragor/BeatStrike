@@ -7,7 +7,7 @@ using UnityEngine;
 public class CombatManager
 {
     public EnemyVFX enemyVFX;
-
+    public float ratio = 1f;
 
     private float currentHealth;
     private float maxHealth;
@@ -99,6 +99,12 @@ public class CombatManager
                 sk.material.SetFloat("_Dissolve", timer);
             await Task.Yield();
         }
+        currentEnemyAnimator.SetFloat("speedRatio", ratio);
+    }
+
+    public void setSpeedAnimator()
+    {
+        currentEnemyAnimator.SetFloat("speedRatio", ratio);
     }
 
 

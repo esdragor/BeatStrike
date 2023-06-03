@@ -148,6 +148,8 @@ public class GameManager : MonoBehaviour
     public void SetBPM(int BPM)
     {
         this.BPM = BPM;
+        GameLoopManager.combatManager.ratio = BPM / 60f;
+        GameLoopManager.combatManager.setSpeedAnimator();
         CalculateTickRate();
     }
 
