@@ -20,9 +20,6 @@ public class UI_Gear : MonoBehaviour
     [SerializeField] private TransitionDirection transitionDirectionMainMenu = TransitionDirection.Right;
 
     [SerializeField] private GameObject GearPrefab;
-    [SerializeField] private Transform slotsVoidHead;
-    [SerializeField] private Transform slotsVoidChest;
-    [SerializeField] private Transform slotsVoidBoot;
     [SerializeField] private Transform slotsEquipementParent;
 
     [SerializeField] private Transform gearSelectionParent;
