@@ -15,13 +15,13 @@ public class UI_EndLevel : MonoBehaviour
     {
         gameObject.SetActive(true);
         gameObject.transform.parent.gameObject.SetActive(true);
-        textScore.text = $"Score: \n\n{ScoreManager.GetScore()}";
+        textScore.text = ((int)ScoreManager.GetScore()).ToString();
 
         int nbGold = (int)(ScoreManager.GetScore() * 0.1f);
         
         CurrencyManager.AddGold(nbGold);
         
-        textGold.text = $"Gold: \n\n{nbGold}";
+        textGold.text = nbGold.ToString();
     }
 
     public void DisablePanel()
