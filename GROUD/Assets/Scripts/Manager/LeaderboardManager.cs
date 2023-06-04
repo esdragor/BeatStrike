@@ -43,7 +43,7 @@ public class LeaderboardManager : MonoBehaviour
                 ? PlayerPrefs.GetInt(instance.leaderboardNames[i])
                 : 0;
 
-            newScore += Random.Range(0, 9000);
+            newScore += Random.Range(0, 15000);
             PlayerPrefs.SetInt(instance.leaderboardNames[i], newScore);
 
             instance.COLLECTION.Add(instance.leaderboardNames[i], newScore);
