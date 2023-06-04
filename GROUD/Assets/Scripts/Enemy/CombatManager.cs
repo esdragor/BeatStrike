@@ -49,7 +49,7 @@ public class CombatManager
         float newDamage = data.enemy.damage;
         float indexPalier = (PalierManager.GetActualPalier() - 1) * PalierManager.GetIndexPalier() + index;
 
-        
+
         newMaxHealth += (indexPalier * (data.enemy.statModificatorValuePercentage / 100) * data.enemy.healthPoint);
         newDamage += (indexPalier * (data.enemy.statModificatorValuePercentage / 100) * data.enemy.damage);
 
@@ -99,12 +99,15 @@ public class CombatManager
                 sk.material.SetFloat("_Dissolve", timer);
             await Task.Yield();
         }
-        currentEnemyAnimator.SetFloat("speedRatio", ratio);
+
+        if (currentEnemyAnimator)
+            currentEnemyAnimator.SetFloat("speedRatio", ratio);
     }
 
     public void setSpeedAnimator()
     {
-        currentEnemyAnimator.SetFloat("speedRatio", ratio);
+        if (currentEnemyAnimator)
+            currentEnemyAnimator.SetFloat("speedRatio", ratio);
     }
 
 
