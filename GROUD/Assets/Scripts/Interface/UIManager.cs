@@ -39,7 +39,7 @@ public class UIManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
-        tutorial.DrawNext();
+        //tutorial.DrawNext();
     }
 
     private void Start()
