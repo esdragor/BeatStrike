@@ -64,6 +64,7 @@ public class PatternManager
             
             if (!lastWasDef)
             {
+                PlayerManager.instance.matRune.SetFloat("_AbilityProgress", 0);
               PlayerManager.instance.vfxManager.AnnouncerPhaseVFX(isDef);
             }
             
