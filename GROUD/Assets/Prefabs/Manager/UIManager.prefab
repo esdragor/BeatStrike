@@ -922,12 +922,12 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2306614819797642133}
         m_TargetAssemblyTypeName: CurrencyManager, Assembly-CSharp
-        m_MethodName: AddKeys
+        m_MethodName: AddGems
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 10
+          m_IntArgument: 200
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -4151,12 +4151,12 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2306614819797642133}
         m_TargetAssemblyTypeName: CurrencyManager, Assembly-CSharp
-        m_MethodName: AddKeys
+        m_MethodName: AddGems
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 10
+          m_IntArgument: 1000
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -11424,6 +11424,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nbGold: 100
   nbKeys: 0
+  nbGems: 0
 --- !u!114 &8061053114085785117
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11443,6 +11444,7 @@ MonoBehaviour:
   openBtn: {fileID: 9186822592135346432}
   textGold: {fileID: 1751697087464848964}
   textKey: {fileID: 2076209707730314066}
+  textGems: {fileID: 3717030629051570443}
   timeToReload: {fileID: 5729114183857353248}
   ParentGoldGear: {fileID: 8137454957206074675}
   gearPrefabShop: {fileID: 2802730156338896872, guid: 8e81da0eb58c28843ac9f36a45197bad,
@@ -11453,6 +11455,8 @@ MonoBehaviour:
   parentLootGearChestEpic: {fileID: 1985063818695866061}
   ticketPriceCommon: 1
   ticketPriceEpic: 5
+  gemsPriceCommon: 50
+  gemsPriceEpic: 500
   PopUp: {fileID: 8338319913866535736}
   PopUpText1: {fileID: 6036170858705738657}
   PopUpText2: {fileID: 1831609769751894795}
@@ -12899,12 +12903,12 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2306614819797642133}
         m_TargetAssemblyTypeName: CurrencyManager, Assembly-CSharp
-        m_MethodName: AddKeys
+        m_MethodName: AddGems
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 10
+          m_IntArgument: 100
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0

@@ -21,6 +21,7 @@ public class UI_Shop : MonoBehaviour
     
     [Header("Currency")] [SerializeField] private TMP_Text textGold;
     [SerializeField] private TMP_Text textKey;
+    [SerializeField] private TMP_Text textGems;
     [SerializeField] private TMP_Text timeToReload;
     
     [Header("Gear Gold")] [SerializeField] private Transform ParentGoldGear;
@@ -32,6 +33,8 @@ public class UI_Shop : MonoBehaviour
     [SerializeField] private Transform parentLootGearChestEpic;
     [SerializeField] private int ticketPriceCommon = 1;
     [SerializeField] private int ticketPriceEpic = 5;
+    [SerializeField] private int gemsPriceCommon = 50;
+    [SerializeField] private int gemsPriceEpic = 500;
     
     [Header("PopUp")] [SerializeField] private UI_PopUp PopUp;
     [SerializeField] private TMP_Text PopUpText1;
@@ -61,6 +64,7 @@ public class UI_Shop : MonoBehaviour
 
         CurrencyManager.OnGoldUpdated += UpdateGoldText;
         CurrencyManager.OnKeysUpdated += UpdateKeyText;
+        CurrencyManager.OnGemsUpdated += UpdateGemsText;
 
         openBtn.onClick.AddListener(() => GameManager.onUpdated += CheckTime);
         exitBtn.onClick.AddListener(() => GameManager.onUpdated -= CheckTime);
@@ -108,6 +112,12 @@ public class UI_Shop : MonoBehaviour
             
             PrintChest(FactoryObjectManager.CreateGear(0), false);
         }
+        else if (CurrencyManager.GetGems() >= gemsPriceCommon)
+        {
+            CurrencyManager.RemoveGems(gemsPriceCommon);
+            
+            PrintChest(FactoryObjectManager.CreateGear(0), false);
+        }
     }
 
     private void OpenEpicChest()
@@ -115,6 +125,12 @@ public class UI_Shop : MonoBehaviour
         if (CurrencyManager.GetKeys() >= ticketPriceEpic)
         {
             CurrencyManager.RemoveKeys(ticketPriceEpic);
+            
+            PrintChest(FactoryObjectManager.CreateGear(1), true);
+        }
+        else if (CurrencyManager.GetGems() >= gemsPriceEpic)
+        {
+            CurrencyManager.RemoveGems(gemsPriceEpic);
             
             PrintChest(FactoryObjectManager.CreateGear(1), true);
         }
@@ -128,6 +144,11 @@ public class UI_Shop : MonoBehaviour
     private void UpdateGoldText(int gold)
     {
         textGold.text = gold.ToString();
+    }
+    
+    private void UpdateGemsText(int gems)
+    {
+        textGems.text = gems.ToString();
     }
 
     public static void ShowPopUpBuyItem(GearDescription gd)

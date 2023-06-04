@@ -7,11 +7,13 @@ public class CurrencyManager : MonoBehaviour
 {
     public static Action<int> OnGoldUpdated;
     public static Action<int> OnKeysUpdated;
+    public static Action<int> OnGemsUpdated;
 
     private static CurrencyManager instance;
     
     [SerializeField] private int nbGold;
     [SerializeField] private int nbKeys;
+    [SerializeField] private int nbGems;
     
     private bool onReset = false;
 
@@ -40,8 +42,30 @@ public class CurrencyManager : MonoBehaviour
             nbKeys = 0;
         }
         
+        if (PlayerPrefs.HasKey("Gems"))
+        {
+            nbGems = PlayerPrefs.GetInt("Gems");
+        }
+        else
+        {
+            nbGems = 0;
+        }
+        
         OnGoldUpdated?.Invoke(nbGold);
         OnKeysUpdated?.Invoke(nbKeys);
+        OnGemsUpdated?.Invoke(nbGems);
+    }
+    
+    public static void AddGems(int nbGems)
+    {
+        instance.nbGems += nbGems;
+        OnGemsUpdated?.Invoke(instance.nbGems);
+    }
+    
+    public static void RemoveGems(int nbGems)
+    {
+        instance.nbGems -= nbGems;
+        OnGemsUpdated?.Invoke(instance.nbGems);
     }
 
     public static void AddGold(int nbGold)
@@ -78,6 +102,11 @@ public class CurrencyManager : MonoBehaviour
         return instance.nbKeys;
     }
     
+    public static int GetGems()
+    {
+        return instance.nbGems;
+    }
+    
     public static void OnResetValue()
     {
         instance.onReset = true;
@@ -88,5 +117,8 @@ public class CurrencyManager : MonoBehaviour
         if (onReset) return;
         PlayerPrefs.SetInt("Gold", nbGold);
         PlayerPrefs.SetInt("Keys", nbKeys);
+        PlayerPrefs.SetInt("Gems", nbGems);
     }
+
+
 }
