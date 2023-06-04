@@ -44,7 +44,16 @@ public class UI_Tutorial : MonoBehaviour
             }
         }
     }
+
+    public void HideTuto()
+    {
+        ended = true;
+        gameObject.SetActive(false);
+        MainMenuManager.instance.playButton.interactable = true;
+        MainMenuManager.instance.playButton.GetComponent<Image>().raycastTarget = true;
+    }
 }
+
 
 [Serializable] public struct PopUpElement
 {
