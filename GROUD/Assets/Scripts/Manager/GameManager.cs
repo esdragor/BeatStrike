@@ -33,7 +33,7 @@ public class GameManager : MonoBehaviour
     public float timeToShopReset = 5;
     private string lastDateKey = "LastOperationDate";
     private DateTime lastDate;
-    private float fakeDeltaTime = -1f;
+    [HideInInspector] public float fakeDeltaTime = -1f;
 
     public float Bpm => BPM;
 
@@ -124,8 +124,9 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            //float value = (fakeDeltaTime > 0f ? fakeDeltaTime : Time.deltaTime) * tickRate;
-            float value = Time.deltaTime * tickRate;
+            float value = (fakeDeltaTime > 0f ? fakeDeltaTime : Time.deltaTime) * tickRate;
+            //Debug.Log("Update : " + Time.deltaTime);
+            //float value = Time.deltaTime * tickRate;
             tickTimer += value;
             GameLoopManager.instance.AddTickCount(value);
         }
@@ -133,16 +134,19 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator CalcAverageDeltaTime()
     {
+        yield return new WaitForSeconds(1f);
         float sum = 0f;
-
+        Debug.Log("Debut de la coroutine");
         for (int i = 0; i < 10; i++)
         {
             sum += Time.deltaTime;
             yield return new WaitForEndOfFrame();
         }
+
         sum /= 10f;
-        fakeDeltaTime = sum;
-        fakeDeltaTime *= 0.1f;
+        fakeDeltaTime = 0.0035f;
+        Debug.Log("Fin de la coroutine");
+        Debug.Log("Average delta time : " + fakeDeltaTime);
     }
 
     public void SetBPM(int BPM)
@@ -183,7 +187,7 @@ public class GameManager : MonoBehaviour
     public void SetRandomBPM(int[] listOfBPM)
     {
         bpmIsRandoming = true;
-        
+
         int index = Random.Range(0, listOfBPM.Length);
         StartCoroutine(AnimationBPM(listOfBPM));
         SetBPM(listOfBPM[index]);

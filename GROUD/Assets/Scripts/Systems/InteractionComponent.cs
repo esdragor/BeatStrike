@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Threading.Tasks;
 using UnityEngine;
@@ -29,7 +30,7 @@ namespace Code.Interface
         {
             if (!UIManager.instance.isPaused && !isPooling)
             { 
-                transform.position += Vector3.back * (speed * Time.deltaTime);
+                transform.position += Vector3.back * (speed * GameManager.instance.fakeDeltaTime);
             }
         }
 

@@ -105,10 +105,12 @@ public class InputManager : MonoBehaviour
         {
             case Enums.InteractionType.Attack:
                 it.ValidateInteraction(dir);
+                SoundManager.PlayRandomGoodNotePlayer((int)GameManager.instance.Bpm);
                 break;
             case Enums.InteractionType.Dodge:
                 if (it.data.swipeDirection == dir)
                 {
+                    SoundManager.PlayRandomGoodNotePlayer((int)GameManager.instance.Bpm);
                     it.ValidateInteraction(dir);
                     playerManager.vfxManager.PlaySFX("Dodge", dir);
                 }
@@ -118,7 +120,7 @@ public class InputManager : MonoBehaviour
 
                 break;
         }
-        SoundManager.PlayRandomGoodNotePlayer((int)GameManager.instance.Bpm);
+       
     }
 
     private void TapBehaviour(ScreenListener.TouchSide touchSide, Vector2 pos)

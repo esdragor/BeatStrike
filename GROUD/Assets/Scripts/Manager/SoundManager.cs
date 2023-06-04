@@ -2,14 +2,15 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 [Serializable]
 public struct SoundData
 {
     public AudioClip clipBackground;
-    public AudioClip[] clipNotePlayerGood;
-    public AudioClip[] clipNotePlayerBad;
+    public AudioClip[] clipNotePlayerDodge;
+    public AudioClip[] clipNotePlayerAttack;
 }
 
 public class SoundManager : MonoBehaviour
@@ -80,24 +81,24 @@ public class SoundManager : MonoBehaviour
         if (source == null) return;
         source.clip = BPM switch
         {
-            60 => instance.struct60BPM.clipNotePlayerGood[
-                Random.Range(0, instance.struct60BPM.clipNotePlayerGood.Length)],
-            80 => instance.struct80BPM.clipNotePlayerGood[
-                Random.Range(0, instance.struct80BPM.clipNotePlayerGood.Length)],
-            90 => instance.struct90BPM.clipNotePlayerGood[
-                Random.Range(0, instance.struct90BPM.clipNotePlayerGood.Length)],
-            100 => instance.struct100BPM.clipNotePlayerGood[
-                Random.Range(0, instance.struct100BPM.clipNotePlayerGood.Length)],
-            120 => instance.struct120BPM.clipNotePlayerGood[
-                Random.Range(0, instance.struct120BPM.clipNotePlayerGood.Length)],
-            140 => instance.struct140BPM.clipNotePlayerGood[
-                Random.Range(0, instance.struct140BPM.clipNotePlayerGood.Length)],
-            160 => instance.struct60BPM.clipNotePlayerGood[
-                Random.Range(0, instance.struct160BPM.clipNotePlayerGood.Length)],
-            180 => instance.struct180BPM.clipNotePlayerGood[
-                Random.Range(0, instance.struct180BPM.clipNotePlayerGood.Length)],
-            200 => instance.struct200BPM.clipNotePlayerGood[
-                Random.Range(0, instance.struct200BPM.clipNotePlayerGood.Length)],
+            60 => instance.struct60BPM.clipNotePlayerDodge[
+                Random.Range(0, instance.struct60BPM.clipNotePlayerDodge.Length)],
+            80 => instance.struct80BPM.clipNotePlayerDodge[
+                Random.Range(0, instance.struct80BPM.clipNotePlayerDodge.Length)],
+            90 => instance.struct90BPM.clipNotePlayerDodge[
+                Random.Range(0, instance.struct90BPM.clipNotePlayerDodge.Length)],
+            100 => instance.struct100BPM.clipNotePlayerDodge[
+                Random.Range(0, instance.struct100BPM.clipNotePlayerDodge.Length)],
+            120 => instance.struct120BPM.clipNotePlayerDodge[
+                Random.Range(0, instance.struct120BPM.clipNotePlayerDodge.Length)],
+            140 => instance.struct140BPM.clipNotePlayerDodge[
+                Random.Range(0, instance.struct140BPM.clipNotePlayerDodge.Length)],
+            160 => instance.struct60BPM.clipNotePlayerDodge[
+                Random.Range(0, instance.struct160BPM.clipNotePlayerDodge.Length)],
+            180 => instance.struct180BPM.clipNotePlayerDodge[
+                Random.Range(0, instance.struct180BPM.clipNotePlayerDodge.Length)],
+            200 => instance.struct200BPM.clipNotePlayerDodge[
+                Random.Range(0, instance.struct200BPM.clipNotePlayerDodge.Length)],
             _ => null
         };
         if (source.clip)
@@ -118,24 +119,24 @@ public class SoundManager : MonoBehaviour
         if (source == null) return;
         source.clip = BPM switch
         {
-            60 => instance.struct60BPM.clipNotePlayerBad[
-                Random.Range(0, instance.struct60BPM.clipNotePlayerBad.Length)],
-            80 => instance.struct80BPM.clipNotePlayerBad[
-                Random.Range(0, instance.struct80BPM.clipNotePlayerBad.Length)],
-            90 => instance.struct90BPM.clipNotePlayerBad[
-                Random.Range(0, instance.struct90BPM.clipNotePlayerBad.Length)],
-            100 => instance.struct100BPM.clipNotePlayerBad[
-                Random.Range(0, instance.struct100BPM.clipNotePlayerBad.Length)],
-            120 => instance.struct120BPM.clipNotePlayerBad[
-                Random.Range(0, instance.struct120BPM.clipNotePlayerBad.Length)],
-            140 => instance.struct140BPM.clipNotePlayerBad[
-                Random.Range(0, instance.struct140BPM.clipNotePlayerBad.Length)],
-            160 => instance.struct160BPM.clipNotePlayerBad[
-                Random.Range(0, instance.struct160BPM.clipNotePlayerBad.Length)],
-            180 => instance.struct180BPM.clipNotePlayerBad[
-                Random.Range(0, instance.struct180BPM.clipNotePlayerBad.Length)],
-            200 => instance.struct200BPM.clipNotePlayerBad[
-                Random.Range(0, instance.struct200BPM.clipNotePlayerBad.Length)],
+            60 => instance.struct60BPM.clipNotePlayerAttack[
+                Random.Range(0, instance.struct60BPM.clipNotePlayerAttack.Length)],
+            80 => instance.struct80BPM.clipNotePlayerAttack[
+                Random.Range(0, instance.struct80BPM.clipNotePlayerAttack.Length)],
+            90 => instance.struct90BPM.clipNotePlayerAttack[
+                Random.Range(0, instance.struct90BPM.clipNotePlayerAttack.Length)],
+            100 => instance.struct100BPM.clipNotePlayerAttack[
+                Random.Range(0, instance.struct100BPM.clipNotePlayerAttack.Length)],
+            120 => instance.struct120BPM.clipNotePlayerAttack[
+                Random.Range(0, instance.struct120BPM.clipNotePlayerAttack.Length)],
+            140 => instance.struct140BPM.clipNotePlayerAttack[
+                Random.Range(0, instance.struct140BPM.clipNotePlayerAttack.Length)],
+            160 => instance.struct160BPM.clipNotePlayerAttack[
+                Random.Range(0, instance.struct160BPM.clipNotePlayerAttack.Length)],
+            180 => instance.struct180BPM.clipNotePlayerAttack[
+                Random.Range(0, instance.struct180BPM.clipNotePlayerAttack.Length)],
+            200 => instance.struct200BPM.clipNotePlayerAttack[
+                Random.Range(0, instance.struct200BPM.clipNotePlayerAttack.Length)],
             _ => null
         };
         if (source.clip)
