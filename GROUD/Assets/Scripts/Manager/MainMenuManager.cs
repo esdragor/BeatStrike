@@ -72,6 +72,7 @@ public class MainMenuManager : MonoBehaviour
     {
         GameLoopManager.instance.InitLevel();
         UIManager.instance.hud.gameObject.SetActive(true);
+        UIManager.instance.isPaused = false;
         HideMainMenuPanel();
     }
     

@@ -36,6 +36,7 @@ public class StreakManager : MonoBehaviour
     public static void ResetStreak()
     {
         instance.streak = 0;
+        UIManager.instance.streak.UpdateStreakAndMultiplier();
     }
     
     public static int GetNbNeedToMultiply()

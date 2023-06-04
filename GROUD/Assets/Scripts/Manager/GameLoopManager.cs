@@ -71,7 +71,6 @@ public class GameLoopManager : MonoBehaviour
     private void Start()
     {
         SpawnNextChunck();
-        Debug.Log(nextChunck);
         patternManager.delayBetweenPattern = delayBetweenPattern;
     }
 
