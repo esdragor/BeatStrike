@@ -137,7 +137,8 @@ public class UIManager : MonoBehaviour
         ScoreManager.ResetScore();
         
         GameLoopManager.combatManager.ResetIndexPalier();
-        UIManager.instance.enemy.gameObject.SetActive(false);
+        enemy.gameObject.SetActive(false);
+        PlayerManager.instance.matRune.SetFloat("_AbilityProgress", 0);
     }
 
     void OnEngineStateSetUI(Enums.EngineState engineState)
