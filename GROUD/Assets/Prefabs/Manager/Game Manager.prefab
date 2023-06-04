@@ -174,48 +174,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6922f9cecbaa3b947b8d83e7f14800b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  struct60BPM:
-    clipBackground: {fileID: 8300000, guid: d7b072e9453f6894eb596efb50e56356, type: 3}
-    clipNotePlayerDodge:
-    - {fileID: 8300000, guid: 8a3b54958c216f04f82bc2a2c29d6807, type: 3}
-    clipNotePlayerAttack:
-    - {fileID: 8300000, guid: 8a3b54958c216f04f82bc2a2c29d6807, type: 3}
-  struct80BPM:
-    clipBackground: {fileID: 8300000, guid: 8f930a04832523642a04740edeace532, type: 3}
-    clipNotePlayerDodge:
-    - {fileID: 8300000, guid: 8a3b54958c216f04f82bc2a2c29d6807, type: 3}
-    clipNotePlayerAttack:
-    - {fileID: 8300000, guid: 8a3b54958c216f04f82bc2a2c29d6807, type: 3}
-  struct90BPM:
-    clipBackground: {fileID: 8300000, guid: 8f930a04832523642a04740edeace532, type: 3}
-    clipNotePlayerDodge:
-    - {fileID: 8300000, guid: 8a3b54958c216f04f82bc2a2c29d6807, type: 3}
-    clipNotePlayerAttack:
-    - {fileID: 8300000, guid: 8a3b54958c216f04f82bc2a2c29d6807, type: 3}
-  struct100BPM:
-    clipBackground: {fileID: 8300000, guid: 3b53f1fe167d43545924d643c5249cb8, type: 3}
-    clipNotePlayerDodge: []
-    clipNotePlayerAttack: []
-  struct120BPM:
-    clipBackground: {fileID: 8300000, guid: bd4a19afe4bd01246894c135955e0c30, type: 3}
-    clipNotePlayerDodge: []
-    clipNotePlayerAttack: []
-  struct140BPM:
-    clipBackground: {fileID: 8300000, guid: e50048e31259e054e9d4b0f1ffde7345, type: 3}
-    clipNotePlayerDodge: []
-    clipNotePlayerAttack: []
-  struct160BPM:
-    clipBackground: {fileID: 8300000, guid: 7ff577edbee3b66419b067017ef3cc66, type: 3}
-    clipNotePlayerDodge: []
-    clipNotePlayerAttack: []
-  struct180BPM:
-    clipBackground: {fileID: 8300000, guid: aa6452329e0ea2b4fa16e7df424e8bec, type: 3}
-    clipNotePlayerDodge: []
-    clipNotePlayerAttack: []
-  struct200BPM:
-    clipBackground: {fileID: 8300000, guid: e50048e31259e054e9d4b0f1ffde7345, type: 3}
-    clipNotePlayerDodge: []
-    clipNotePlayerAttack: []
+  struct60BPM: {fileID: 0}
+  struct80BPM: {fileID: 0}
+  struct90BPM: {fileID: 0}
+  struct100BPM: {fileID: 0}
+  struct120BPM: {fileID: 0}
+  struct140BPM: {fileID: 0}
+  struct160BPM: {fileID: 0}
+  struct180BPM: {fileID: 8300000, guid: aa6452329e0ea2b4fa16e7df424e8bec, type: 3}
+  struct200BPM: {fileID: 0}
+  clipNotePlayerDodge:
+  - {fileID: 8300000, guid: 06c8892ba26d16c4ab4a77503eb447d1, type: 3}
+  - {fileID: 8300000, guid: 21f75f36a3917f14b850be37dc1cd617, type: 3}
+  - {fileID: 8300000, guid: e53f4f0685c12ae4a928d0c9552d2733, type: 3}
+  clipNotePlayerAttack:
+  - {fileID: 8300000, guid: 9a0cb22e7bdbd20499dd12e7eb113dc2, type: 3}
+  - {fileID: 8300000, guid: e78daec421096ba4a9896bb26f6d1bd1, type: 3}
+  - {fileID: 8300000, guid: d41c307a0cfcf9443ac76ca8ffc688e4, type: 3}
   audioSourceMusicalBackground: {fileID: 8320449545509933988}
   audioSourceNotePlayer:
   - {fileID: 5427127240286082787}

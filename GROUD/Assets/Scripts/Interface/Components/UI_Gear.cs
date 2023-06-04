@@ -75,6 +75,14 @@ public class UI_Gear : MonoBehaviour
     {
         nbGoldText.text = gold.ToString();
     }
+
+    public static void ClearInventory()
+    {
+        while(instance.gearSelectionParent.childCount > 0)
+        {
+            DestroyImmediate(instance.gearSelectionParent.GetChild(0).gameObject);
+        }
+    }
     
  
 

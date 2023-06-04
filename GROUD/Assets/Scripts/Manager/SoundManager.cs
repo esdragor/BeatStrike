@@ -8,24 +8,23 @@ using Random = UnityEngine.Random;
 [Serializable]
 public struct SoundData
 {
-    public AudioClip clipBackground;
-    public AudioClip[] clipNotePlayerDodge;
-    public AudioClip[] clipNotePlayerAttack;
 }
 
 public class SoundManager : MonoBehaviour
 {
     private static SoundManager instance;
 
-    [SerializeField] private SoundData struct60BPM;
-    [SerializeField] private SoundData struct80BPM;
-    [SerializeField] private SoundData struct90BPM;
-    [SerializeField] private SoundData struct100BPM;
-    [SerializeField] private SoundData struct120BPM;
-    [SerializeField] private SoundData struct140BPM;
-    [SerializeField] private SoundData struct160BPM;
-    [SerializeField] private SoundData struct180BPM;
-    [SerializeField] private SoundData struct200BPM;
+    [SerializeField] private AudioClip struct60BPM;
+    [SerializeField] private AudioClip struct80BPM;
+    [SerializeField] private AudioClip struct90BPM;
+    [SerializeField] private AudioClip struct100BPM;
+    [SerializeField] private AudioClip struct120BPM;
+    [SerializeField] private AudioClip struct140BPM;
+    [SerializeField] private AudioClip struct160BPM;
+    [SerializeField] private AudioClip struct180BPM;
+    [SerializeField] private AudioClip struct200BPM;
+    public AudioClip[] clipNotePlayerDodge;
+    public AudioClip[] clipNotePlayerAttack;
 
     [Header("Musical Background")] [SerializeField]
     private AudioSource audioSourceMusicalBackground;
@@ -44,15 +43,15 @@ public class SoundManager : MonoBehaviour
     {
         instance.audioSourceMusicalBackground.clip = BPM switch
         {
-            60 => instance.struct60BPM.clipBackground,
-            80 => instance.struct80BPM.clipBackground,
-            90 => instance.struct90BPM.clipBackground,
-            100 => instance.struct100BPM.clipBackground,
-            120 => instance.struct120BPM.clipBackground,
-            140 => instance.struct140BPM.clipBackground,
-            160 => instance.struct160BPM.clipBackground,
-            180 => instance.struct180BPM.clipBackground,
-            200 => instance.struct200BPM.clipBackground,
+            60 => instance.struct60BPM,
+            80 => instance.struct80BPM,
+            90 => instance.struct90BPM,
+            100 => instance.struct100BPM,
+            120 => instance.struct120BPM,
+            140 => instance.struct140BPM,
+            160 => instance.struct160BPM,
+            180 => instance.struct180BPM,
+            200 => instance.struct200BPM,
             _ => null
         };
         if (instance.audioSourceMusicalBackground.clip)
@@ -67,7 +66,7 @@ public class SoundManager : MonoBehaviour
             instance.audioSourceMusicalBackground.UnPause();
     }
 
-    public static void PlayRandomGoodNotePlayer(int BPM)
+    public static void PlayRandomDodgeNotePlayer()
     {
         int sizeAudioSource = instance.audioSourceNotePlayer.Length;
         AudioSource source = null;
@@ -79,33 +78,13 @@ public class SoundManager : MonoBehaviour
         }
 
         if (source == null) return;
-        source.clip = BPM switch
-        {
-            60 => instance.struct60BPM.clipNotePlayerDodge[
-                Random.Range(0, instance.struct60BPM.clipNotePlayerDodge.Length)],
-            80 => instance.struct80BPM.clipNotePlayerDodge[
-                Random.Range(0, instance.struct80BPM.clipNotePlayerDodge.Length)],
-            90 => instance.struct90BPM.clipNotePlayerDodge[
-                Random.Range(0, instance.struct90BPM.clipNotePlayerDodge.Length)],
-            100 => instance.struct100BPM.clipNotePlayerDodge[
-                Random.Range(0, instance.struct100BPM.clipNotePlayerDodge.Length)],
-            120 => instance.struct120BPM.clipNotePlayerDodge[
-                Random.Range(0, instance.struct120BPM.clipNotePlayerDodge.Length)],
-            140 => instance.struct140BPM.clipNotePlayerDodge[
-                Random.Range(0, instance.struct140BPM.clipNotePlayerDodge.Length)],
-            160 => instance.struct60BPM.clipNotePlayerDodge[
-                Random.Range(0, instance.struct160BPM.clipNotePlayerDodge.Length)],
-            180 => instance.struct180BPM.clipNotePlayerDodge[
-                Random.Range(0, instance.struct180BPM.clipNotePlayerDodge.Length)],
-            200 => instance.struct200BPM.clipNotePlayerDodge[
-                Random.Range(0, instance.struct200BPM.clipNotePlayerDodge.Length)],
-            _ => null
-        };
+        source.clip = instance.clipNotePlayerDodge[
+            Random.Range(0, instance.clipNotePlayerDodge.Length)];
         if (source.clip)
             source.Play();
     }
 
-    public static void PlayRandomBadNotePlayer(int BPM)
+    public static void PlayRandomAttackNotePlayer()
     {
         int sizeAudioSource = instance.audioSourceNotePlayer.Length;
         AudioSource source = null;
@@ -117,28 +96,8 @@ public class SoundManager : MonoBehaviour
         }
 
         if (source == null) return;
-        source.clip = BPM switch
-        {
-            60 => instance.struct60BPM.clipNotePlayerAttack[
-                Random.Range(0, instance.struct60BPM.clipNotePlayerAttack.Length)],
-            80 => instance.struct80BPM.clipNotePlayerAttack[
-                Random.Range(0, instance.struct80BPM.clipNotePlayerAttack.Length)],
-            90 => instance.struct90BPM.clipNotePlayerAttack[
-                Random.Range(0, instance.struct90BPM.clipNotePlayerAttack.Length)],
-            100 => instance.struct100BPM.clipNotePlayerAttack[
-                Random.Range(0, instance.struct100BPM.clipNotePlayerAttack.Length)],
-            120 => instance.struct120BPM.clipNotePlayerAttack[
-                Random.Range(0, instance.struct120BPM.clipNotePlayerAttack.Length)],
-            140 => instance.struct140BPM.clipNotePlayerAttack[
-                Random.Range(0, instance.struct140BPM.clipNotePlayerAttack.Length)],
-            160 => instance.struct160BPM.clipNotePlayerAttack[
-                Random.Range(0, instance.struct160BPM.clipNotePlayerAttack.Length)],
-            180 => instance.struct180BPM.clipNotePlayerAttack[
-                Random.Range(0, instance.struct180BPM.clipNotePlayerAttack.Length)],
-            200 => instance.struct200BPM.clipNotePlayerAttack[
-                Random.Range(0, instance.struct200BPM.clipNotePlayerAttack.Length)],
-            _ => null
-        };
+        source.clip = instance.clipNotePlayerAttack[
+                Random.Range(0, instance.clipNotePlayerAttack.Length)];
         if (source.clip)
             source.Play();
     }

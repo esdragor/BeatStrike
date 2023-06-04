@@ -29,6 +29,7 @@ public class Inventory : MonoBehaviour
 
     public static void Init()
     {
+        UI_Gear.ClearInventory();
         instance.LoadInventory();
         instance.LoadEquipment();
     }

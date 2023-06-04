@@ -18,6 +18,7 @@ public class UI_EndLevel : MonoBehaviour
         textScore.text = ((int)ScoreManager.GetScore()).ToString();
 
         int nbGold = (int)(ScoreManager.GetScore() * 0.1f);
+        LeaderboardManager.AddScore((int)ScoreManager.GetScore());
         
         CurrencyManager.AddGold(nbGold);
         

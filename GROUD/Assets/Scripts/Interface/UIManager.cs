@@ -121,6 +121,7 @@ public class UIManager : MonoBehaviour
         pausePanel.SetActive(false);
         
         int nbGold = (int)(ScoreManager.GetScore() * 0.1f);
+        LeaderboardManager.AddScore((int)ScoreManager.GetScore());
         
         CurrencyManager.AddGold(nbGold);
         

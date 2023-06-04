@@ -26,12 +26,12 @@ public class ScoreManager : MonoBehaviour
     public static void AddScore(InteractionSuccess  interactionSuccess)
     {
         instance.score += (interactionSuccess == InteractionSuccess.Ok ? instance.scoreOk : 
-                           interactionSuccess == InteractionSuccess.Good ? instance.scoreGood : instance.scorePerfect) * instance.multiplierDifficulty;
+                           interactionSuccess == InteractionSuccess.Good ? instance.scoreGood : instance.scorePerfect) * instance.multiplierDifficulty * StreakManager.GetMultiplier();
     }
     
     public static float GetScore()
     {
-        return instance.score * StreakManager.GetMultiplier();
+        return instance.score;
     }
     
     public static void ModifierDifficulty(byte multiplier)

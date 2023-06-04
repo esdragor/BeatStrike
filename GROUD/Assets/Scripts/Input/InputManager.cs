@@ -105,12 +105,12 @@ public class InputManager : MonoBehaviour
         {
             case Enums.InteractionType.Attack:
                 it.ValidateInteraction(dir);
-                SoundManager.PlayRandomGoodNotePlayer((int)GameManager.instance.Bpm);
+                SoundManager.PlayRandomAttackNotePlayer();
                 break;
             case Enums.InteractionType.Dodge:
                 if (it.data.swipeDirection == dir)
                 {
-                    SoundManager.PlayRandomGoodNotePlayer((int)GameManager.instance.Bpm);
+                    SoundManager.PlayRandomDodgeNotePlayer();
                     it.ValidateInteraction(dir);
                     playerManager.vfxManager.PlaySFX("Dodge", dir);
                 }

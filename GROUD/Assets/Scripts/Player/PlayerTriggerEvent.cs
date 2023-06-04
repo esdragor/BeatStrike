@@ -8,7 +8,7 @@ public class PlayerTriggerEvent : MonoBehaviour
     {
         InteractionComponent it = other.GetComponent<InteractionComponent>();
         if (false == true)
-            SoundManager.PlayRandomBadNotePlayer((int)GameManager.instance.Bpm);
+            SoundManager.PlayRandomAttackNotePlayer();
         if (it)
         {
             if (it.data.interactionType != Enums.InteractionType.Attack)

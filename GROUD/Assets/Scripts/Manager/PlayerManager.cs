@@ -11,7 +11,6 @@ public class PlayerManager : MonoBehaviour
     public static Action<InteractionSuccess> onInteractionSuccess;
     public static Action<InteractionSuccess> onComboSuccess;
 
-    public float distanceReached;
     public int MaxHP => (int)GameManager.instance.currentCharacterInfos.playerStats.hp;
     public Animator animator;
 
@@ -94,10 +93,9 @@ public class PlayerManager : MonoBehaviour
 
     public void SetPlayer()
     {
-        distanceReached = 0;
         currentHP = MaxHP;
 
-        UIManager.instance.score.SetScore((int)distanceReached);
+        UIManager.instance.score.SetScore((int)0);
         UIManager.instance.hud.playerHealth.SetHealth(currentHP, MaxHP);
 
         MovePlayerTo(GameLoopManager.instance.currentChunkLevelHeader.combatPos.position);
@@ -158,9 +156,7 @@ public class PlayerManager : MonoBehaviour
         {
             SetInputComponent(interactionType, dataSwipeDirection);
         }
-
-        distanceReached = ScoreManager.GetScore();
-        UIManager.instance.score.SetScore((int)distanceReached);
+        UIManager.instance.score.SetScore((int)ScoreManager.GetScore());
     }
 
     public void SetPower(PowerSO newPower)

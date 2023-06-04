@@ -30,7 +30,7 @@ namespace Code.Interface
         {
             if (!UIManager.instance.isPaused && !isPooling)
             { 
-                transform.position += Vector3.back * (speed * GameManager.instance.fakeDeltaTime);
+                transform.position += Vector3.back * (speed * Time.deltaTime);
             }
         }
 
